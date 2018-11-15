@@ -1,7 +1,6 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-const airtableKey = process.env.GATSBY_AIRTABLE_KEY ? process.env.GATSBY_AIRTABLE_KEY : GATSBY_AIRTABLE_KEY
 
 module.exports = {
   siteMetadata: {
@@ -41,7 +40,7 @@ module.exports = {
     {
       resolve: `gatsby-source-airtable`,
       options: {
-        apiKey: airtableKey,
+        apiKey: process.env.GATSBY_AIRTABLE_KEY,
         tables: [
           {
             baseId: `appntJvRc0wlBRXVh`,

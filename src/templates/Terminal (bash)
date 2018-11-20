@@ -1,0 +1,13 @@
+   84:7   warning  'discription' is assigned a value but never used  no-unused-vars                                               
+   85:7   warning  'price' is assigned a value but never used        no-unused-vars                                               
+  121:17  error    'price' is not defined                            no-undef                                                     
+                                                                                                                                  
+✖ 17 problems (1 error, 16 warnings)                                                                                              
+                                                                                                                                  
+ @ ./.cache/sync-requires.js 13:62-158                                                                                            
+ @ ./.cache/app.js                                                                                                                
+ @ multi (webpack)-hot-middleware/client.js?path=/__webpack_hmr&reload=true&overlay=false ./.cache/app                            
+^C                                                                                                                                
+________________________________________________________________________________                                                  
+| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                                           
+| =>                                                                                                                              

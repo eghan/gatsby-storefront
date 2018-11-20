@@ -25,7 +25,7 @@ exports.onCreateNode = async ({
         createNodeId: id => `etsy-image${id}`,
       })
       if (fileNode) {
-        node.image___NODE = fileNode.TITLE
+        node.image___NODE = fileNode.id
       }
     } catch (e) {
       console.log(e)

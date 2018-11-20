@@ -54,6 +54,7 @@ const Photo = styled(Img)`
 
 export default ({ data }) => {
   const { name, description, price, TAGS, IMAGE1} = data.etsy
+  
   // gives tags array default value in case graphql returns non value
   // TODO: this may be refactorable using destructuring and default values
   // gatsby(JSX) build fails(passes develop) when tags is not present

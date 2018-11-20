@@ -52,11 +52,35 @@ const Photo = styled(Img)`
   float: center;
 `
 
+function renderTagNames(data) {
+  let tagList = []
+
+  if (data.airtable !== null) {
+      data.airtable.edges.map(item => {
+      tagList = [...tagList, item.node.data.name]
+    })
+  }
+
+  if (data.etsy !== null) {
+      data.etsy.edges.map(item => {
+      tagList = [...tagList, item.node.name]
+      console.log(item.node.name)
+    })
+    console.log(data)
+  }
+
+  let output = tagList.map(name => <Link to={name} key={name}>{name}</Link>)
+
+  return output
+}
+
 export default ({ data }) => {
-  const node = [...data.allAirtable.edges]
+  const node = [...data.airtable.edges]
+
   return (
     <Layout>
       <Container>
+        {renderTagNames(data)}
         {node.map(({ node: { data: { name, photo } } }) => {
           return (
             <Link to={name} key={name}>
@@ -73,11 +97,12 @@ export default ({ data }) => {
 }
 export const query = graphql`
   query airtableTags($tag: String!) {
-    allAirtable(filter: { data: { tags: { in: [$tag] } } }) {
+    airtable: allAirtable(filter: { data: { tags: { in: [$tag] } } }) {
       edges {
         node {
           data {
             name
+            tags
             photo {
               localFiles {
                 childImageSharp {
@@ -86,6 +111,26 @@ export const query = graphql`
                     ...GatsbyImageSharpFixed
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+    etsy: allEtsyListingsDownloadCsv(
+      filter: { fields: { tags: { in: [$tag] } } }
+    ) {
+      edges {
+        node {
+          name: TITLE
+          fields {
+            tags
+          }
+          image {
+            childImageSharp {
+              id
+              fixed(width: 300) {
+                ...GatsbyImageSharpFixed
               }
             }
           }

@@ -1,5 +1,8 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
+// shared across createPage and onCreateNode to unify tags between etsy and airtable
+var tagList = []
+
 exports.onCreateNode = async ({
   node,
   actions,
@@ -9,11 +12,8 @@ exports.onCreateNode = async ({
 }) => {
   const { createNode, createNodeField, createParentChildLink } = actions
 
-
   if (node.internal.type === `EtsyListingsDownloadCsv`) {
     let fileNode
-
-    let nodeImages = []
 
     try {
       fileNode = await createRemoteFileNode({
@@ -27,6 +27,31 @@ exports.onCreateNode = async ({
       if (fileNode) {
         node.image___NODE = fileNode.id
       }
+
+      if (node.TAGS !== null) {
+        let tagList = node.TAGS.split(',')
+
+        // TODO: re-examine use of variable tagList, global vs local
+
+        createNodeField({
+          node,
+          name: 'tags',
+          value: tagList,
+        })
+
+        tagList.forEach(tag => {
+          if (!tagList.includes(tag)) {
+            createPage({
+              path: tag,
+              component: path.resolve(`./src/templates/tag-template.js`),
+              context: {
+                tag: tag,
+              },
+            })
+            tagList = [...tagList, tag]
+          }
+        })
+      }
     } catch (e) {
       console.log(e)
     }
@@ -37,9 +62,6 @@ const path = require(`path`)
 if (process.env.NODE_ENV === 'development') {
   process.env.GATSBY_WEBPACK_PUBLICPATH = '/'
 }
-
-var tagList = []
-var etsyList = []
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -97,7 +119,6 @@ exports.createPages = ({ graphql, actions }) => {
               }
             })
           }
-          //console.log(('test1', result.data.etsy.edges.node.name)
         })
         return result
       })
@@ -114,20 +135,6 @@ exports.createPages = ({ graphql, actions }) => {
               },
             })
           }
-          // if (node.TAGS != null) {
-          //   node.TAGS.split(',').forEach(tag => {
-          //     if (!tagList.includes(tag)) {
-          //       tagList = [...tagList, tag]
-          //       createPage({
-          //         path: tag,
-          //         component: path.resolve(`./src/templates/tag-template.js`),
-          //         context: {
-          //           tag: tag,
-          //         },
-          //       })
-          //     }
-          //   })
-          // }
         })
         return result
       })

@@ -75,6 +75,7 @@ function renderTagMatches(data) {
   }
 
   let output = matchList.map(match => (
+    <Info className={match[0]}>
     <Link to={match[0]} key={match[0]}>
       <Tag>{match[0]}</Tag>
       <Photo
@@ -82,18 +83,20 @@ function renderTagMatches(data) {
         fixed={match[1].childImageSharp.fixed}
       />
     </Link>
+ </Info>
   ))
+
   return output
 }
 
 export default ({ data }) => {
+
   return (
     <Layout>
       <Container>{renderTagMatches(data)}</Container>
     </Layout>
   )
 }
-
 export const query = graphql`
   query airtableTags($tag: String!) {
     airtable: allAirtable(filter: { data: { tags: { in: [$tag] } } }) {

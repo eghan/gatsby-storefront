@@ -10,7 +10,7 @@ exports.onCreateNode = async ({
   cache,
   createNodeId,
 }) => {
-  const { createNode, createNodeField, createParentChildLink } = actions
+  const { createNode, createNodeField, createParentChildLink, createPage } = actions
 
   if (node.internal.type === `EtsyListingsDownloadCsv`) {
     let fileNode
@@ -29,17 +29,17 @@ exports.onCreateNode = async ({
       }
 
       if (node.TAGS !== null) {
-        let tagList = node.TAGS.split(',')
+        let tags = node.TAGS.split(',')
 
         // TODO: re-examine use of variable tagList, global vs local
 
         createNodeField({
           node,
           name: 'tags',
-          value: tagList,
+          value: tags,
         })
 
-        tagList.forEach(tag => {
+        tags.forEach(tag => {
           if (!tagList.includes(tag)) {
             createPage({
               path: tag,

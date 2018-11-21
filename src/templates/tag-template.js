@@ -12,7 +12,7 @@ const Container = styled.div`
 const Photos = styled.div`
   margin: 0rem auto;
   max-width: 400px;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
   justify-content: left;
@@ -22,16 +22,17 @@ const Photos = styled.div`
 const Info = styled.div`
   padding: 0.05rem 0.5rem;
   margin: 1rem auto;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   border: 1px dashed silver;
 `
 const Tag = styled.button`
   padding: 0rem 0.2rem;
   display: inline-block;
-  border: 1px dashed silver;
+  border: 0.5px dashed silver;
   font-size: 0.6em;
-  line-height: 130%;
+  text-decoration: none;
+  margin-bottom: 0.1em;
   &:focus {
     outline: 0;
   }
@@ -46,61 +47,53 @@ const Price = styled.div`
   font-size: 0.9em;
 `
 const Tagbox = styled.div`
-  float: center;
+  float: right;
+  max-width: 50%;
 `
 const Photo = styled(Img)`
-  float: center;
+  padding: 2px 2px;
+  float: left;
+  display: inline-block;
 `
 
-function renderTagNames(data) {
-  let tagList = []
+function renderTagMatches(data) {
+  let matchList = []
 
   if (data.airtable !== null) {
     data.airtable.edges.map(item => {
-      tagList = [...tagList, item.node.data.name]
+      matchList = [
+        ...matchList,
+        [item.node.data.name, item.node.data.image.localFiles[0]]
+      ]
     })
   }
 
   if (data.etsy !== null) {
     data.etsy.edges.map(item => {
-      tagList = [...tagList, item.node.name]
-      console.log(item.node.name)
+      matchList = [...matchList, [item.node.name, item.node.image]]
     })
-    console.log(data)
   }
 
-  let output = tagList.map(name => (
-    <Tag>
-      <Link to={name} key={name}>
-        {name}
-      </Link>
-    </Tag>
+  let output = matchList.map(match => (
+    <Link to={match[0]} key={match[0]}>
+      <Tag>{match[0]}</Tag>
+      <Photo
+        title={match[1].childImageSharp.id}
+        fixed={match[1].childImageSharp.fixed}
+      />
+    </Link>
   ))
-
   return output
 }
 
 export default ({ data }) => {
-  const node = [...data.airtable.edges]
-
   return (
     <Layout>
-      <Container>
-        {renderTagNames(data)}
-        {node.map(({ node: { data: { name, photo } } }) => {
-          return (
-            <Link to={name} key={name}>
-              <Photo
-                title={name}
-                fixed={photo.localFiles[0].childImageSharp.fixed}
-              />
-            </Link>
-          )
-        })}
-      </Container>
+      <Container>{renderTagMatches(data)}</Container>
     </Layout>
   )
 }
+
 export const query = graphql`
   query airtableTags($tag: String!) {
     airtable: allAirtable(filter: { data: { tags: { in: [$tag] } } }) {
@@ -109,7 +102,7 @@ export const query = graphql`
           data {
             name
             tags
-            photo {
+            image: photo {
               localFiles {
                 childImageSharp {
                   id

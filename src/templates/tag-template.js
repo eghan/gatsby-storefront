@@ -56,20 +56,26 @@ function renderTagNames(data) {
   let tagList = []
 
   if (data.airtable !== null) {
-      data.airtable.edges.map(item => {
+    data.airtable.edges.map(item => {
       tagList = [...tagList, item.node.data.name]
     })
   }
 
   if (data.etsy !== null) {
-      data.etsy.edges.map(item => {
+    data.etsy.edges.map(item => {
       tagList = [...tagList, item.node.name]
       console.log(item.node.name)
     })
     console.log(data)
   }
 
-  let output = tagList.map(name => <Link to={name} key={name}>{name}</Link>)
+  let output = tagList.map(name => (
+    <Tag>
+      <Link to={name} key={name}>
+        {name}
+      </Link>
+    </Tag>
+  ))
 
   return output
 }

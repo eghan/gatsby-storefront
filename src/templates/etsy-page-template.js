@@ -12,7 +12,7 @@ const Container = styled.div`
 const Photos = styled.div`
   margin: 0rem auto;
   max-width: 400px;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
   justify-content: left;
@@ -22,16 +22,17 @@ const Photos = styled.div`
 const Info = styled.div`
   padding: 0.05rem 0.5rem;
   margin: 1rem auto;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   border: 1px dashed silver;
 `
 const Tag = styled.button`
   padding: 0rem 0.2rem;
   display: inline-block;
-  border: 1px dashed silver;
+  border: 0.5px dashed silver;
   font-size: 0.6em;
-  line-height: 130%;
+  text-decoration: none;
+  margin-bottom: 0.1em;
   &:focus {
     outline: 0;
   }
@@ -46,47 +47,43 @@ const Price = styled.div`
   font-size: 0.9em;
 `
 const Tagbox = styled.div`
-  float: center;
+  float: right;
+  max-width: 50%;
 `
 const Photo = styled(Img)`
-  float: right;
+  padding: 2px 2px;
+  float: left;
+  display: inline-block;
 `
 
 export default ({ data }) => {
-  const { name, description, price, TAGS, IMAGE1} = data.etsy
-  
-  // gives tags array default value in case graphql returns non value
-  // TODO: this may be refactorable using destructuring and default values
-  // gatsby(JSX) build fails(passes develop) when tags is not present
-  // see issue #3344 https://github.com/gatsbyjs/gatsby/issues/3344
+  const {
+    name,
+    description,
+    price,
+    image,
+    fields: { tags = [] },
+  } = data.etsy
 
-
-  // const tagList = data.airtable.data.tags
-  //   ? data.airtable.data.tags.map(tag => (
-  //       <Tag key={tag}>
-  //         <Link to={tag}> {tag} </Link>
-  //       </Tag>
-  //     ))
-  //   : []
+  const tagList = tags.map(tag => {
+    return (
+      <Link to={tag}>
+        <Tag key={tag}> {tag} </Tag>
+      </Link>
+    )
+  })
 
   return (
     <Layout>
       <Container>
-        <Photos>
-          <div className={name}>
-            <Photo
-              title={`Photo by Eghan Thompson`}
-              fixed={IMAGE1}
-            />
-          </div>
-        </Photos>
+        <Photo
+          title={`Photo by Eghan Thompson`}
+          fixed={image.childImageSharp.fixed}
+        />
+        <Tagbox>{tagList}</Tagbox>
         <Info>
           <p>{name}</p>
-          <br />
           {description}
-          {/* <Tagbox>{tagList}</Tagbox> */}
-          <br />
-          {TAGS}
         </Info>
         <Price>{price} $</Price>
       </Container>
@@ -99,8 +96,16 @@ export const query = graphql`
       name: TITLE
       description: DESCRIPTION
       price: PRICE
-      TAGS
-      IMAGE1
+      image {
+        childImageSharp {
+          fixed(width: 300) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      fields {
+        tags
+      }
     }
   }
 `

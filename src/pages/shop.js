@@ -5,13 +5,16 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  margin: 0rem auto;
-  max-width: 90%;
+  justify-content: center;
+  align-items: center;
+  float: center;
+  width: 100%;
+  margin: 0.5rem auto;
   border: 1px dashed silver;
 `
 const Photos = styled.div`
   margin: 0rem auto;
-  max-width: 400px;
+  max-width: 100px;
   display: inline-block;
   flex-direction: column;
   align-items: center;
@@ -48,11 +51,16 @@ const Price = styled.div`
 `
 const Tagbox = styled.div`
   float: right;
-  max-width: 50%;
+  max-width: 80%;
 `
 const Photo = styled(Img)`
-  padding: 2px 2px;
-  float: left;
+  padding: 1em 1em;
+  max-width: 200px;
+  max-height: 200px;
+  display: inline-block;
+`
+const PhotoLink = styled(Link)`
+  padding: 1em 1em;
   display: inline-block;
 `
 
@@ -74,16 +82,15 @@ function renderTagMatches(data) {
     })
   }
 
-  let output = matchList.map(match => (
-    <Info className={match[0]}>
-    <Link to={match[0]} key={match[0]}>
-      <Tag>{match[0]}</Tag>
+  let output = matchList.map( (match, index) => (
+    <PhotoLink to={match[0]} key={match[0]}>
+      {/* <Tag>{match[0]}</Tag> */}
       <Photo
+        key={index}
         title={match[1].childImageSharp.id}
         fixed={match[1].childImageSharp.fixed}
       />
-    </Link>
- </Info>
+    </PhotoLink>
   ))
 
   return output

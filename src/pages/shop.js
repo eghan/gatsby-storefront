@@ -1,63 +1,114 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
-import Image from '../components/image'
-import styled from 'styled-components'
 import Img from 'gatsby-image'
+import Layout from '../components/layout'
+import styled from 'styled-components'
 
-const Index = styled(Link)`
-  color: gray;
-  display: block;
+const Container = styled.div`
+  margin: 0rem auto;
+  max-width: 90%;
   border: 1px dashed silver;
-  text-decoration: none;
-  padding: 0.1rem 1.2rem;
-  max-width: 160;
-  float: center;
-  &:hover {
-    background-color: whitesmoke;
-  }
 `
-
-const Box = styled.div`
-  min-width: 350px;
-  width: 95%;
-  margin: auto;
+const Photos = styled.div`
+  margin: 0rem auto;
+  max-width: 400px;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  float: left;
+  border: 1px dashed silver;
+`
+const Info = styled.div`
+  padding: 0.05rem 0.5rem;
+  margin: 1rem auto;
+  display: inline-block;
+  flex-direction: column;
+  border: 1px dashed silver;
+`
+const Tag = styled.button`
+  padding: 0rem 0.2rem;
+  display: inline-block;
+  border: 0.5px dashed silver;
+  font-size: 0.6em;
+  text-decoration: none;
+  margin-bottom: 0.1em;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  -webkit-transition-duration: 0.8s; /* Safari */
+  transition-duration: 0.8s;
+`
+const Price = styled.div`
+  float: right;
+  font-size: 0.9em;
+`
+const Tagbox = styled.div`
+  float: right;
+  max-width: 50%;
 `
 const Photo = styled(Img)`
-  float: right;
-  max-width: 120px;
+  padding: 2px 2px;
+  float: left;
+  display: inline-block;
 `
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <h1>SHop</h1>
-    <Box>
-      {data.allAirtable.edges
-        .filter(edge => edge.node.data.discription !== null)
-        .map((edge, i) => (
-          <Index to={edge.node.data.name} key={edge.node.data.name}>
-            {edge.node.data.discription}
-          </Index>
-        ))}
-    </Box>
-  </Layout>
-)
+function renderTagMatches(data) {
+  let matchList = []
 
-export default IndexPage
+  if (data.airtable !== null) {
+    data.airtable.edges.map(item => {
+      matchList = [
+        ...matchList,
+        [item.node.data.name, item.node.data.image.localFiles[0]]
+      ]
+    })
+  }
 
+  if (data.etsy !== null) {
+    data.etsy.edges.map(item => {
+      matchList = [...matchList, [item.node.name, item.node.image]]
+    })
+  }
+
+  let output = matchList.map(match => (
+    <Info className={match[0]}>
+    <Link to={match[0]} key={match[0]}>
+      <Tag>{match[0]}</Tag>
+      <Photo
+        title={match[1].childImageSharp.id}
+        fixed={match[1].childImageSharp.fixed}
+      />
+    </Link>
+ </Info>
+  ))
+
+  return output
+}
+
+export default ({ data }) => {
+
+  return (
+    <Layout>
+      <Container>{renderTagMatches(data)}</Container>
+    </Layout>
+  )
+}
 export const query = graphql`
-  query productData {
-    allAirtable {
+  query shopItems {
+    airtable: allAirtable {
       edges {
         node {
           data {
             name
             tags
-            discription
-            photo {
-              id
+            image: photo {
               localFiles {
                 childImageSharp {
+                  id
                   fixed(width: 300) {
                     ...GatsbyImageSharpFixed
                   }
@@ -72,8 +123,17 @@ export const query = graphql`
       edges {
         node {
           name: TITLE
-          discription: DESCRIPTION
-          TAGS
+          fields {
+            tags
+          }
+          image {
+            childImageSharp {
+              id
+              fixed(width: 300) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
       }
     }

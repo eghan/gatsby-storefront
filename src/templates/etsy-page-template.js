@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, Location } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
@@ -65,14 +65,13 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
-  const tagList = tags.map(tag => {
+  const tagList = tags.map( (tag, index) => {
     return (
-      <Link to={tag}>
+      <Link to={tag} key={index}>
         <Tag key={tag}> {tag} </Tag>
       </Link>
     )
   })
-
   return (
     <Layout>
       <Container>

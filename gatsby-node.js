@@ -10,7 +10,12 @@ exports.onCreateNode = async ({
   cache,
   createNodeId,
 }) => {
-  const { createNode, createNodeField, createParentChildLink, createPage } = actions
+  const {
+    createNode,
+    createNodeField,
+    createParentChildLink,
+    createPage,
+  } = actions
 
   if (node.internal.type === `EtsyListingsDownloadCsv`) {
     let fileNode
@@ -75,6 +80,12 @@ exports.createPages = ({ graphql, actions }) => {
                 name
                 tags
                 discription
+                photo {
+                  localFiles {
+                    name
+                    id
+                  }
+                }
               }
             }
           }
@@ -105,6 +116,21 @@ exports.createPages = ({ graphql, actions }) => {
               },
             })
           }
+          if (node.data.name == 'photoset') {
+            node.data.photo.localFiles.forEach( img => {
+              console.log(img.name)
+              createPage({
+                path: img.name,
+                component: path.resolve(
+                  `./src/templates/airtable-photo-template.js`
+                ),
+                  context: {
+                    name: img.name,
+                  },
+              })
+            })
+          }
+
           if (node.data.tags != null) {
             node.data.tags.forEach(tag => {
               if (!tagList.includes(tag)) {

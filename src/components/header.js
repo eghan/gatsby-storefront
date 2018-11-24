@@ -12,13 +12,13 @@ const Nav = styled(Link)`
   color: black;
   text-decoration: none;
   margin-bottom: 1.8em;
-  font-size: 0.65em;
+  font-size: 0.95em;
   &:hover {
     background-color: #f5f5f5;
   }
   -webkit-transition-duration: 0.8s; /* Safari */
   transition-duration: 0.8s;
-  border-radius: 12px;
+  border-radius: 2px;
   vertical-align: bottom;
 `
 const Navbar = styled.div`
@@ -32,11 +32,16 @@ const Header = ({ siteTitle }) => (
     <Navbar>
       <Link
         to="/"
-        style={{ color: 'black', textDecoration: 'none', padding: '.8em' }}
+        style={{
+          color: 'black',
+          textDecoration: 'none',
+          padding: '1.8em',
+          fontSize: '1.4em',
+        }}
       >
         {siteTitle}
       </Link>
-      <div style={{ float: 'right' }}>
+      <div style={{ float: 'right', verticalAlign: 'bottom' }}>
         {sections.map(section => {
           return (
             <Nav key={section} to={section}>

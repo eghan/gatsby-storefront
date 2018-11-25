@@ -9,11 +9,11 @@ const About = () => (
 
     <form
         name="contact"
-        method="post"
+        method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field">
         <input name="name" placeholder="Your name"  type="text"/>
-        <button>Send</button>
+        <button type="submit">Send</button>
     </form>
     <p>Cool stuff yall</p>Lorem ipsum dolor amet echo park man braid pug venmo,
     raw denim literally trust fund drinking vinegar pour-over letterpress tilde

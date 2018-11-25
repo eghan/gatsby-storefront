@@ -1,5 +1,7 @@
-import React from "react";
-import { navigateTo } from "gatsby-link";
+import React from 'react'
+import { navigateTo } from 'gatsby-link'
+import Layout from '../components/layout'
+
 
 function encode(data) {
   return Object.keys(data)
@@ -34,7 +36,7 @@ export default class Contact extends React.Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <h1>Contact</h1>
         <form
           name="contact"
@@ -74,7 +76,7 @@ export default class Contact extends React.Component {
             <button type="submit">Send</button>
           </p>
         </form>
-      </div>
+      </Layout>
     );
   }
 }

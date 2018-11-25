@@ -7,11 +7,10 @@ const sections = ['gallery', 'shop', 'about', 'contact']
 const Nav = styled(Link)`
   margin: 0 auto;
   max-width: 960;
-  padding: 0.15rem 0.35rem;
-  display: inline;
+  padding: .3rem .4rem;
+  display: inline-block;
   color: black;
   text-decoration: none;
-  margin-bottom: 1.8em;
   font-size: 0.95em;
   &:hover {
     background-color: #f5f5f5;
@@ -19,16 +18,22 @@ const Nav = styled(Link)`
   -webkit-transition-duration: 0.8s; /* Safari */
   transition-duration: 0.8s;
   border-radius: 2px;
-  vertical-align: bottom;
+  line-height: .5;
+  vertical-align: sub;
 `
+
 const Navbar = styled.div`
   margin: 0, auto;
   padding: 0.4em, 0.5em;
-  border-bottom: 0.5px solid black;
+`
+const Navitems = styled.div`
+  float: right;
+  margin: 0, auto;
+  padding: 0.4em, 0.5em;
 `
 
 const Header = ({ siteTitle }) => (
-  <div style={{ borderBottom: '.5px solid black' }}>
+  <div style={{ borderBottom: '.5px solid black', float: 'bottom' }}>
     <Navbar>
       <Link
         to="/"
@@ -41,7 +46,7 @@ const Header = ({ siteTitle }) => (
       >
         {siteTitle}
       </Link>
-      <div style={{ float: 'right', verticalAlign: 'bottom' }}>
+      <Navitems>
         {sections.map(section => {
           return (
             <Nav key={section} to={section}>
@@ -49,7 +54,7 @@ const Header = ({ siteTitle }) => (
             </Nav>
           )
         })}
-      </div>
+      </Navitems>
     </Navbar>
   </div>
 )

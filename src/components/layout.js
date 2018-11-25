@@ -2,9 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Header from './header'
-import './layout.css'
+
+const Body = styled.div`
+  margin: 0rem auto;
+  max-width: 90%;
+  border: 1px dashed silver;
+  align-items: center;
+  display: 'block';
+  margin-left: 'auto';
+  margin-right: 'auto';
+`
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -31,10 +41,14 @@ const Layout = ({ children }) => (
         <Header siteTitle={data.site.siteMetadata.title} />
         <div
           style={{
-            margin: '0 auto',
-            maxWidth: '96%',
+            margin: 'auto',
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0,
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            alignContent: 'center'
+
           }}
         >
           {children}

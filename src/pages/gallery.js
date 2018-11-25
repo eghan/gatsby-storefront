@@ -7,12 +7,14 @@ import Img from 'gatsby-image'
 
 const Box = styled.div`
   min-width: 350px;
-  text-align: center;
+  width: 100%;
+  margin: auto;
 `
 const Photo = styled(Img)`
-  padding: 1em 1em;
-  border: 10px solid white;
-
+  float: center;
+  max-width: 110px;
+  max-height: 200px;
+  padding: 10em 10em 1em 1em;
 `
 
 const IndexPage = ({ data }) => (
@@ -21,7 +23,7 @@ const IndexPage = ({ data }) => (
       {data.allAirtable.edges
         .filter(edge => edge.node.data.discription == null)
         .map((edge, i) =>
-          edge.node.data.photo.localFiles.map(img => (
+          edge.node.data.photo.localFiles.map( img => (
             <Link to={img.name} key={img.name}>
               <Photo
                 key={img.id}

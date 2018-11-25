@@ -1,39 +1,80 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react";
+import { navigateTo } from "gatsby-link";
 
-import Layout from '../components/layout'
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
-const About = () => (
-  <Layout>
-    <h1>Hi stuff about Artofactory</h1>
+export default class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field">
-        <input name="name" placeholder="Your name"  type="text"/>
-        <button type="submit">Send</button>
-    </form>
-    <p>Cool stuff yall</p>Lorem ipsum dolor amet echo park man braid pug venmo,
-    raw denim literally trust fund drinking vinegar pour-over letterpress tilde
-    kale chips disrupt wolf sustainable. Helvetica typewriter cornhole vaporware
-    copper mug yr. Single-origin coffee tousled banjo, meditation scenester
-    leggings microdosing chillwave venmo cloud bread kogi salvia trust fund
-    cronut. Chillwave hella godard flannel meh. Brooklyn tousled drinking
-    vinegar seitan ramps. Yr kinfolk fixie chambray typewriter gochujang. Squid
-    tofu pour-over, lumbersexual taiyaki try-hard lomo intelligentsia literally
-    quinoa. Meditation neutra taiyaki freegan literally. 90's truffaut poutine,
-    pork belly taiyaki church-key tacos skateboard tumeric. Vexillologist swag
-    tbh cardigan lyft shoreditch waistcoat pork belly taxidermy humblebrag tote
-    bag pickled copper mug artisan small batch. Venmo 90's craft beer ugh,
-    selvage cold-pressed keytar celiac freegan keffiyeh pork belly. Listicle
-    cronut yr tilde, fingerstache jianbing pitchfork tote bag church-key lyft
-    edison bulb iceland 90's asymmetrical neutra. Brooklyn taiyaki authentic
-    chia asymmetrical. Hoodie YOLO everyday carry, gochujang twee taiyaki
-    waistcoat artisan XOXO deep v live-edge.
-    <Link to="/">Go back to the homepage</Link>
-  </Layout>
-)
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
-export default About
+  handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...this.state
+      })
+    })
+      .then(() => navigateTo(form.getAttribute("action")))
+      .catch(error => alert(error));
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Contact</h1>
+        <form
+          name="contact"
+          method="post"
+          action="/thanks/"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={this.handleSubmit}
+        >
+          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              Don’t fill this out:{" "}
+              <input name="bot-field" onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your name:<br />
+              <input type="text" name="name" onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your email:<br />
+              <input type="email" name="email" onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <label>
+              Message:<br />
+              <textarea name="message" onChange={this.handleChange} />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
+      </div>
+    );
+  }
+}

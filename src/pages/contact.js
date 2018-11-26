@@ -7,11 +7,10 @@ const Container = styled.div`
     text-align: left;
     margin: 2rem auto;
     max-width: 90%;
-    border: 1px dashed silver;
 `
 const TextArea = styled.textarea`
-    height: 220px;
-    width: 50%;
+    height: 200px;
+    width: 80%;
 `
 
 function encode(data) {

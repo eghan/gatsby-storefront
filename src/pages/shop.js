@@ -9,7 +9,24 @@ const Container = styled.div`
   text-align: center;
   width: 100%;
   margin: 0.5rem auto;
-  border: 1px dashed red;
+`
+const Details = styled.div`
+  display: block;
+  color: black;
+  font-size: 0.8em;
+  text-align: left;
+  text-decoration: none;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  -webkit-transition-duration: 0.8s; /* Safari */
+  transition-duration: 0.8s;
+`
+const Price = styled.div`
+  float: right;
 `
 const Photo = styled(Img)`
   padding: 1em 1em;
@@ -20,6 +37,8 @@ const Photo = styled(Img)`
 const PhotoLink = styled(Link)`
   padding: 1em 1em;
   display: inline-block;
+  font-size: 0.8em;
+  text-decoration: none;
 `
 
 function renderTagMatches(data) {
@@ -27,16 +46,17 @@ function renderTagMatches(data) {
 
   if (data.airtable !== null) {
     data.airtable.edges.map(item => {
+      if (item.node.data.name == 'photoset') {return}
       matchList = [
         ...matchList,
-        [item.node.data.name, item.node.data.image.localFiles[0]],
+        [item.node.data.name, item.node.data.image.localFiles[0], item.node.data.price],
       ]
     })
   }
 
   if (data.etsy !== null) {
     data.etsy.edges.map(item => {
-      matchList = [...matchList, [item.node.name, item.node.image]]
+      matchList = [...matchList, [item.node.name, item.node.image, item.node.price]]
     })
   }
 
@@ -48,6 +68,7 @@ function renderTagMatches(data) {
         title={match[1].childImageSharp.id}
         fixed={match[1].childImageSharp.fixed}
       />
+      <Details>{ (match[0].length > 24) ? match[0].substring(0,24).concat('...') : match[0]} <Price>${match[2]}</Price></Details>
     </PhotoLink>
   ))
 
@@ -68,6 +89,7 @@ export const query = graphql`
         node {
           data {
             name
+            price
             tags
             image: photo {
               localFiles {
@@ -87,6 +109,7 @@ export const query = graphql`
       edges {
         node {
           name: TITLE
+          price: PRICE
           fields {
             tags
           }

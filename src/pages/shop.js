@@ -68,7 +68,8 @@ function renderTagMatches(data) {
         title={match[1].childImageSharp.id}
         fixed={match[1].childImageSharp.fixed}
       />
-      <Details>{ (match[0].length > 24) ? match[0].substring(0,24).concat('...') : match[0]} <Price>${match[2]}</Price></Details>
+      <Details>{ (match[0].length > 24) ? match[0].substring(0,24).concat('...') : match[0]} 
+      <Price>{(match[2] > 0) ? ('$' + match[2]) : 'NA'}</Price></Details>
     </PhotoLink>
   ))
 

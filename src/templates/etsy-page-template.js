@@ -6,9 +6,6 @@ import styled from 'styled-components'
 
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
-
-
-
 const Container = styled.div`
   margin: 0rem auto;
   max-width: 90%;
@@ -50,6 +47,7 @@ const Tag = styled.button`
 const Price = styled.div`
   float: right;
   font-size: 0.9em;
+  display: inline;
 `
 const Tagbox = styled.div`
   float: right;
@@ -60,13 +58,26 @@ const Photo = styled(Img)`
   float: left;
   display: inline-block;
 `
+const Payment = styled.div`
+  padding: 2px 2px;
+  float: right;
+  display: inline;
+`
 
 export default ({ data }) => {
+  const client = {
+    sandbox:
+      'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
+    production:
+      'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
+  }
 
-        const client = {
-            sandbox: 'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
-            production: 'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
-        }
+  const style = {
+    label: 'paypal',
+    size: 'small', // small | medium | large | responsive
+    shape: 'rect', // pill | rect
+    color: 'black', // gold | blue | silver | black
+  }
 
   const {
     name,
@@ -76,7 +87,7 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
-  const tagList = tags.map( (tag, index) => {
+  const tagList = tags.map((tag, index) => {
     return (
       <Link to={tag} key={index}>
         <Tag key={tag}> {tag} </Tag>
@@ -94,12 +105,19 @@ export default ({ data }) => {
         <Info>
           <p>{name}</p>
           {description}
-        </Info>                <PaypalExpressBtn
-                    client={client}
-                    currency={'USD'}
-                    total={price}
-                />
-        <Price>{price} $</Price>
+        </Info>
+
+        {' '}
+        
+        <Payment>
+          <Price>{price} $</Price>
+          <PaypalExpressBtn
+            client={client}
+            currency={'USD'}
+            total={price}
+            style={style}
+          />
+        </Payment>
       </Container>
     </Layout>
   )

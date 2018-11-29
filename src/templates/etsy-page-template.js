@@ -4,6 +4,11 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 
+import PaypalExpressBtn from 'react-paypal-express-checkout'
+
+
+
+
 const Container = styled.div`
   margin: 0rem auto;
   max-width: 90%;
@@ -57,6 +62,12 @@ const Photo = styled(Img)`
 `
 
 export default ({ data }) => {
+
+        const client = {
+            sandbox: 'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
+            production: 'AQEQxTyMZgiKTIdMx5TRiesx-eZeaWMWT7RSMat39X_5V8ok4pU3BvJ_ZKeuEEt8JsW7f7X992jYz_Jg',
+        }
+
   const {
     name,
     description,
@@ -83,7 +94,11 @@ export default ({ data }) => {
         <Info>
           <p>{name}</p>
           {description}
-        </Info>
+        </Info>                <PaypalExpressBtn
+                    client={client}
+                    currency={'USD'}
+                    total={price}
+                />
         <Price>{price} $</Price>
       </Container>
     </Layout>

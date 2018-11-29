@@ -51,6 +51,7 @@ function renderTagMatches(data) {
         ...matchList,
         [item.node.data.name, item.node.data.image.localFiles[0], item.node.data.price],
       ]
+      return
     })
   }
 

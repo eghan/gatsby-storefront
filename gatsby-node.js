@@ -58,7 +58,7 @@ exports.onCreateNode = async ({
         })
       }
     } catch (e) {
-      console.log(e)
+      //console.log(e)
     }
   }
 }
@@ -118,7 +118,6 @@ exports.createPages = ({ graphql, actions }) => {
           }
           if (node.data.name == 'photoset') {
             node.data.photo.localFiles.forEach( img => {
-              console.log(img.name)
               createPage({
                 path: img.name,
                 component: path.resolve(
@@ -165,7 +164,7 @@ exports.createPages = ({ graphql, actions }) => {
         return result
       })
       .then(result => {
-        result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
+        //result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
       })
     resolve()
   })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql, Location } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
@@ -9,16 +9,6 @@ import PaypalExpressBtn from 'react-paypal-express-checkout'
 const Container = styled.div`
   margin: 0rem auto;
   max-width: 90%;
-  border: 1px dashed silver;
-`
-const Photos = styled.div`
-  margin: 0rem auto;
-  max-width: 400px;
-  display: inline-block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: left;
-  float: left;
   border: 1px dashed silver;
 `
 const Info = styled.div`

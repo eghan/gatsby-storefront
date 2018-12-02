@@ -45,8 +45,8 @@ function renderTagMatches(data) {
   let matchList = []
 
   if (data.airtable !== null) {
-    data.airtable.edges.map(item => {
-      if (item.node.data.name == 'photoset') {return}
+    data.airtable.edges.forEach(item => {
+      //if (item.node.data.name === 'photoset') {return}
       matchList = [
         ...matchList,
         [item.node.data.name, item.node.data.image.localFiles[0], item.node.data.price],
@@ -56,8 +56,9 @@ function renderTagMatches(data) {
   }
 
   if (data.etsy !== null) {
-    data.etsy.edges.map(item => {
+    data.etsy.edges.forEach(item => {
       matchList = [...matchList, [item.node.name, item.node.image, item.node.price]]
+      return
     })
   }
 
@@ -70,7 +71,7 @@ function renderTagMatches(data) {
         fixed={match[1].childImageSharp.fixed}
       />
       <Details>{ (match[0].length > 24) ? match[0].substring(0,24).concat('...') : match[0]} 
-      <Price>{(match[2] > 0) ? ('$' + match[2]) : 'NA'}</Price></Details>
+      <Price>{ match[2] > 0 && '$' + match[2] }</Price></Details>
     </PhotoLink>
   ))
 

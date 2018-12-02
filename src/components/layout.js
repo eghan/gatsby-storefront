@@ -7,13 +7,12 @@ import styled from 'styled-components'
 import Header from './header'
 
 const Body = styled.div`
-  margin: 0rem auto;
+  margin: auto;
   max-width: 90%;
+  padding: 0 1.0875rem 1.24rem;
   border: 1px dashed silver;
   align-items: center;
   display: 'block';
-  margin-left: 'auto';
-  margin-right: 'auto';
 `
 
 const Layout = ({ children }) => (
@@ -32,27 +31,16 @@ const Layout = ({ children }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'description', content: 'Sustainable upcycled handmade jewelry from machine parts' },
+            { name: 'keywords', content: 'Sustainable, upcycled, handmade, jewelry, machine, parts, art, circlip, retaining ring, industrial, deco' },
           ]}
         >
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: 'auto',
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            alignContent: 'center'
-
-          }}
-        >
+        <Body>
           {children}
-        </div>
+        </Body>
       </>
     )}
   />

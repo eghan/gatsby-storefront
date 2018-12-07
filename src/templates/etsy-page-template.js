@@ -55,9 +55,11 @@ const Photo = styled(Img)`
   float: right;
 `
 const Payment = styled.div`
-  padding: 2px 2px;
-  float: right;
-  display: inline;
+  padding: 2px 2px 5px 5px;
+  display: flex;
+  text-align: right;
+  align-content: stretch;
+  flex-direction: column;
 `
 
 export default ({ data }) => {
@@ -107,8 +109,11 @@ export default ({ data }) => {
             {' '}
             <Tagbox>{tagList}</Tagbox>
             <Payment>
-              <Price>{price} $</Price>
-              <h5>free shipping</h5>
+              <Price>
+                {price} $
+                <br />
+                free shipping
+              </Price>
               <PaypalExpressBtn
                 client={client}
                 currency={'USD'}

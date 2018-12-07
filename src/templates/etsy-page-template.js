@@ -8,58 +8,46 @@ import { Flex, Box } from '@rebass/grid'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 const Container = styled(Flex)`
-  margin: 0rem auto;
-  max-width: 90%;
-  border: 1px dashed silver;
+  flex-flow: row wrap;
+  border: 1px dashed red;
 `
-const Info = styled.div`
-  padding: 0.05rem 0.5rem;
+const Info = styled(Box)`
+  padding: 0.5rem 0.7rem;
+  font-size: 0.8em;
   margin: 1rem auto;
-  display: inline-block;
-  flex-direction: column;
-  border: 1px dashed silver;
 `
 const Tag = styled.button`
-  padding: .01rem .6rem;
-  display: inline-block;
   border: 0.5px dashed silver;
   font-size: 0.6em;
   text-decoration: none;
-  margin-bottom: 0.01em;
   &:focus {
     outline: 0;
   }
   &:hover {
-
-  border: 0.5px solid black;
+    border: 0.5px solid black;
     background-color: #f5f5f5;
   }
-  -webkit-transition-duration: 0.8s; /* Safari */
-  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.6s; /* Safari */
+  transition-duration: 0.6s;
 `
-const Price = styled.div`
-  float: right;
-  font-size: 0.9em;
-  display: inline;
+const Price = styled(Box)`
+  font-size: 0.8em;
 `
-const Tagbox = styled.div`
+const Tagbox = styled(Box)`
   width: 60%;
   text-align: center;
   float: left;
-
-  border: 0.5px dashed silver;
 `
 const Photo = styled(Img)`
-  padding: 2px 2px 5px 5px;
-  display: inline-block;
   float: right;
 `
-const Payment = styled.div`
-  padding: 2px 2px 5px 5px;
-  display: flex;
-  text-align: right;
-  align-content: stretch;
+const Payment = styled(Flex)`
+  justify-content: flex-end;
+  align-items: flex-end;
   flex-direction: column;
+`
+const TagLink = styled(Link)`
+    padding: 0.01rem 0.06rem;
 `
 
 export default ({ data }) => {
@@ -72,7 +60,7 @@ export default ({ data }) => {
 
   const style = {
     label: 'paypal',
-    size: 'small', // small | medium | large | responsive
+    size: 'responsive', // small | medium | large | responsive
     shape: 'rect', // pill | rect
     color: 'black', // gold | blue | silver | black
   }
@@ -87,41 +75,39 @@ export default ({ data }) => {
 
   const tagList = tags.map((tag, index) => {
     return (
-      <Link to={tag} key={index}>
+      <TagLink to={tag} key={index}>
         <Tag key={tag}> {tag} </Tag>
-      </Link>
+      </TagLink>
     )
   })
   return (
     <Layout>
       <Container>
-          <Box width={1 / 2} px={2} pr={18} p={5} alignSelf='flex-end'>
-            <Photo
-              title={`Photo by Eghan Thompson`}
-              fixed={image.childImageSharp.fixed}
-            />
-          </Box>
-          <Box width={1 / 2} px={2} p={5}>
-            <Info>
-              <p>{name}</p>
-              {description}
-            </Info>
-            {' '}
-            <Tagbox>{tagList}</Tagbox>
-            <Payment>
-              <Price>
-                {price} $
-                <br />
-                free shipping
-              </Price>
+        <Box width={1 / 2} pr={4} pt={3} alignSelf="flex-end">
+          <Photo
+            title={`Photo by Eghan Thompson`}
+            fixed={image.childImageSharp.fixed}
+          />
+        </Box>
+        <Box width={1 / 2} px={12} p={5} alignSelf="flex-start">
+          <Box>{name}</Box>
+          <Info>
+           {description}
+          </Info>
+          <Tagbox>{tagList}</Tagbox>
+          <Payment>
+            <Price>{price} $</Price>
+            <Price>free shipping</Price>
+            <Box pt={2}>
               <PaypalExpressBtn
                 client={client}
                 currency={'USD'}
                 total={price}
                 style={style}
               />
-            </Payment>
-          </Box>
+            </Box>
+          </Payment>
+        </Box>
       </Container>
     </Layout>
   )

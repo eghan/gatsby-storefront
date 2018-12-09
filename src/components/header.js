@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import Burger from './burger.js'
 
 const sections = ['gallery', 'shop', 'about', 'contact']
 
 const Nav = styled(Link)`
   margin: 0 auto;
   max-width: 960;
-  padding: .3rem .4rem;
+  padding: .3rem .8rem;
   display: inline-block;
   color: black;
   text-decoration: none;
@@ -46,7 +47,7 @@ const Header = ({ siteTitle }) => (
       >
         {siteTitle}
       </Link>
-      <Navitems>
+      <Navitems>      
         {sections.map(section => {
           return (
             <Nav key={section} to={section}>
@@ -54,7 +55,9 @@ const Header = ({ siteTitle }) => (
             </Nav>
           )
         })}
+        <Burger sections={sections} />
       </Navitems>
+
     </Navbar>
   </div>
 )

@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@rebass/grid": "^6.0.0-7",
     "babel-plugin-styled-components": "^1.8.0",
     "dotenv": "^6.1.0",
     "gatsby": "^2.0.48",
@@ -22,6 +23,7 @@
     "gatsby-transformer-remark": "^2.1.12",
     "gatsby-transformer-sharp": "^2.1.8",
     "react": "^16.6.3",
+    "react-burger-menu": "^2.5.4",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-paypal-express-checkout": "github:eghan/react-paypal-express-checkout#eghan-patch-1",

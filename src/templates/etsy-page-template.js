@@ -47,7 +47,7 @@ const Payment = styled(Flex)`
   flex-direction: column;
 `
 const TagLink = styled(Link)`
-    padding: 0.01rem 0.06rem;
+  padding: 0.01rem 0.06rem;
 `
 
 export default ({ data }) => {
@@ -91,9 +91,7 @@ export default ({ data }) => {
         </Box>
         <Box width={1 / 2} px={12} p={5} alignSelf="flex-start">
           <Box>{name}</Box>
-          <Info>
-           {description}
-          </Info>
+          <Info>{description}</Info>
           <Tagbox>{tagList}</Tagbox>
           <Payment>
             <Price>{price} $</Price>
@@ -102,7 +100,7 @@ export default ({ data }) => {
               <PaypalExpressBtn
                 client={client}
                 currency={'USD'}
-                total={price}
+                total={Number(price)}
                 style={style}
               />
             </Box>

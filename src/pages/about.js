@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 
+
 const About = () => (
   <Layout>
     <h1>Hi stuff about Artofactory</h1>

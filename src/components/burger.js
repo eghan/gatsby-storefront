@@ -4,14 +4,18 @@ import styled from 'styled-components'
 
 import Menu from 'react-burger-menu/lib/menus/slide'
 
+const sections = ['gallery', 'shop', 'about', 'contact']
+
 var styles = {
-  display: 'none',
   bmBurgerButton: {
     position: 'fixed',
     width: '36px',
     height: '30px',
     right: '10px',
     top: '10px',
+    "@media (minWidth:0px)": {
+          background: 'orange'
+    }
   },
   bmBurgerBars: {
     background: '#373a47',
@@ -62,28 +66,21 @@ const Nav = styled(Link)`
   vertical-align: sub;
 `
 
-const Hidebox = styled.div`
-    display: none,
-    @media (max-width: 700px) {
-      background: palevioletred;
-      display: 'inline-block',
-  }`
 
 class Burger extends React.Component {
-  showSettings(event) {
-    event.preventDefault()
-  }
-
   render() {
     return (
-      <Hidebox>
       <Menu right styles={styles}>
-        <Nav key="gallery" to="gallery">
-          gallery
-        </Nav>      
+          {sections.map(section => {
+            return (
+              <Nav key={section} to={section}>
+                {section}
+              </Nav>
+            )
+          })}
       </Menu>
-    </Hidebox>
-      )}
+    )
   }
+}
 
 export default Burger

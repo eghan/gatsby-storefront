@@ -8,7 +8,7 @@ const sections = ['gallery', 'shop', 'about', 'contact']
 const Nav = styled(Link)`
   margin: 0 auto;
   max-width: 960;
-  padding: .3rem .8rem;
+  padding: 0.3rem 0.8rem;
   display: inline-block;
   color: black;
   text-decoration: none;
@@ -19,19 +19,54 @@ const Nav = styled(Link)`
   -webkit-transition-duration: 0.8s; /* Safari */
   transition-duration: 0.8s;
   border-radius: 2px;
-  line-height: .5;
+  line-height: 0.5;
   vertical-align: sub;
 `
 
 const Navbar = styled.div`
   margin: 0, auto;
   padding: 0.4em, 0.5em;
+  background-color: white;
 `
 const Navitems = styled.div`
   float: right;
   margin: 0, auto;
   padding: 0.4em, 0.5em;
 `
+
+const BurgerBar = styled(Burger)`
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`
+// because react-burger-menu does not support JSS visability control,
+// render nav components based on screen size
+class NavResponsive extends React.Component {
+  render() {
+    // verbose typeof check for jsPrettier :|
+    let viewportWidth =
+      (typeof window !== `undefined` && window.innerWidth) ||
+      (typeof window !== `undefined` && document.documentElement.clientWidth)
+
+    console.log(viewportWidth)
+    if (viewportWidth > 640) {
+      return (
+        <Navitems>
+          {sections.map(section => {
+            return (
+              <Nav key={section} to={section}>
+                {section}
+              </Nav>
+            )
+          })}
+        </Navitems>
+      )
+    } else {
+      return <Burger sections={sections} />
+    }
+  }
+}
 
 const Header = ({ siteTitle }) => (
   <div style={{ borderBottom: '.5px solid black', float: 'bottom' }}>
@@ -47,17 +82,7 @@ const Header = ({ siteTitle }) => (
       >
         {siteTitle}
       </Link>
-      <Navitems>      
-        {sections.map(section => {
-          return (
-            <Nav key={section} to={section}>
-              {section}
-            </Nav>
-          )
-        })}
-        <Burger sections={sections} />
-      </Navitems>
-
+      <NavResponsive />
     </Navbar>
   </div>
 )

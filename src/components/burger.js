@@ -13,35 +13,29 @@ var styles = {
     height: '30px',
     right: '10px',
     top: '10px',
-    "@media (minWidth:0px)": {
-          background: 'orange'
-    }
   },
   bmBurgerBars: {
-    background: '#373a47',
-  },
-  bmCrossButton: {
-    height: '0px',
-    width: '0px',
+    background: 'black',
   },
   bmCross: {
-    background: '#bdc3c7',
+    display: 'none',
   },
   bmMenu: {
-    top: '20px',
+    top: '80px',
     background: 'white',
-    padding: '2.5em 1.5em 0',
-    fontSize: '1.15em',
+    height: '180px',
   },
   bmMorphShape: {
     fill: '#373a47',
   },
   bmItemList: {
-    color: '#b8b7ad',
+    color: 'white',
     padding: '0.8em',
   },
   bmItem: {
     display: 'inline-block',
+    float: 'center',
+    padding: '0.3rem 0.4rem',
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0)',
@@ -51,33 +45,24 @@ var styles = {
 const Nav = styled(Link)`
   margin: 0 auto;
   max-width: 960;
-  padding: 0.3rem 0.4rem;
+  padding: 2.5rem 2.5rem;
   display: inline-block;
   color: black;
   text-decoration: none;
-  font-size: 0.95em;
-  &:hover {
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.8s; /* Safari */
-  transition-duration: 0.8s;
-  border-radius: 2px;
-  line-height: 0.5;
-  vertical-align: sub;
+  font-size: 1.5em;
 `
-
 
 class Burger extends React.Component {
   render() {
     return (
       <Menu right styles={styles}>
-          {sections.map(section => {
-            return (
-              <Nav key={section} to={section}>
-                {section}
-              </Nav>
-            )
-          })}
+        {sections.map(section => {
+          return (
+            <Nav key={section} to={section}>
+              {section}
+            </Nav>
+          )
+        })}
       </Menu>
     )
   }

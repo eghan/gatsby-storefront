@@ -1,6 +1,6 @@
 
 [build]
-  command = "npm run build"
+  command = "gatsby build"
   publish = "public"
   
 [template.environment]

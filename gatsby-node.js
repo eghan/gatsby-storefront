@@ -19,47 +19,65 @@ exports.onCreateNode = async ({
 
   if (node.internal.type === `EtsyListingsDownloadCsv`) {
     let fileNode
+    let imageList = await [node.IMAGE1, node.IMAGE2, node.IMAGE3]
 
-    try {
-      fileNode = await createRemoteFileNode({
-        url: node.IMAGE1,
-        parent: node,
-        store,
-        cache,
-        createNode,
-        createNodeId: id => `etsy-image${id}`,
-      })
-      if (fileNode) {
-        node.image___NODE = fileNode.id
-      }
-
-      if (node.TAGS !== null) {
-        let tags = node.TAGS.split(',')
-
-        // TODO: re-examine use of variable tagList, global vs local
-
-        createNodeField({
-          node,
-          name: 'tags',
-          value: tags,
+    await Promise.all(
+      imageList.map(async (image, i) => {
+        // try {
+        fileNode = await createRemoteFileNode({
+          url: image,
+          parent: node,
+          store,
+          cache,
+          createNode,
+          createNodeId: id => `etsy-image${id}`,
         })
 
-        tags.forEach(tag => {
-          if (!tagList.includes(tag)) {
-            createPage({
-              path: tag,
-              component: path.resolve(`./src/templates/tag-template.js`),
-              context: {
-                tag: tag,
-              },
-            })
-            tagList = [...tagList, tag]
+        if (fileNode) {
+          // let imageId = ('image' + i + '___NODE') doesn't work, Gatsby uses ___NODE as a hook
+          // gotta be a better way to do this -->  ...but it works
+          if (i === 0) {
+            console.log(fileNode.id, ' and index is ', i)
+            node.image___NODE = fileNode.id
           }
-        })
-      }
-    } catch (e) {
-      //console.log(e)
-    }
+          if (i === 1) {
+            console.log(fileNode.id, ' and index is ', i)
+            node.imageA___NODE = fileNode.id
+          }
+          if (i === 2) {
+            console.log(fileNode.id, ' and index is ', i)
+            node.imageB___NODE = fileNode.id
+          }
+        }
+
+        if (node.TAGS !== null) {
+          let tags = node.TAGS.split(',')
+
+          createNodeField({
+            node,
+            name: 'tags',
+            value: tags,
+          })
+
+          tags.forEach(tag => {
+            if (!tagList.includes(tag)) {
+              createPage({
+                path: tag,
+                component: path.resolve(`./src/templates/tag-template.js`),
+                context: {
+                  tag: tag,
+                },
+              })
+              tagList = [...tagList, tag]
+            }
+          })
+          // }
+        }
+        // catch (e) {
+        //console.log(e)
+        // }
+      })
+    )
   }
 }
 
@@ -117,15 +135,15 @@ exports.createPages = ({ graphql, actions }) => {
             })
           }
           if (node.data.name == 'photoset') {
-            node.data.photo.localFiles.forEach( img => {
+            node.data.photo.localFiles.forEach(img => {
               createPage({
                 path: img.name,
                 component: path.resolve(
                   `./src/templates/airtable-photo-template.js`
                 ),
-                  context: {
-                    name: img.name,
-                  },
+                context: {
+                  name: img.name,
+                },
               })
             })
           }

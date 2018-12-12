@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 
+import { rhythm } from '../utils/typography'
 import { Flex, Box } from '@rebass/grid'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
@@ -14,7 +15,7 @@ const Container = styled(Flex)`
 const Info = styled(Box)`
   padding: 0.5rem 0.7rem;
   font-size: 0.8em;
-  margin: 1rem auto;
+  /*margin: 1rem auto;*/
 `
 const Tag = styled.button`
   border: 0.5px dashed silver;
@@ -40,14 +41,26 @@ const Tagbox = styled(Box)`
 `
 const Photo = styled(Img)`
   float: right;
+  width: 100%;
+  height: 90vh;
+  object-fit: contain;
+  /*padding: rhythm(50),*/
+`
+const PhotoPreview = styled(Img)`
+  float: center;
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  padding: 100px;
 `
 const Payment = styled(Flex)`
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
+  /*padding: rhythm(20);*/
 `
 const TagLink = styled(Link)`
-  padding: 0.01rem 0.06rem;
+  padding: 2px;
 `
 
 export default ({ data }) => {
@@ -70,6 +83,7 @@ export default ({ data }) => {
     description,
     price,
     image,
+    imageA,
     fields: { tags = [] },
   } = data.etsy
 
@@ -83,13 +97,14 @@ export default ({ data }) => {
   return (
     <Layout>
       <Container>
-        <Box width={1 / 2} pr={4} pt={3} alignSelf="flex-end">
+        <Box width={[1, 1 / 2]} p={3} mb={10} float="right">
           <Photo
             title={`Photo by Eghan Thompson`}
-            fixed={image.childImageSharp.fixed}
+            fluid={image.childImageSharp.fluid}
           />
         </Box>
-        <Box width={1 / 2} px={12} p={5} alignSelf="flex-start">
+        <Box width={[1, 2 / 5]} p={3} align-self="flex-start">
+        <Box>
           <Box>{name}</Box>
           <Info>{description}</Info>
           <Tagbox>{tagList}</Tagbox>
@@ -106,6 +121,13 @@ export default ({ data }) => {
             </Box>
           </Payment>
         </Box>
+          <Box align-self="flex-end">
+            <PhotoPreview
+              title={`Photo by Eghan Thompson`}
+              fluid={imageA.childImageSharp.fluid}
+            />
+          </Box>
+        </Box>
       </Container>
     </Layout>
   )
@@ -118,8 +140,15 @@ export const query = graphql`
       price: PRICE
       image {
         childImageSharp {
-          fixed(width: 500) {
-            ...GatsbyImageSharpFixed
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+      imageA {
+        childImageSharp {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid_noBase64
           }
         }
       }

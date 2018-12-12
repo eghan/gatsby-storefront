@@ -39,6 +39,19 @@ const Tagbox = styled(Box)`
   text-align: center;
   float: left;
 `
+const PreviewBox = styled(Box)`
+  width: 50%;
+  float: center;
+  border: 0.5px dashed red;
+  justify-content: center;
+`
+const TextBox = styled(Box)`
+  /*width: 60%;*/
+  float: center;
+  border: 0.5px dashed red;
+  height: 50vh;
+`
+
 const Photo = styled(Img)`
   float: right;
   width: 100%;
@@ -47,11 +60,9 @@ const Photo = styled(Img)`
   /*padding: rhythm(50),*/
 `
 const PhotoPreview = styled(Img)`
-  float: center;
   width: 200px;
-  height: auto;
+  height: 200px;
   object-fit: contain;
-  padding: 100px;
 `
 const Payment = styled(Flex)`
   justify-content: flex-end;
@@ -84,6 +95,7 @@ export default ({ data }) => {
     price,
     image,
     imageA,
+    imageB,
     fields: { tags = [] },
   } = data.etsy
 
@@ -104,29 +116,37 @@ export default ({ data }) => {
           />
         </Box>
         <Box width={[1, 2 / 5]} p={3} align-self="flex-start">
-        <Box>
-          <Box>{name}</Box>
-          <Info>{description}</Info>
-          <Tagbox>{tagList}</Tagbox>
-          <Payment>
-            <Price>{price} $</Price>
-            <Price>free shipping</Price>
-            <Box pt={2}>
-              <PaypalExpressBtn
-                client={client}
-                currency={'USD'}
-                total={Number(price)}
-                style={style}
+          <TextBox>
+            <Box>{name}</Box>
+            <Info>{description}</Info>
+            <Tagbox>{tagList}</Tagbox>
+            <Payment>
+              <Price>{price} $</Price>
+              <Price>free shipping</Price>
+              <Box pt={2}>
+                <PaypalExpressBtn
+                  client={client}
+                  currency={'USD'}
+                  total={Number(price)}
+                  style={style}
+                />
+              </Box>
+            </Payment>
+          </TextBox>
+          <Flex>
+            <PreviewBox align-self="flex-end" width={(1, 1 / 2)} p={4}>
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageA.childImageSharp.fluid}
               />
-            </Box>
-          </Payment>
-        </Box>
-          <Box align-self="flex-end">
-            <PhotoPreview
-              title={`Photo by Eghan Thompson`}
-              fluid={imageA.childImageSharp.fluid}
-            />
-          </Box>
+            </PreviewBox>
+            <PreviewBox align-self="flex-end" width={(1, 1 / 2)} p={4}>
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageB.childImageSharp.fluid}
+              />
+            </PreviewBox>
+          </Flex>
         </Box>
       </Container>
     </Layout>
@@ -140,14 +160,21 @@ export const query = graphql`
       price: PRICE
       image {
         childImageSharp {
-          fluid(quality: 100) {
+          fluid(quality: 80) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }
       }
       imageA {
         childImageSharp {
-          fluid(quality: 100) {
+          fluid(quality: 50) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+      imageB {
+        childImageSharp {
+          fluid(quality: 50) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }

@@ -95,7 +95,7 @@ export default ({ data }) => {
     price,
     image,
     imageA,
-    imageB,
+    imageB = null,
     fields: { tags = [] },
   } = data.etsy
 
@@ -141,10 +141,14 @@ export default ({ data }) => {
               />
             </PreviewBox>
             <PreviewBox align-self="flex-end" width={(1, 1 / 2)} p={4}>
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageB.childImageSharp.fluid}
-              />
+              {imageB == null ? (
+                <Box />
+              ) : (
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={imageB.childImageSharp.fluid}
+                />
+              )}
             </PreviewBox>
           </Flex>
         </Box>

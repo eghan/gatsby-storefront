@@ -7,12 +7,12 @@ import styled from 'styled-components'
 import Header from './header'
 
 const Body = styled.div`
-  margin: auto;
-  max-width: 90%;
-  padding: 0 1.0875rem 1.24rem;
-  border: 1px dashed silver;
-  align-items: center;
-  display: 'block';
+  /*margin: auto;*/
+  /*max-width: 90%;*/
+  /*padding: 0 1.0875rem 1.24rem;*/
+  /*border: 1px dashed silver;*/
+  /*align-items: center;*/
+  /*display: 'block';*/
 `
 
 const Layout = ({ children }) => (

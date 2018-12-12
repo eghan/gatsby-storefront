@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 const Box = styled.div`
-  min-width: 350px;
+  /*min-width: 350px;*/
   text-align: center;
 `
 const Photo = styled(Img)`
-  padding: 1em 1em;
+  /*padding: 1em 1em;*/
   border: 10px solid white;
 
 `

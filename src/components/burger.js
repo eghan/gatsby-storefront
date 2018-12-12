@@ -21,9 +21,11 @@ var styles = {
     display: 'none',
   },
   bmMenu: {
+    textAlign: 'center',
     top: '80px',
     background: 'white',
-    height: '180px',
+    height: '300px',
+    width: '80%',
   },
   bmMorphShape: {
     fill: '#373a47',
@@ -33,9 +35,11 @@ var styles = {
     padding: '0.8em',
   },
   bmItem: {
-    display: 'inline-block',
+    display: 'block',
     float: 'center',
     padding: '0.3rem 0.4rem',
+
+    align: 'center'
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0)',

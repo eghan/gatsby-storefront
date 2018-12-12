@@ -37,15 +37,12 @@ exports.onCreateNode = async ({
           // let imageId = ('image' + i + '___NODE') doesn't work, Gatsby uses ___NODE as a hook
           // gotta be a better way to do this -->  ...but it works
           if (i === 0) {
-            console.log(fileNode.id, ' and index is ', i)
             node.image___NODE = fileNode.id
           }
           if (i === 1) {
-            console.log(fileNode.id, ' and index is ', i)
             node.imageA___NODE = fileNode.id
           }
           if (i === 2) {
-            console.log(fileNode.id, ' and index is ', i)
             node.imageB___NODE = fileNode.id
           }
         }

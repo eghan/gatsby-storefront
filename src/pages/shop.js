@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 
+import Tagbar from '../components/tagbar'
 import { Flex, Box } from '@rebass/grid'
 
 const Container = styled(Flex)`
@@ -19,10 +20,10 @@ const Details = styled.div`
   margin: 0.3em 0.3em;
   display: block;
   font-size: 1em;
-  text-align: left;  
+  text-align: left;
   @media (max-width: 750px) {
-      display: none
-    }
+    display: none;
+  }
 `
 const Price = styled.div`
   float: right;
@@ -32,10 +33,10 @@ const Photo = styled(Img)`
   height: 300px;
   padding: 0.5em 0.5em;
   @media (max-width: 1040px) {
-      padding: 0em 0em;
-  width: 125px;
-  height: 125px;
-    }
+    padding: 0em 0em;
+    width: 125px;
+    height: 125px;
+  }
 `
 const PhotoLink = styled(Link)`
   margin: 0.5em 0.5em;
@@ -95,6 +96,7 @@ function renderTagMatches(data) {
 export default ({ data }) => {
   return (
     <Layout>
+      <Tagbar/>
       <Container>{renderTagMatches(data)}</Container>
     </Layout>
   )

@@ -8,6 +8,18 @@ import { rhythm } from '../utils/typography'
 import { Flex, Box } from '@rebass/grid'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
+const tagExclude = [
+  'industrial',
+  'mechanical',
+  'Bladerunner',
+  'Mad_Max',
+  'Firefly',
+  'hypoallergenic',
+  'niobium',
+  'Jewelry',
+  'Earrings',
+]
+
 const Container = styled(Flex)`
   flex-flow: row wrap;
   border: 1px dashed red;
@@ -49,7 +61,7 @@ const TextBox = styled(Box)`
   /*width: 60%;*/
   float: center;
   border: 0.5px dashed red;
-  height: 50vh;
+  max-height: 50vh;
 `
 
 const Photo = styled(Img)`
@@ -99,13 +111,20 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
-  const tagList = tags.map((tag, index) => {
-    return (
-      <TagLink to={tag} key={index}>
-        <Tag key={tag}> {tag} </Tag>
-      </TagLink>
-    )
-  })
+  const tagList = tags
+    .filter(t => !tagExclude.includes(t))
+    .map((tag, index) => {
+      tag =
+        tag
+          .replace(/_/g, ' ')
+          .charAt(0)
+          .toUpperCase() + tag.slice(1)
+      return (
+        <TagLink to={tag} key={index}>
+          <Tag key={tag}> {tag} </Tag>
+        </TagLink>
+      )
+    })
   return (
     <Layout>
       <Container>
@@ -164,8 +183,8 @@ export const query = graphql`
       price: PRICE
       image {
         childImageSharp {
-          fluid(quality: 80) {
-            ...GatsbyImageSharpFluid_noBase64
+          fluid(quality: 100, maxWidth: 700) {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }

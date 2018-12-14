@@ -179,6 +179,16 @@ exports.createPages = ({ graphql, actions }) => {
         return result
       })
       .then(result => {
+        createPage({
+          path: `Tags`,
+          component: path.resolve(`./src/templates/tag-list-template.js`),
+          context: {
+            name: `Tags`,
+            discription: `all the Tags`, // TODO: do i need this here?
+            source: 'gatsbyNode',
+            Tags: tagList,
+          },
+        })
         //result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
       })
     resolve()

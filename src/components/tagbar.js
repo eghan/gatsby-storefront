@@ -29,6 +29,9 @@ const Content = styled.div`
   width: 87%;
   margin-right: 10%;
   margin-left: 3%;
+  background: 'white';
+  text-decoration: none;
+
 `
 
 const Tag = styled.button`
@@ -159,7 +162,7 @@ const Tagbar = props => (
       return (
         <Content>
           <Tag to="Tags" key="Tags">
-            <TagTitle>{data.sitePage.context.name}:</TagTitle>
+            <TagTitle  to="Tags">{data.sitePage.context.name}:</TagTitle>
             {tagList}
           </Tag>
           <Menu right styles={styles}>

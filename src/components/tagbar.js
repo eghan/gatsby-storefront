@@ -1,9 +1,9 @@
 import React from 'react'
 import { StaticQuery, Link, graphql } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 
 import Menu from 'react-burger-menu/lib/menus/slide'
+import tagIcon from "../images/more-horizontal.svg"
 
 const tagExclude = [
   'industrial',
@@ -15,7 +15,7 @@ const tagExclude = [
   'niobium',
   'Jewelry',
   'Earrings',
-  'Steampunk',
+  'steampunk',
   'Metal',
 ]
 const Content = styled.div`
@@ -26,9 +26,9 @@ const Content = styled.div`
   overflow: hidden;
   /*border: 0.5px dashed silver;*/
   display: block;
-  width: 87%;
-  margin-right: 10%;
-  margin-left: 3%;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
   background: 'white';
   text-decoration: none;
 
@@ -62,10 +62,13 @@ var burgerTags = []
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
+    border: '5px solid white',
+    borderRadius: '4px',
     width: '36px',
     height: '30px',
     right: '10px',
     top: '2.5em',
+    backgroundColor: 'white',
   },
   bmBurgerBars: {
     background: 'black',
@@ -77,8 +80,8 @@ var styles = {
     textAlign: 'center',
     top: '80px',
     background: 'white',
-    height: '600px',
-    width: '80%',
+    height: '90vh',
+    width: '300px',
   },
   bmMorphShape: {
     fill: '#373a47',
@@ -101,9 +104,8 @@ var styles = {
 
 const Nav = styled(Link)`
   margin: 0 auto;
-  max-width: 960;
-  padding: 2.5rem 2.5rem;
-  display: inline-block;
+  padding: .5rem .5rem;
+  display: inline;
   color: black;
   text-decoration: none;
   font-size: 1.5em;
@@ -165,7 +167,7 @@ const Tagbar = props => (
             <TagTitle  to="Tags">{data.sitePage.context.name}:</TagTitle>
             {tagList}
           </Tag>
-          <Menu right styles={styles}>
+          <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>
             {burgerTags.map(section => {
               return (
                 <Nav key={section} to={section}>

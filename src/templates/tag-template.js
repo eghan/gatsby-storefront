@@ -4,38 +4,43 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 
+import Tagbar from '../components/tagbar'
+
 const Container = styled.div`
-  margin: 0rem auto;
-  max-width: 90%;
-  border: 1px dashed silver;
-`
-const Info = styled.div`
-  padding: 0.05rem 0.5rem;
-  margin: 1rem auto;
   display: inline-block;
-  flex-direction: column;
-  border: 1px dashed silver;
+  text-align: center;
+  width: 100%;
+  margin: 0.5rem auto;
+
 `
-const Tag = styled.button`
-  padding: 0rem 0.2rem;
-  display: inline-block;
-  border: 0.5px dashed silver;
-  font-size: 0.6em;
-  text-decoration: none;
-  margin-bottom: 0.1em;
-  &:focus {
-    outline: 0;
+
+const Details = styled.div`
+  margin: 0.3em 0.3em;
+  display: block;
+  font-size: 1em;
+  text-align: left;
+  @media (max-width: 750px) {
+    display: none;
   }
-  &:hover {
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.8s; /* Safari */
-  transition-duration: 0.8s;
+`
+const Price = styled.div`
+  float: right;
 `
 const Photo = styled(Img)`
-  padding: 2px 2px;
-  float: left;
+  width: 300px;
+  height: 300px;
+  padding: 0.5em 0.5em;
+  @media (max-width: 1040px) {
+    padding: 0em 0em;
+    width: 125px;
+    height: 125px;
+  }
+`
+const PhotoLink = styled(Link)`
+  margin: 0.5em 0.5em;
   display: inline-block;
+  font-size: 0.8em;
+  text-decoration: none;
 `
 
 function renderTagMatches(data) {
@@ -43,38 +48,53 @@ function renderTagMatches(data) {
 
   if (data.airtable !== null) {
     data.airtable.edges.forEach(item => {
+      //if (item.node.data.name === 'photoset') {return}
       matchList = [
         ...matchList,
-        [item.node.data.name, item.node.data.image.localFiles[0]]
+        [
+          item.node.data.name,
+          item.node.data.image.localFiles[0],
+          item.node.data.price,
+        ],
       ]
+      return
     })
   }
 
   if (data.etsy !== null) {
     data.etsy.edges.forEach(item => {
-      matchList = [...matchList, [item.node.name, item.node.image]]
+      matchList = [
+        ...matchList,
+        [item.node.name, item.node.image, item.node.price],
+      ]
+      return
     })
   }
 
-  let output = matchList.map(match => (
-    <Info className={match[0]}>
-    <Link to={match[0]} key={match[0]}>
-      <Tag>{match[0]}</Tag>
+  let output = matchList.map((match, index) => (
+    <PhotoLink to={match[0]} key={match[0]}>
       <Photo
+        style={{ backgroundSize: 'cover' }}
+        key={index}
         title={match[1].childImageSharp.id}
-        fixed={match[1].childImageSharp.fixed}
+        fluid={match[1].childImageSharp.fluid}
       />
-    </Link>
- </Info>
+      <Details>
+        {match[0].length > 24
+          ? match[0].substring(0, 24).concat('...')
+          : match[0]}
+        <Price>{match[2] > 0 && '$' + match[2]}</Price>
+      </Details>
+    </PhotoLink>
   ))
 
   return output
 }
 
 export default ({ data }) => {
-
   return (
     <Layout>
+      <Tagbar />
       <Container>{renderTagMatches(data)}</Container>
     </Layout>
   )
@@ -86,13 +106,14 @@ export const query = graphql`
         node {
           data {
             name
+            price
             tags
             image: photo {
               localFiles {
                 childImageSharp {
                   id
-                  fixed(width: 300) {
-                    ...GatsbyImageSharpFixed
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -107,14 +128,15 @@ export const query = graphql`
       edges {
         node {
           name: TITLE
+          price: PRICE
           fields {
             tags
           }
           image {
             childImageSharp {
               id
-              fixed(width: 300) {
-                ...GatsbyImageSharpFixed
+              fluid(maxWidth: 400) {
+                ...GatsbyImageSharpFluid
               }
             }
           }

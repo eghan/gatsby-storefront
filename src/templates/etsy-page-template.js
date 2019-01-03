@@ -26,10 +26,9 @@ const Container = styled.div`
   /*border: 3px dashed aqua;*/
 `
 const LeftSide = styled.div`
-  padding: 20px;
+  padding: 1em 0 0 1em;
   grid-column: span 2;
-  grid-row: span 3;
-  grid-gap: 10px;
+  grid-row: span 5;
   align-items: center;
   /*border: 5px dashed blue;*/
 `
@@ -59,6 +58,7 @@ const PreviewDiv = styled.div`
   /*border: 10px dashed red;*/
 `
 const TextDiv = styled.div`
+  padding: 1em 2em 0 0;
   grid-column: span 2;
   /*border: 5px dashed red;*/
 `
@@ -75,17 +75,23 @@ const PhotoPreview = styled(Img)`
 `
 const PaymentDiv = styled.div`
   grid-column: 1fr;
-  padding: 20px;
-  grid-gap: 10px;
+  padding: 1em 3em 0 0;
+  text-align: right;
 `
 const TagDiv = styled.div`
-  padding: 20px;
+  padding: .8em;
   grid-column: 1fr;
-  grid-gap: 10px;
-  float: center;
+  text-align: center;
+    /*border: 5px dashed red;*/
+
 `
 const TagLink = styled(Link)`
-  padding: 2px;
+  padding: .3em;
+`
+const Paypal = styled.div`
+  text-align: right;
+  padding: 1em 0 0 0;
+      /*border: 5px dashed red;*/
 `
 
 export default ({ data }) => {
@@ -149,14 +155,14 @@ export default ({ data }) => {
         <PaymentDiv>
           <Price>{price} $</Price>
           <Price>free shipping</Price>
-          <div>
+          <Paypal>
             <PaypalExpressBtn
               client={client}
               currency={'USD'}
               total={Number(price)}
               style={style}
             />
-          </div>
+          </Paypal>
         </PaymentDiv>
         <PreviewDiv>
           <PhotoPreview
@@ -193,15 +199,15 @@ export const query = graphql`
       }
       imageA {
         childImageSharp {
-          fluid(quality: 50) {
-            ...GatsbyImageSharpFluid_noBase64
+          fluid(quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }
       imageB {
         childImageSharp {
-          fluid(quality: 50) {
-            ...GatsbyImageSharpFluid_noBase64
+          fluid(quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }

@@ -23,7 +23,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
-  border: 3px dashed aqua;
+  /*border: 3px dashed aqua;*/
 `
 const LeftSide = styled.div`
   padding: 20px;
@@ -31,7 +31,7 @@ const LeftSide = styled.div`
   grid-row: span 3;
   grid-gap: 10px;
   align-items: center;
-  border: 5px dashed blue;
+  /*border: 5px dashed blue;*/
 `
 const Info = styled.div`
   padding: 0.5rem 0.7rem;
@@ -54,18 +54,19 @@ const Price = styled.div`
 `
 
 const PreviewDiv = styled.div`
-  border: 10px dashed red;
-  float: center;
-  /*justify-content: center;*/
+  display: grid;
+  justify-content: center;  
+  /*border: 10px dashed red;*/
 `
 const TextDiv = styled.div`
   grid-column: span 2;
-  border: 5px dashed red;
+  /*border: 5px dashed red;*/
 `
 
 const Photo = styled(Img)`
   float: right;
   width: 100%;
+  object-fit: cover;
   padding: 0.5rem 0.7rem;
 `
 const PhotoPreview = styled(Img)`

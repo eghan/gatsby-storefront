@@ -5,7 +5,6 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 
 import { rhythm } from '../utils/typography'
-import { Flex, Box } from '@rebass/grid'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 const tagExclude = [
@@ -20,11 +19,21 @@ const tagExclude = [
   'Earrings',
 ]
 
-const Container = styled(Flex)`
-  flex-flow: row wrap;
-  border: 1px dashed red;
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  border: 3px dashed aqua;
 `
-const Info = styled(Box)`
+const LeftSide = styled.div`
+  padding: 20px;
+  grid-column: span 2;
+  grid-row: span 3;
+  grid-gap: 10px;
+  align-items: center;
+  border: 5px dashed blue;
+`
+const Info = styled.div`
   padding: 0.5rem 0.7rem;
   font-size: 0.8em;
   /*margin: 1rem auto;*/
@@ -33,9 +42,6 @@ const Tag = styled.button`
   border: 0.5px dashed silver;
   font-size: 0.6em;
   text-decoration: none;
-  &:focus {
-    outline: 0;
-  }
   &:hover {
     border: 0.5px solid black;
     background-color: #f5f5f5;
@@ -43,44 +49,39 @@ const Tag = styled.button`
   -webkit-transition-duration: 0.6s; /* Safari */
   transition-duration: 0.6s;
 `
-const Price = styled(Box)`
+const Price = styled.div`
   font-size: 0.8em;
 `
-const Tagbox = styled(Box)`
-  width: 60%;
-  text-align: center;
-  float: left;
-`
-const PreviewBox = styled(Box)`
-  width: 50%;
+
+const PreviewDiv = styled.div`
+  border: 10px dashed red;
   float: center;
-  border: 0.5px dashed red;
-  justify-content: center;
+  /*justify-content: center;*/
 `
-const TextBox = styled(Box)`
-  /*width: 60%;*/
-  float: center;
-  border: 0.5px dashed red;
-  max-height: 50vh;
+const TextDiv = styled.div`
+  grid-column: span 2;
+  border: 5px dashed red;
 `
 
 const Photo = styled(Img)`
   float: right;
   width: 100%;
-  height: 90vh;
-  object-fit: contain;
-  /*padding: rhythm(50),*/
+  padding: 0.5rem 0.7rem;
 `
 const PhotoPreview = styled(Img)`
   width: 200px;
   height: 200px;
-  object-fit: contain;
 `
-const Payment = styled(Flex)`
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: column;
-  /*padding: rhythm(20);*/
+const PaymentDiv = styled.div`
+  grid-column: 1fr;
+  padding: 20px;
+  grid-gap: 10px;
+`
+const TagDiv = styled.div`
+  padding: 20px;
+  grid-column: 1fr;
+  grid-gap: 10px;
+  float: center;
 `
 const TagLink = styled(Link)`
   padding: 2px;
@@ -111,6 +112,10 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
+  const productImage = document.getElementById('mainImage')
+
+  //productImage.fluid = imageA.childImageSharp.fluid
+
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
     .map((tag, index) => {
@@ -128,49 +133,46 @@ export default ({ data }) => {
   return (
     <Layout>
       <Container>
-        <Box width={[1, 1 / 2]} p={3} mb={10} float="right">
+        <LeftSide>
           <Photo
             title={`Photo by Eghan Thompson`}
             fluid={image.childImageSharp.fluid}
+            id="mainImage"
           />
-        </Box>
-        <Box width={[1, 2 / 5]} p={3} align-self="flex-start">
-          <TextBox>
-            <Box>{name}</Box>
-            <Info>{description}</Info>
-            <Tagbox>{tagList}</Tagbox>
-            <Payment>
-              <Price>{price} $</Price>
-              <Price>free shipping</Price>
-              <Box pt={2}>
-                <PaypalExpressBtn
-                  client={client}
-                  currency={'USD'}
-                  total={Number(price)}
-                  style={style}
-                />
-              </Box>
-            </Payment>
-          </TextBox>
-          <Flex>
-            <PreviewBox align-self="flex-end" width={(1, 1 / 2)} p={4}>
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageA.childImageSharp.fluid}
-              />
-            </PreviewBox>
-            <PreviewBox align-self="flex-end" width={(1, 1 / 2)} p={4}>
-              {imageB == null ? (
-                <Box />
-              ) : (
-                <PhotoPreview
-                  title={`Photo by Eghan Thompson`}
-                  fluid={imageB.childImageSharp.fluid}
-                />
-              )}
-            </PreviewBox>
-          </Flex>
-        </Box>
+        </LeftSide>
+        <TextDiv>
+          <div>{name}</div>
+          <Info>{description}</Info>
+        </TextDiv>
+        <TagDiv>{tagList}</TagDiv>
+        <PaymentDiv>
+          <Price>{price} $</Price>
+          <Price>free shipping</Price>
+          <div>
+            <PaypalExpressBtn
+              client={client}
+              currency={'USD'}
+              total={Number(price)}
+              style={style}
+            />
+          </div>
+        </PaymentDiv>
+        <PreviewDiv>
+          <PhotoPreview
+            title={`Photo by Eghan Thompson`}
+            fluid={imageA.childImageSharp.fluid}
+          />
+        </PreviewDiv>
+        <PreviewDiv>
+          {imageB == null ? (
+            <div />
+          ) : (
+            <PhotoPreview
+              title={`Photo by Eghan Thompson`}
+              fluid={imageB.childImageSharp.fluid}
+            />
+          )}
+        </PreviewDiv>
       </Container>
     </Layout>
   )

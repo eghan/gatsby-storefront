@@ -119,9 +119,10 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
-  const productImage = document.getElementById('mainImage')
 
-  //productImage.fluid = imageA.childImageSharp.fluid
+  //  -- document refrences in gatsby must be wrapped for SSR --
+  //const productImage = document.getElementById('mainImage')
+
 
   const tagList = tags
     .filter(t => !tagExclude.includes(t))

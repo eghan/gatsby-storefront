@@ -34,12 +34,6 @@ const Navitems = styled.div`
   padding: 0.4em, 0.5em;
 `
 
-const BurgerBar = styled(Burger)`
-  display: block;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`
 // because react-burger-menu does not support JSS visability control,
 // render nav components based on screen size
 class NavResponsive extends React.Component {

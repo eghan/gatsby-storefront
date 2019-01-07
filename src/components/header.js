@@ -6,32 +6,25 @@ import Burger from './burger.js'
 const sections = ['gallery', 'shop', 'about', 'contact']
 
 const Nav = styled(Link)`
-  margin: 0 auto;
-  max-width: 960;
-  padding: 0.3rem 0.8rem;
-  display: inline-block;
-  color: black;
+  padding: 0 0.8rem 0 0;
   text-decoration: none;
   font-size: 0.95em;
-  &:hover {
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.8s; /* Safari */
-  transition-duration: 0.8s;
-  border-radius: 2px;
-  line-height: 0.5;
-  vertical-align: sub;
 `
-
+const Home = styled.div`
+  grid-area: 1 / 1;
+  padding: 0 0.8rem;
+  text-decoration: none;
+  font-size: 1.4em;
+`
 const Navbar = styled.div`
-  margin: 0, auto;
-  padding: 0.4em, 0.5em;
-  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 0.5px solid black;
 `
 const Navitems = styled.div`
-  float: right;
-  margin: 0, auto;
-  padding: 0.4em, 0.5em;
+  grid-area: 1 / 2;
+  text-align: right;
+  padding: 0.3rem 0 0 0;
 `
 
 // because react-burger-menu does not support JSS visability control,
@@ -63,22 +56,10 @@ class NavResponsive extends React.Component {
 }
 
 const Header = ({ siteTitle }) => (
-  <div style={{ borderBottom: '.5px solid black', float: 'bottom' }}>
-    <Navbar>
-      <Link
-        to="/"
-        style={{
-          color: 'black',
-          textDecoration: 'none',
-          padding: '1.8em',
-          fontSize: '1.4em',
-        }}
-      >
-        {siteTitle}
-      </Link>
-      <NavResponsive />
-    </Navbar>
-  </div>
+  <Navbar>
+    <Home>{siteTitle}</Home>
+    <NavResponsive />
+  </Navbar>
 )
 
 export default Header

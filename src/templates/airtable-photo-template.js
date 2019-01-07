@@ -8,7 +8,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0rem auto;
-  padding: 1em 1em;  
+  padding: .5em .5em;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     padding: 0em 0em;
@@ -23,18 +23,20 @@ const Photos = styled.div`
   border: 3px dashed silver;
 `
 const Info = styled.div`
-  width: 50vw;
-  padding: 1em 1em;
-  border: 1px dashed silver; 
+  font-size: 0.8em;
+  width: 27vw;
+  padding: 1em 1em 1em 1em;
+  border: 2px dashed magenta; 
   @media (max-width: 750px) {
-    width: 100vw;
+    width: 94vw;
   }
 `
 const Photo = styled(Img)`
   float: right;
-  width: 50vw; 
+  width: 70vw; 
+  max-height: 90vh;
   @media (max-width: 750px) {
-    width: 100vw;
+    width: 94vw;
   }
   /*padding: 0.5rem 0.7rem;*/
 `
@@ -52,8 +54,10 @@ export default ({ data }) => {
           />
         </Photos>
         <Info>
-          Feel free to to inquire about
-          comissioning a piece like this one, with this handy form.
+          This piece has sold into a private collection.
+          <br />
+          <br />
+          If you'd like something like this, please, drop me a line.
           <br />
           <br />
           <p>{node.name}</p>

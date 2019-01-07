@@ -127,13 +127,14 @@ export default ({ data }) => {
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
     .map((tag, index) => {
+      let tagLowerCase = tag
       tag =
         tag
           .replace(/_/g, ' ')
           .charAt(0)
           .toUpperCase() + tag.slice(1)
       return (
-        <TagLink to={tag} key={index}>
+        <TagLink to={tagLowerCase} key={index}>
           <Tag key={tag}> {tag} </Tag>
         </TagLink>
       )

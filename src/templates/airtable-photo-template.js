@@ -13,32 +13,16 @@ const Container = styled.div`
     grid-template-columns: 1fr;
     padding: 0em 0em;
   }
-  /*max-width: 1fr;*/
-  /*border: 1px dashed silver;*/
-  /*align-items: center;*/
 `
 const Photos = styled.div`
-  /*margin: 0rem auto;  */
-  grid-column: 1;
-  border: 3px dashed silver;
+  grid-column: 1fr;
 `
 const Info = styled.div`
   font-size: 0.8em;
-  width: 27vw;
   padding: 1em 1em 1em 1em;
-  border: 2px dashed magenta; 
-  @media (max-width: 750px) {
-    width: 94vw;
-  }
 `
 const Photo = styled(Img)`
-  float: right;
-  width: 70vw; 
-  max-height: 90vh;
-  @media (max-width: 750px) {
-    width: 94vw;
-  }
-  /*padding: 0.5rem 0.7rem;*/
+  height: 90vh;
 `
 
 export default ({ data }) => {

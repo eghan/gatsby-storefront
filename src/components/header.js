@@ -5,15 +5,17 @@ import Burger from './burger.js'
 
 const sections = ['gallery', 'shop', 'about', 'contact']
 
-const Nav = styled(Link)`
-  padding: 0 0.8rem 0 0;
+const Links = styled(Link)`
+  color: black;
   text-decoration: none;
+`
+const Nav = styled(Links)`
+  padding: 0 0.8rem 0 0;
   font-size: 0.95em;
 `
-const Home = styled.div`
+const Home = styled(Links)`
   grid-area: 1 / 1;
   padding: 0 0.8rem;
-  text-decoration: none;
   font-size: 1.4em;
 `
 const Navbar = styled.div`
@@ -57,7 +59,7 @@ class NavResponsive extends React.Component {
 
 const Header = ({ siteTitle }) => (
   <Navbar>
-    <Home>{siteTitle}</Home>
+    <Home key={siteTitle} to={'/'}>{siteTitle}</Home>
     <NavResponsive />
   </Navbar>
 )

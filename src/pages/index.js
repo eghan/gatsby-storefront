@@ -6,11 +6,24 @@ import Img from 'gatsby-image'
 
 const Box = styled.div`
   /*min-width: 350px;*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1vw;
+  padding: 1vw;
+  @media (max-width: 1150px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr 1fr;
+  }
   text-align: center;
 `
 const Photo = styled(Img)`
   /*padding: 1em 1em;*/
-  border: 10px solid white;
+  //border: 10px solid white;
 
 `
 
@@ -25,7 +38,7 @@ const IndexPage = ({ data }) => (
               <Photo
                 key={img.id}
                 title={`Photo by Eghan Thompson`}
-                fixed={img.childImageSharp.fixed}
+                fluid={img.childImageSharp.fluid}
               />
             </Link>
           ))
@@ -49,8 +62,8 @@ export const query = graphql`
                 id
                 name
                 childImageSharp {
-                  fixed(width: 300) {
-                    ...GatsbyImageSharpFixed
+                  fluid(quality: 50) {
+                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }
               }

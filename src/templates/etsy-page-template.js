@@ -22,14 +22,23 @@ const tagExclude = [
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-rows: auto 33vh auto;
+  grid-gap: 1em;
+  height: 90vh;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0em 0em;
+  }
   /*border: 3px dashed aqua;*/
 `
 const LeftSide = styled.div`
   padding: 1em 0 0 1em;
   grid-column: span 2;
   grid-row: span 5;
-  align-items: center;
+  @media (max-width: 750px) {
+    padding: 0em 0em;
+  }
   /*border: 5px dashed blue;*/
 `
 const Info = styled.div`
@@ -38,7 +47,7 @@ const Info = styled.div`
   /*margin: 1rem auto;*/
 `
 const Tag = styled.button`
-  border: 0.5px dashed silver;
+  border: 0.5px solid gray;
   font-size: 0.6em;
   text-decoration: none;
   &:hover {
@@ -50,48 +59,70 @@ const Tag = styled.button`
 `
 const Price = styled.div`
   font-size: 0.8em;
+  padding: 0 .5em 0 .5em;
 `
 
 const PreviewDiv = styled.div`
-  display: grid;
-  justify-content: center;  
+  grid-column: span 2;
+  align-items: end;
   /*border: 10px dashed red;*/
 `
 const TextDiv = styled.div`
   padding: 1em 2em 0 0;
   grid-column: span 2;
+  @media (max-width: 750px) {
+    padding: 0 0 0 0.5em;
+    width: 95vw;
+  }
   /*border: 5px dashed red;*/
 `
 
 const Photo = styled(Img)`
-  float: right;
-  width: 100%;
-  object-fit: cover;
-  padding: 0.5rem 0.7rem;
+  width: stretch;
+  height: 89vh;
+  @media (max-width: 750px) {
+    width: 100vw;
+    height: auto;
+    float: left;
+  }
 `
 const PhotoPreview = styled(Img)`
+  display: inline-block;
+  margin: .5em;
   width: 200px;
-  height: 200px;
+  height: 200px;  
+  @media (max-width: 750px) {
+    width: 100vw;
+    height: auto;
+  }
 `
 const PaymentDiv = styled.div`
-  grid-column: 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 1em 3em 0 0;
   text-align: right;
-`
-const TagDiv = styled.div`
-  padding: .8em;
-  grid-column: 1fr;
-  text-align: center;
-    /*border: 5px dashed red;*/
+  grid-column: span 2;
+  @media (max-width: 750px) {
+    width: 50vw;  
+    padding: 0 0 0 0;
+  }
+    /*border: 10px dashed indigo;*/
 
 `
-const TagLink = styled(Link)`
-  padding: .3em;
+const TagDiv = styled.div`
+  padding: 0.8em;
+  text-align: center;
+  @media (max-width: 750px) {
+    padding: 0;
+    width: 50vw;
+  }
 `
-const Paypal = styled.div`
-  text-align: right;
-  padding: 1em 0 0 0;
-      /*border: 5px dashed red;*/
+const TagLink = styled(Link)`
+  padding: 0.3em;
+  @media (max-width: 750px) {
+    padding: 0.1em;
+    font-size: 0.9em;
+  }
 `
 
 export default ({ data }) => {
@@ -104,8 +135,8 @@ export default ({ data }) => {
 
   const style = {
     label: 'paypal',
-    size: 'responsive', // small | medium | large | responsive
-    shape: 'rect', // pill | rect
+    size: 'small', // small | medium | large | responsive
+    shape: 'pill', // pill | rect
     color: 'black', // gold | blue | silver | black
   }
 
@@ -119,10 +150,8 @@ export default ({ data }) => {
     fields: { tags = [] },
   } = data.etsy
 
-
   //  -- document refrences in gatsby must be wrapped for SSR --
   //const productImage = document.getElementById('mainImage')
-
 
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
@@ -153,26 +182,25 @@ export default ({ data }) => {
           <div>{name}</div>
           <Info>{description}</Info>
         </TextDiv>
-        <TagDiv>{tagList}</TagDiv>
         <PaymentDiv>
-          <Price>{price} $</Price>
-          <Price>free shipping</Price>
-          <Paypal>
+          <TagDiv>{tagList}</TagDiv>
+          <Price>
+            free shipping
+            <br />
+            {price} $            
             <PaypalExpressBtn
               client={client}
               currency={'USD'}
               total={Number(price)}
               style={style}
             />
-          </Paypal>
+          </Price>
         </PaymentDiv>
         <PreviewDiv>
           <PhotoPreview
             title={`Photo by Eghan Thompson`}
             fluid={imageA.childImageSharp.fluid}
           />
-        </PreviewDiv>
-        <PreviewDiv>
           {imageB == null ? (
             <div />
           ) : (

@@ -21,10 +21,10 @@ const tagExclude = [
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto 33vh auto;
-  grid-gap: 1em;
-  height: 90vh;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: .5em;
+  height: 94vh;
+  object-fit: contain;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -33,12 +33,12 @@ const Container = styled.div`
   /*border: 3px dashed aqua;*/
 `
 const LeftSide = styled.div`
-  padding: 1em 0 0 1em;
-  grid-column: span 2;
   grid-row: span 5;
-  @media (max-width: 750px) {
-    padding: 0em 0em;
-  }
+  /*border: 5px dashed blue;*/
+`
+const RightSide = styled.div`
+  display: grid;
+  grid-row: span 5;
   /*border: 5px dashed blue;*/
 `
 const Info = styled.div`
@@ -64,7 +64,7 @@ const Price = styled.div`
 
 const PreviewDiv = styled.div`
   grid-column: span 2;
-  align-items: end;
+  align-self: end;
   /*border: 10px dashed red;*/
 `
 const TextDiv = styled.div`
@@ -74,12 +74,11 @@ const TextDiv = styled.div`
     padding: 0 0 0 0.5em;
     width: 95vw;
   }
-  /*border: 5px dashed red;*/
+  /*border: 5px dashed green;*/
 `
 
 const Photo = styled(Img)`
-  width: stretch;
-  height: 89vh;
+  height: 94vh;
   @media (max-width: 750px) {
     width: 100vw;
     height: auto;
@@ -88,7 +87,7 @@ const Photo = styled(Img)`
 `
 const PhotoPreview = styled(Img)`
   display: inline-block;
-  margin: .5em;
+  margin: .3em;
   width: 200px;
   height: 200px;  
   @media (max-width: 750px) {
@@ -97,11 +96,11 @@ const PhotoPreview = styled(Img)`
   }
 `
 const PaymentDiv = styled.div`
+  grid-column: span 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 1em 3em 0 0;
+  padding: .3em 1em 0 0;
   text-align: right;
-  grid-column: span 2;
   @media (max-width: 750px) {
     width: 50vw;  
     padding: 0 0 0 0;
@@ -178,6 +177,7 @@ export default ({ data }) => {
             id="mainImage"
           />
         </LeftSide>
+        <RightSide>
         <TextDiv>
           <div>{name}</div>
           <Info>{description}</Info>
@@ -210,6 +210,7 @@ export default ({ data }) => {
             />
           )}
         </PreviewDiv>
+      </RightSide>
       </Container>
     </Layout>
   )

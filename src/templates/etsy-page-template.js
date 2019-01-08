@@ -3,9 +3,12 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
+import Modal from 'react-modal'
+import { Location } from '@reach/router'
 
-import { rhythm } from '../utils/typography'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
+
+Modal.setAppElement('body')
 
 const tagExclude = [
   'industrial',
@@ -22,7 +25,7 @@ const tagExclude = [
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: .5em;
+  grid-gap: 0.5em;
   height: 94vh;
   object-fit: contain;
   @media (max-width: 750px) {
@@ -59,7 +62,7 @@ const Tag = styled.button`
 `
 const Price = styled.div`
   font-size: 0.8em;
-  padding: 0 .5em 0 .5em;
+  padding: 0 0.5em 0 0.5em;
 `
 
 const PreviewDiv = styled.div`
@@ -87,9 +90,9 @@ const Photo = styled(Img)`
 `
 const PhotoPreview = styled(Img)`
   display: inline-block;
-  margin: .3em;
+  margin: 0.3em;
   width: 200px;
-  height: 200px;  
+  height: 200px;
   @media (max-width: 750px) {
     width: 100vw;
     height: auto;
@@ -99,14 +102,13 @@ const PaymentDiv = styled.div`
   grid-column: span 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: .3em 1em 0 0;
+  padding: 0.3em 1em 0 0;
   text-align: right;
   @media (max-width: 750px) {
-    width: 50vw;  
+    width: 50vw;
     padding: 0 0 0 0;
   }
-    /*border: 10px dashed indigo;*/
-
+  /*border: 10px dashed indigo;*/
 `
 const TagDiv = styled.div`
   padding: 0.8em;
@@ -123,6 +125,57 @@ const TagLink = styled(Link)`
     font-size: 0.9em;
   }
 `
+
+class PhotoModal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+    }
+
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true })
+    PaypalExpressBtn.state = { visability: false }
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false })
+  }
+
+  render(props) {
+    return (
+      <div>
+        <div onClick={this.handleOpenModal}>{this.props.children}</div>
+
+        <Modal
+          isOpen={this.state.showModal}
+          contentLabel="Inline Styles Modal Example"
+          style={{
+            overlay: {
+              backgroundColor: 'black',
+            },
+            content: {
+              color: 'black',
+              backgroundColor: 'white',
+            },
+          }}
+        >
+          <Link to={this.props.location} onClick={this.handleCloseModal}>
+            <Photo
+              title={`Photo by Eghan Thompson`}
+              fluid={this.props.source}
+              id="mainImage"
+            />
+          </Link>
+        </Modal>
+      </div>
+    )
+  }
+}
 
 export default ({ data }) => {
   const client = {
@@ -152,6 +205,15 @@ export default ({ data }) => {
   //  -- document refrences in gatsby must be wrapped for SSR --
   //const productImage = document.getElementById('mainImage')
 
+  //   const IndexPage = (props) => (
+  //   <Layout>
+  //     <p>This works {props.location.pathname}</p>
+  //   </Layout>
+  // )
+
+  const location =
+    typeof window !== `undefined` ? window.location.pathname : '/shop'
+
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
     .map((tag, index) => {
@@ -167,50 +229,64 @@ export default ({ data }) => {
         </TagLink>
       )
     })
+
   return (
     <Layout>
       <Container>
         <LeftSide>
-          <Photo
-            title={`Photo by Eghan Thompson`}
-            fluid={image.childImageSharp.fluid}
-            id="mainImage"
-          />
+          <PhotoModal source={image.childImageSharp.fluid} location={location}>
+            <Photo
+              title={`Photo by Eghan Thompson`}
+              fluid={image.childImageSharp.fluid}
+              id="mainImage"
+            />
+          </PhotoModal>
         </LeftSide>
         <RightSide>
-        <TextDiv>
-          <div>{name}</div>
-          <Info>{description}</Info>
-        </TextDiv>
-        <PaymentDiv>
-          <TagDiv>{tagList}</TagDiv>
-          <Price>
-            free shipping
-            <br />
-            {price} $            
-            <PaypalExpressBtn
-              client={client}
-              currency={'USD'}
-              total={Number(price)}
-              style={style}
-            />
-          </Price>
-        </PaymentDiv>
-        <PreviewDiv>
-          <PhotoPreview
-            title={`Photo by Eghan Thompson`}
-            fluid={imageA.childImageSharp.fluid}
-          />
-          {imageB == null ? (
-            <div />
-          ) : (
-            <PhotoPreview
-              title={`Photo by Eghan Thompson`}
-              fluid={imageB.childImageSharp.fluid}
-            />
-          )}
-        </PreviewDiv>
-      </RightSide>
+          <TextDiv>
+            <div>{name}</div>
+            <Info>{description}</Info>
+          </TextDiv>
+          <PaymentDiv>
+            <TagDiv>{tagList}</TagDiv>
+            <Price>
+              free shipping
+              <br />
+              {price} $
+              <PaypalExpressBtn
+                client={client}
+                currency={'USD'}
+                total={Number(price)}
+                style={style}
+              />
+            </Price>
+          </PaymentDiv>
+          <PreviewDiv>
+            <PhotoModal
+              source={imageA.childImageSharp.fluid}
+              location={location}
+            >
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageA.childImageSharp.fluid}
+              />
+            </PhotoModal>
+
+            {imageB == null ? (
+              <div />
+            ) : (
+              <PhotoModal
+                source={imageB.childImageSharp.fluid}
+                location={location}
+              >
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={imageB.childImageSharp.fluid}
+                />
+              </PhotoModal>
+            )}
+          </PreviewDiv>
+        </RightSide>
       </Container>
     </Layout>
   )

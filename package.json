@@ -26,6 +26,7 @@
     "react-burger-menu": "^2.5.4",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
+    "react-modal": "^3.8.1",
     "react-paypal-express-checkout": "github:eghan/react-paypal-express-checkout#eghan-patch-1",
     "react-typography": "^0.16.13",
     "styled-components": "^4.1.1",

@@ -19,9 +19,13 @@ const Home = styled(Links)`
   font-size: 1.4em;
 `
 const Navbar = styled.div`
+  height: 6vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 0.5px solid black;
+  @media (max-width: 750px) {
+    height: 8vh;
+  }
 `
 const Navitems = styled.div`
   grid-area: 1 / 2;

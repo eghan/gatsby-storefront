@@ -4,14 +4,10 @@ import styled from 'styled-components'
 import Modal from 'react-modal'
 import Img from 'gatsby-image'
 
-const Nav = styled(Link)`
+const Photo = styled(Img)`
   margin: 0 auto;
-  max-width: 960;
-  padding: 2.5rem 2.5rem;
-  display: inline-block;
-  color: black;
-  text-decoration: none;
-  font-size: 1.5em;
+  height: 90vh;   
+  width: 80vw;
 `
 
 class PhotoModal extends React.Component {
@@ -43,19 +39,21 @@ class PhotoModal extends React.Component {
           contentLabel="Inline Styles Modal Example"
           style={{
             overlay: {
-              backgroundColor: 'black',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
               zIndex: 100, // hack. for PayPal button visability under modal issue
             },
             content: {
               color: 'black',
               backgroundColor: 'black',     
               border: '0px solid black',
+              objectFit: 'contain',
+              overflow: 'hidden',
 
             },
           }}
         >
           <Link to={this.props.location} onClick={this.handleCloseModal}>
-            <Img
+            <Photo
               title={`Photo by Eghan Thompson`}
               fluid={this.props.source}
               id="mainImage"

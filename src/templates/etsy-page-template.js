@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Modal from 'react-modal'
 import { Location } from '@reach/router'
 
+import PhotoModal from '../components/modal'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 Modal.setAppElement('body')
@@ -125,57 +126,6 @@ const TagLink = styled(Link)`
     font-size: 0.9em;
   }
 `
-
-class PhotoModal extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showModal: false,
-    }
-
-    this.handleOpenModal = this.handleOpenModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
-  }
-
-  handleOpenModal() {
-    this.setState({ showModal: true })
-    PaypalExpressBtn.state = { visability: false }
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false })
-  }
-
-  render(props) {
-    return (
-      <div>
-        <div onClick={this.handleOpenModal}>{this.props.children}</div>
-
-        <Modal
-          isOpen={this.state.showModal}
-          contentLabel="Inline Styles Modal Example"
-          style={{
-            overlay: {
-              backgroundColor: 'black',
-            },
-            content: {
-              color: 'black',
-              backgroundColor: 'white',
-            },
-          }}
-        >
-          <Link to={this.props.location} onClick={this.handleCloseModal}>
-            <Photo
-              title={`Photo by Eghan Thompson`}
-              fluid={this.props.source}
-              id="mainImage"
-            />
-          </Link>
-        </Modal>
-      </div>
-    )
-  }
-}
 
 export default ({ data }) => {
   const client = {

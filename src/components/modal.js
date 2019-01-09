@@ -5,8 +5,7 @@ import Modal from 'react-modal'
 import Img from 'gatsby-image'
 
 const Photo = styled(Img)`
-  margin: 0 auto;
-  height: 90vh;   
+  margin: 0 auto;  
   width: 80vw;
 `
 
@@ -30,6 +29,9 @@ class PhotoModal extends React.Component {
   }
 
   render(props) {
+      const location =
+    typeof window !== `undefined` ? window.location.pathname : '/shop'
+
     return (
       <div>
         <div onClick={this.handleOpenModal}>{this.props.children}</div>
@@ -47,7 +49,7 @@ class PhotoModal extends React.Component {
               backgroundColor: 'black',     
               border: '0px solid black',
               objectFit: 'contain',
-              overflow: 'hidden',
+              // overflow: 'hidden',
 
             },
           }}

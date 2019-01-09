@@ -126,6 +126,17 @@ const TagLink = styled(Link)`
     font-size: 0.9em;
   }
 `
+const PaypalScreen = styled.button`
+  border: 0.8px solid black;
+  font-size: 1em;
+  text-decoration: none;
+  &:hover {
+    border: 0.5px solid black;
+    background-color: #f5f5f5;
+  }
+  -webkit-transition-duration: 0.6s; /* Safari */
+  transition-duration: 0.6s;
+`
 
 export default ({ data }) => {
   const client = {
@@ -184,7 +195,10 @@ export default ({ data }) => {
     <Layout>
       <Container>
         <LeftSide>
-          <PhotoModal source={image.childImageSharp.fluid} location={location}>
+          <PhotoModal
+            source={image.childImageSharp.fluid}
+            location={location}
+          >
             <Photo
               title={`Photo by Eghan Thompson`}
               fluid={image.childImageSharp.fluid}
@@ -203,12 +217,13 @@ export default ({ data }) => {
               free shipping
               <br />
               {price} $
-              <PaypalExpressBtn
-                client={client}
-                currency={'USD'}
-                total={Number(price)}
-                style={style}
-              />
+              <br />
+                <PaypalExpressBtn
+                  client={client}
+                  currency={'USD'}
+                  total={Number(price)}
+                  style={style}
+                />
             </Price>
           </PaymentDiv>
           <PreviewDiv>

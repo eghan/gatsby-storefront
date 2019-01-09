@@ -44,10 +44,13 @@ class PhotoModal extends React.Component {
           style={{
             overlay: {
               backgroundColor: 'black',
+              zIndex: 100, // hack. for PayPal button visability under modal issue
             },
             content: {
               color: 'black',
-              backgroundColor: 'white',
+              backgroundColor: 'black',     
+              border: '0px solid black',
+
             },
           }}
         >

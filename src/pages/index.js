@@ -38,14 +38,14 @@ const IndexPage = ({ data }) => (
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
               <TextModal
-                source={img.childImageSharp.fluid}
+                source={img.childImageSharp.low}
                 location={location}
                 name={img.name}
               >
                 <Photo
                   key={img.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.fluid}
+                  fluid={img.childImageSharp.high}
                 />
               </TextModal>
           ))
@@ -69,7 +69,10 @@ export const query = graphql`
                 id
                 name
                 childImageSharp {
-                  fluid(quality: 50) {
+                  low: fluid(quality: 50) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                  high: fluid(quality: 100) {
                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }

@@ -4,6 +4,10 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+import TextModal from '../components/textmodal'
+const location =
+  typeof window !== `undefined` ? window.location.pathname : '/shop'
+
 const Box = styled.div`
   /*min-width: 350px;*/
   display: grid;
@@ -24,7 +28,6 @@ const Box = styled.div`
 const Photo = styled(Img)`
   /*padding: 1em 1em;*/
   //border: 10px solid white;
-
 `
 
 const IndexPage = ({ data }) => (
@@ -34,13 +37,17 @@ const IndexPage = ({ data }) => (
         .filter(edge => edge.node.data.discription == null)
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
-            <Link to={img.name} key={img.name}>
-              <Photo
-                key={img.id}
-                title={`Photo by Eghan Thompson`}
-                fluid={img.childImageSharp.fluid}
-              />
-            </Link>
+              <TextModal
+                source={img.childImageSharp.fluid}
+                location={location}
+                name={img.name}
+              >
+                <Photo
+                  key={img.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={img.childImageSharp.fluid}
+                />
+              </TextModal>
           ))
         )}
     </Box>
@@ -63,7 +70,7 @@ export const query = graphql`
                 name
                 childImageSharp {
                   fluid(quality: 50) {
-                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }
               }

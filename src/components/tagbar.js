@@ -31,7 +31,7 @@ const Content = styled.div`
   margin-right: 5%;
   background: 'white';
   text-decoration: none;
-
+  border-bottom: 0.5px solid black;
 `
 
 const Tag = styled.button`
@@ -53,7 +53,7 @@ const TagLink = styled(Link)`
   padding: 0.1em;
 `
 const TagTitle = styled(Link)`
-  font-size: 1.5em;
+  font-size: 1em;
   text-decoration: none;
 `
 
@@ -164,7 +164,7 @@ const Tagbar = props => (
       return (
         <Content>
           <Tag to="Tags" key="Tags">
-            <TagTitle  to="Tags">{data.sitePage.context.name}:</TagTitle>
+            <TagTitle  to="Tags">element : </TagTitle>
             {tagList}
           </Tag>
           <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>

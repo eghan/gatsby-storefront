@@ -4,16 +4,30 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+import TextModal from '../components/textmodal'
+const location =
+  typeof window !== `undefined` ? window.location.pathname : '/shop'
+
 const Box = styled.div`
-  min-width: 350px;
-  width: 100%;
-  margin: auto;
+  /*min-width: 350px;*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1vw;
+  padding: 1vw;
+  @media (max-width: 1150px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  text-align: center;
 `
 const Photo = styled(Img)`
-  float: center;
-  max-width: 110px;
-  max-height: 200px;
-  padding: 10em 10em 1em 1em;
+  /*padding: 1em 1em;*/
+  //border: 10px solid white;
 `
 
 const IndexPage = ({ data }) => (
@@ -22,14 +36,18 @@ const IndexPage = ({ data }) => (
       {data.allAirtable.edges
         .filter(edge => edge.node.data.discription == null)
         .map((edge, i) =>
-          edge.node.data.photo.localFiles.map( img => (
-            <Link to={img.name} key={img.name}>
-              <Photo
-                key={img.id}
-                title={`Photo by Eghan Thompson`}
-                fixed={img.childImageSharp.fixed}
-              />
-            </Link>
+          edge.node.data.photo.localFiles.map(img => (
+              <TextModal
+                source={img.childImageSharp.low}
+                location={location}
+                name={img.name}
+              >
+                <Photo
+                  key={img.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={img.childImageSharp.high}
+                />
+              </TextModal>
           ))
         )}
     </Box>
@@ -39,7 +57,7 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
-  query {
+  {
     allAirtable {
       edges {
         node {
@@ -51,8 +69,11 @@ export const query = graphql`
                 id
                 name
                 childImageSharp {
-                  fixed(width: 300) {
-                    ...GatsbyImageSharpFixed
+                  low: fluid(quality: 50) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                  high: fluid(quality: 100) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }
               }

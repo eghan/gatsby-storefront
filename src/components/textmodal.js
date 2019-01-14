@@ -53,6 +53,46 @@ const StyledModal = styled(Modal)`
     top: 5vh;
   }
 `
+//
+// export default class OutsideClick extends Component {
+//   constructor(props) {
+//     super(props);
+//
+//     this.setWrapperRef = this.setWrapperRef.bind(this);
+//     this.handleClickOutside = this.handleClickOutside.bind(this);
+//   }
+//
+//   componentDidMount() {
+//     document.addEventListener('mousedown', this.handleClickOutside);
+//   }
+//
+//   componentWillUnmount() {
+//     document.removeEventListener('mousedown', this.handleClickOutside);
+//   }
+//
+//   /**
+//    * Set the wrapper ref
+//    */
+//   setWrapperRef(node) {
+//     this.wrapperRef = node;
+//   }
+//
+//   /**
+//    * Alert if clicked on outside of element
+//    */
+//   handleClickOutside(event) {
+//     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+//       alert('You clicked outside of me!');
+//     }
+//   }
+//
+//   render() {
+//     return <div ref={this.setWrapperRef}>{this.props.children}</div>;
+//   }
+// }
+//
+//
+//
 
 class TextModal extends React.Component {
   constructor(props) {
@@ -63,6 +103,25 @@ class TextModal extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
+
+    this.setWrapperRef = this.setWrapperRef.bind(this)
+    this.handleClickOutside = this.handleClickOutside.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside)
+  }
+  setWrapperRef(node) {
+    this.wrapperRef = node
+  }
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({ showModal: false })
+    }
   }
 
   handleOpenModal() {
@@ -107,7 +166,7 @@ class TextModal extends React.Component {
                 />
               </Link>
             </GridLeft>
-            <GridRight>
+            <GridRight ref={this.setWrapperRef}>
               <Info>
                 This piece has sold into a private collection.
                 <br />

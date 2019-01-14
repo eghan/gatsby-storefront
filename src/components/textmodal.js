@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 
 const Photo = styled(Img)`
   width: 100%;
-  float: center;
+  transform: translate(0%, -10%);
   @media (max-width: 750px) {
     width: 90vw;
   }

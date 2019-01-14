@@ -102,7 +102,7 @@ class TextModal extends React.Component {
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
+    // this.handleCloseModal = this.handleCloseModal.bind(this)
 
     this.setWrapperRef = this.setWrapperRef.bind(this)
     this.handleClickOutside = this.handleClickOutside.bind(this)
@@ -128,9 +128,10 @@ class TextModal extends React.Component {
     this.setState({ showModal: true })
   }
 
-  handleCloseModal() {
-    this.setState({ showModal: false })
-  }
+  // depriciated in this use case
+  // handleCloseModal() {
+  //   this.setState({ showModal: false })
+  // }
 
   render(props) {
     return (
@@ -158,7 +159,7 @@ class TextModal extends React.Component {
           <Grid>
             <Inquire>Inquire about this piece?</Inquire>
             <GridLeft>
-              <Link to={this.props.location} onClick={this.handleCloseModal}>
+              <Link to={this.props.location}>
                 <Photo
                   title={`Photo by Eghan Thompson`}
                   fluid={this.props.source}

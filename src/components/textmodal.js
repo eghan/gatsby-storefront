@@ -48,6 +48,7 @@ const StyledModal = styled(Modal)`
   top: 5vh;
   position: fixed;
   width: 90vw;
+  outline: none;
   @media (max-width: 750px) {
     left: 4vw;
     top: 5vh;
@@ -159,13 +160,11 @@ class TextModal extends React.Component {
           <Grid>
             <Inquire>Inquire about this piece?</Inquire>
             <GridLeft>
-              <Link to={this.props.location}>
                 <Photo
                   title={`Photo by Eghan Thompson`}
                   fluid={this.props.source}
                   id="mainImage"
                 />
-              </Link>
             </GridLeft>
             <GridRight ref={this.setWrapperRef}>
               <Info>

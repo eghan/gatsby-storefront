@@ -5,25 +5,53 @@ import Modal from 'react-modal'
 import Img from 'gatsby-image'
 
 const Photo = styled(Img)`
-  margin: 0 auto;
-  width: 60vw;
-  height: 88vh;
+  width: 100%;
+  float: center;
+  @media (max-width: 750px) {
+    width: 90vw;
+  }
 `
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+  }
 `
 const GridLeft = styled.div`
-  width: 60vw;
+  width: 55vw;
+  @media (max-width: 750px) {
+    width: 100%;
+  }
 `
 const GridRight = styled.div`
-  width: 40vw;
+  width: 35vw;
+  @media (max-width: 750px) {
+    width: 100%;
+  }
 `
 const Info = styled.div`
   font-size: 0.8em;
   padding: 1em 1em 1em 1em;
   color: black;
   text-decoration: none;
+`
+const Inquire = styled(Link)`
+  display: none;
+  @media (max-width: 750px) {
+    display: inline;
+  }
+`
+const StyledModal = styled(Modal)`
+  height: 90vh;
+  left: 5vw;
+  top: 5vh;
+  position: fixed;
+  width: 90vw;
+  @media (max-width: 750px) {
+    left: 4vw;
+    top: 5vh;
+  }
 `
 
 class TextModal extends React.Component {
@@ -50,23 +78,26 @@ class TextModal extends React.Component {
       <div>
         <div onClick={this.handleOpenModal}>{this.props.children}</div>
 
-        <Modal
+        <StyledModal
           isOpen={this.state.showModal}
-          contentLabel="Inline Styles Modal Example"
+          contentLabel="Inline Modal"
           style={{
             overlay: {
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              zIndex: 100, // hack. for PayPal button visability under modal issue
+              zIndex: 1000, // hack. for PayPal button visability under modal issue
             },
             content: {
               color: 'black',
               backgroundColor: 'white',
               border: '0px solid black',
               overflow: 'hidden',
+              padding: '0px',
+              margin: '0px auto',
             },
           }}
         >
           <Grid>
+            <Inquire>Inquire about this piece?</Inquire>
             <GridLeft>
               <Link to={this.props.location} onClick={this.handleCloseModal}>
                 <Photo
@@ -88,7 +119,7 @@ class TextModal extends React.Component {
               </Info>
             </GridRight>
           </Grid>
-        </Modal>
+        </StyledModal>
       </div>
     )
   }

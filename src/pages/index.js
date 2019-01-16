@@ -28,52 +28,26 @@ const Box = styled.div`
 const PhotoBox = styled.div`
   border-radius: 0.5em;
   border: 2px solid black;
-  height: 10em;
-  /*
-  display: grid;
-  &:nth-child(2n+4) {
-    grid-row: span 2;
-    grid-column: span 2;
-  }
-  @media (max-width: 1150px) {
-  &:nth-child(3n+7) {
-    grid-row-start: span 2;
-    grid-column-start: span 2;
-  }
-  }*/
+  height: 1fr;
+  overflow: hidden;
 `
 const Photo = styled(Img)`
-  height: 100%;
-  width: 100%
-  /*padding: 1em 1em;*/
-  //border: 10px solid white;
+  height: 1fr;
 `
 const PreviewBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   border-radius: 0.5em;
   grid-column: span 3;
   border: 1px solid black;
-  height: 10em;
+  height: 1fr;
   align-items: center;
+  overflow: hidden;
 `
-// const ImageBank = props.data.allAirtable.edges
-//         .filter(edge => edge.node.data.name == 'preview')
-//         .map((edge, i) =>
-//           edge.node.data.photo.localFiles.map( img => (
-//             <PhotoBox>
-//               <TextModal
-//                 source={img.childImageSharp.low}
-//                 location={location}
-//                 name={img.name}
-//               >
-//                 <Photo
-//                   key={img.id}
-//                   title={`Photo by Eghan Thompson`}
-//                   fluid={img.childImageSharp.high}
-//                 />
-//               </TextModal>
-//             </PhotoBox>
-//           ))
-//         )
+const TextBox = styled.div`
+  border: 1px solid gold;
+  grid-column: span 2;
+`
 
 const IndexPage = ({ data }) => {
   const PreviewDeck = data.allAirtable.edges
@@ -86,18 +60,24 @@ const IndexPage = ({ data }) => {
     .filter(d => d.node.data.name === 'photoset')
     .map(i => {
       return i.node.data.photo.localFiles // array of objects
-    })
+    })[0]
 
-  console.log(ImageDeck[0])
+  // console.log(ImageDeck[0])
   //console.log(ImageDeck[0])
   return (
     <Layout>
       {PreviewDeck.map((preview, i) => {
-        let photoOne = ImageDeck[0][0]
-        let photoTwo = ImageDeck[0][1]
-        console.log(ImageDeck[0][1])
+        let photoOne = ImageDeck.splice(
+          Math.floor(Math.random() * ImageDeck.length),
+          1
+        )[0]
+        let photoTwo = ImageDeck.pop()
+        let priority = PreviewDeck.filter(card => card.priority - 1 === i)[0]
+        // console.log(ImageDeck[0])
+        // console.log(priority)
+        // console.log(preview)
         return (
-          <Box>
+          <Box key={i}>
             <PhotoBox>
               <TextModal
                 source={photoOne.childImageSharp.low}
@@ -112,19 +92,14 @@ const IndexPage = ({ data }) => {
               </TextModal>
             </PhotoBox>
             <PreviewBox>
-              <TextModal
-                source={preview.photo.localFiles[0].childImageSharp.low}
-                location={location}
-                name={preview.name}
-              >
-                <Photo
-                  key={preview.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={preview.photo.localFiles[0].childImageSharp.high}
-                />
-                {preview.details}
-              </TextModal>
+              <Photo
+                key={priority.id}
+                title={`Photo by Eghan Thompson`}
+                fluid={priority.photo.localFiles[0].childImageSharp.high}
+              />
+              <TextBox>{priority.details}</TextBox>
             </PreviewBox>
+            <PhotoBox>
               <TextModal
                 source={photoTwo.childImageSharp.low}
                 location={location}
@@ -136,33 +111,11 @@ const IndexPage = ({ data }) => {
                   fluid={photoTwo.childImageSharp.high}
                 />
               </TextModal>
+            </PhotoBox>
           </Box>
         )
       })}
-      {/*  */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PreviewBox>2</PreviewBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*  */}
-      {/*         <PreviewBox>2</PreviewBox> */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*  */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*         <PreviewBox>2</PreviewBox> */}
-      {/*  */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PreviewBox>2</PreviewBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*  */}
-      {/*         <PreviewBox>2</PreviewBox> */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*  */}
-      {/*         <PhotoBox>1</PhotoBox> */}
-      {/*         <PhotoBox>3</PhotoBox> */}
-      {/*         <PreviewBox>2</PreviewBox> */}
+
       {/*         {data.allAirtable.edges */}
       {/*           .filter(edge => edge.node.data.name === 'preview') */}
       {/*           .map((edge, i) => */}
@@ -214,6 +167,7 @@ export const query = graphql`
       edges {
         node {
           data {
+            id
             name
             section
             priority

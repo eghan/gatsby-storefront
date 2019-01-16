@@ -34,7 +34,7 @@ const IndexPage = ({ data }) => (
   <Layout>
     <Box>
       {data.allAirtable.edges
-        .filter(edge => edge.node.data.discription == null)
+        .filter(edge => edge.node.data.name == 'photoset')
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
               <TextModal
@@ -62,6 +62,8 @@ export const query = graphql`
       edges {
         node {
           data {
+            name
+            id
             discription
             photo {
               id

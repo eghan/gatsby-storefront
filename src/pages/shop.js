@@ -43,6 +43,7 @@ const PhotoLink = styled(Link)`
   display: inline-block;
   font-size: 0.8em;
   text-decoration: none;
+  color: black;
 `
 
 function renderTagMatches(data) {
@@ -51,15 +52,17 @@ function renderTagMatches(data) {
   if (data.airtable !== null) {
     data.airtable.edges.forEach(item => {
       //if (item.node.data.name === 'photoset') {return}
-      matchList = [
-        ...matchList,
-        [
-          item.node.data.name,
-          item.node.data.image.localFiles[0],
-          item.node.data.price,
-        ],
-      ]
-      return
+      if (item.node.data.name !== null) {
+        matchList = [
+          ...matchList,
+          [
+            item.node.data.name,
+            item.node.data.image.localFiles[0],
+            item.node.data.price,
+          ],
+        ]
+        return
+      }
     })
   }
 
@@ -96,7 +99,7 @@ function renderTagMatches(data) {
 export default ({ data }) => {
   return (
     <Layout>
-      <Tagbar/>
+      <Tagbar />
       <Container>{renderTagMatches(data)}</Container>
     </Layout>
   )

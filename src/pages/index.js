@@ -26,10 +26,10 @@ const Box = styled.div`
   text-align: center;
 `
 const PhotoBox = styled.div`
-  border-radius: .5em;
+  border-radius: 0.5em;
   border: 2px solid black;
   height: 10em;
-/*
+  /*
   display: grid;
   &:nth-child(2n+4) {
     grid-row: span 2;
@@ -43,89 +43,168 @@ const PhotoBox = styled.div`
   }*/
 `
 const Photo = styled(Img)`
+  height: 100%;
+  width: 100%
   /*padding: 1em 1em;*/
   //border: 10px solid white;
 `
 const PreviewBox = styled.div`
-  border-radius: .5em;
+  border-radius: 0.5em;
   grid-column: span 3;
   border: 1px solid black;
   height: 10em;
   align-items: center;
 `
+// const ImageBank = props.data.allAirtable.edges
+//         .filter(edge => edge.node.data.name == 'preview')
+//         .map((edge, i) =>
+//           edge.node.data.photo.localFiles.map( img => (
+//             <PhotoBox>
+//               <TextModal
+//                 source={img.childImageSharp.low}
+//                 location={location}
+//                 name={img.name}
+//               >
+//                 <Photo
+//                   key={img.id}
+//                   title={`Photo by Eghan Thompson`}
+//                   fluid={img.childImageSharp.high}
+//                 />
+//               </TextModal>
+//             </PhotoBox>
+//           ))
+//         )
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <Box>
+const IndexPage = ({ data }) => {
+  const PreviewDeck = data.allAirtable.edges
+    .filter(i => i.node.data.section !== null)
+    .map(i => {
+      return i.node.data // array of objects
+    })
 
-        {/*     {data.allAirtable.edges */}
-        {/* .map((edge, i) => */}
+  const ImageDeck = data.allAirtable.edges
+    .filter(d => d.node.data.name === 'photoset')
+    .map(i => {
+      return i.node.data.photo.localFiles // array of objects
+    })
 
-      <PhotoBox>1</PhotoBox>
-      <PreviewBox>2</PreviewBox>
-      <PhotoBox>3</PhotoBox>
-      
-      <PreviewBox>2</PreviewBox>
-      <PhotoBox>1</PhotoBox>
-      <PhotoBox>3</PhotoBox>
-
-      <PhotoBox>1</PhotoBox>
-      <PhotoBox>3</PhotoBox>
-      <PreviewBox>2</PreviewBox>
-
-      <PhotoBox>1</PhotoBox>
-      <PreviewBox>2</PreviewBox>
-      <PhotoBox>3</PhotoBox>
-      
-      <PreviewBox>2</PreviewBox>
-      <PhotoBox>1</PhotoBox>
-      <PhotoBox>3</PhotoBox>
-
-      <PhotoBox>1</PhotoBox>
-      <PhotoBox>3</PhotoBox>
-      <PreviewBox>2</PreviewBox>
-      {data.allAirtable.edges
-        .filter(edge => edge.node.data.name == 'preview')
-        .map((edge, i) =>
-          edge.node.data.photo.localFiles.map( img => (
+  console.log(ImageDeck[0])
+  //console.log(ImageDeck[0])
+  return (
+    <Layout>
+      {PreviewDeck.map((preview, i) => {
+        let photoOne = ImageDeck[0][0]
+        let photoTwo = ImageDeck[0][1]
+        console.log(ImageDeck[0][1])
+        return (
+          <Box>
             <PhotoBox>
               <TextModal
-                source={img.childImageSharp.low}
+                source={photoOne.childImageSharp.low}
                 location={location}
-                name={img.name}
+                name={photoOne.name}
               >
                 <Photo
-                  key={img.id}
+                  key={photoOne.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.high}
+                  fluid={photoOne.childImageSharp.high}
                 />
               </TextModal>
             </PhotoBox>
-          ))
-        )}
-
-      {data.allAirtable.edges
-        .filter(edge => edge.node.data.name == 'photoset')
-        .map((edge, i) =>
-          edge.node.data.photo.localFiles.map( img => (
-            <PhotoBox>
+            <PreviewBox>
               <TextModal
-                source={img.childImageSharp.low}
+                source={preview.photo.localFiles[0].childImageSharp.low}
                 location={location}
-                name={img.name}
+                name={preview.name}
               >
                 <Photo
-                  key={img.id}
+                  key={preview.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.high}
+                  fluid={preview.photo.localFiles[0].childImageSharp.high}
+                />
+                {preview.details}
+              </TextModal>
+            </PreviewBox>
+              <TextModal
+                source={photoTwo.childImageSharp.low}
+                location={location}
+                name={photoTwo.name}
+              >
+                <Photo
+                  key={photoTwo.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={photoTwo.childImageSharp.high}
                 />
               </TextModal>
-            </PhotoBox>
-          ))
-        )}
-    </Box>
-  </Layout>
-)
+          </Box>
+        )
+      })}
+      {/*  */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*  */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*  */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*  */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*  */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*  */}
+      {/*         <PhotoBox>1</PhotoBox> */}
+      {/*         <PhotoBox>3</PhotoBox> */}
+      {/*         <PreviewBox>2</PreviewBox> */}
+      {/*         {data.allAirtable.edges */}
+      {/*           .filter(edge => edge.node.data.name === 'preview') */}
+      {/*           .map((edge, i) => */}
+      {/*             edge.node.data.photo.localFiles.map(img => ( */}
+      {/*               <PhotoBox> */}
+      {/*                 <TextModal */}
+      {/*                   source={img.childImageSharp.low} */}
+      {/*                   location={location} */}
+      {/*                   name={img.name} */}
+      {/*                 > */}
+      {/*                   <Photo */}
+      {/*                     key={img.id} */}
+      {/*                     title={`Photo by Eghan Thompson`} */}
+      {/*                     fluid={img.childImageSharp.high} */}
+      {/*                   /> */}
+      {/*                 </TextModal> */}
+      {/*               </PhotoBox> */}
+      {/*             )) */}
+      {/*           )} */}
+      {/*  */}
+      {/*         {data.allAirtable.edges */}
+      {/*           .filter(edge => edge.node.data.name === 'photoset') */}
+      {/*           .map((edge, i) => */}
+      {/*             edge.node.data.photo.localFiles.map(img => ( */}
+      {/*               <PhotoBox> */}
+      {/*                 <TextModal */}
+      {/*                   source={img.childImageSharp.low} */}
+      {/*                   location={location} */}
+      {/*                   name={img.name} */}
+      {/*                 > */}
+      {/*                   <Photo */}
+      {/*                     key={img.id} */}
+      {/*                     title={`Photo by Eghan Thompson`} */}
+      {/*                     fluid={img.childImageSharp.high} */}
+      {/*                   /> */}
+      {/*                 </TextModal> */}
+      {/*               </PhotoBox> */}
+      {/*             )) */}
+      {/*           )} */}
+    </Layout>
+  )
+}
 
 export default IndexPage
 
@@ -136,7 +215,10 @@ export const query = graphql`
         node {
           data {
             name
+            section
+            priority
             discription
+            details
             photo {
               id
               localFiles {

@@ -42,6 +42,11 @@ const Inquire = styled(Link)`
     display: inline;
   }
 `
+const ClickBox = styled.div`
+  height: 38vw;  //  find a better way to get a good click box with background image?
+  width: 100%;
+  /*border: 3px dashed aqua; */
+`
 const StyledModal = styled(Modal)`
   height: 90vh;
   left: 5vw;
@@ -136,8 +141,8 @@ class TextModal extends React.Component {
 
   render(props) {
     return (
-      <div>
-        <div onClick={this.handleOpenModal}>{this.props.children}</div>
+      <div onClick={this.handleOpenModal}>
+        <ClickBox>{this.props.children}</ClickBox>
 
         <StyledModal
           isOpen={this.state.showModal}

@@ -4,16 +4,16 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import TextModal from '../components/textmodal'
+import TextModalComponent from '../components/textmodal'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/shop'
 
 const Box = styled.div`
   /*min-width: 350px;*/
+  margin: 1vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1vw;
-  padding: 1vw 3vw;
   @media (max-width: 1150px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -23,16 +23,29 @@ const Box = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: 1fr 1fr;
   }
-  text-align: center;
+  height: 1fr;
 `
 const PhotoBox = styled.div`
+
+  zoom: .5; //increase if you have very small images
   border-radius: 0.5em;
   border: 2px solid black;
-  height: 1fr;
   overflow: hidden;
+  object-fit: cover;
+  background-position: center; 
+  background-image: url(${props => props.img});
 `
 const Photo = styled(Img)`
+  zoom: 2; //increase if you have very small images
+
+  display: block;
+  margin: auto;
+
   height: 1fr;
+  max-height: 100%;
+
+  width: 1fr;
+  max-width: 100%;
 `
 const PreviewBox = styled.div`
   display: grid;
@@ -40,13 +53,17 @@ const PreviewBox = styled.div`
   border-radius: 0.5em;
   grid-column: span 3;
   border: 1px solid black;
-  height: 1fr;
-  align-items: center;
   overflow: hidden;
 `
 const TextBox = styled.div`
-  border: 1px solid gold;
+  padding: 1em;
   grid-column: span 2;
+`
+const TextModal = styled(TextModalComponent)`
+  border: 2px solid purple;
+`
+const PreviewPhotoBox = styled.div`
+  max-height: 1fr;
 `
 
 const IndexPage = ({ data }) => {
@@ -75,41 +92,44 @@ const IndexPage = ({ data }) => {
         let priority = PreviewDeck.filter(card => card.priority - 1 === i)[0]
         // console.log(ImageDeck[0])
         // console.log(priority)
-        // console.log(preview)
+        //console.log(photoOne.childImageSharp.low.src)
+
         return (
           <Box key={i}>
-            <PhotoBox>
+            <PhotoBox img={photoOne.childImageSharp.low.src}>
               <TextModal
                 source={photoOne.childImageSharp.low}
                 location={location}
                 name={photoOne.name}
               >
-                <Photo
-                  key={photoOne.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={photoOne.childImageSharp.high}
-                />
+                {/* <Photo */}
+                {/*   key={photoOne.id} */}
+                {/*   title={`Photo by Eghan Thompson`} */}
+                {/*   fluid={photoOne.childImageSharp.high} */}
+                {/* /> */}
               </TextModal>
             </PhotoBox>
             <PreviewBox>
-              <Photo
-                key={priority.id}
-                title={`Photo by Eghan Thompson`}
-                fluid={priority.photo.localFiles[0].childImageSharp.high}
-              />
+              <PreviewPhotoBox>
+                <Photo
+                  key={priority.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={priority.photo.localFiles[0].childImageSharp.low}
+                />
+              </PreviewPhotoBox>
               <TextBox>{priority.details}</TextBox>
             </PreviewBox>
-            <PhotoBox>
+            <PhotoBox img={photoTwo.childImageSharp.low.src}>
               <TextModal
                 source={photoTwo.childImageSharp.low}
                 location={location}
                 name={photoTwo.name}
-              >
-                <Photo
-                  key={photoTwo.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={photoTwo.childImageSharp.high}
-                />
+              >1
+                {/* <Photo */}
+                {/*   key={photoTwo.id} */}
+                {/*   title={`Photo by Eghan Thompson`} */}
+                {/*   fluid={photoTwo.childImageSharp.high} */}
+                {/* /> */}
               </TextModal>
             </PhotoBox>
           </Box>

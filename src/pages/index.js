@@ -23,18 +23,18 @@ const Box = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: 1fr 1fr;
   }
-  height: 1fr
+  height: 1fr;
 `
 const PhotoBox = styled.div`
   border-radius: 15px;
   border: 1px solid black;
-  background-position: center;
   width: 1fr;
   height: 1fr;
-  background-size: 320px;
-  background-image: url(${props => props.img});
+  overflow: auto;
+  max-height: 1fr !important;
 `
 const Photo = styled(Img)`
+  border-radius: 15px;
   height: 1fr;
 `
 const PreviewBox = styled.div`
@@ -43,7 +43,6 @@ const PreviewBox = styled.div`
   border-radius: 15px;
   grid-column: span 3;
   border: 1px solid black;
-  height: 1fr;
   padding-left: 10px;
   margin-left: -10px;
   background-size: 900px;
@@ -52,11 +51,24 @@ const PreviewBox = styled.div`
   background-image: url(${props => props.img});
 `
 const TextBox = styled.div`
-  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid black;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
-  padding: 1em;
+  height: 60%;
+  margin: 5%; 
   grid-column: span 2;
-  font-size: .6em;
+  font-size: 0.75em;
+`
+const More = styled.div`
+  letter-spacing: .1em;
+  display: block;
+  align-self: flex-end;
+  padding: .2em 1em;
+`
+const Text = styled.div`
+  width: 100%;
+  padding: 20px;
 `
 const TextModal = styled(TextModalComponent)`
   border: 2px solid purple;
@@ -101,20 +113,24 @@ const IndexPage = ({ data }) => {
                 source={photoOne.childImageSharp.low}
                 location={location}
                 name={photoOne.name}
-              >1
+              >
+                <Photo
+                  key={photoOne.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={photoOne.childImageSharp.high}
+                />
               </TextModal>
             </PhotoBox>
             <PreviewBox
               img={priority.photo.localFiles[0].childImageSharp.low.src}
             >
-              <PreviewPhotoBox>
-                {/* <Photo */}
-                {/*   key={priority.id} */}
-                {/*   title={`Photo by Eghan Thompson`} */}
-                {/*   fluid={priority.photo.localFiles[0].childImageSharp.low} */}
-                {/* /> */}
-              </PreviewPhotoBox>
-              <TextBox>{priority.details}</TextBox>
+              <PreviewPhotoBox />
+              <TextBox>
+                <Text>
+                {priority.details}
+              </Text>
+                <More>More...</More>
+              </TextBox>
             </PreviewBox>
             <PhotoBox img={photoTwo.childImageSharp.low.src}>
               <TextModal
@@ -122,11 +138,11 @@ const IndexPage = ({ data }) => {
                 location={location}
                 name={photoTwo.name}
               >
-                {/* <Photo */}
-                {/*   key={photoTwo.id} */}
-                {/*   title={`Photo by Eghan Thompson`} */}
-                {/*   fluid={photoTwo.childImageSharp.high} */}
-                {/* /> */}
+                <Photo
+                  key={photoTwo.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={photoTwo.childImageSharp.high}
+                />
               </TextModal>
             </PhotoBox>
             <PhotoBox img={photoThree.childImageSharp.low.src}>

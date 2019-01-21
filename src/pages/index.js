@@ -31,7 +31,6 @@ const PhotoBox = styled.div`
   width: 1fr;
   height: 1fr;
   overflow: auto;
-  max-height: 1fr !important;
 `
 const Photo = styled(Img)`
   border-radius: 15px;
@@ -56,15 +55,15 @@ const TextBox = styled.div`
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   height: 60%;
-  margin: 5%; 
+  margin: 5%;
   grid-column: span 2;
   font-size: 0.75em;
 `
 const More = styled.div`
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   display: block;
   align-self: flex-end;
-  padding: .2em 1em;
+  padding: 0.2em 1em;
 `
 const Text = styled.div`
   width: 100%;
@@ -110,14 +109,14 @@ const IndexPage = ({ data }) => {
           <Box key={i}>
             <PhotoBox img={photoOne.childImageSharp.low.src}>
               <TextModal
-                source={photoOne.childImageSharp.low}
+                source={photoOne.childImageSharp.high}
                 location={location}
                 name={photoOne.name}
               >
                 <Photo
                   key={photoOne.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={photoOne.childImageSharp.high}
+                  fluid={photoOne.childImageSharp.low}
                 />
               </TextModal>
             </PhotoBox>
@@ -126,30 +125,33 @@ const IndexPage = ({ data }) => {
             >
               <PreviewPhotoBox />
               <TextBox>
-                <Text>
-                {priority.details}
-              </Text>
+                <Text>{priority.details}</Text>
                 <More>More...</More>
               </TextBox>
             </PreviewBox>
             <PhotoBox img={photoTwo.childImageSharp.low.src}>
               <TextModal
-                source={photoTwo.childImageSharp.low}
+                source={photoTwo.childImageSharp.high}
                 location={location}
                 name={photoTwo.name}
               >
                 <Photo
                   key={photoTwo.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={photoTwo.childImageSharp.high}
+                  fluid={photoTwo.childImageSharp.low}
                 />
               </TextModal>
             </PhotoBox>
             <PhotoBox img={photoThree.childImageSharp.low.src}>
               <TextModal
-                source={photoThree.childImageSharp.low}
+                source={photoThree.childImageSharp.high}
                 location={location}
                 name={photoThree.name}
+              />
+              <Photo
+                key={photoThree.id}
+                title={`Photo by Eghan Thompson`}
+                fluid={photoThree.childImageSharp.low}
               />
             </PhotoBox>
           </Box>
@@ -218,7 +220,7 @@ export const query = graphql`
               localFiles {
                 id
                 childImageSharp {
-                  low: fluid(quality: 50) {
+                  low: fluid(quality: 60, maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                   high: fluid(quality: 100) {

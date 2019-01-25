@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Header from './header'
+import Footer from './footer'
 
 const Body = styled.div`
   /*margin: auto;*/
@@ -13,6 +14,7 @@ const Body = styled.div`
   /*border: 1px dashed silver;*/
   /*align-items: center;*/
   /*display: 'block';*/
+  background: #FFFDF7;
 `
 
 const Layout = ({ children }) => (
@@ -37,11 +39,11 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-
+        <Header siteTitle={data.site.siteMetadata.title}/>
         <Body>        
           {children}
         </Body>
+        <Footer />
       </>
     )}
   />

@@ -12,6 +12,7 @@ const Box = styled.div`
   /*min-width: 350px;*/
   margin: 1vw;
   display: grid;
+  grid-template-areas: "preview One Two Three";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1vw;
   @media (max-width: 1150px) {
@@ -26,6 +27,7 @@ const Box = styled.div`
   height: 1fr;
 `
 const PhotoBox = styled.div`
+  grid-area: ${props => props.area};
   border-radius: 15px;
   border: 1px solid black;
   width: 1fr;
@@ -38,12 +40,11 @@ const Photo = styled(Img)`
 `
 const PreviewBox = styled.div`
   display: grid;
+  grid-area: 'preview';
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: 15px;
   grid-column: span 3;
   border: 1px solid black;
-  padding-left: 10px;
-  margin-left: -10px;
   background-size: 900px;
   background-position: center;
   background-repeat: no-repeat;
@@ -107,7 +108,7 @@ const IndexPage = ({ data }) => {
 
         return (
           <Box key={i}>
-            <PhotoBox img={photoOne.childImageSharp.low.src}>
+            <PhotoBox img={photoOne.childImageSharp.low.src} area='One'>
               <TextModal
                 source={photoOne.childImageSharp.high}
                 location={location}
@@ -121,7 +122,7 @@ const IndexPage = ({ data }) => {
               </TextModal>
             </PhotoBox>
             <PreviewBox
-              img={priority.photo.localFiles[0].childImageSharp.low.src}
+              img={priority.photo.localFiles[0].childImageSharp.high.src}
             >
               <PreviewPhotoBox />
               <TextBox>
@@ -129,7 +130,7 @@ const IndexPage = ({ data }) => {
                 <More>More...</More>
               </TextBox>
             </PreviewBox>
-            <PhotoBox img={photoTwo.childImageSharp.low.src}>
+            <PhotoBox img={photoTwo.childImageSharp.low.src} area='Two'>
               <TextModal
                 source={photoTwo.childImageSharp.high}
                 location={location}
@@ -142,7 +143,7 @@ const IndexPage = ({ data }) => {
                 />
               </TextModal>
             </PhotoBox>
-            <PhotoBox img={photoThree.childImageSharp.low.src}>
+            <PhotoBox img={photoThree.childImageSharp.low.src} area='Three'>
               <TextModal
                 source={photoThree.childImageSharp.high}
                 location={location}

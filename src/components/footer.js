@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import Burger from './burger.js'
 
-const sections = ['gallery', 'shop', 'about', 'contact']
+import MobileNavigation from './mobilenav'
 
 const Links = styled(Link)`
   color: black;
@@ -18,8 +17,7 @@ const Home = styled(Links)`
   padding: 0 0.8rem;
   font-size: 1.4em;
 `
-const Navbar = styled.div`
-  background: #FFFDF7;  //why do I need this here, it should match body but it doesent'
+const FootBox = styled.div`
   height: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -37,7 +35,7 @@ const Navitems = styled.div`
 
 // because react-burger-menu does not support JSS visability control,
 // render nav components based on screen size
-class NavResponsive extends React.Component {
+class Footer extends React.Component {
   render() {
     // verbose typeof check for jsPrettier :|
     let viewportWidth =
@@ -47,42 +45,15 @@ class NavResponsive extends React.Component {
     console.log(viewportWidth)
     if (viewportWidth > 640) {
       return (
-        <Navitems>
-          {sections.map(section => {
-            return (
-              <Nav key={section} to={section}>
-                {section}
-              </Nav>
-            )
-          })}
-        </Navitems>
+        <FootBox>
+          footer
+        </FootBox>
       )
     } else {
-      return <Burger sections={sections} />
+      return <MobileNavigation />
     }
   }
 }
 
-// const Layout = ({ children }) => (
-//   <StaticQuery
-//     query={graphql`
-//       query SiteTitleQuery {
-//         site {
-//           siteMetadata {
-//             title
-//           }
-//         }
-//       }
-//     `}
-// 
 
-
-
-const Header = ({ siteTitle }) => (
-  <Navbar>
-    <Home key={siteTitle} to={'/'}>{siteTitle}</Home>
-    <NavResponsive />
-  </Navbar>
-)
-
-export default Header
+export default Footer

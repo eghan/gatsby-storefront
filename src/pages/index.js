@@ -110,7 +110,7 @@ const RenderPreview = (PreviewObject) => {
 
 const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
   
-  // DRY this out
+  // DRY this out ?
 
   if (i % 4 === 0){
     return(
@@ -183,6 +183,27 @@ const IndexPage = ({ data }) => {
 
         return RenderRow(photoOne, photoTwo, photoThree, subject, i)
       })}
+                    {data.allAirtable.edges
+                .filter(edge => edge.node.data.name === 'photoset')
+                .map((edge, i) =>
+                  edge.node.data.photo.localFiles.map(img => (
+                    <PhotoBox>
+                      <TextModal
+                        source={img.childImageSharp.low}
+                        location={location}
+                        name={img.name}
+                      >
+                        <Photo
+                          key={img.id}
+                          title={`Photo by Eghan Thompson`}
+                          fluid={img.childImageSharp.high}
+                        />
+                      </TextModal>
+                    </PhotoBox>
+                  ))
+                )}
+
+
 
       {/*         {data.allAirtable.edges */}
       {/*           .filter(edge => edge.node.data.name === 'preview') */}

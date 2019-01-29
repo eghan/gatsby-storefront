@@ -78,33 +78,31 @@ const PreviewPhotoBox = styled.div`
 `
 const RenderPhoto = ( PhotoObject ) => {
   return (
-            <PhotoBox img={PhotoObject.childImageSharp.low.src}>
-              <TextModal
-                key={PhotoObject.name}
-                source={PhotoObject.childImageSharp.high}
-                // location={location}
-                name={PhotoObject.name}
-              >
-                <Photo
-                  key={PhotoObject.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={PhotoObject.childImageSharp.low}
-                />
-              </TextModal>
-            </PhotoBox>
-            )
+      <PhotoBox img={PhotoObject.childImageSharp.low.src}>
+        <TextModal
+          key={PhotoObject.name}
+          source={PhotoObject.childImageSharp.high}
+          // location={location}
+          name={PhotoObject.name}
+        >
+          <Photo
+            key={PhotoObject.id}
+            title={`Photo by Eghan Thompson`}
+            fluid={PhotoObject.childImageSharp.low}
+          />
+        </TextModal>
+      </PhotoBox>
+      )
 }
 const RenderPreview = (PreviewObject) => {
   return(
-                <PreviewBox
-              img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}
-            >
-              <PreviewPhotoBox />
-              <TextBox>
-                <Text>{PreviewObject.details}</Text>
-                <More>More...</More>
-              </TextBox>
-            </PreviewBox>
+      <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
+        <PreviewPhotoBox />
+        <TextBox>
+          <Text>{PreviewObject.details}</Text>
+          <More>More...</More>
+        </TextBox>
+      </PreviewBox>
     )
 }
 
@@ -152,10 +150,7 @@ const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
         </Box>
       )
   }
-
-
 }
-
 
 const IndexPage = ({ data }) => {
   const PreviewDeck = data.allAirtable.edges
@@ -183,28 +178,10 @@ const IndexPage = ({ data }) => {
 
         return RenderRow(photoOne, photoTwo, photoThree, subject, i)
       })}
-                    {data.allAirtable.edges
-                .filter(edge => edge.node.data.name === 'photoset')
-                .map((edge, i) =>
-                  edge.node.data.photo.localFiles.map(img => (
-                    <PhotoBox>
-                      <TextModal
-                        source={img.childImageSharp.low}
-                        location={location}
-                        name={img.name}
-                      >
-                        <Photo
-                          key={img.id}
-                          title={`Photo by Eghan Thompson`}
-                          fluid={img.childImageSharp.high}
-                        />
-                      </TextModal>
-                    </PhotoBox>
-                  ))
-                )}
-
-
-
+    <Box key='images'>
+      {ImageDeck.map( img => RenderPhoto(img) )}
+    </Box>
+    
       {/*         {data.allAirtable.edges */}
       {/*           .filter(edge => edge.node.data.name === 'preview') */}
       {/*           .map((edge, i) => */}

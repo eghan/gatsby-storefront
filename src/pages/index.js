@@ -76,6 +76,24 @@ const TextModal = styled(TextModalComponent)`
 const PreviewPhotoBox = styled.div`
   max-height: 1fr;
 `
+const RenderPhoto = ( PhotoObject ) => {
+  return (
+            <PhotoBox img={PhotoObject.childImageSharp.low.src}>
+              <TextModal
+                key={PhotoObject.name}
+                source={PhotoObject.childImageSharp.high}
+                // location={location}
+                name={PhotoObject.name}
+              >
+                <Photo
+                  key={PhotoObject.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={PhotoObject.childImageSharp.low}
+                />
+              </TextModal>
+            </PhotoBox>
+            )
+}
 
 const IndexPage = ({ data }) => {
   const PreviewDeck = data.allAirtable.edges
@@ -101,63 +119,25 @@ const IndexPage = ({ data }) => {
         )[0]
         let photoTwo = ImageDeck.pop()
         let photoThree = ImageDeck.shift()
-        let priority = PreviewDeck.filter(card => card.priority - 1 === i)[0]
+        let subject = PreviewDeck.filter(card => card.priority - 1 === i)[0]
         // console.log(ImageDeck[0])
         // console.log(priority)
         //console.log(photoOne.childImageSharp.low.src)
 
         return (
           <Box key={i}>
-            <PhotoBox img={photoOne.childImageSharp.low.src} area='One'>
-              <TextModal
-                key={photoOne.name}
-                source={photoOne.childImageSharp.high}
-                location={location}
-                name={photoOne.name}
-              >
-                <Photo
-                  key={photoOne.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={photoOne.childImageSharp.low}
-                />
-              </TextModal>
-            </PhotoBox>
+            {RenderPhoto(photoOne)}
             <PreviewBox
-              img={priority.photo.localFiles[0].childImageSharp.high.src}
+              img={subject.photo.localFiles[0].childImageSharp.high.src}
             >
               <PreviewPhotoBox />
               <TextBox>
-                <Text>{priority.details}</Text>
+                <Text>{subject.details}</Text>
                 <More>More...</More>
               </TextBox>
             </PreviewBox>
-            <PhotoBox img={photoTwo.childImageSharp.low.src} area='Two'>
-              <TextModal
-                key={photoTwo.name}
-                source={photoTwo.childImageSharp.high}
-                location={location}
-                name={photoTwo.name}
-              >
-                <Photo
-                  key={photoTwo.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={photoTwo.childImageSharp.low}
-                />
-              </TextModal>
-            </PhotoBox>
-            <PhotoBox img={photoThree.childImageSharp.low.src} area='Three'>
-              <TextModal
-                key={photoThree.name}
-                source={photoThree.childImageSharp.high}
-                location={location}
-                name={photoThree.name}
-              />
-              <Photo
-                key={photoThree.id}
-                title={`Photo by Eghan Thompson`}
-                fluid={photoThree.childImageSharp.low}
-              />
-            </PhotoBox>
+            {RenderPhoto(photoTwo)}
+            {RenderPhoto(photoThree)}
           </Box>
         )
       })}

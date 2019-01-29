@@ -6,11 +6,16 @@ import Img from 'gatsby-image'
 
 const Photo = styled(Img)`
   width: 100%;
+  height: 60%;
   /*transform: translate(0%, -10%);*/
   @media (max-width: 750px) {
     width: 90vw;
   }
 `
+const pStyle = {
+  height: '86%',
+}
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -171,6 +176,7 @@ class TextModal extends React.Component {
                   title={`Photo by Eghan Thompson`}
                   fluid={this.props.source}
                   id="mainImage"
+                  imgStyle={pStyle}
                 />
             </GridLeft>
             <GridRight ref={this.setWrapperRef}>

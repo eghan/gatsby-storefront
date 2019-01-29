@@ -77,29 +77,27 @@ function renderTagMatches(data) {
   }
 
   let output = matchList.map((match, index) => {
-    console.log(match[1].childImageSharp.id)
+    // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
     if (match[1].childImageSharp !== null) {
- return (
-    <PhotoLink to={match[0]} key={match[0]}>
-      <Photo
-        style={{ backgroundSize: 'cover' }}
-        key={index}
-        title={match[1].childImageSharp.id}
-        fluid={match[1].childImageSharp.fluid}
-      />
-      <Details>
-        {match[0].length > 24
-          ? match[0].substring(0, 24).concat('...')
-          : match[0]}
-        <Price>{match[2] > 0 && '$' + match[2]}</Price>
-      </Details>
-    </PhotoLink>
-  )
-
+     return (
+        <PhotoLink to={match[0]} key={match[0]}>
+          <Photo
+            style={{ backgroundSize: 'cover' }}
+            key={index}
+            title={match[1].childImageSharp.id}
+            fluid={match[1].childImageSharp.fluid}
+          />
+          <Details>
+            {match[0].length > 24
+              ? match[0].substring(0, 24).concat('...')
+              : match[0]}
+            <Price>{match[2] > 0 && '$' + match[2]}</Price>
+          </Details>
+        </PhotoLink>
+      )
     }
    }
-    )
-
+  )
   return output
 }
 

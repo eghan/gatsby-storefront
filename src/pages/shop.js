@@ -52,7 +52,7 @@ function renderTagMatches(data) {
   if (data.airtable !== null) {
     data.airtable.edges.forEach(item => {
       //if (item.node.data.name === 'photoset') {return}
-      if (item.node.data.name !== null) {
+      if (item.node.data.price !== null) {
         matchList = [
           ...matchList,
           [
@@ -76,7 +76,9 @@ function renderTagMatches(data) {
     })
   }
 
-  let output = matchList.map((match, index) => (
+  let output = matchList.map((match, index) => {
+    console.log(match[1].childImageSharp.id)
+    return (
     <PhotoLink to={match[0]} key={match[0]}>
       <Photo
         style={{ backgroundSize: 'cover' }}
@@ -91,7 +93,8 @@ function renderTagMatches(data) {
         <Price>{match[2] > 0 && '$' + match[2]}</Price>
       </Details>
     </PhotoLink>
-  ))
+  )}
+    )
 
   return output
 }

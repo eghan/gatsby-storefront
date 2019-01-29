@@ -19,7 +19,7 @@ const Home = styled(Links)`
   font-size: 1.4em;
 `
 const Navbar = styled.div`
-  background: #FFFDF7;  //why do I need this here, it should match body but it doesent'
+  /*background: #FFFDF7;  //why do I need this here, it should match body but it doesent'*/
   height: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr;

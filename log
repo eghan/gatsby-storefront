@@ -1,0 +1,512 @@
+success open and validate gatsby-configs — 0.011 s
+success load plugins — 0.320 s
+success onPreInit — 3.365 s
+success delete html and css files from previous builds — 2.657 s
+success initialize cache — 0.020 s
+success copy gatsby files — 0.080 s
+success onPreBootstrap — 0.034 s
+
+fetch all Airtable rows from 2 tables: 814.722ms
+success source and transform nodes — 4.800 s
+
+[0m
+[0m  [0m[97m[41mError[0m[37m[41m:[0m[37m[41m [0m[97m[41mInvariant Violation: Encountered an error trying to infer a GraphQL typ[0m  [0m[97m[41me for: "imageA___NODE". There is no corresponding node with the id field match[0m  [0m[97m[41ming: "etsy-image/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.cache/[0m  [0m[97m[41mgatsby-source-filesystem/9f5dde1d029606b25118bcfaf256e8c8.jpg"[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minvariant.js[0m[90m:[0m[93m40[0m[37m [0m[37minvariant[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[invariant]/invariant.js:40:15[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m228[0m[37m [0m[37mvalidateLinkedNode[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:228:5[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m287[0m[37m [0m[37minferFromFieldName[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:287:3[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m346[0m[37m [0m[37m_.each[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:346:23[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m4911[0m[37m [0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:4911:15[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m2996[0m[37m [0m[37mbaseForOwn[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:2996:24[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m4880[0m[37m [0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:4880:18[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m9344[0m[37m [0m[37mFunction.forEach[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:9344:14[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m325[0m[37m [0m[37m_inferObjectStructureFromNodes[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:325:5[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m395[0m[37m [0m[37minferObjectStructureFromNodes[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:395:10[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mbuild-node-types.js[0m[90m:[0m[93m135[0m[37m [0m[37minferFields[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/build-node-types.js:135:26[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mbuild-node-types.js[0m[90m:[0m[93m184[0m[37m [0m[37mfields[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/build-node-types.js:184:19[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mArray.forEach[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mArray.forEach[0m
+[0m  [0m
+[0m
+
+[0m
+[0m  [0m[97m[41mError[0m[37m[41m:[0m[37m[41m [0m[97m[41mInvariant Violation: Encountered an error trying to infer a GraphQL typ[0m  [0m[97m[41me for: "imageA___NODE". There is no corresponding node with the id field match[0m  [0m[97m[41ming: "etsy-image/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.cache/[0m  [0m[97m[41mgatsby-source-filesystem/9f5dde1d029606b25118bcfaf256e8c8.jpg"[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minvariant.js[0m[90m:[0m[93m40[0m[37m [0m[37minvariant[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[invariant]/invariant.js:40:15[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m228[0m[37m [0m[37mvalidateLinkedNode[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:228:5[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m287[0m[37m [0m[37minferFromFieldName[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:287:3[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m346[0m[37m [0m[37m_.each[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:346:23[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m4911[0m[37m [0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:4911:15[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m2996[0m[37m [0m[37mbaseForOwn[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:2996:24[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m4880[0m[37m [0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:4880:18[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mlodash.js[0m[90m:[0m[93m9344[0m[37m [0m[37mFunction.forEach[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[lodash]/lodash.js:9344:14[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m325[0m[37m [0m[37m_inferObjectStructureFromNodes[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:325:5[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93minfer-graphql-type.js[0m[90m:[0m[93m395[0m[37m [0m[37minferObjectStructureFromNodes[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/infer-graphql-type.js:395:10[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mbuild-node-types.js[0m[90m:[0m[93m135[0m[37m [0m[37minferFields[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/build-node-types.js:135:26[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[93mbuild-node-types.js[0m[90m:[0m[93m184[0m[37m [0m[37mfields[0m
+[0m  [0m  [0m[90m[airtable-gatsby]/[gatsby]/dist/schema/build-node-types.js:184:19[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mArray.forEach[0m
+[0m  [0m
+[0m  [0m[90m-[0m [0m[37mArray.forEach[0m
+[0m  [0m
+[0m
+success open and validate gatsby-configs — 0.014 s
+success load plugins — 0.290 s
+success onPreInit — 1.345 s
+success delete html and css files from previous builds — 2.593 s
+success initialize cache — 0.009 s
+success copy gatsby files — 0.048 s
+success onPreBootstrap — 0.940 s
+
+fetch all Airtable rows from 2 tables: 1072.673ms
+success source and transform nodes — 9.957 s
+success building schema — 0.379 s
+success createPages — 0.173 s
+success createPagesStatefully — 0.042 s
+success onPreExtractQueries — 0.004 s
+success update schema — 0.249 s
+success extract queries from components — 0.274 s
+success run graphql queries — 39.906 s — 145/145 3.63 queries/second
+success write out page data — 0.006 s
+success write out redirect data — 0.001 s
+success onPostBootstrap — 0.002 s
+
+info bootstrap finished - 58.221 s
+
+ WARNING  Compiled with 10 warnings4:27:08 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/footer.js
+  11:7  warning  'Nav' is assigned a value but never used       no-unused-vars
+  15:7  warning  'Home' is assigned a value but never used      no-unused-vars
+  29:7  warning  'Navitems' is assigned a value but never used  no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/mobilenav.js
+  3:8  warning  'Img' is defined but never used            no-unused-vars
+  6:7  warning  'Body' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/modal.js
+  32:13  warning  'location' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tagbar.js
+  170:58  warning  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/about.js
+  6:8  warning  'Footer' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/gallery.js
+   2:10  warning  'Link' is defined but never used     no-unused-vars
+  37:45  warning  Expected '===' and instead saw '=='  eqeqeq
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/index.js
+  2:10  warning  'Link' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/shop.js
+  16:7  warning  'Item' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-page-template.js
+    7:10  warning  'Location' is defined but never used               no-unused-vars
+  129:7   warning  'PaypalScreen' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-list-template.js
+  3:8  warning  'Img' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+
+You can now view gatsby-starter-default in the browser.
+
+  http://localhost:8000/
+
+View GraphiQL, an in-browser IDE, to explore your site's data and schema
+
+  http://localhost:8000/___graphql
+
+Note that the development build is not optimized.
+To create a production build, use gatsby build
+
+[34mℹ[39m [90m｢wdm｣[39m: Compiled with warnings.
+ WAIT  Compiling...4:31:48 PM
+
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+ WARNING  Compiled with 10 warnings4:31:50 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/footer.js
+  11:7  warning  'Nav' is assigned a value but never used       no-unused-vars
+  15:7  warning  'Home' is assigned a value but never used      no-unused-vars
+  29:7  warning  'Navitems' is assigned a value but never used  no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/mobilenav.js
+  3:8  warning  'Img' is defined but never used            no-unused-vars
+  6:7  warning  'Body' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/modal.js
+  32:13  warning  'location' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tagbar.js
+  170:58  warning  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/about.js
+  6:8  warning  'Footer' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/gallery.js
+   2:10  warning  'Link' is defined but never used     no-unused-vars
+  37:45  warning  Expected '===' and instead saw '=='  eqeqeq
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/index.js
+  2:10  warning  'Link' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/shop.js
+  16:7  warning  'Item' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-page-template.js
+    7:10  warning  'Location' is defined but never used               no-unused-vars
+  129:7   warning  'PaypalScreen' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-list-template.js
+  3:8  warning  'Img' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+[34mℹ[39m [90m｢wdm｣[39m: Compiled with warnings.
+ WAIT  Compiling...4:34:08 PM
+
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+ WARNING  Compiled with 10 warnings4:34:09 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/footer.js
+  11:7  warning  'Nav' is assigned a value but never used       no-unused-vars
+  15:7  warning  'Home' is assigned a value but never used      no-unused-vars
+  29:7  warning  'Navitems' is assigned a value but never used  no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/mobilenav.js
+  3:8  warning  'Img' is defined but never used            no-unused-vars
+  6:7  warning  'Body' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/modal.js
+  32:13  warning  'location' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tagbar.js
+  170:58  warning  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/about.js
+  6:8  warning  'Footer' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/gallery.js
+   2:10  warning  'Link' is defined but never used     no-unused-vars
+  37:45  warning  Expected '===' and instead saw '=='  eqeqeq
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/index.js
+  2:10  warning  'Link' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/shop.js
+  16:7  warning  'Item' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-page-template.js
+    7:10  warning  'Location' is defined but never used               no-unused-vars
+  129:7   warning  'PaypalScreen' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-list-template.js
+  3:8  warning  'Img' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+[34mℹ[39m [90m｢wdm｣[39m: Compiled with warnings.
+ WAIT  Compiling...4:36:14 PM
+
+[34mℹ[39m [90m｢wdm｣[39m: Compiling...
+ WARNING  Compiled with 10 warnings4:36:15 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/footer.js
+  11:7  warning  'Nav' is assigned a value but never used       no-unused-vars
+  15:7  warning  'Home' is assigned a value but never used      no-unused-vars
+  29:7  warning  'Navitems' is assigned a value but never used  no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/mobilenav.js
+  3:8  warning  'Img' is defined but never used            no-unused-vars
+  6:7  warning  'Body' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/modal.js
+  32:13  warning  'location' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tagbar.js
+  170:58  warning  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images  jsx-a11y/alt-text
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/about.js
+  6:8  warning  'Footer' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/gallery.js
+   2:10  warning  'Link' is defined but never used     no-unused-vars
+  37:45  warning  Expected '===' and instead saw '=='  eqeqeq
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/index.js
+  2:10  warning  'Link' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/shop.js
+  16:7  warning  'Item' is assigned a value but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-page-template.js
+    7:10  warning  'Location' is defined but never used               no-unused-vars
+  129:7   warning  'PaypalScreen' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+
+/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-list-template.js
+  3:8  warning  'Img' is defined but never used  no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+[34mℹ[39m [90m｢wdm｣[39m: Compiled with warnings.
+=== npm audit security report ===                        
+                                                                                
+found 0 vulnerabilities
+ in 26284 scanned packages

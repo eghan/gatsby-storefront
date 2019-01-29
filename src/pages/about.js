@@ -1,11 +1,17 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
+import Footer from '../components/footer'
 
+const AboutDiv = styled.div`
+    padding: 30px;
+`
 
 const About = () => (
   <Layout>
+    <AboutDiv>
     <h1>Hi stuff about Artofactory</h1>
     <p>Cool stuff yall</p>Lorem ipsum dolor amet echo park man braid pug venmo,
     raw denim literally trust fund drinking vinegar pour-over letterpress tilde
@@ -25,6 +31,7 @@ const About = () => (
     chia asymmetrical. Hoodie YOLO everyday carry, gochujang twee taiyaki
     waistcoat artisan XOXO deep v live-edge.
     <Link to="/">Go back to the homepage</Link>
+    </AboutDiv>
   </Layout>
 )
 

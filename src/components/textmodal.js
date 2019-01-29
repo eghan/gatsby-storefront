@@ -43,7 +43,6 @@ const Inquire = styled(Link)`
   }
 `
 const ClickBox = styled.div`
-  height: 38vw;  //  find a better way to get a good click box with background image?
   width: 100%;
   /*border: 3px dashed aqua; */
 `
@@ -157,7 +156,7 @@ class TextModal extends React.Component {
               backgroundColor: 'white',
               border: '0px solid black',
               overflow: 'hidden',
-              padding: '0px',
+              padding: '0px',                         
               margin: '0px auto',
             },
           }}

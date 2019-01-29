@@ -110,6 +110,7 @@ const IndexPage = ({ data }) => {
           <Box key={i}>
             <PhotoBox img={photoOne.childImageSharp.low.src} area='One'>
               <TextModal
+                key={photoOne.name}
                 source={photoOne.childImageSharp.high}
                 location={location}
                 name={photoOne.name}
@@ -132,6 +133,7 @@ const IndexPage = ({ data }) => {
             </PreviewBox>
             <PhotoBox img={photoTwo.childImageSharp.low.src} area='Two'>
               <TextModal
+                key={photoTwo.name}
                 source={photoTwo.childImageSharp.high}
                 location={location}
                 name={photoTwo.name}
@@ -145,6 +147,7 @@ const IndexPage = ({ data }) => {
             </PhotoBox>
             <PhotoBox img={photoThree.childImageSharp.low.src} area='Three'>
               <TextModal
+                key={photoThree.name}
                 source={photoThree.childImageSharp.high}
                 location={location}
                 name={photoThree.name}

@@ -14,7 +14,8 @@ const Body = styled.div`
   /*border: 1px dashed silver;*/
   /*align-items: center;*/
   /*display: 'block';*/
-  background: #FFFDF7;
+
+  /*background: #FFFDF7;*/
 `
 
 const Layout = ({ children }) => (

@@ -43,7 +43,7 @@ const Inquire = styled(Link)`
   }
 `
 const ClickBox = styled.div`
-  width: 100%;
+  width: 100%;  
   /*border: 3px dashed aqua; */
 `
 const StyledModal = styled(Modal)`
@@ -148,13 +148,16 @@ class TextModal extends React.Component {
           contentLabel="Inline Modal"
           style={{
             overlay: {
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              // background-color: rgba(255, 255, 255, 0.95);
+              borderRadius: '15px',
               zIndex: 1000, // hack. for PayPal button visability under modal issue
             },
             content: {
               color: 'black',
               backgroundColor: 'white',
-              border: '0px solid black',
+              border: '1px solid black',
+              borderRadius: '15px',
               overflow: 'hidden',
               padding: '0px',                         
               margin: '0px auto',

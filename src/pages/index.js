@@ -94,6 +94,68 @@ const RenderPhoto = ( PhotoObject ) => {
             </PhotoBox>
             )
 }
+const RenderPreview = (PreviewObject) => {
+  return(
+                <PreviewBox
+              img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}
+            >
+              <PreviewPhotoBox />
+              <TextBox>
+                <Text>{PreviewObject.details}</Text>
+                <More>More...</More>
+              </TextBox>
+            </PreviewBox>
+    )
+}
+
+const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
+  
+  // DRY this out
+
+  if (i % 4 === 0){
+    return(
+        <Box key={i}>
+              {RenderPhoto(photoOne)}
+              {RenderPreview(subject)}
+              {RenderPhoto(photoTwo)}
+              {RenderPhoto(photoThree)}
+        </Box>
+      )
+  }
+  if (i % 4 === 1){
+    return(
+        <Box key={i}>
+              {RenderPreview(subject)}
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}
+              {RenderPhoto(photoThree)}
+        </Box>
+      )
+  }
+  if (i % 4 === 2){
+    return(
+        <Box key={i}>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}
+              {RenderPreview(subject)}
+              {RenderPhoto(photoThree)}
+        </Box>
+      )
+  }
+  if (i % 4 === 3){
+    return(
+        <Box key={i}>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}
+              {RenderPhoto(photoThree)}
+              {RenderPreview(subject)}
+        </Box>
+      )
+  }
+
+
+}
+
 
 const IndexPage = ({ data }) => {
   const PreviewDeck = data.allAirtable.edges
@@ -108,8 +170,6 @@ const IndexPage = ({ data }) => {
       return i.node.data.photo.localFiles // array of objects
     })[0]
 
-  // console.log(ImageDeck[0])
-  //console.log(ImageDeck[0])
   return (
     <Layout>
       {PreviewDeck.map((preview, i) => {
@@ -120,26 +180,8 @@ const IndexPage = ({ data }) => {
         let photoTwo = ImageDeck.pop()
         let photoThree = ImageDeck.shift()
         let subject = PreviewDeck.filter(card => card.priority - 1 === i)[0]
-        // console.log(ImageDeck[0])
-        // console.log(priority)
-        //console.log(photoOne.childImageSharp.low.src)
 
-        return (
-          <Box key={i}>
-            {RenderPhoto(photoOne)}
-            <PreviewBox
-              img={subject.photo.localFiles[0].childImageSharp.high.src}
-            >
-              <PreviewPhotoBox />
-              <TextBox>
-                <Text>{subject.details}</Text>
-                <More>More...</More>
-              </TextBox>
-            </PreviewBox>
-            {RenderPhoto(photoTwo)}
-            {RenderPhoto(photoThree)}
-          </Box>
-        )
+        return RenderRow(photoOne, photoTwo, photoThree, subject, i)
       })}
 
       {/*         {data.allAirtable.edges */}

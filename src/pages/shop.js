@@ -5,19 +5,15 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 
 import Tagbar from '../components/tagbar'
-import { Flex, Box } from '@rebass/grid'
 
-const Container = styled(Flex)`
+const Container = styled.div`
   display: inline-block;
   text-align: center;
   width: 100%;
-  margin: 0.5rem auto;
-`
-const Item = styled(Box)`
-  display: inline-block;
+  /*margin: 0.5rem auto;*/
 `
 const Details = styled.div`
-  margin: 0.3em 0.3em;
+  margin: 0.3em 1em;
   display: block;
   font-size: 1em;
   text-align: left;
@@ -31,19 +27,49 @@ const Price = styled.div`
 const Photo = styled(Img)`
   width: 300px;
   height: 300px;
-  padding: 0.5em 0.5em;
+  border: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.5em 0.5em;  
+  @media (max-width: 750px) {
+    border: 0 solid red;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  }
+
+// method to access picture properties directly
+/*    picture {
+     background: red;
+    }*/
+
   @media (max-width: 1040px) {
     padding: 0em 0em;
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 150px;
   }
 `
-const PhotoLink = styled(Link)`
-  margin: 0.5em 0.5em;
+const ProductLink = styled(Link)`
   display: inline-block;
+  border: 10px solid white;
+  border-radius: 10px;
   font-size: 0.8em;
   text-decoration: none;
   color: black;
+`
+const Preview = styled.div`
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 0.8em;
+  text-decoration: none;
+  color: black;
+  width: 300px; 
+  @media (max-width: 750px) {
+    border: 0 solid red;
+  }
+  @media (max-width: 1040px) {
+      width: 150px;
+ /* in progress */
+  }
 `
 
 function renderTagMatches(data) {
@@ -80,20 +106,23 @@ function renderTagMatches(data) {
     // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
     if (match[1].childImageSharp !== null) {
      return (
-        <PhotoLink to={match[0]} key={match[0]}>
-          <Photo
-            style={{ backgroundSize: 'cover' }}
-            key={index}
-            title={match[1].childImageSharp.id}
-            fluid={match[1].childImageSharp.fluid}
-          />
-          <Details>
-            {match[0].length > 24
-              ? match[0].substring(0, 24).concat('...')
-              : match[0]}
-            <Price>{match[2] > 0 && '$' + match[2]}</Price>
-          </Details>
-        </PhotoLink>
+        <ProductLink to={match[0]} key={match[0]}>
+          <Preview>
+            <Photo
+              style={{ backgroundSize: 'cover' }}
+              key={index}
+              title={match[1].childImageSharp.id}
+              fluid={match[1].childImageSharp.fluid}
+            />
+            <Details>
+              {match[0].length > 24
+                ? match[0].substring(0, 24).concat('...')
+                : match[0]}
+              <Price>{match[2] > 0 && '$' + match[2]}</Price>
+            </Details>
+          </Preview>
+
+        </ProductLink>
       )
     }
    }

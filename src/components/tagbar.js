@@ -31,14 +31,14 @@ const Content = styled.div`
   margin-right: 5%;
   background: 'white';
   text-decoration: none;
-  border-bottom: 0.5px solid black;
+  /*border-bottom: 0.1px solid silver;*/
 `
 
 const Tag = styled.button`
   border: 0.5px dashed white;
-  font-size: 0.8em;
+  font-size: 0.7em;
   text-decoration: none;
-  padding: 0.2em;
+  padding: 0.25em;
   &:focus {
     outline: 0;
   }
@@ -50,14 +50,12 @@ const Tag = styled.button`
   transition-duration: 0.6s;
 `
 const TagLink = styled(Link)`
-  padding: 0.1em;
-`
-const TagTitle = styled(Link)`
-  font-size: 1em;
   text-decoration: none;
 `
-
-var burgerTags = []
+const TagTitle = styled(Link)`
+  font-size: 1.1em;
+  text-decoration: none;
+`
 
 var styles = {
   bmBurgerButton: {
@@ -127,6 +125,8 @@ const Nav = styled(Link)`
 //   }
 // }
 
+var burgerTags = []
+
 const Tagbar = props => (
   <StaticQuery
     // variables={this.props.pageContext.name}
@@ -143,35 +143,39 @@ const Tagbar = props => (
     `}
     render={data => {
       //console.log(data.sitePage.context.Tags)
-      burgerTags = data.sitePage.context.Tags
+      // burgerTags = data.sitePage.context.Tags
       //console.log(sections)
       const tagList = data.sitePage.context.Tags.filter(
         t => !tagExclude.includes(t)
       ).map((tag, index) => {
         let link = tag
-        tag =
+        let cleanTag =
           tag
-            .replace('_', ' ')
             .charAt(0)
             .toUpperCase() + tag.slice(1)
+            .replace(/_/g, ' ')
+        // console.log(cleanTag)
+         burgerTags = [...burgerTags, cleanTag]
         return (
           <TagLink to={link} key={index}>
-            <Tag key={tag}> {tag} </Tag>
+            <Tag key={cleanTag}>{cleanTag}</Tag>
+            &#903;
           </TagLink>
         )
       })
+      console.log(burgerTags)
 
       return (
         <Content>
           <Tag to="Tags" key="Tags">
-            <TagTitle  to="Tags">element : </TagTitle>
-            {tagList}
+            <TagTitle  to="Tags">Elements :</TagTitle>
           </Tag>
+          {tagList}
           <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>
             {burgerTags.map(section => {
               return (
                 <Nav key={section} to={section}>
-                  {section}
+                  &#903;{section}
                 </Nav>
               )
             })}

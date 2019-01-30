@@ -13,7 +13,7 @@ const Container = styled.div`
   /*margin: 0.5rem auto;*/
 `
 const Details = styled.div`
-  margin: 0.3em 1em;
+  margin: 0.3em .5em;
   display: block;
   font-size: 1em;
   text-align: left;
@@ -27,20 +27,14 @@ const Price = styled.div`
 const Photo = styled(Img)`
   width: 300px;
   height: 300px;
-  border: 1px solid black;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 0.5em 0.5em;  
-  @media (max-width: 750px) {
-    border: 0 solid red;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  }
+  overflow: hidden;
+  padding: 0.5em 0.5em;
 
 // method to access picture properties directly
-/*    picture {
-     background: red;
-    }*/
+    picture {
+     overflow: hidden;
+     width: 100px;
+    }
 
   @media (max-width: 1040px) {
     padding: 0em 0em;
@@ -57,17 +51,14 @@ const ProductLink = styled(Link)`
   color: black;
 `
 const Preview = styled.div`
-  border: 1px solid black;
   border-radius: 10px;
   font-size: 0.8em;
   text-decoration: none;
   color: black;
   width: 300px; 
   @media (max-width: 750px) {
-    border: 0 solid red;
   }
   @media (max-width: 1040px) {
-      width: 150px;
  /* in progress */
   }
 `

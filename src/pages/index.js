@@ -50,8 +50,10 @@ const PreviewBox = styled.div`
   background-repeat: no-repeat;
   background-image: url(${props => props.img});
 `
-const TextBox = styled.div`
+const TextBox = styled(Link)`
   border: 1px solid black;
+  text-decoration: none;
+  color: black;
   display: flex;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
@@ -98,7 +100,7 @@ const RenderPreview = (PreviewObject) => {
   return(
       <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
         <PreviewPhotoBox />
-        <TextBox>
+        <TextBox to={PreviewObject.section}>
           <Text>{PreviewObject.details}</Text>
           <More>More...</More>
         </TextBox>
@@ -181,7 +183,8 @@ const IndexPage = ({ data }) => {
     <Box key='images'>
       {ImageDeck.map( img => RenderPhoto(img) )}
     </Box>
-    
+
+
       {/*         {data.allAirtable.edges */}
       {/*           .filter(edge => edge.node.data.name === 'preview') */}
       {/*           .map((edge, i) => */}

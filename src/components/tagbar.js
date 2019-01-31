@@ -154,8 +154,11 @@ const Tagbar = props => (
             .charAt(0)
             .toUpperCase() + tag.slice(1)
             .replace(/_/g, ' ')
-        // console.log(cleanTag)
-         burgerTags = [...burgerTags, cleanTag]
+        
+        if ( !burgerTags.includes(cleanTag) ) {
+          burgerTags = [...burgerTags, cleanTag]
+        }
+
         return (
           <TagLink to={link} key={index}>
             <Tag key={cleanTag}>{cleanTag}</Tag>
@@ -172,10 +175,10 @@ const Tagbar = props => (
           </Tag>
           {tagList}
           <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>
-            {burgerTags.map(section => {
+            {burgerTags.map(element => {
               return (
-                <Nav key={section} to={section}>
-                  &#903;{section}
+                <Nav key={element} to={element}>
+                  &#903;{element}
                 </Nav>
               )
             })}

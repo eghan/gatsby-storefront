@@ -2,11 +2,15 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Modal from 'react-modal'
-import Img from 'gatsby-image'
+import  Img from 'gatsby-image'
 
 const Photo = styled(Img)`
   margin: 0 auto;  
   width: 80vw;
+`
+const Element = styled.div`
+  margin: auto;
+  text-align: bottom;
 `
 
 class PhotoModal extends React.Component {
@@ -33,7 +37,7 @@ class PhotoModal extends React.Component {
     typeof window !== `undefined` ? window.location.pathname : '/shop'
 
     return (
-      <div>
+      <Element>
         <div onClick={this.handleOpenModal}>{this.props.children}</div>
 
         <Modal
@@ -62,7 +66,7 @@ class PhotoModal extends React.Component {
             />
           </Link>
         </Modal>
-      </div>
+      </Element>
     )
   }
 }

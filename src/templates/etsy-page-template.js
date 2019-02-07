@@ -3,13 +3,15 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
-import Modal from 'react-modal'
+// import Modal from 'react-modal'
 import { Location } from '@reach/router'
 
-import PhotoModal from '../components/modal'
+import Modal from '../components/modal'
+import Tagbar from '../components/tagbar'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
-Modal.setAppElement('body')
+
+// Modal.setAppElement('body')
 
 const tagExclude = [
   'industrial',
@@ -24,10 +26,11 @@ const tagExclude = [
 ]
 
 const Container = styled.div`
+  padding: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.5em;
-  height: 94vh;
+  height: 88vh;
   object-fit: contain;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -38,6 +41,7 @@ const Container = styled.div`
 `
 const LeftSide = styled.div`
   grid-row: span 5;
+  overflow: hidden;
   /*border: 5px dashed blue;*/
 `
 const RightSide = styled.div`
@@ -67,12 +71,9 @@ const Price = styled.div`
 `
 
 const PreviewDiv = styled.div`
-  grid-column: span 2;
-  align-self: end;
-  /*border: 10px dashed red;*/
 `
 const TextDiv = styled.div`
-  padding: 1em 2em 0 0;
+  padding: 0 2em 0 0;
   grid-column: span 2;
   @media (max-width: 750px) {
     padding: 0 0 0 0.5em;
@@ -82,7 +83,7 @@ const TextDiv = styled.div`
 `
 
 const Photo = styled(Img)`
-  height: 94vh;
+  height: 90vh;
   @media (max-width: 750px) {
     width: 100vw;
     height: auto;
@@ -91,14 +92,18 @@ const Photo = styled(Img)`
 `
 const PhotoPreview = styled(Img)`
   display: inline-block;
-  margin: 0.3em;
+  margin: auto;
   width: 200px;
   height: 200px;
+  vertical-align: bottom;
   @media (max-width: 750px) {
     width: 100vw;
     height: auto;
   }
 `
+const PhotoModal = styled(Modal)`
+`
+
 const PaymentDiv = styled.div`
   grid-column: span 2;
   display: grid;
@@ -193,6 +198,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
+      <Tagbar />
       <Container>
         <LeftSide>
           <PhotoModal
@@ -226,7 +232,6 @@ export default ({ data }) => {
                 />
             </Price>
           </PaymentDiv>
-          <PreviewDiv>
             <PhotoModal
               source={imageA.childImageSharp.fluid}
               location={location}
@@ -239,18 +244,18 @@ export default ({ data }) => {
 
             {imageB == null ? (
               <div />
-            ) : (
-              <PhotoModal
-                source={imageB.childImageSharp.fluid}
-                location={location}
-              >
-                <PhotoPreview
-                  title={`Photo by Eghan Thompson`}
-                  fluid={imageB.childImageSharp.fluid}
-                />
-              </PhotoModal>
+            ) : (            
+            <PhotoModal
+              source={imageB.childImageSharp.fluid}
+              location={location}
+            >
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageB.childImageSharp.fluid}
+              />
+            </PhotoModal>          
+
             )}
-          </PreviewDiv>
         </RightSide>
       </Container>
     </Layout>

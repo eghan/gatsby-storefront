@@ -27,7 +27,6 @@ const Box = styled.div`
   height: 1fr;
 `
 const PhotoBox = styled.div`
-  grid-area: ${props => props.area};
   border-radius: 15px;
   border: 1px solid black;
   width: 1fr;
@@ -52,12 +51,12 @@ const PreviewBox = styled.div`
 `
 const TextBox = styled(Link)`
   border: 1px solid black;
+  display: flex;
   text-decoration: none;
   color: black;
-  display: flex;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
-  height: 60%;
+  height: 50%;
   margin: 5%;
   grid-column: span 2;
   font-size: 0.75em;
@@ -70,7 +69,7 @@ const More = styled.div`
 `
 const Text = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 1em;
 `
 const TextModal = styled(TextModalComponent)`
   border: 2px solid purple;

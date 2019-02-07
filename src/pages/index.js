@@ -12,20 +12,31 @@ const Box = styled.div`
   /*min-width: 350px;*/
   margin: 1vw;
   display: grid;
-  grid-template-areas: "preview One Two Three";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1vw;
   @media (max-width: 1150px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   @media (max-width: 750px) {
-    grid-template-columns: 1fr 1fr 1fr;
+    display: none;
+    grid-template-columns: 1fr 1fr;
   }
   @media (max-width: 500px) {
     grid-template-columns: 1fr 1fr;
   }
   height: 1fr;
 `
+
+const MobileBox = styled.div`  
+  margin: 1vw;
+  display: grid;  
+  grid-gap: 1vw;
+  grid-template-columns: 1fr 1fr;
+  @media (min-width: 768px){
+      display: none;
+    }
+`
+
 const PhotoBox = styled.div`
   border-radius: 15px;
   border: 1px solid black;
@@ -48,6 +59,10 @@ const PreviewBox = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => props.img});
+    @media (max-width: 750px) {
+        grid-column: span 2;
+        height: 100px;
+}
 `
 const TextBox = styled(Link)`
   border: 1px solid black;
@@ -60,6 +75,15 @@ const TextBox = styled(Link)`
   margin: 5%;
   grid-column: span 2;
   font-size: 0.75em;
+    @media (max-width: 750px) {
+      font-size: .6em;
+      overflow: hidden;
+      grid-column: span 3;
+      max-height: 200px;
+      height: auto;   
+      width: 100%;
+      margin: 0;
+}
 `
 const More = styled.div`
   letter-spacing: 0.1em;
@@ -113,42 +137,78 @@ const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
 
   if (i % 4 === 0){
     return(
+      <>
         <Box key={i}>
               {RenderPhoto(photoOne)}
               {RenderPreview(subject)}
               {RenderPhoto(photoTwo)}
               {RenderPhoto(photoThree)}
         </Box>
+        <MobileBox>
+              {RenderPreview(subject)}
+        </MobileBox>
+        <MobileBox>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}        
+        </MobileBox>
+      </>
       )
   }
   if (i % 4 === 1){
     return(
+      <>
         <Box key={i}>
               {RenderPreview(subject)}
               {RenderPhoto(photoOne)}
               {RenderPhoto(photoTwo)}
               {RenderPhoto(photoThree)}
         </Box>
+        <MobileBox>
+              {RenderPreview(subject)}
+        </MobileBox>
+        <MobileBox>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}        
+        </MobileBox>
+      </>
       )
   }
   if (i % 4 === 2){
     return(
+      <>
         <Box key={i}>
               {RenderPhoto(photoOne)}
               {RenderPhoto(photoTwo)}
               {RenderPreview(subject)}
               {RenderPhoto(photoThree)}
         </Box>
+        <MobileBox>
+              {RenderPreview(subject)}
+        </MobileBox>
+        <MobileBox>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}        
+        </MobileBox>
+      </>
       )
   }
   if (i % 4 === 3){
     return(
+      <>
         <Box key={i}>
               {RenderPhoto(photoOne)}
               {RenderPhoto(photoTwo)}
               {RenderPhoto(photoThree)}
               {RenderPreview(subject)}
         </Box>
+        <MobileBox>
+              {RenderPreview(subject)}
+        </MobileBox>
+        <MobileBox>
+              {RenderPhoto(photoOne)}
+              {RenderPhoto(photoTwo)}        
+        </MobileBox>
+      </>
       )
   }
 }
@@ -181,7 +241,10 @@ const IndexPage = ({ data }) => {
       })}
     <Box key='images'>
       {ImageDeck.map( img => RenderPhoto(img) )}
-    </Box>
+    </Box>    
+    <MobileBox key='images'>
+      {ImageDeck.map( img => RenderPhoto(img) )}
+    </MobileBox>
 
 
       {/*         {data.allAirtable.edges */}

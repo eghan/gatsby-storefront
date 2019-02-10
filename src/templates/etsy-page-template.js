@@ -269,22 +269,25 @@ export const query = graphql`
       price: PRICE
       image {
         childImageSharp {
-          fluid(quality: 100, maxWidth: 700) {
+          fluid(quality: 100, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            presentationWidth
           }
         }
       }
       imageA {
         childImageSharp {
-          fluid(quality: 80) {
+          fluid(quality: 80, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            presentationWidth
           }
         }
       }
       imageB {
         childImageSharp {
-          fluid(quality: 80) {
+          fluid(quality: 80, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            presentationWidth
           }
         }
       }

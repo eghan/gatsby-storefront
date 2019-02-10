@@ -2,12 +2,37 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Modal from 'react-modal'
-import  Img from 'gatsby-image'
+import Img from 'gatsby-image'
+
+
+const NonStretchedImage = props => {
+  let normalizedProps = props
+  if (props.fluid && props.fluid.presentationWidth) {
+    normalizedProps = {
+      ...props,
+      style: {
+        ...(props.style || {}),
+        maxWidth: props.fluid.presentationWidth,
+        // maxHeight: "50px",
+        margin: "0 auto", // Used to center the image
+      },
+    }
+  }
+
+  return <Img {...normalizedProps} />
+}
 
 const Photo = styled(Img)`
   margin: 0 auto;  
-  width: 80vw;
+  /*width: 80vw;*/
+  /*height: 400PX;*/
+
+  /*imgStyle:*/
 `
+const imgStyle = {
+    // height: "50vh"
+  }
+
 const Element = styled.div`
   margin: auto;
   text-align: bottom;
@@ -53,16 +78,19 @@ class PhotoModal extends React.Component {
               backgroundColor: 'black',     
               border: '0px solid black',
               objectFit: 'contain',
-              // overflow: 'hidden',
-
+              overflow: 'hidden',
+              width: '700px',
+              height: '870px',
+              margin: '0 auto',
             },
           }}
         >
           <Link to={this.props.location} onClick={this.handleCloseModal}>
-            <Photo
+            <NonStretchedImage
               title={`Photo by Eghan Thompson`}
               fluid={this.props.source}
               id="mainImage"
+              // imgStyle={{ ...imgStyle }}
             />
           </Link>
         </Modal>

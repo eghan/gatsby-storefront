@@ -8,6 +8,20 @@ import TextModalComponent from '../components/textmodal'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/shop'
 
+function shuffle (arr) {  // Fisher-Yates shuffle
+  var i = 0
+    , j = 0
+    , temp = null
+
+  for (i = arr.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+  }
+  return arr
+}
+
 const Box = styled.div`
   /*min-width: 350px;*/
   margin: 1vw;
@@ -105,7 +119,7 @@ const RenderPhoto = ( PhotoObject ) => {
   return (
       <PhotoBox img={PhotoObject.childImageSharp.low.src}>
         <TextModal
-          key={PhotoObject.name}
+          key={PhotoObject.id}
           source={PhotoObject.childImageSharp.high}
           // location={location}
           name={PhotoObject.name}
@@ -222,22 +236,28 @@ const IndexPage = ({ data }) => {
 
   const ImageDeck = data.allAirtable.edges
     .filter(d => d.node.data.name === 'photoset')
+    // add filter here to catch case of childImageSharp being null 
     .map(i => {
       return i.node.data.photo.localFiles // array of objects
     })[0]
+    .map( x => {
+      //console.log(x.childImageSharp)
+      return x
+    })
+  
+  const ShuffleDeck = shuffle(ImageDeck);
+  console.log('TEST', ShuffleDeck)
 
   return (
     <Layout>
       {PreviewDeck.map((preview, i) => {
-        let photoOne = ImageDeck.splice(
-          Math.floor(Math.random() * ImageDeck.length),
-          1
-        )[0]
-        let photoTwo = ImageDeck.pop()
-        let photoThree = ImageDeck.shift()
-        let subject = PreviewDeck.filter(card => card.priority - 1 === i)[0]
-
-        return RenderRow(photoOne, photoTwo, photoThree, subject, i)
+        if(ShuffleDeck.length >= (3*i+2)){
+          let photoOne = ShuffleDeck[3*i]
+          let photoTwo = ShuffleDeck[3*i+1]
+          let photoThree = ShuffleDeck[3*i+2]
+          let subject = PreviewDeck.filter(card => card.priority - 1 === i)[0]
+          return RenderRow(photoOne, photoTwo, photoThree, subject, i)
+        }
       })}
     <Box key='images'>
       {ImageDeck.map( img => RenderPhoto(img) )}

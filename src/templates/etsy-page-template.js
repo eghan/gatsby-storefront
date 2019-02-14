@@ -41,7 +41,10 @@ const Container = styled.div`
 `
 const LeftSide = styled.div`
   grid-row: span 5;
-  overflow: hidden;
+  @media (max-width: 750px) {
+    overflow: hidden;
+    height: 50vh;  
+  }
   /*border: 5px dashed blue;*/
 `
 const RightSide = styled.div`
@@ -65,11 +68,6 @@ const Tag = styled.button`
   -webkit-transition-duration: 0.6s; /* Safari */
   transition-duration: 0.6s;
 `
-const Price = styled.div`
-  font-size: 0.8em;
-  padding: 0 0.5em 0 0.5em;
-`
-
 const PreviewDiv = styled.div`
 `
 const TextDiv = styled.div`
@@ -86,8 +84,8 @@ const Photo = styled(Img)`
   height: 90vh;
   @media (max-width: 750px) {
     width: 100vw;
-    height: auto;
-    float: left;
+    height: 50vh;
+    /*float: left;*/
   }
 `
 const PhotoPreview = styled(Img)`
@@ -101,11 +99,11 @@ const PhotoPreview = styled(Img)`
   vertical-align: bottom;
   @media (max-width: 750px) {
     width: 100vw;
-    height: auto;
+    height: 300px;
   }
 `
 const PhotoModal = styled(Modal)`
-  border: 5px dotted purple;
+  /*border: 5px dotted purple;*/
 `
 
 const PaymentDiv = styled.div`
@@ -115,17 +113,28 @@ const PaymentDiv = styled.div`
   padding: 0.3em 1em 0 0;
   text-align: right;
   @media (max-width: 750px) {
-    width: 50vw;
-    padding: 0 0 0 0;
+    width: 50vw;  
+    padding: 0.3em 2em 0 0;
   }
   /*border: 10px dashed indigo;*/
+`
+const Price = styled.div`
+  font-size: 0.8em;
+  padding: 0 0.5em 0 0.5em;
+    @media (max-width: 750px) {
+    /*width: 50vw;  */
+    /*padding: 3em 1em 1em 0;*/
+    line-height: 1.8em;
+  }
 `
 const TagDiv = styled.div`
   padding: 0.8em;
   text-align: center;
   @media (max-width: 750px) {
-    padding: 0;
-    width: 50vw;
+    padding: 0.8em;
+    /*width: 50vw;    */
+    /*border: 2px dotted blue;*/
+
   }
 `
 const TagLink = styled(Link)`
@@ -144,7 +153,7 @@ const PaypalScreen = styled.button`
     background-color: #f5f5f5;
   }
   -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;
+  transition-duration: 0.6s; 
 `
 
 export default ({ data }) => {
@@ -241,28 +250,28 @@ export default ({ data }) => {
                 />
             </Price>
           </PaymentDiv>
-            <PhotoModal
-              source={imageA.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageA.childImageSharp.fluid}
-              />
-            </PhotoModal>
+          <PhotoModal
+            source={imageA.childImageSharp.fluid}
+            location={location}
+          >
+            <PhotoPreview
+              title={`Photo by Eghan Thompson`}
+              fluid={imageA.childImageSharp.fluid}
+            />
+          </PhotoModal>
 
-            {imageB == null ? (
-              <div />
-            ) : (            
-            <PhotoModal
-              source={imageB.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageB.childImageSharp.fluid}
-              />
-            </PhotoModal>          
+          {imageB == null ? (
+            <div />
+          ) : (            
+          <PhotoModal
+            source={imageB.childImageSharp.fluid}
+            location={location}
+          >
+            <PhotoPreview
+              title={`Photo by Eghan Thompson`}
+              fluid={imageB.childImageSharp.fluid}
+            />
+          </PhotoModal>          
 
             )}
         </RightSide>

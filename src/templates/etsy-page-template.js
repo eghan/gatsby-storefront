@@ -19,8 +19,9 @@ const tagExclude = [
   'Bladerunner',
   'Mad_Max',
   'Firefly',
-  'hypoallergenic',
-  'niobium',
+  'steampunk',
+  // 'hypoallergenic',
+  // 'niobium',
   'Jewelry',
   'Earrings',
 ]
@@ -48,9 +49,11 @@ const LeftSide = styled.div`
   /*border: 5px dashed blue;*/
 `
 const RightSide = styled.div`
-  display: grid;
+  /*display: grid;*/
+  position: relative;
   grid-row: span 5;
   /*border: 5px dashed blue;*/
+  /*height: 80vh;*/
 `
 const Info = styled.div`
   padding: 0.5rem 0.7rem;
@@ -81,28 +84,45 @@ const TextDiv = styled.div`
 `
 
 const Photo = styled(Img)`
-  height: 90vh;
+  height: 83vh;
   @media (max-width: 750px) {
     width: 100vw;
     height: 50vh;
     /*float: left;*/
   }
 `
+const Previews = styled.div`    
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /*border: 2px dotted magenta;*/
+  @media (max-width: 750px) {
+    position: relative;
+    display: block;
+    width: 100%;
+    /*padding: 0 0 0 10px;*/
+    /*border: 2px groove red;*/
+  }
+`
 const PhotoPreview = styled(Img)`
   /*border: 30px groove pink;*/
-  display: block;
+  /*display: inline-block;*/
   margin: auto;
-  max-width: 80%;
-  max-height: 30em;
-  width: auto;
-  height: auto;
-  vertical-align: bottom;
+  /*max-width: 80%;*/
+  /*max-height: 30%;*/
+  width: 10em;
+  height: 10em;
+  /*vertical-align: bottom;*/
   @media (max-width: 750px) {
-    width: 100vw;
-    height: 300px;
+    border: 8px solid white;
+    width: 100%;
+    height: auto;
   }
 `
 const PhotoModal = styled(Modal)`
+  /*display: block;*/
   /*border: 5px dotted purple;*/
 `
 
@@ -250,30 +270,31 @@ export default ({ data }) => {
                 />
             </Price>
           </PaymentDiv>
-          <PhotoModal
-            source={imageA.childImageSharp.fluid}
-            location={location}
-          >
-            <PhotoPreview
-              title={`Photo by Eghan Thompson`}
-              fluid={imageA.childImageSharp.fluid}
-            />
-          </PhotoModal>
+          <Previews>
+            <PhotoModal
+              source={imageA.childImageSharp.fluid}
+              location={location}
+            >
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageA.childImageSharp.fluid}
+              />
+            </PhotoModal>
+            {imageB == null ? (
+              <div />
+            ) : (
 
-          {imageB == null ? (
-            <div />
-          ) : (            
-          <PhotoModal
-            source={imageB.childImageSharp.fluid}
-            location={location}
-          >
-            <PhotoPreview
-              title={`Photo by Eghan Thompson`}
-              fluid={imageB.childImageSharp.fluid}
-            />
-          </PhotoModal>          
-
-            )}
+            <PhotoModal
+              source={imageB.childImageSharp.fluid}
+              location={location}
+            >
+              <PhotoPreview
+                title={`Photo by Eghan Thompson`}
+                fluid={imageB.childImageSharp.fluid}
+              />
+            </PhotoModal>
+              )}
+          </Previews>
         </RightSide>
       </Container>
     </Layout>

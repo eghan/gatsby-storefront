@@ -22,6 +22,9 @@ import Img from 'gatsby-image'
 
 
 const Element = styled.div`
+  border: 5px dotted purple;
+    vertical-align: bottom;
+
 /*  margin: auto;
   text-align: bottom;*/
 `
@@ -81,7 +84,7 @@ console.log(height, 'heigth')
       return{
         overlay: {
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 100, // hack. for PayPal button visability under modal issue
+          zIndex: 1000, // hack. for PayPal button visability under modal issue
           // width: '80%',
         },
         content : {

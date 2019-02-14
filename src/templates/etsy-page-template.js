@@ -91,10 +91,13 @@ const Photo = styled(Img)`
   }
 `
 const PhotoPreview = styled(Img)`
-  display: inline-block;
+  /*border: 30px groove pink;*/
+  display: block;
   margin: auto;
-  width: 200px;
-  height: 200px;
+  max-width: 80%;
+  max-height: 30em;
+  width: auto;
+  height: auto;
   vertical-align: bottom;
   @media (max-width: 750px) {
     width: 100vw;
@@ -102,6 +105,7 @@ const PhotoPreview = styled(Img)`
   }
 `
 const PhotoModal = styled(Modal)`
+  border: 5px dotted purple;
 `
 
 const PaymentDiv = styled.div`
@@ -177,6 +181,11 @@ export default ({ data }) => {
   //   </Layout>
   // )
 
+
+
+// window location has to be manually passed at page render
+// unless I parse it from the url, which is fault prone
+// and said location query must be wrapped in a conditional to pass static generation
   const location =
     typeof window !== `undefined` ? window.location.pathname : '/shop'
 
@@ -272,6 +281,7 @@ export const query = graphql`
           fluid(quality: 100, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
             presentationWidth
+            presentationHeight
           }
         }
       }
@@ -280,6 +290,7 @@ export const query = graphql`
           fluid(quality: 80, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
             presentationWidth
+            presentationHeight
           }
         }
       }
@@ -288,6 +299,7 @@ export const query = graphql`
           fluid(quality: 80, maxHeight: 850) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
             presentationWidth
+            presentationHeight
           }
         }
       }

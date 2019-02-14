@@ -22,8 +22,8 @@ import Img from 'gatsby-image'
 
 
 const Element = styled.div`
-  border: 5px dotted purple;
-    vertical-align: bottom;
+/*  border: 5px dotted purple;
+    vertical-align: bottom;*/
 
 /*  margin: auto;
   text-align: bottom;*/

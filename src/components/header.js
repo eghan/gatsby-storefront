@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Burger from './burger.js'
 
-const sections = ['gallery', 'shop', 'about', 'contact']
+const sections = [' gallery', 'shop', 'about', 'social']
 
 const Links = styled(Link)`
   color: black;
@@ -48,6 +48,7 @@ class NavResponsive extends React.Component {
     if (viewportWidth > 640) {
       return (
         <Navitems>
+          <Nav key="home" to="/">home</Nav>
           {sections.map(section => {
             return (
               <Nav key={section} to={section}>

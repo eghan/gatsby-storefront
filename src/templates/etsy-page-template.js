@@ -61,7 +61,7 @@ const Info = styled.div`
   /*margin: 1rem auto;*/
 `
 const Tag = styled.button`
-  border: 0.5px solid gray;
+  border: 0.5px solid gainsboro;
   font-size: 0.6em;
   text-decoration: none;
   &:hover {

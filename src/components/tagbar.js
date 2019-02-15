@@ -34,7 +34,9 @@ const Content = styled.div`
   /*border-bottom: 0.1px solid silver;*/
 `
 
-const Tag = styled.button`
+const Tag = styled.div`
+  display: inline-block;
+  color: black;
   border: 0.5px dashed white;
   font-size: 0.7em;
   text-decoration: none;
@@ -47,13 +49,18 @@ const Tag = styled.button`
     /*background-color: #f5f5f5;*/
   }
   -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;
+  transition-duration: 0.6s;  
+  @media (max-width: 750px) {
+    font-size: 0.5em;
+  }
 `
 const TagLink = styled(Link)`
   text-decoration: none;
 `
 const TagTitle = styled(Link)`
+  display: inline-block;
   font-size: 1.1em;
+  color: black;
   text-decoration: none;
 `
 

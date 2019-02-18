@@ -67,13 +67,14 @@ const TagTitle = styled(Link)`
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
-    border: '5px solid white',
+    // border: '5px solid white',
     borderRadius: '4px',
-    width: '36px',
-    height: '30px',
+    width: '30px',
+    height: '22px',
     right: '10px',
     top: '2.5em',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    // backgroundColor: 'white',
   },
   bmBurgerBars: {
     background: 'black',

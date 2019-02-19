@@ -6,48 +6,53 @@ import Layout from '../components/layout'
 import Footer from '../components/footer'
 
 const AboutDiv = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1vw;
     padding: 30px;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+    /*height: 400px;*/
+    padding: 2vw;
+    }
 `
 const PreviewBox = styled.div`
   display: grid;
-  grid-area: 'preview';
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: 15px;
   grid-column: span 3;
-  border: 1px solid black;
+  border: 2px solid black;
   background-size: 900px;
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => props.img});
   @media (max-width: 750px) {
       grid-column: span 2;
-      height: 100px;
+      height: 50vw;
     }
 `
-const TextBox = styled(Link)`
+const TextBox = styled.div`
   border: 1px solid black;
-  display: flex;
+  display: inline-block;
   text-decoration: none;
   color: black;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
-  height: 50%;
   margin: 5%;
   grid-column: span 2;
   font-size: 0.75em;
     @media (max-width: 750px) {
       font-size: .6em;
-      overflow: hidden;
       grid-column: span 3;
-      max-height: 200px;
-      height: auto;   
-      width: 100%;
-      margin: 0;
 }
 `
 const Text = styled.div`
+  display: inline-block;
   width: 100%;
   padding: 1em;
+  @media (max-width: 750px) {
+    padding: .5em;
+  }
 `
 const PreviewPhotoBox = styled.div`
   max-height: 1fr;
@@ -63,9 +68,9 @@ const RenderRow = (PreviewObject, i) => {
   return(
       <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
         <PreviewPhotoBox />
-        <TextBox to={PreviewObject.section}>
-          <Text>{PreviewObject.details}</Text>
-          <More>More...</More>
+        <TextBox>
+          <Text>&nbsp;&nbsp;&nbsp;&nbsp;{PreviewObject.details}</Text>
+          {/* <More>More...</More> */}
         </TextBox>
       </PreviewBox>
     )
@@ -81,11 +86,12 @@ const AboutPage = ({ data }) => {
         })
     return(
         <Layout>
-        <div>test</div>
-        {PreviewDeck.map((preview, i) => {
-            return RenderRow(preview, i)
-            })
-        }
+            <AboutDiv>
+                {PreviewDeck.map((preview, i) => {
+                    return RenderRow(preview, i)
+                    })
+                }                
+            </AboutDiv>
         </Layout>    
     )
 }

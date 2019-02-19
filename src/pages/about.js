@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/layout'
@@ -8,31 +8,119 @@ import Footer from '../components/footer'
 const AboutDiv = styled.div`
     padding: 30px;
 `
+const PreviewBox = styled.div`
+  display: grid;
+  grid-area: 'preview';
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 15px;
+  grid-column: span 3;
+  border: 1px solid black;
+  background-size: 900px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(${props => props.img});
+  @media (max-width: 750px) {
+      grid-column: span 2;
+      height: 100px;
+    }
+`
+const TextBox = styled(Link)`
+  border: 1px solid black;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  height: 50%;
+  margin: 5%;
+  grid-column: span 2;
+  font-size: 0.75em;
+    @media (max-width: 750px) {
+      font-size: .6em;
+      overflow: hidden;
+      grid-column: span 3;
+      max-height: 200px;
+      height: auto;   
+      width: 100%;
+      margin: 0;
+}
+`
+const Text = styled.div`
+  width: 100%;
+  padding: 1em;
+`
+const PreviewPhotoBox = styled.div`
+  max-height: 1fr;
+`
+const More = styled.div`
+  letter-spacing: 0.1em;
+  display: block;
+  align-self: flex-end;
+  padding: 0.2em 1em;
+`
 
-const About = () => (
-  <Layout>
-    <AboutDiv>
-    <h1>Hi stuff about Artofactory</h1>
-    <p>Cool stuff yall</p>Lorem ipsum dolor amet echo park man braid pug venmo,
-    raw denim literally trust fund drinking vinegar pour-over letterpress tilde
-    kale chips disrupt wolf sustainable. Helvetica typewriter cornhole vaporware
-    copper mug yr. Single-origin coffee tousled banjo, meditation scenester
-    leggings microdosing chillwave venmo cloud bread kogi salvia trust fund
-    cronut. Chillwave hella godard flannel meh. Brooklyn tousled drinking
-    vinegar seitan ramps. Yr kinfolk fixie chambray typewriter gochujang. Squid
-    tofu pour-over, lumbersexual taiyaki try-hard lomo intelligentsia literally
-    quinoa. Meditation neutra taiyaki freegan literally. 90's truffaut poutine,
-    pork belly taiyaki church-key tacos skateboard tumeric. Vexillologist swag
-    tbh cardigan lyft shoreditch waistcoat pork belly taxidermy humblebrag tote
-    bag pickled copper mug artisan small batch. Venmo 90's craft beer ugh,
-    selvage cold-pressed keytar celiac freegan keffiyeh pork belly. Listicle
-    cronut yr tilde, fingerstache jianbing pitchfork tote bag church-key lyft
-    edison bulb iceland 90's asymmetrical neutra. Brooklyn taiyaki authentic
-    chia asymmetrical. Hoodie YOLO everyday carry, gochujang twee taiyaki
-    waistcoat artisan XOXO deep v live-edge.
-    <Link to="/">Go back to the homepage</Link>
-    </AboutDiv>
-  </Layout>
-)
+const RenderRow = (PreviewObject, i) => {
+  return(
+      <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
+        <PreviewPhotoBox />
+        <TextBox to={PreviewObject.section}>
+          <Text>{PreviewObject.details}</Text>
+          <More>More...</More>
+        </TextBox>
+      </PreviewBox>
+    )
+}
 
-export default About
+
+
+const AboutPage = ({ data }) => {
+    const PreviewDeck = data.allAirtable.edges
+        .filter(i => i.node.data.name === 'about')
+        .map(i => {
+          return i.node.data // array of objects
+        })
+    return(
+        <Layout>
+        <div>test</div>
+        {PreviewDeck.map((preview, i) => {
+            return RenderRow(preview, i)
+            })
+        }
+        </Layout>    
+    )
+}
+
+export default AboutPage
+
+export const query = graphql`
+  {
+    allAirtable {
+      edges {
+        node {
+          data {
+            id
+            name
+            section
+            priority
+            discription
+            details
+            photo {
+              id
+              localFiles {
+                id
+                childImageSharp {
+                  low: fluid(quality: 60, maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                  high: fluid(quality: 100) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

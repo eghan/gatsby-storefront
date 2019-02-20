@@ -69,13 +69,13 @@ const PreviewBox = styled.div`
   border-radius: 15px;
   grid-column: span 3;
   border: 1px solid black;
-  background-size: 900px;
+  background-size: 105%;
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => props.img});
-    @media (max-width: 750px) {
-        grid-column: span 2;
-        height: 100px;
+  @media (max-width: 750px) {
+      grid-column: span 2;
+      height: 100px;
 }
 `
 const TextBox = styled(Link)`
@@ -229,7 +229,7 @@ const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
 
 const IndexPage = ({ data }) => {
   const PreviewDeck = data.allAirtable.edges
-    .filter(i => i.node.data.section !== null)
+    .filter(i => i.node.data.name === 'preview')
     .map(i => {
       return i.node.data // array of objects
     })
@@ -246,7 +246,7 @@ const IndexPage = ({ data }) => {
     })
   
   const ShuffleDeck = shuffle(ImageDeck);
-  console.log('TEST', ShuffleDeck)
+ // console.log('TEST', ShuffleDeck)
 
   return (
     <Layout>

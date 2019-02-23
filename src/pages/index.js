@@ -38,7 +38,7 @@ const Box = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: 1fr 1fr;
   }
-  height: 1fr;
+  height: 15vw;
 `
 
 const MobileBox = styled.div`  
@@ -54,31 +54,48 @@ const MobileBox = styled.div`
 const PhotoBox = styled.div`
   border-radius: 15px;
   border: 1px solid black;
-  width: 1fr;
-  height: 1fr;
-  overflow: auto;
+  width: 15vw;
+  height: 15vw;
+  overflow: hidden;
 `
 const Photo = styled(Img)`
   border-radius: 15px;
-  height: 1fr;
+  height: 15vw;
 `
+// const PreviewBox = styled.div`
+//   display: grid;
+//   grid-area: 'preview';
+//   grid-template-columns: 1fr 1fr 1fr;
+//   border-radius: 15px;
+//   grid-column: span 3;
+//   border: 1px solid black;
+//   background-size: 105%;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-image: url(${props => props.img});
+//   @media (max-width: 750px) {
+//       grid-column: span 2;
+//       height: 100px;
+// }
+// `
 const PreviewBox = styled.div`
-  display: grid;
-  grid-area: 'preview';
-  grid-template-columns: 1fr 1fr 1fr;
-  border-radius: 15px;
+  position:relative;
   grid-column: span 3;
+  border-radius: 15px;
   border: 1px solid black;
-  background-size: 105%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(${props => props.img});
-  @media (max-width: 750px) {
-      grid-column: span 2;
-      height: 100px;
-}
+  /*width: 15vw;*/
+  height: 15vw;
+  overflow: hidden;
+  object-fit: cover;
+  /*object-position: 20% 80%; // HERE*/
 `
+
+
 const TextBox = styled(Link)`
+  z-index:100;
+  position:absolute;
+  left: 6vw;
+  top: .3vw;
   border: 1px solid black;
   display: flex;
   text-decoration: none;
@@ -112,12 +129,10 @@ const Text = styled.div`
 const TextModal = styled(TextModalComponent)`
   border: 2px solid purple;
 `
-const PreviewPhotoBox = styled.div`
-  max-height: 1fr;
-`
+
 const RenderPhoto = ( PhotoObject ) => {
   return (
-      <PhotoBox img={PhotoObject.childImageSharp.low.src}>
+      <PhotoBox>
         <TextModal
           key={PhotoObject.id}
           source={PhotoObject.childImageSharp.high}
@@ -133,10 +148,15 @@ const RenderPhoto = ( PhotoObject ) => {
       </PhotoBox>
       )
 }
+
 const RenderPreview = (PreviewObject) => {
   return(
-      <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
-        <PreviewPhotoBox />
+      <PreviewBox>
+        <Photo
+          key={PreviewObject.photo.localFiles[0].id}
+          title={`Photo by Eghan Thompson`}
+          fluid={PreviewObject.photo.localFiles[0].childImageSharp.low}
+        />
         <TextBox to={PreviewObject.section}>
           <Text>{PreviewObject.details}</Text>
           <More>More...</More>
@@ -144,6 +164,19 @@ const RenderPreview = (PreviewObject) => {
       </PreviewBox>
     )
 }
+
+// 
+// const RenderPreview = (PreviewObject) => {
+//   return(
+//       <PreviewBox img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
+//         <PreviewPhotoBox />
+//         <TextBox to={PreviewObject.section}>
+//           <Text>{PreviewObject.details}</Text>
+//           <More>More...</More>
+//         </TextBox>
+//       </PreviewBox>
+//     )
+// }
 
 const RenderRow = (photoOne, photoTwo, photoThree, subject, i) => {
   

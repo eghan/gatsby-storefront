@@ -363,10 +363,10 @@ export const query = graphql`
               localFiles {
                 id
                 childImageSharp {
-                  low: fluid(quality: 60, maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
+                  low: fluid(quality: 50, maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
-                  high: fluid(quality: 100) {
+                  high: fluid(quality: 80) {
                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                   }
                 }

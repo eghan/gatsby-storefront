@@ -8,19 +8,19 @@ import TextModalComponent from '../components/textmodal'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/shop'
 
-function shuffle (arr) {  // Fisher-Yates shuffle
-  var i = 0
-    , j = 0
-    , temp = null
-
-  for (i = arr.length - 1; i > 0; i -= 1) {
-    j = Math.floor(Math.random() * (i + 1))
-    temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
-  }
-  return arr
-}
+// function shuffle (arr) {  // Fisher-Yates shuffle
+//   var i = 0
+//     , j = 0
+//     , temp = null
+// 
+//   for (i = arr.length - 1; i > 0; i -= 1) {
+//     j = Math.floor(Math.random() * (i + 1))
+//     temp = arr[i]
+//     arr[i] = arr[j]
+//     arr[j] = temp
+//   }
+//   return arr
+// }
 
 const Box = styled.div`
   /*min-width: 350px;*/
@@ -278,7 +278,8 @@ const IndexPage = ({ data }) => {
       return x
     })
   
-  const ShuffleDeck = shuffle(ImageDeck);
+  const ShuffleDeck = ImageDeck;  
+  // const ShuffleDeck = shuffle(ImageDeck);
  // console.log('TEST', ShuffleDeck)
 
   return (

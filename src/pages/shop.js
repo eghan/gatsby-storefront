@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import Tagbar from '../components/tagbar'
 
 const Container = styled.div`
-  display: inline-block;
+  display: block;
   text-align: center;
   width: 100%;
   /*margin: 0.5rem auto;*/
@@ -51,11 +51,9 @@ const ProductLink = styled(Link)`
   color: black;
 `
 const Preview = styled.div`
-  border-radius: 10px;
   font-size: 0.8em;
   text-decoration: none;
   color: black;
-  width: 300px; 
   @media (max-width: 750px) {
   }
   @media (max-width: 1040px) {
@@ -95,7 +93,7 @@ function renderTagMatches(data) {
 
   let output = matchList.map((match, index) => {
     // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
-    if (match[1].childImageSharp !== null) {
+    if (match[1] !== null) {
      return (
         <ProductLink to={match[0]} key={match[0]}>
           <Preview>

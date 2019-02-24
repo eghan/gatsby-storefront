@@ -45,6 +45,8 @@ const MobileBox = styled.div`
   margin: 1vw;
   display: grid;  
   grid-gap: 1vw;
+  height: 45vw;
+  width: 94vw;
   grid-template-columns: 1fr 1fr;
   @media (min-width: 768px){
       display: none;
@@ -56,11 +58,19 @@ const PhotoBox = styled.div`
   border: 1px solid black;
   width: 15vw;
   height: 15vw;
-  overflow: hidden;
+  overflow: hidden;      
+  @media (max-width: 750px) {
+        height: 45vw;
+        width: 45vw;
+  }
 `
 const Photo = styled(Img)`
   border-radius: 15px;
   height: 15vw;
+  @media (max-width: 750px) {
+      height: 45vw;
+      /*width: 45vw;*/
+}
 `
 // const PreviewBox = styled.div`
 //   display: grid;
@@ -88,6 +98,10 @@ const PreviewBox = styled.div`
   overflow: hidden;
   object-fit: cover;
   /*object-position: 20% 80%; // HERE*/
+ @media (max-width: 750px) {
+      height: 45vw;
+      width: 92vw;
+}
 `
 
 
@@ -106,14 +120,14 @@ const TextBox = styled(Link)`
   margin: 5%;
   grid-column: span 2;
   font-size: 0.75em;
-    @media (max-width: 750px) {
-      font-size: .6em;
-      overflow: hidden;
-      grid-column: span 3;
-      max-height: 200px;
-      height: auto;   
-      width: 100%;
-      margin: 0;
+  @media (max-width: 750px) {
+    font-size: .6em;
+    overflow: hidden;
+    grid-column: span 3;
+    max-height: 200px;
+    height: auto;   
+    width: 100%;
+    margin: 0;
 }
 `
 const More = styled.div`
@@ -159,7 +173,7 @@ const RenderPreview = (PreviewObject) => {
         />
         <TextBox to={PreviewObject.section}>
           <Text>{PreviewObject.details}</Text>
-          <More>More...</More>
+          {/* <More>More...</More> */}
         </TextBox>
       </PreviewBox>
     )
@@ -292,6 +306,7 @@ const IndexPage = ({ data }) => {
           let subject = PreviewDeck.filter(card => card.priority - 1 === i)[0]
           return RenderRow(photoOne, photoTwo, photoThree, subject, i)
         }
+        return <div />
       })}
     <Box key='images'>
       {ImageDeck.map( img => RenderPhoto(img) )}

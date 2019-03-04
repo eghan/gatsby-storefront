@@ -11,7 +11,6 @@ const Container = styled.div`
   text-align: center;
   width: 100%;
   margin: 0.5rem auto;
-
 `
 
 const Details = styled.div`
@@ -19,6 +18,8 @@ const Details = styled.div`
   display: block;
   font-size: 1em;
   text-align: left;
+  text-decoration: none;
+  color: black;
   @media (max-width: 750px) {
     display: none;
   }
@@ -39,8 +40,9 @@ const Photo = styled(Img)`
 const PhotoLink = styled(Link)`
   margin: 0.5em 0.5em;
   display: inline-block;
-  font-size: 0.8em;
+  font-size: .8em;
   text-decoration: none;
+  color: black;
 `
 
 function renderTagMatches(data) {

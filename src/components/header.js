@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Burger from './burger.js'
 
-const sections = [' gallery', 'shop', 'about', 'social']
+const sections = ['gallery', 'shop', 'about', 'social']
 
 const Links = styled(Link)`
   color: black;

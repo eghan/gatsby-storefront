@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import Footer from '../components/footer'
+import TagPreview from '../components/tag-preview'
 
 const AboutDiv = styled.div`
     display: grid;
@@ -20,8 +21,8 @@ const AboutDiv = styled.div`
 const PreviewBox = styled.div`
   display: inline-block;
   border-radius: 15px;
-  grid-column: span ${props => props.ColSpan};
-  grid-row: span ${props => props.RowSpan};
+  grid-column: span ${props => props.colSpan};
+  grid-row: span ${props => props.rowSpan};
   border: 2px solid black;
   background-size: 105%;
   background-position: center;
@@ -109,7 +110,7 @@ const RenderRow = (PreviewObject, i) => {
         break;
 }
     return(
-      <PreviewBox ColSpan={gridColumnSpan} RowSpan={gridRowSpan} img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
+      <PreviewBox key={PreviewObject.priority} colSpan={gridColumnSpan} rowSpan={gridRowSpan} img={PreviewObject.photo.localFiles[0].childImageSharp.high.src}>
         <PreviewPhotoBox />
         <TextBox boxAlign={boxAlignment}>
           <Text>{PreviewObject.details}</Text>
@@ -127,7 +128,8 @@ const AboutPage = ({ data }) => {
           return i.node.data // array of objects
         })
     return(
-        <Layout>
+        <Layout>            
+            <TagPreview tags={["curls", "asymmetric"]} />
             <AboutDiv>
                 {PreviewDeck.map((preview, i) => {
                     return RenderRow(preview, i)

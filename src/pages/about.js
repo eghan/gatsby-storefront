@@ -129,7 +129,6 @@ const AboutPage = ({ data }) => {
         })
     return(
         <Layout>            
-            <TagPreview tags={["curls", "asymmetric"]} />
             <AboutDiv>
                 {PreviewDeck.map((preview, i) => {
                     return RenderRow(preview, i)

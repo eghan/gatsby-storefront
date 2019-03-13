@@ -20,9 +20,13 @@ const tagExclude = [
   'Metal',
 ]
 
+const LinkBox = styled(Link)`
+  text-decoration: none;
+`
 const Photo = styled(Img)`
   display: inline-block;
   border: .5em solid white;
+  float: center;
   width: 15vw;
   height: 15vw;
   overflow: hidden;
@@ -39,8 +43,10 @@ const Photo = styled(Img)`
     height: 150px;
   }
 `
-const TagBlock = styled.div`
+const TagBlock = styled(Link)`
   display: inline-block;
+  text-decoration: none;
+  color: black;
   border: 1px solid black;
   margin: .5em;
   text-align: center;
@@ -84,6 +90,11 @@ const TagPreview = props => {
     `
   )
 
+const DeSlug = ( text ) => text
+          .charAt(0)
+          .toUpperCase() + text.slice(1)
+          .replace(/_/g, " ")
+
 //  Could this section be refactored into a pipeline?
 let tagsData = {},
     renderData = {}
@@ -94,7 +105,7 @@ props.tags.forEach( tag => { // structure the matching tag data
 // keeping these seperate for later exclusion of repeat matches if possible
 for (let tag in tagsData) {  // peal off the first three matches and de-nest them
   for (let x=0; x<3; x++){
-    if (tagsData[tag][x].node) {
+    if (tagsData[tag][x]) {
       renderData[tag] = renderData[tag] ? [ ...renderData[tag], tagsData[tag][x].node ] : [ tagsData[tag][x].node ]
     }
   }
@@ -103,14 +114,16 @@ for (let tag in tagsData) {  // peal off the first three matches and de-nest the
 return (
   <FullBlock>
   {Object.keys(renderData).map( key => (
-    <TagBlock>
-    <Title>{key}</Title>
+    <TagBlock to={key}>
+    <Title>{DeSlug(key)}</Title>
     {renderData[key].map( tagObject => (
+      <LinkBox to={tagObject.name}>
           <Photo
             key={tagObject.id}
             title={`Photo by Eghan Thompson`}
             fluid={tagObject.image.childImageSharp.fluid}
-          />
+          />  
+      </LinkBox>
       ))}
     </TagBlock>
 

@@ -232,9 +232,9 @@ export default ({ data }) => {
       let tagLowerCase = tag
       tag =
         tag
-          .replace(/_/g, ' ')
           .charAt(0)
           .toUpperCase() + tag.slice(1)
+          .replace(/_/g, ' ')
       return (
         <TagLink to={tagLowerCase} key={index}>
           <Tag key={tag}> {tag} </Tag>

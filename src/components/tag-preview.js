@@ -93,7 +93,11 @@ props.tags.forEach( tag => { // structure the matching tag data
 })
 // keeping these seperate for later exclusion of repeat matches if possible
 for (let tag in tagsData) {  // peal off the first three matches and de-nest them
-  renderData[tag] = [ tagsData[tag][0].node, tagsData[tag][1].node, tagsData[tag][2].node ]
+  for (let x=0; x<3; x++){
+    if (tagsData[tag][x].node) {
+      renderData[tag] = renderData[tag] ? [ ...renderData[tag], tagsData[tag][x].node ] : [ tagsData[tag][x].node ]
+    }
+  }
 }
 
 return (

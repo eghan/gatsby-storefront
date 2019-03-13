@@ -8,6 +8,7 @@ import { Location } from '@reach/router'
 
 import Modal from '../components/modal'
 import Tagbar from '../components/tagbar'
+import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 
@@ -121,6 +122,13 @@ const PhotoPreview = styled(Img)`
     height: auto;
   }
 `
+const Related = styled.div`
+  margin:  0 .5em;
+  padding:  .2em 0;
+  text-align: center;
+  border: 1px solid black;
+`
+
 const PhotoModal = styled(Modal)`
   /*display: block;*/
   /*border: 5px dotted purple;*/
@@ -296,7 +304,8 @@ export default ({ data }) => {
               )}
           </Previews>
         </RightSide>
-      </Container>
+      </Container><Related>Related pieces:</Related>
+      <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
     </Layout>
   )
 }

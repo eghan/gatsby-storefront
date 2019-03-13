@@ -19,28 +19,13 @@ const tagExclude = [
   'steampunk',
   'Metal',
 ]
-const Preview = styled.div`
-  text-overflow: ellipsis;
 
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
-  /*border: 0.5px dashed silver;*/
-  display: block;
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
-  background: 'white';
-  text-decoration: none;
-  /*border-bottom: 0.1px solid silver;*/
-`
 const Photo = styled(Img)`
   display: inline-block;
-  border: 1.5em solid white;
-  width: 300px;
-  height: 300px;
+  border: .5em solid white;
+  width: 15vw;
+  height: 15vw;
   overflow: hidden;
-  padding: 0.5em 0.5em;
 
 // method to access picture properties directly
     picture {
@@ -54,39 +39,23 @@ const Photo = styled(Img)`
     height: 150px;
   }
 `
-
-const Tag = styled.div`
+const TagBlock = styled.div`
   display: inline-block;
-  color: black;
-  border: 0.5px dashed white;
-  font-size: 0.7em;
-  text-decoration: none;
-  padding: 0.25em;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    border: 0.5px solid black;
-    /*background-color: #f5f5f5;*/
-  }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;  
-  @media (max-width: 750px) {
-    font-size: 0.5em;
-  }
+  border: 1px solid black;
+  margin: .5em;
+  text-align: center;
+  padding: .5vw .5vw;
 `
-const TagLink = styled(Link)`
-  text-decoration: none;
+const Title = styled.div`
+  border: 1px solid black;
+  margin: auto;
+  padding: 0 .5em;
 `
-const TagTitle = styled(Link)`
-  display: inline-block;
-  font-size: 1.1em;
-  color: black;
-  text-decoration: none;
+const FullBlock = styled.div`
+  width: 100vw;
+  text-align: center;
+  padding: .5em;
 `
-
-var burgerTags = []
-// console.log(this, 'props')
 
 const TagPreview = props => {
   const { sitePage, etsy } = useStaticQuery(
@@ -115,47 +84,36 @@ const TagPreview = props => {
     `
   )
 
+//  Could this section be refactored into a pipeline?
 let tagsData = {},
     renderData = {}
 
 props.tags.forEach( tag => { // structure the matching tag data
   tagsData[tag] = etsy.edges.filter( product => (product.node.fields.tags).includes(tag) )
 })
-
-// console.log( Object.keys(tagsData), tagsData )
-
+// keeping these seperate for later exclusion of repeat matches if possible
 for (let tag in tagsData) {  // peal off the first three matches and de-nest them
   renderData[tag] = [ tagsData[tag][0].node, tagsData[tag][1].node, tagsData[tag][2].node ]
 }
 
-const tagRender = Object.keys(renderData).map( tag => { 
-  // console.log(renderData[tag][0])
-  return renderData[tag]
-} 
-  )
-
-const TagOutput = ( tag ) => tagRender[tag].map( tag => 
+return (
+  <FullBlock>
+  {Object.keys(renderData).map( key => (
+    <TagBlock>
+    <Title>{key}</Title>
+    {renderData[key].map( tagObject => (
           <Photo
-            key={tag.id}
+            key={tagObject.id}
             title={`Photo by Eghan Thompson`}
-            fluid={tag.image.childImageSharp.fluid}
+            fluid={tagObject.image.childImageSharp.fluid}
           />
-  )
-console.log(TagOutput)
-// 
-// const RenderTag = ( tag ) => {
-//   return (
-//     <h1>{tag}<h1>
-//     {TagOutput(tag)}
-//       )
-// }
+      ))}
+    </TagBlock>
 
-  return (
-    <div>
-    <h1>{props.tags}</h1>
-    {TagOutput(1)}
-    </div>
-    )
+    ))}
+
+  </FullBlock>
+  )
 }
 
 export default TagPreview

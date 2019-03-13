@@ -4,6 +4,8 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 
+import TagPreview from '../components/tag-preview'
+
 const tagExclude = [
   'industrial',
   'mechanical',
@@ -20,7 +22,7 @@ const tagExclude = [
 const Content = styled.div`
   float: center;
   text-align: center;
-  border: 0.5px dashed silver;
+  border: 5px double purple;
   display: block;
   margin-right: 10%;
   margin-left: 10%;
@@ -69,9 +71,9 @@ export default props => (
           let link = tag
           tag =
             tag
-              .replace(/_/g, ' ')
               .charAt(0)
               .toUpperCase() + tag.slice(1)
+              .replace(/_/g, ' ')
           return (
             <TagLink to={link} key={index}>
               <Tag key={tag}> {tag} </Tag>
@@ -81,11 +83,7 @@ export default props => (
 
       return (
         <Layout>
-          <Content>
-          <div>{data.sitePage.context.name}:</div>
-          <div>{data.sitePage.context.discription}</div>
-          {tagList}
-        </Content>
+          <TagPreview tags={data.sitePage.context.Tags} />
         </Layout>
       )
     }}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, Link, graphql } from 'gatsby'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 import Menu from 'react-burger-menu/lib/menus/slide'
 import tagIcon from "../images/more-horizontal.svg"
@@ -32,6 +33,26 @@ const Preview = styled.div`
   background: 'white';
   text-decoration: none;
   /*border-bottom: 0.1px solid silver;*/
+`
+const Photo = styled(Img)`
+  display: inline-block;
+  border: 1.5em solid white;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  padding: 0.5em 0.5em;
+
+// method to access picture properties directly
+    picture {
+     overflow: hidden;
+     width: 100px;
+    }
+
+  @media (max-width: 1040px) {
+    padding: 0em 0em;
+    width: 150px;
+    height: 150px;
+  }
 `
 
 const Tag = styled.div`
@@ -73,6 +94,7 @@ const TagPreview = props => {
       etsy: allEtsyListingsDownloadCsv {
         edges {
           node {
+            id
             name: TITLE
             price: PRICE
             fields {
@@ -93,67 +115,47 @@ const TagPreview = props => {
     `
   )
 
-  console.log('etsy', etsy.edges)
+let tagsData = {},
+    renderData = {}
 
-  // let tagMatches = props.tags.map( tag => {
-  //   console.log(tag)
-  //   etsy.edges.forEach( product => console.log(product) )
-  // }
-  
-  // console.log(tagMatches)
+props.tags.forEach( tag => { // structure the matching tag data
+  tagsData[tag] = etsy.edges.filter( product => (product.node.fields.tags).includes(tag) )
+})
 
-  // for (let product in etsy.edges) {
-  //     if ( etsy.edges[product].node.fields.tags.some(tag => props.tags.includes(tag)) ) {
-  //       console.log('Match', etsy.edges[product])
-  //     }
-  // }
+// console.log( Object.keys(tagsData), tagsData )
 
-
-  return (
-    <h1>{props.tags}</h1>
-    )
+for (let tag in tagsData) {  // peal off the first three matches and de-nest them
+  renderData[tag] = [ tagsData[tag][0].node, tagsData[tag][1].node, tagsData[tag][2].node ]
 }
 
-// const TagPreview = (props) => {
-//   const { sitePage, etsy } = useStaticQuery(
-//     graphql`
-//       query tagsPreview {
-//         sitePage(context: { name: { eq: "Tags" } }) {
-//           context {
-//             name
-//             discription
-//             Tags
-//           }
-//         }
-//         etsy: allEtsyListingsDownloadCsv {
-//       edges {
-//         node {
-//           name: TITLE
-//           price: PRICE
-//           fields {
-//             tags
-//           }
-//           image {
-//             childImageSharp {
-//               id
-//               fluid(maxWidth: 400) {
-//                 ...GatsbyImageSharpFluid
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//       }
-//     `
-//   )
-//   console.log(etsy.edges[0], " test")
-//   return(
-//     <Preview>
-//       <h3>{sitePage.context.discription}</h3>
-//     </Preview>
+const tagRender = Object.keys(renderData).map( tag => { 
+  // console.log(renderData[tag][0])
+  return renderData[tag]
+} 
+  )
+
+const TagOutput = ( tag ) => tagRender[tag].map( tag => 
+          <Photo
+            key={tag.id}
+            title={`Photo by Eghan Thompson`}
+            fluid={tag.image.childImageSharp.fluid}
+          />
+  )
+console.log(TagOutput)
 // 
-//     )
+// const RenderTag = ( tag ) => {
+//   return (
+//     <h1>{tag}<h1>
+//     {TagOutput(tag)}
+//       )
 // }
+
+  return (
+    <div>
+    <h1>{props.tags}</h1>
+    {TagOutput(1)}
+    </div>
+    )
+}
 
 export default TagPreview

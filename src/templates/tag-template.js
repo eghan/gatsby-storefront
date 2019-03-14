@@ -108,7 +108,7 @@ export default ({ data }) => {
       {({ location }) => {
         // console.log(location)
         //  deslug pathname
-        return <Title>{location.pathname.replace(/\//g, "").replace(/_/g, " ")} :</Title>
+        return <Title>{location.pathname.replace(/\//g, "").replace(/_/g, " ").replace(/%20/g, " ")} :</Title>
       }}
     </Location>
         {renderTagMatches(data)}

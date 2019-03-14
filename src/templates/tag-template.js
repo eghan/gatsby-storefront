@@ -3,6 +3,8 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
+import { Location } from '@reach/router'
+
 
 import Tagbar from '../components/tagbar'
 
@@ -23,6 +25,10 @@ const Details = styled.div`
   @media (max-width: 750px) {
     display: none;
   }
+`
+const Title = styled.p`
+  margin: .5em;
+  text-transform:capitalize;
 `
 const Price = styled.div`
   float: right;
@@ -97,7 +103,16 @@ export default ({ data }) => {
   return (
     <Layout>
       <Tagbar />
-      <Container>{renderTagMatches(data)}</Container>
+      <Container>
+      <Location>
+      {({ location }) => {
+        // console.log(location)
+        //  deslug pathname
+        return <Title>{location.pathname.replace(/\//g, "").replace(/_/g, " ")} :</Title>
+      }}
+    </Location>
+        {renderTagMatches(data)}
+      </Container>
     </Layout>
   )
 }

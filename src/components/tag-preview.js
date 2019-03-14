@@ -78,8 +78,8 @@ const TagPreview = props => {
             image {
               childImageSharp {
                 id
-                fluid(maxWidth: 400) {
-                  ...GatsbyImageSharpFluid
+                fluid(maxWidth: 300) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }

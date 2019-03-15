@@ -223,8 +223,7 @@ export default ({ data }) => {
 // window location has to be manually passed at page render
 // unless I parse it from the url, which is fault prone
 // and said location query must be wrapped in a conditional to pass static generation
-  const location =
-    typeof window !== `undefined` ? window.location.pathname : '/shop'
+// --migrated inline with || or case
 
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
@@ -249,7 +248,7 @@ export default ({ data }) => {
         <LeftSide>
           <PhotoModal
             source={image.childImageSharp.fluid}
-            location={location}
+            location={window.location.pathname || '/shop'}
           >
             <Photo
               title={`Photo by Eghan Thompson`}
@@ -279,6 +278,9 @@ export default ({ data }) => {
             </Price>
           </PaymentDiv>
           <Previews>
+            {imageA == null ? (
+              <div />
+            ) : (
             <PhotoModal
               source={imageA.childImageSharp.fluid}
               location={location}
@@ -288,6 +290,7 @@ export default ({ data }) => {
                 fluid={imageA.childImageSharp.fluid}
               />
             </PhotoModal>
+            )}
             {imageB == null ? (
               <div />
             ) : (

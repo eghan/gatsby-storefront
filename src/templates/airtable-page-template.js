@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
 import styled from 'styled-components'
+
+import Layout from '../components/layout'
+import Product from '../components/product'
 
 const Container = styled.div`
   margin: 0rem auto;
@@ -74,6 +76,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
+      <Product />
       <Container>
         <Photos>
           <div className={photo.id}>

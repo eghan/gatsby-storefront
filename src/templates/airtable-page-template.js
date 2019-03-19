@@ -66,20 +66,16 @@ export default ({ data }) => {
   // gatsby(JSX) build fails(passes develop) when tags is not present
   // see issue #3344 https://github.com/gatsbyjs/gatsby/issues/3344
 
-// console.log(photo.localFiles[0])
-
-data.airtable.data.image = photo.localFiles[0]
-
-
-  const tagList = data.airtable.data.tags
-    && data.airtable.data.tags.map(tag => (
-        <Link to={tag}>
-          <Tag key={tag}> {tag} </Tag>
-        </Link>
-      ))
+  const product = {
+    name,
+    discription,
+    price,
+    tags,
+    image: photo.localFiles[0].childImageSharp
+  }
 
   return (
-      <Product item={data.airtable.data} />
+      <Product item={product} />
   )
 }
 export const query = graphql`
@@ -91,11 +87,12 @@ export const query = graphql`
         price
         tags
         photo {
-          id
-          localFiles {
+          localFiles{
             childImageSharp {
-              fixed(width: 300) {
-                ...GatsbyImageSharpFixed
+              fluid(quality: 100, maxHeight: 850) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                presentationWidth
+                presentationHeight
               }
             }
           }

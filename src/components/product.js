@@ -229,23 +229,21 @@ const Product = props => {
       )
     })
 
-  const formattedProps = {}
-
   return (
         <Layout>
       <Tagbar />
       <Container>
         <LeftSide>
-          {/* <PhotoModal */}
-          {/*   source={image.childImageSharp.fluid} */}
-          {/*   location={location} */}
-          {/* > */}
-          {/*   <Photo */}
-          {/*     title={`Photo by Eghan Thompson`} */}
-          {/*     fluid={image.childImageSharp.fluid} */}
-          {/*     id="mainImage" */}
-          {/*   /> */}
-          {/* </PhotoModal> */}
+          <PhotoModal
+            source={image.fluid}
+            location={location}
+          >
+            <Photo
+              title={`Photo by Eghan Thompson`}
+              fluid={image.fluid}
+              id="mainImage"
+            />
+          </PhotoModal>
         </LeftSide>
         <RightSide>
           <TextDiv>

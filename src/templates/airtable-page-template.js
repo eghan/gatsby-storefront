@@ -60,11 +60,15 @@ const Photo = styled(Img)`
 
 export default ({ data }) => {
   // eslint-disable-next-line
-  const { name, discription, price, tags = [], photo } = data.airtable.data
+  const { name, discription, price, tags = [], photo} = data.airtable.data
   // gives tags array default value in case graphql returns non value
   // TODO: this may be refactorable using destructuring and default values
   // gatsby(JSX) build fails(passes develop) when tags is not present
   // see issue #3344 https://github.com/gatsbyjs/gatsby/issues/3344
+
+// console.log(photo.localFiles[0])
+
+data.airtable.data.image = photo.localFiles[0]
 
 
   const tagList = data.airtable.data.tags
@@ -75,25 +79,7 @@ export default ({ data }) => {
       ))
 
   return (
-    <Layout>
-      <Product />
-      <Container>
-        <Photos>
-          <div className={photo.id}>
-            <Photo
-              title={`Photo by Eghan Thompson`}
-              fixed={photo.localFiles[0].childImageSharp.fixed}
-            />
-          </div>
-        </Photos>
-        <Info>
-          {discription}
-          <p>{name}</p>
-          <Tagbox>{tagList}</Tagbox>
-        </Info>
-        <Price>{price} $</Price>
-      </Container>
-    </Layout>
+      <Product item={data.airtable.data} />
   )
 }
 export const query = graphql`

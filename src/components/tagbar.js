@@ -117,43 +117,37 @@ const Nav = styled(Link)`
   font-size: 1.5em;
 `
 
-// class Burger extends React.Component {
-//   render() {
-//     return (
-//       <Menu right styles={styles}>
-//         {sections.map(section => {
-//           return (
-//             <Nav key={section} to={section}>
-//               {section}
-//             </Nav>
-//           )
-//         })}
-//       </Menu>
-//     )
-//   }
-// }
 
 var burgerTags = []
 
 const Tagbar = props => (
   <StaticQuery
-    // variables={this.props.pageContext.name}
+
+  //This should be a filtered query but 'sourceAirtable' is munging up the graphql fields so... untill patch
+
     query={graphql`
       query tagbar {
-        sitePage(context: { name: { eq: "Tags" } }) {
-          context {
-            name
-            discription
-            Tags
+        allSitePage {
+          edges {
+            node {
+              context {
+                name
+                Tags
+              }
+            }
           }
         }
       }
     `}
     render={data => {
-      //console.log(data.sitePage.context.Tags)
-      // burgerTags = data.sitePage.context.Tags
-      //console.log(sections)
-      const tagList = data.sitePage.context.Tags.filter(
+
+      const target = data.allSitePage.edges.filter( element => element.node.context.name == "Tags")
+
+      console.log('test2', target[0].node.context.Tags)
+
+
+
+      const tagList = target[0].node.context.Tags.filter(
         t => !tagExclude.includes(t)
       ).map((tag, index) => {
         let link = tag
@@ -174,13 +168,19 @@ const Tagbar = props => (
           </TagLink>
         )
       })
-      console.log(burgerTags)
+
+
+
+      // console.log(burgerTags)
 
       return (
         <Content>
           <Tag to="Tags" key="Tags">
             <TagTitle  to="Tags">Elements :</TagTitle>
           </Tag>
+
+
+
           {tagList}
           <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>
             {burgerTags.map(element => {
@@ -191,6 +191,9 @@ const Tagbar = props => (
               )
             })}
           </Menu>
+
+
+
           {/* <Burger tags={sections} customBurgerIcon={ <Img src="../images/burger_icon.svg" /> } /> */}
         </Content>
       )

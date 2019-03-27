@@ -19,71 +19,49 @@ const tagExclude = [
   'Steampunk',
   'Metal',
 ]
-const Content = styled.div`
-  float: center;
+const Title = styled.div`
+  /*float: center;*/
   text-align: center;
-  border: 5px double purple;
-  display: block;
+  margin: 1em 0 0 0;
+/*  display: block;
   margin-right: 10%;
-  margin-left: 10%;
+  margin-left: 10%;*/
 `
-
-const Tag = styled.button`
-  border: 0.5px dashed silver;
-  font-size: 1.2em;
-  text-decoration: none;
-  padding: 10px;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    border: 0.5px solid black;
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;
-`
-const TagLink = styled(Link)`
-  padding: 2px;
-`
-
 
 export default props => (
   <StaticQuery
-    // variables={this.props.pageContext.name}
+
+  //This should be a filtered query but 'sourceAirtable' is munging up the graphql fields so... untill patch
+
     query={graphql`
-      query tags {
-        sitePage(context: { name: { eq: "Tags" } }) {
-          context {
-            name
-            discription
-            Tags
+      query taglist {
+        allSitePage {
+          edges {
+            node {
+              context {
+                name
+                Tags
+              }
+            }
           }
         }
       }
     `}
-    render={data => {
-      console.log(data)
 
-      const tagList = data.sitePage.context.Tags
-        .filter(t => !tagExclude.includes(t))
-        .map((tag, index) => {
-          let link = tag
-          tag =
-            tag
-              .charAt(0)
-              .toUpperCase() + tag.slice(1)
-              .replace(/_/g, ' ')
-          return (
-            <TagLink to={link} key={index}>
-              <Tag key={tag}> {tag} </Tag>
-            </TagLink>
-          )
-        })
+
+
+    render={data => {
+      // console.log(data)
+
+      const target = data.allSitePage.edges.filter( element => element.node.context.name == "Tags")
+
+      // console.log('test2', target[0].node.context.Tags)
 
       return (
         <Layout>
-          <TagPreview tags={data.sitePage.context.Tags} />
+          <Title>Elements:</Title>
+          {/* <div>{data.sitePage.context.discription}</div> */}
+          <TagPreview tags={target[0].node.context.Tags} /> 
         </Layout>
       )
     }}

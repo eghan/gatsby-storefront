@@ -63,6 +63,7 @@ exports.onCreateNode = async ({
                 component: path.resolve(`./src/templates/tag-template.js`),
                 context: {
                   tag: tag,
+                  name: tag,
                 },
               })
               tagList = [...tagList, tag]
@@ -85,8 +86,7 @@ if (process.env.NODE_ENV === 'development') {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  return new Promise((resolve, reject) => {
-    graphql(`
+  return graphql(`
       query productData {
         allAirtable {
           edges {
@@ -128,6 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
                 name: node.data.name,
                 discription: node.data.discription, // TODO: do i need this here?
                 source: 'airtable',
+                tags: [], // STUB, data from airtable needs to be formatted
               },
             })
           }
@@ -172,6 +173,7 @@ exports.createPages = ({ graphql, actions }) => {
                 name: node.name,
                 discription: node.discription, // TODO: do i need this here?
                 source: 'etsy',
+                tags: [], // STUB, data from etsy needs to be formatted
               },
             })
           }
@@ -186,11 +188,14 @@ exports.createPages = ({ graphql, actions }) => {
             name: `Tags`,
             discription: `all the Tags`, // TODO: do i need this here?
             source: 'gatsbyNode',
-            Tags: tagList,
+            tags: tagList,
           },
         })
         //result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
       })
     resolve()
-  })
+  // })
 }
+
+// exports.createPages = require('./gatsby/createPages');
+

@@ -40,7 +40,7 @@ export default props => (
             node {
               context {
                 name
-                Tags
+                tags
               }
             }
           }
@@ -49,19 +49,30 @@ export default props => (
     `}
 
 
+// function ThrowError(message){
+//   console.log('ERROR: ', message)
+//   }
+
 
     render={data => {
       // console.log(data)
 
-      const target = data.allSitePage.edges.filter( element => element.node.context.name == "Tags")
+      // add OR pattern failure smoothing, consider error reporting with || ThrowError('context has no name') 
+      // ( element => (element.node.context.name || '') == "Tags" )  // how is this even a thing?
+      const target = data.allSitePage.edges.filter( element => element.node.context.name === "Tags")
 
+console.log('TEST1', target[0].node.context.tags)
       // console.log('test2', target[0].node.context.Tags)
 
       return (
         <Layout>
           <Title>Elements:</Title>
           {/* <div>{data.sitePage.context.discription}</div> */}
-          <TagPreview tags={target[0].node.context.Tags} /> 
+
+
+          <TagPreview tags={target[0].node.context.tags} /> 
+
+
         </Layout>
       )
     }}

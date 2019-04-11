@@ -6,19 +6,19 @@ import Img from 'gatsby-image'
 import Menu from 'react-burger-menu/lib/menus/slide'
 import tagIcon from "../images/more-horizontal.svg"
 
-const tagExclude = [
-  'industrial',
-  'mechanical',
-  'Bladerunner',
-  'Mad_Max',
-  'Firefly',
-  'hypoallergenic',
-  'niobium',
-  'Jewelry',
-  'Earrings',
-  'steampunk',
-  'Metal',
-]
+// const tagExclude = [
+//   'industrial',
+//   'mechanical',
+//   'Bladerunner',
+//   'Mad_Max',
+//   'Firefly',
+//   'hypoallergenic',
+//   'niobium',
+//   'Jewelry',
+//   'Earrings',
+//   'steampunk',
+//   'Metal',
+// ]
 
 const LinkBox = styled(Link)`
   text-decoration: none;
@@ -64,7 +64,7 @@ const FullBlock = styled.div`
 `
 
 const TagPreview = props => {
-  const { sitePage, etsy } = useStaticQuery(
+  const { etsy } = useStaticQuery(
     graphql` query tagsPreview {
       etsy: allEtsyListingsDownloadCsv {
         edges {
@@ -90,6 +90,18 @@ const TagPreview = props => {
     `
   )
 
+const { edges } = etsy
+// console.log('test 1', edges)
+
+let orderedSet = {}
+
+for ( let element in edges ) {
+  console.log('item1 ', edges[element].node.fields.tags.length)
+  orderedSet[element] = { item: edges[element], tagCount: edges[element].node.fields.tags.length }
+}
+
+console.log(orderedSet)
+
 const DeSlug = ( text ) => text
           .charAt(0)
           .toUpperCase() + text.slice(1)
@@ -103,9 +115,13 @@ props.tags.forEach( tag => { // structure the matching tag data
   tagsData[tag] = etsy.edges.filter( product => (product.node.fields.tags).includes(tag) )
 })
 // keeping these seperate for later exclusion of repeat matches if possible
+
+// let NoRepeats = []
+
 for (let tag in tagsData) {  // peal off the first three matches and de-nest them
   for (let x=0; x<3; x++){
-    if (tagsData[tag][x]) {
+    //     if ( tagsData[tag][x] && !(NoRepeats.includes(tagsData[tag][x]) ) {
+    if ( tagsData[tag][x] ) {
       renderData[tag] = renderData[tag] ? [ ...renderData[tag], tagsData[tag][x].node ] : [ tagsData[tag][x].node ]
     }
   }

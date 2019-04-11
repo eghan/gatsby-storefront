@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import TagPreview from '../components/tag-preview'
 
-const tagExclude = [
+const dataFilter = [
   'industrial',
   'mechanical',
   'Bladerunner',
@@ -15,8 +15,8 @@ const tagExclude = [
   'hypoallergenic',
   'niobium',
   'Jewelry',
-  'Earrings',
   'Steampunk',
+  'steampunk',
   'Metal',
 ]
 const Title = styled.div`
@@ -31,7 +31,7 @@ const Title = styled.div`
 export default props => (
   <StaticQuery
 
-  //This should be a filtered query but 'sourceAirtable' is munging up the graphql fields so... untill patch
+  //This could be a filtered query but 'sourceAirtable' is munging up the graphql fields so... untill patch
 
     query={graphql`
       query taglist {
@@ -59,9 +59,13 @@ export default props => (
 
       // add OR pattern failure smoothing, consider error reporting with || ThrowError('context has no name') 
       // ( element => (element.node.context.name || '') == "Tags" )  // how is this even a thing?
-      const target = data.allSitePage.edges.filter( element => element.node.context.name === "Tags")
+      const rawData = data.allSitePage.edges
+        .filter( element => element.node.context.name === "Tags")
+     
+      const filteredData = rawData[0].node.context.tags
+        .filter( element => !(dataFilter.includes(element)) )
 
-console.log('TEST1', target[0].node.context.tags)
+console.log('TEST3', filteredData)
       // console.log('test2', target[0].node.context.Tags)
 
       return (
@@ -70,7 +74,7 @@ console.log('TEST1', target[0].node.context.tags)
           {/* <div>{data.sitePage.context.discription}</div> */}
 
 
-          <TagPreview tags={target[0].node.context.tags} /> 
+          <TagPreview tags={filteredData} /> 
 
 
         </Layout>

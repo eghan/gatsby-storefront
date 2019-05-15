@@ -132,7 +132,7 @@ const Tagbar = props => (
             node {
               context {
                 name
-                Tags
+                tag
               }
             }
           }
@@ -143,31 +143,31 @@ const Tagbar = props => (
 
       const target = data.allSitePage.edges.filter( element => element.node.context.name == "Tags")
 
-      console.log('test2', target[0].node.context.Tags)
+      // console.log('test2', target[0].node.context.Tags)
 
 
-
-      const tagList = target[0].node.context.Tags.filter(
-        t => !tagExclude.includes(t)
-      ).map((tag, index) => {
-        let link = tag
-        let cleanTag =
-          tag
-            .charAt(0)
-            .toUpperCase() + tag.slice(1)
-            .replace(/_/g, ' ')
-        
-        if ( !burgerTags.includes(cleanTag) ) {
-          burgerTags = [...burgerTags, cleanTag]
-        }
-
-        return (
-          <TagLink to={link} key={index}>
-            <Tag key={cleanTag}>{cleanTag}</Tag>
-            &#903;
-          </TagLink>
-        )
-      })
+// 
+//       const tagList = target[0].node.context.Tags.filter(
+//         t => !tagExclude.includes(t)
+//       ).map((tag, index) => {
+//         let link = tag
+//         let cleanTag =
+//           tag
+//             .charAt(0)
+//             .toUpperCase() + tag.slice(1)
+//             .replace(/_/g, ' ')
+//         
+//         if ( !burgerTags.includes(cleanTag) ) {
+//           burgerTags = [...burgerTags, cleanTag]
+//         }
+// 
+//         return (
+//           <TagLink to={link} key={index}>
+//             <Tag key={cleanTag}>{cleanTag}</Tag>
+//             &#903;
+//           </TagLink>
+//         )
+//       })
 
 
 
@@ -181,7 +181,7 @@ const Tagbar = props => (
 
 
 
-          {tagList}
+          {/* {tagList} */}
           <Menu right styles={styles} customBurgerIcon={ <img src={tagIcon} /> }>
             {burgerTags.map(element => {
               return (

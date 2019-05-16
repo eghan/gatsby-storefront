@@ -6,19 +6,14 @@ import Img from 'gatsby-image'
 import Menu from 'react-burger-menu/lib/menus/slide'
 import tagIcon from "../images/more-horizontal.svg"
 
-// const tagExclude = [
-//   'industrial',
-//   'mechanical',
-//   'Bladerunner',
-//   'Mad_Max',
-//   'Firefly',
-//   'hypoallergenic',
-//   'niobium',
-//   'Jewelry',
-//   'Earrings',
-//   'steampunk',
-//   'Metal',
-// ]
+
+//
+//  GOAL: this component should display 0-3 linked image previews for each tag in the passed array
+//        the image previews should be selected first by tag count of product, least to most
+//        then by tag product count, least to most, with a single pass no repeats
+//        so that once an image has been used, it will not be used again unless there are no other options
+//
+
 
 const LinkBox = styled(Link)`
   text-decoration: none;
@@ -93,14 +88,91 @@ const TagPreview = props => {
 const { edges } = etsy
 // console.log('test 1', edges)
 
-let orderedSet = {}
+let orderedSet = {},
+    upperLimit = 1,
+    lowerLimit = null,
+    count,
+    orderedDisplay = new Map();
+
+let tagsData = {},
+    renderData = {},
+    tagWeight = {},
+    orderedTags = new Map()
+
+// orderedTags is tag count in products
+
+
+
 
 for ( let element in edges ) {
-  console.log('item1 ', edges[element].node.fields.tags.length)
-  orderedSet[element] = { item: edges[element], tagCount: edges[element].node.fields.tags.length }
+  for ( let tagNum in edges[element].node.fields.tags ) {
+    let tag = edges[element].node.fields.tags[tagNum]
+    tagWeight[tag] = (tagWeight[tag] + 1) || 1;
+  }
+  count = edges[element].node.fields.tags.length
+  if (count > upperLimit) { upperLimit = count}
+  if (count < lowerLimit || lowerLimit == null) {
+    lowerLimit = count
+  } 
+  orderedSet[element] = { item: edges[element], tagCount: count }
 }
 
-console.log(orderedSet)
+
+// console.log('test  ', tagWeight)
+
+for (let x = 0; x <= Object.keys(tagWeight).length; x++) {
+  // console.log(x)
+  for ( let item in tagWeight ) {
+    // console.log(item, tagWeight[item])
+    if (tagWeight[item] === x) {
+      // console.log('item is ', item)
+      orderedTags[item] = x
+    }
+  }
+}
+
+
+
+for ( let x = lowerLimit; x <= upperLimit; x++ ) {
+  // console.log('X is ', x)
+  for (let item in orderedSet){
+    // console.log( orderedSet[item])
+    if (orderedSet[item].tagCount == x){
+      // console.log('hit one ', x, item)
+      // console.log('adding ', orderedSet[item].item.node.id, ' to list')
+      orderedDisplay.set(orderedSet[item].item.node.id, orderedSet[item].item.node)
+    }
+  }
+}
+
+//console.log(orderedDisplay)
+
+
+// function show() {
+//   console.log('variable is ', ...Object.entries(arguments[0])[0])
+// }
+// 
+// show({tagWeight})
+// 
+// console.log('entries are', orderedTags)
+
+for (let item in orderedTags){
+  // console.log('orderedTags', item, orderedTags[item])
+  // for each item peal off previews from orderedDisplay
+  // only use repeats if needed
+
+}
+
+// console.log(orderedDisplay)
+
+  for ( let product of orderedDisplay){
+    // console.log('product is ', product)
+  }
+
+// holygoddman Map()'s are awesome
+// console.log('display order ', orderedDisplay)
+// console.log(orderedDisplay.values().next().value)
+
 
 const DeSlug = ( text ) => text
           .charAt(0)
@@ -108,15 +180,18 @@ const DeSlug = ( text ) => text
           .replace(/_/g, " ")
 
 //  Could this section be refactored into a pipeline?
-let tagsData = {},
-    renderData = {}
+
 
 props.tags.forEach( tag => { // structure the matching tag data
   tagsData[tag] = etsy.edges.filter( product => (product.node.fields.tags).includes(tag) )
 })
 // keeping these seperate for later exclusion of repeat matches if possible
 
+// console.log('test ',Object.entries(tagsData))
+
 // let NoRepeats = []
+
+// console.log('tag data ', tagsData)
 
 for (let tag in tagsData) {  // peal off the first three matches and de-nest them
   for (let x=0; x<3; x++){

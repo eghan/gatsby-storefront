@@ -127,16 +127,13 @@ const Tagbar = props => (
 
     query={graphql`
       query tagbar {
-        allSitePage {
-          edges {
-            node {
-              context {
-                name
-                tag
-              }
+          sitePage(context: {name: {eq: "Tags"}}) {
+            context {
+              name
+              discription
+              tags
             }
           }
-        }
       }
     `}
     render={data => {

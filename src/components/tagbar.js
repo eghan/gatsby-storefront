@@ -141,7 +141,10 @@ const Tagbar = props => (
     `}
     render={data => {
 
-      const target = data.allSitePage.edges.filter( element => ( element.node.context && element.node.context.name || '' ) == "Tags")
+      // const target = data.allSitePage.edges.filter( element => ( element.node.context && element.node.context.name || '' ) == "Tags")
+
+      // STUB
+      let element = 'test'
 
       // console.log('test2', target[0].node.context.Tags)
 

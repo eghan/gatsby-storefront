@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Modal from 'react-modal'
@@ -56,8 +56,8 @@ class PhotoModal extends React.Component {
   const height = (typeof window !== `undefined`) 
     ? (window.innerHeight > height ? (height+"px") : (window.innerHeight+"px")) 
     : "auto"
-console.log(width, 'width')  
-console.log(height, 'heigth')
+// console.log(width, 'width')  
+// console.log(height, 'heigth')
 
 //   const windowHeight = (typeof window !== `undefined`) 
 //     ? window.innerHeight
@@ -133,7 +133,9 @@ console.log(height, 'heigth')
 
       }
     }
-console.log(customStyles())
+
+// console.log(customStyles())
+
     const NonStretchedImage = (props, width, height) => {
       let normalizedProps = props
 

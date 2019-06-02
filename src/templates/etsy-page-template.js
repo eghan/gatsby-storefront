@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 // import Modal from 'react-modal'
-import { Location } from '@reach/router'
+// import { Location } from '@reach/router'
 
 import Modal from '../components/modal'
 import Tagbar from '../components/tagbar'
@@ -72,8 +72,7 @@ const Tag = styled.button`
   -webkit-transition-duration: 0.6s; /* Safari */
   transition-duration: 0.6s;
 `
-const PreviewDiv = styled.div`
-`
+
 const TextDiv = styled.div`
   padding: 0 2em 0 0;
   grid-column: span 2;
@@ -172,17 +171,17 @@ const TagLink = styled(Link)`
     font-size: 0.9em;
   }
 `
-const PaypalScreen = styled.button`
-  border: 0.8px solid black;
-  font-size: 1em;
-  text-decoration: none;
-  &:hover {
-    border: 0.5px solid black;
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s; 
-`
+// const PaypalScreen = styled.button`
+//   border: 0.8px solid black;
+//   font-size: 1em;
+//   text-decoration: none;
+//   &:hover {
+//     border: 0.5px solid black;
+//     background-color: #f5f5f5;
+//   }
+//   -webkit-transition-duration: 0.6s; /* Safari */
+//   transition-duration: 0.6s; 
+// `
 
 export default ({ data }) => {
   const client = {
@@ -223,7 +222,7 @@ export default ({ data }) => {
 // window location has to be manually passed at page render
 // unless I parse it from the url, which is fault prone
 // and said location query must be wrapped in a conditional to pass static generation
-  console.log(Location.pathname)
+  // console.log(Location.pathname)
   const location =
     typeof window !== `undefined` ? window.location.pathname : '/shop'
 

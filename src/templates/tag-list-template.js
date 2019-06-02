@@ -65,7 +65,7 @@ export default props => (
       const filteredData = rawData[0].node.context.tags
         .filter( element => !(dataFilter.includes(element)) )
 
-console.log('TEST3', filteredData)
+// console.log('TEST3', filteredData)
       // console.log('test2', target[0].node.context.Tags)
 
       return (

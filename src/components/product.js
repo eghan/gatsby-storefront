@@ -27,7 +27,7 @@ const tagExclude = [
 const Container = styled.div`
   padding: 1em;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /*grid-template-columns: 1fr .5fr;*/
   grid-gap: 0.5em;
   height: 88vh;
   object-fit: contain;
@@ -82,7 +82,23 @@ const TextDiv = styled.div`
 `
 
 const Photo = styled(Img)`
-  height: 83vh;
+  border: 5px solid orange;
+  width: 70vw;
+  /*height: 80px;*/
+  /*max-height: 850px;*/
+  object-fit: contain;
+  img, picture {
+        object-fit: contain !important;
+        max-height: 850px;
+        border: 5px solid rebeccapurple;
+  }
+/*  img {
+    object-fit: contain !important;
+    max-height: 850px  !important;
+  }
+  picture {
+    object-fit: contain !important;
+  }*/
   @media (max-width: 750px) {
     width: 100vw;
     height: 50vh;
@@ -109,7 +125,7 @@ const PhotoPreview = styled(Img)`
   /*display: inline-block;*/
   margin: auto;
   /*max-width: 80%;*/
-  /*max-height: 30%;*/
+  max-height: 30%;
   width: 10em;
   height: 10em;
   /*vertical-align: bottom;*/
@@ -235,12 +251,13 @@ const Product = props => {
       <Container>
         <LeftSide>
           <PhotoModal
-            source={image.fluid}
+            source={image.fluid} // TODO: refactor PhotoModal to use 'sizes'
             location={location}
           >
             <Photo
               title={`Photo by Eghan Thompson`}
-              fluid={image.fluid}
+              // fluid={image.fluid}
+              sizes={image.sizes}
               id="mainImage"
             />
           </PhotoModal>

@@ -12,7 +12,7 @@ const Photo = styled(Img)`
     width: 90vw;
   }
 `
-const pStyle = {
+const pStyle = {  // nested Image styles for gatsby image sharp div wrapper
   height: '86%',
 }
 

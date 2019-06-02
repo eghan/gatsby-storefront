@@ -64,22 +64,23 @@ const Preview = styled.div`
 function renderTagMatches(data) {
   let matchList = []
 
-  if (data.airtable !== null) {
-    data.airtable.edges.forEach(item => {
-      //if (item.node.data.name === 'photoset') {return}
-      if (item.node.data.price !== null) {
-        matchList = [
-          ...matchList,
-          [
-            item.node.data.name,
-            item.node.data.image.localFiles[0],
-            item.node.data.price,
-          ],
-        ]
-        return
-      }
-    })
-  }
+// AIRTABLE MATCH LIST, INCLUED ONCE AIRTABLE PRODUCT DATA IS SYNCRONIZED ***!!!
+  // if (data.airtable !== null) {
+  //   data.airtable.edges.forEach(item => {
+  //     //if (item.node.data.name === 'photoset') {return}
+  //     if (item.node.data.price !== null) {
+  //       matchList = [
+  //         ...matchList,
+  //         [
+  //           item.node.data.name,
+  //           item.node.data.image.localFiles[0],
+  //           item.node.data.price,
+  //         ],
+  //       ]
+  //       return
+  //     }
+  //   })
+  // }
 
   if (data.etsy !== null) {
     data.etsy.edges.forEach(item => {

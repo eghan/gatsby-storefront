@@ -15,7 +15,8 @@ export default ({ data }) => {
     discription,
     price,
     tags,
-    image: photo.localFiles[0].childImageSharp
+    image: photo.localFiles[0].childImageSharp,
+    sizes: photo.localFiles[0].childImageSharp.sizes
   }
 
   return ( <Product item={product} /> )
@@ -35,6 +36,9 @@ export const query = graphql`
                 ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 presentationWidth
                 presentationHeight
+              }
+              sizes(maxHeight: 850) {
+                ...GatsbyImageSharpSizes_withWebp_tracedSVG
               }
             }
           }

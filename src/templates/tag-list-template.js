@@ -40,7 +40,6 @@ export default props => (
             node {
               context {
                 name
-                tags
               }
             }
           }
@@ -48,6 +47,7 @@ export default props => (
       }
     `}
 
+// IMPORTANT:  context is now missing 'tags' which should sit below name for line 65
 
 // function ThrowError(message){
 //   console.log('ERROR: ', message)

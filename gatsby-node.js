@@ -84,8 +84,24 @@ if (process.env.NODE_ENV === 'development') {
   process.env.GATSBY_WEBPACK_PUBLICPATH = '/'
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const { data: { allAirtable: { edges: airtableData }}} = await graphql(`
+    query graphData {
+      allAirtable{
+        edges{
+          node{
+            data{
+              name
+            }
+          }
+        }
+      }
+    }
+  `,)
+  //.then( data => console.log('HELLO DATA : ', data))
+  console.log('HELLO DATA ', airtableData)
+
   return graphql(`
       query productData {
         allAirtable {
@@ -160,6 +176,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
             })
           }
+
+
         })
         return result
       })
@@ -180,6 +198,7 @@ exports.createPages = ({ graphql, actions }) => {
         })
         return result
       })
+
       // .then(result => {
       //   createPage({
       //     path: `Tags`,
@@ -193,6 +212,7 @@ exports.createPages = ({ graphql, actions }) => {
       //   })
       //   //result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
       // })
+
     resolve()
   // })
 }

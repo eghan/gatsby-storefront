@@ -84,138 +84,124 @@ if (process.env.NODE_ENV === 'development') {
   process.env.GATSBY_WEBPACK_PUBLICPATH = '/'
 }
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const { data: { allAirtable: { edges: airtableData }}} = await graphql(`
+exports.createPages = async ({
+  graphql,
+  actions: { createPage, createRedirect },
+}) => {
+  const {
+    data: {
+      allAirtable: { edges: airtableData },
+    },
+  } = await graphql(`
     query graphData {
-      allAirtable{
-        edges{
-          node{
-            data{
+      allAirtable {
+        edges {
+          node {
+            data {
               name
-            }
-          }
-        }
-      }
-    }
-  `,)
-  //.then( data => console.log('HELLO DATA : ', data))
-  console.log('HELLO DATA ', airtableData)
-
-  return graphql(`
-      query productData {
-        allAirtable {
-          edges {
-            node {
-              data {
-                name
-                tags
-                discription
-                photo {
-                  localFiles {
-                    name
-                    id
-                  }
+              tags
+              discription
+              photo {
+                localFiles {
+                  name
+                  id
                 }
               }
             }
           }
         }
-        etsy: allEtsyListingsDownloadCsv {
-          edges {
-            node {
-              name: TITLE
-              discription: DESCRIPTION
-              TAGS
-            }
+      }
+    }
+  `)
+  const {
+    data: {
+      allEtsyListingsDownloadCsv: { edges: etsyData },
+    },
+  } = await graphql(`
+    query etsyData {
+      allEtsyListingsDownloadCsv {
+        edges {
+          node {
+            name: TITLE
+            discription: DESCRIPTION
+            TAGS
           }
         }
       }
-    `)
-      .then(result => {
-        result.data.allAirtable.edges.forEach(({ node }) => {
-          if (node.data.discription !== null) {
-            createPage({
-              path: node.data.name,
-              component: path.resolve(
-                `./src/templates/airtable-page-template.js`
-              ),
-              context: {
-                name: node.data.name,
-                discription: node.data.discription, // TODO: do i need this here?
-                source: 'airtable',
-                tags: [], // STUB, data from airtable needs to be formatted
-              },
-            })
-          }
-          if (node.data.name == 'photoset') {
-            node.data.photo.localFiles.forEach(img => {
-              createPage({
-                path: img.name,
-                component: path.resolve(
-                  `./src/templates/airtable-photo-template.js`
-                ),
-                context: {
-                  name: img.name,
-                },
-              })
-            })
-          }
+    }
+  `)
 
-          if (node.data.tags != null) {
-            node.data.tags.forEach(tag => {
-              if (!tagList.includes(tag)) {
-                tagList = [...tagList, tag]
-                createPage({
-                  path: tag,
-                  component: path.resolve(`./src/templates/tag-template.js`),
-                  context: {
-                    tag: tag,
-                  },
-                })
-              }
-            })
-          }
+  // serialize the data, [Object: null prototype] causes all 'smart' looping to fail
+  // this issue is definately worth researching and posting to the primary github repo
+  // data sources are being returned as unregistered objects
 
+  let airtable = []
+  airtableData.forEach(edge => {
+    airtable = [...airtable, edge.node]
+  })
+  let etsy = []
+  etsyData.forEach(edge => {
+    etsy = [...etsy, edge.node]
+  })
+  console.log(airtable)
 
-        })
-        return result
+  airtable.forEach(node => {
+    console.log(node.data)
+    if (node.data.discription !== null) {
+      createPage({
+        path: node.data.name,
+        component: path.resolve(`./src/templates/airtable-page-template.js`),
+        context: {
+          name: node.data.name,
+          discription: node.data.discription, // TODO: do i need this here?
+          source: 'airtable',
+          tags: [], // STUB, data from airtable needs to be formatted
+        },
       })
-      .then(result => {
-        result.data.etsy.edges.forEach(({ node }) => {
-          if (node.discription !== null) {
-            createPage({
-              path: node.name,
-              component: path.resolve(`./src/templates/etsy-page-template.js`),
-              context: {
-                name: node.name,
-                discription: node.discription, // TODO: do i need this here?
-                source: 'etsy',
-                tags: [], // STUB, data from etsy needs to be formatted
-              },
-            })
-          }
+    }
+    if (node.data.name == 'photoset') {
+      node.data.photo.localFiles.forEach(img => {
+        createPage({
+          path: img.name,
+          component: path.resolve(`./src/templates/airtable-photo-template.js`),
+          context: {
+            name: img.name,
+          },
         })
-        return result
       })
+    }
 
-      // .then(result => {
-      //   createPage({
-      //     path: `Tags`,
-      //     component: path.resolve(`./src/templates/tag-list-template.js`),
-      //     context: {
-      //       name: `Tags`,
-      //       discription: `all the Tags`, // TODO: do i need this here?
-      //       source: 'gatsbyNode',
-      //       tags: tagList,
-      //     },
-      //   })
-      //   //result.data.etsy.edges.forEach(({ node }) => console.log(node.name))
-      // })
+    if (node.data.tags != null) {
+      node.data.tags.forEach(tag => {
+        if (!tagList.includes(tag)) {
+          tagList = [...tagList, tag]
+          createPage({
+            path: tag,
+            component: path.resolve(`./src/templates/tag-template.js`),
+            context: {
+              tag: tag,
+            },
+          })
+        }
+      })
+    }
+  })
 
-    resolve()
-  // })
+  etsy.forEach(node => {
+    console.log(node.name)
+    if (node.discription !== null) {
+      createPage({
+        path: node.name,
+        component: path.resolve(`./src/templates/etsy-page-template.js`),
+        context: {
+          name: node.name,
+          discription: node.discription, // TODO: do i need this here?
+          source: 'etsy',
+          tags: [], // STUB, data from etsy needs to be formatted
+        },
+      })
+    }
+  })
 }
-
+  // return result
 // exports.createPages = require('./gatsby/createPages');
-

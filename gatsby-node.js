@@ -69,11 +69,7 @@ exports.onCreateNode = async ({
               tagList = [...tagList, tag]
             }
           })
-          // }
         }
-        // catch (e) {
-        //console.log(e)
-        // }
       })
     )
   }
@@ -143,10 +139,8 @@ exports.createPages = async ({
   etsyData.forEach(edge => {
     etsy = [...etsy, edge.node]
   })
-  console.log(airtable)
 
   airtable.forEach(node => {
-    console.log(node.data)
     if (node.data.discription !== null) {
       createPage({
         path: node.data.name,
@@ -188,7 +182,6 @@ exports.createPages = async ({
   })
 
   etsy.forEach(node => {
-    console.log(node.name)
     if (node.discription !== null) {
       createPage({
         path: node.name,
@@ -203,5 +196,3 @@ exports.createPages = async ({
     }
   })
 }
-  // return result
-// exports.createPages = require('./gatsby/createPages');

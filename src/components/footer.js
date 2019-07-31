@@ -8,15 +8,6 @@ const Links = styled(Link)`
   color: black;
   text-decoration: none;
 `
-const Nav = styled(Links)`
-  padding: 0 0.8rem 0 0;
-  font-size: 0.95em;
-`
-const Home = styled(Links)`
-  grid-area: 1 / 1;
-  padding: 0 0.8rem;
-  font-size: 1.4em;
-`
 const FootBox = styled.div`
   height: 2em;
   display: grid;
@@ -26,12 +17,6 @@ const FootBox = styled.div`
     height: 8vh;
   }
 `
-const Navitems = styled.div`
-  grid-area: 1 / 2;
-  text-align: right;
-  padding: 0.3rem 0 0 0;
-`
-
 
 // because react-burger-menu does not support JSS visability control,
 // render nav components based on screen size

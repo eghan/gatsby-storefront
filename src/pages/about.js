@@ -79,7 +79,7 @@ const RenderRow = (PreviewObject, i) => {
     // styled components has an issue with named grid template areas, so...
     // reuse of style objects seems nice with this aproach
     let gridColumnSpan, gridRowSpan, boxAlignment = 'left';
-    switch(i = 0) {
+    switch(i) {
       case 0:
         gridColumnSpan = 3;
         gridRowSpan = 1;

@@ -4,10 +4,6 @@ import styled from 'styled-components'
 
 import MobileNavigation from './mobilenav'
 
-const Links = styled(Link)`
-  color: black;
-  text-decoration: none;
-`
 const FootBox = styled.div`
   height: 2em;
   display: grid;

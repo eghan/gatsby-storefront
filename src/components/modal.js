@@ -49,39 +49,12 @@ class PhotoModal extends React.Component {
   }
 
   render(props) {
-// console.log(this.props.fluid)
-  const width = (typeof window !== `undefined`) 
-    ? (window.innerWidth > width ? (width+"px") : (window.innerWidth+"px")) 
-    : "auto"
-  const height = (typeof window !== `undefined`) 
-    ? (window.innerHeight > height ? (height+"px") : (window.innerHeight+"px")) 
-    : "auto"
-// console.log(width, 'width')  
-// console.log(height, 'heigth')
-
-//   const windowHeight = (typeof window !== `undefined`) 
-//     ? window.innerHeight
-//     : "auto"
-// console.log(windowHeight)
-//     let width= this.props.fluid.presentationWidth 
-//     let height= this.props.fluid.presentationHeight
-// 
-//     if (typeof window !== `undefined`) { 
-//       console.log(width, window.innerWidth, height, window.innerHeight)
-//       height = window.innerHeight > height ? height : window.innerHeight
-//       width = window.innerWidth > width ? width : window.innerWidth
-//       console.log(width, window.innerWidth, height, window.innerHeight)
-//       // console.log(props.fluid)
-//     }
 
     const location =
       (typeof window !== `undefined`) ? window.location.pathname : '/shop'
 
-    const customStyles = (width, height) => {
-      // this.content = {}
-      // this.content.height = height
-      // this.content.width = width
-      return{
+    const customStyles = {
+
         overlay: {
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
           zIndex: 1000, // hack. for PayPal button visability under modal issue
@@ -131,21 +104,14 @@ class PhotoModal extends React.Component {
   //   }
   // };
 
-      }
     }
 
 // console.log(customStyles())
 
-    const NonStretchedImage = (props, width, height) => {
+    const NonStretchedImage = (props) => {
       let normalizedProps = props
 
-
-      // let displayHeight = width < height ? "auto" : height
-      // let displayWidth = height < width ? "auto" : width
-      // console.log(displayWidth, displayHeight)
-      // console.log(height, width)
-
-      if (props.fluid && width) {
+      if (props.fluid) {
         normalizedProps = {
           ...props,
           style: {
@@ -161,8 +127,8 @@ class PhotoModal extends React.Component {
           imgStyle: {          
             // maxWidth: width,
             // maxHeight: height,
-            height: height,
-            width: width,            
+            height: "auto",
+            width: "auto",            
             margin: "0 auto", // Used to center the image
             right: "0px",
             left: "0px",
@@ -175,8 +141,6 @@ class PhotoModal extends React.Component {
     return <Img {...normalizedProps} />
   }
 
-    //console.log(this.props.source.presentationHeight)
-
   return (
     <Element>
       <div onClick={this.handleOpenModal}>{this.props.children}</div>
@@ -185,7 +149,7 @@ class PhotoModal extends React.Component {
         isOpen={this.state.showModal}
         ariaHideApp={false}
         contentLabel="Inline Styles Modal Example"
-        style={customStyles()}
+        style={customStyles}
       >
         <Link to={this.props.location} onClick={this.handleCloseModal}>
           <NonStretchedImage

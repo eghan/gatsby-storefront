@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-import { Location } from '@reach/router'
 
 import Layout from '../components/layout'
 import Modal from '../components/modal'
@@ -68,8 +67,6 @@ const Tag = styled.button`
   }
   -webkit-transition-duration: 0.6s; /* Safari */
   transition-duration: 0.6s;
-`
-const PreviewDiv = styled.div`
 `
 const TextDiv = styled.div`
   padding: 0 2em 0 0;
@@ -185,17 +182,17 @@ const TagLink = styled(Link)`
     font-size: 0.9em;
   }
 `
-const PaypalScreen = styled.button`
-  border: 0.8px solid black;
-  font-size: 1em;
-  text-decoration: none;
-  &:hover {
-    border: 0.5px solid black;
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s; 
-`
+// const PaypalScreen = styled.button`
+//   border: 0.8px solid black;
+//   font-size: 1em;
+//   text-decoration: none;
+//   &:hover {
+//     border: 0.5px solid black;
+//     background-color: #f5f5f5;
+//   }
+//   -webkit-transition-duration: 0.6s; /* Safari */
+//   transition-duration: 0.6s; 
+// `
 
 
 const Product = props => {

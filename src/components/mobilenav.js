@@ -1,16 +1,7 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-const Body = styled.div`
-  /*margin: auto;*/
-  /*max-width: 90%;*/
-  /*padding: 0 1.0875rem 1.24rem;*/
-  /*border: 1px dashed silver;*/
-  /*align-items: center;*/
-  /*display: 'block';*/
-`
 
 const FooterNavigation = styled.div`
   display: grid;

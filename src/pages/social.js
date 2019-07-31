@@ -76,7 +76,7 @@ const About = () => {
       return (
         <div>
           <SocialData key={element.section}>
-          <a href={element.node.data.details} target="_blank" rel="noopener norefferer">   
+          <a href={element.node.data.details} target="_blank" rel="noopener noreferrer">   
             <Photo
                   key={element.node.data.section}
                   title={element.node.data.section}

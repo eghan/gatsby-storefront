@@ -3,7 +3,6 @@ import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/layout'
-import Footer from '../components/footer'
 import TagPreview from '../components/tag-preview'
 
 const AboutDiv = styled.div`
@@ -63,12 +62,12 @@ const Text = styled.div`
 const PreviewPhotoBox = styled.div`
   max-height: 1fr;
 `
-const More = styled.div`
-  letter-spacing: 0.1em;
-  display: block;
-  align-self: flex-end;
-  padding: 0.2em 1em;
-`
+// const More = styled.div`
+//   letter-spacing: 0.1em;
+//   display: block;
+//   align-self: flex-end;
+//   padding: 0.2em 1em;
+// `
 const MobileSpacer = styled.div`
   height: 10px;
   @media (max-width: 750px) {
@@ -80,7 +79,7 @@ const RenderRow = (PreviewObject, i) => {
     // styled components has an issue with named grid template areas, so...
     // reuse of style objects seems nice with this aproach
     let gridColumnSpan, gridRowSpan, boxAlignment = 'left';
-    switch(i) {
+    switch(i = 0) {
       case 0:
         gridColumnSpan = 3;
         gridRowSpan = 1;
@@ -136,7 +135,7 @@ const AboutPage = ({ data }) => {
                 }
             </AboutDiv>
             <MobileSpacer/>
-        </Layout>    
+        </Layout>
     )
 }
 

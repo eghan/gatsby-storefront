@@ -3,7 +3,7 @@ import Img from 'gatsby-image'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-import Layout from '../components/layout'
+// import Layout from '../components/layout'
 
 const SocialDiv = styled.div`
   margin: 1vw;
@@ -70,7 +70,6 @@ const About = () => {
 
   const Socials = data.allAirtable.edges.filter( edge => edge.node.data.name === "social" )
   return(
-  <Layout>
     <SocialDiv>
     {Socials.map( element => {
       return (
@@ -89,7 +88,6 @@ const About = () => {
         )
       })}
   </SocialDiv>
-  </Layout>
   )
 }
 

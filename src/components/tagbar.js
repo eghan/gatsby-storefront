@@ -133,7 +133,7 @@ const Tagbar = props => (
             }
           }
       }
-    `}
+    `} 
     render={data => {
 
       // const target = data.allSitePage.edges.filter( element => ( element.node.context && element.node.context.name || '' ) == "Tags")

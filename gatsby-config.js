@@ -24,6 +24,12 @@ module.exports = {
     },
     `gatsby-transformer-csv`,
     'gatsby-transformer-sharp',
+    {
+        resolve: `gatsby-plugin-layout`,
+        options: {
+            component: require.resolve(`./src/components/layout.js`)
+        }
+    },
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-manifest`,

@@ -54,7 +54,7 @@ export default ({ data }) => {
 //this query is constructed from the allFile field rather than the allAirtable field
 //because the node link in createRemoteFileNode does not carry with it query definitions
 //which is further complicated by the array nesting of the field to filter
-//because the name field is carried over direct file query is much cleaner
+//because the name field is carried over, direct file query is much cleaner
 
 export const query = graphql`
   query linkedFile($name: String!) {

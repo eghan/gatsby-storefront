@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
 import styled from 'styled-components'
 
 import Tagbar from '../components/tagbar'
@@ -13,7 +12,7 @@ const Container = styled.div`
   /*margin: 0.5rem auto;*/
 `
 const Details = styled.div`
-  margin: 0.3em .5em;
+  margin: 0.3em 0.5em;
   display: block;
   font-size: 1em;
   text-align: left;
@@ -30,11 +29,11 @@ const Photo = styled(Img)`
   overflow: hidden;
   padding: 0.5em 0.5em;
 
-// method to access picture properties directly
-    picture {
-     overflow: hidden;
-     width: 100px;
-    }
+  // method to access picture properties directly
+  picture {
+    overflow: hidden;
+    width: 100px;
+  }
 
   @media (max-width: 1040px) {
     padding: 0em 0em;
@@ -57,14 +56,14 @@ const Preview = styled.div`
   @media (max-width: 750px) {
   }
   @media (max-width: 1040px) {
- /* in progress */
+    /* in progress */
   }
 `
 
 function renderTagMatches(data) {
   let matchList = []
 
-// AIRTABLE MATCH LIST, INCLUED ONCE AIRTABLE PRODUCT DATA IS SYNCRONIZED ***!!!
+  // AIRTABLE MATCH LIST, INCLUED ONCE AIRTABLE PRODUCT DATA IS SYNCRONIZED ***!!!
   // if (data.airtable !== null) {
   //   data.airtable.edges.forEach(item => {
   //     //if (item.node.data.name === 'photoset') {return}
@@ -83,19 +82,19 @@ function renderTagMatches(data) {
   // }
 
   if (data.etsy !== null) {
-    data.etsy.edges.forEach(item => {
-      matchList = [
-        ...matchList,
-        [item.node.name, item.node.image, item.node.price],
-      ]
-      return
-    })
+    data.etsy.edges.forEach(
+      item =>
+        (matchList = [
+          ...matchList,
+          [item.node.name, item.node.image, item.node.price],
+        ])
+    )
   }
 
   let output = matchList.map((match, index) => {
     // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
     if (match[1] !== null) {
-     return (
+      return (
         <ProductLink to={match[0]} key={match[0]}>
           <Preview>
             <Photo
@@ -111,21 +110,19 @@ function renderTagMatches(data) {
               <Price>{match[2] > 0 && '$' + match[2]}</Price>
             </Details>
           </Preview>
-
         </ProductLink>
       )
     }
-   }
-  )
+  })
   return output
 }
 
 export default ({ data }) => {
   return (
-    <Layout>
+    <>
       <Tagbar />
       <Container>{renderTagMatches(data)}</Container>
-    </Layout>
+    </>
   )
 }
 export const query = graphql`

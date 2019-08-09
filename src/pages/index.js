@@ -130,12 +130,12 @@ const TextBox = styled(Link)`
     margin: 0;
 }
 `
-const More = styled.div`
-  letter-spacing: 0.1em;
-  display: block;
-  align-self: flex-end;
-  padding: 0.2em 1em;
-`
+// const More = styled.div`
+//   letter-spacing: 0.1em;
+//   display: block;
+//   align-self: flex-end;
+//   padding: 0.2em 1em;
+// `
 const Text = styled.div`
   width: 100%;
   padding: 1em;
@@ -297,7 +297,7 @@ const IndexPage = ({ data }) => {
  // console.log('TEST', ShuffleDeck)
 
   return (
-    <Layout>
+    <>
       {PreviewDeck.map((preview, i) => {
         if(ShuffleDeck.length >= (3*i+2)){
           let photoOne = ShuffleDeck[3*i]
@@ -355,7 +355,7 @@ const IndexPage = ({ data }) => {
       {/*               </PhotoBox> */}
       {/*             )) */}
       {/*           )} */}
-    </Layout>
+    </>
   )
 }
 

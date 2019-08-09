@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
 import styled from 'styled-components'
 // import Modal from 'react-modal'
 // import { Location } from '@reach/router'
 
+import { Consumer } from '../components/context'
 import Modal from '../components/modal'
 import Tagbar from '../components/tagbar'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
-
 
 // Modal.setAppElement('body')
 
@@ -45,7 +44,7 @@ const LeftSide = styled.div`
   grid-row: span 5;
   @media (max-width: 750px) {
     overflow: hidden;
-    height: 50vh;  
+    height: 50vh;
   }
   /*border: 5px dashed blue;*/
 `
@@ -91,7 +90,7 @@ const Photo = styled(Img)`
     /*float: left;*/
   }
 `
-const Previews = styled.div`    
+const Previews = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -122,8 +121,8 @@ const PhotoPreview = styled(Img)`
   }
 `
 const Related = styled.div`
-  margin:  0 .5em;
-  padding:  .2em 0;
+  margin: 0 0.5em;
+  padding: 0.2em 0;
   text-align: center;
   border: 1px solid black;
 `
@@ -140,7 +139,7 @@ const PaymentDiv = styled.div`
   padding: 0.3em 1em 0 0;
   text-align: right;
   @media (max-width: 750px) {
-    width: 50vw;  
+    width: 50vw;
     padding: 0.3em 2em 0 0;
   }
   /*border: 10px dashed indigo;*/
@@ -148,7 +147,7 @@ const PaymentDiv = styled.div`
 const Price = styled.div`
   font-size: 0.8em;
   padding: 0 0.5em 0 0.5em;
-    @media (max-width: 750px) {
+  @media (max-width: 750px) {
     /*width: 50vw;  */
     /*padding: 3em 1em 1em 0;*/
     line-height: 1.8em;
@@ -161,7 +160,6 @@ const TagDiv = styled.div`
     padding: 0.8em;
     /*width: 50vw;    */
     /*border: 2px dotted blue;*/
-
   }
 `
 const TagLink = styled(Link)`
@@ -180,7 +178,7 @@ const TagLink = styled(Link)`
 //     background-color: #f5f5f5;
 //   }
 //   -webkit-transition-duration: 0.6s; /* Safari */
-//   transition-duration: 0.6s; 
+//   transition-duration: 0.6s;
 // `
 
 export default ({ data }) => {
@@ -199,6 +197,7 @@ export default ({ data }) => {
   }
 
   const {
+    id,
     name,
     description,
     price,
@@ -217,11 +216,9 @@ export default ({ data }) => {
   //   </Layout>
   // )
 
-
-
-// window location has to be manually passed at page render
-// unless I parse it from the url, which is fault prone
-// and said location query must be wrapped in a conditional to pass static generation
+  // window location has to be manually passed at page render
+  // unless I parse it from the url, which is fault prone
+  // and said location query must be wrapped in a conditional to pass static generation
   // console.log(Location.pathname)
   const location =
     typeof window !== `undefined` ? window.location.pathname : '/shop'
@@ -230,11 +227,7 @@ export default ({ data }) => {
     .filter(t => !tagExclude.includes(t))
     .map((tag, index) => {
       let tagLowerCase = tag
-      tag =
-        tag
-          .charAt(0)
-          .toUpperCase() + tag.slice(1)
-          .replace(/_/g, ' ')
+      tag = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/_/g, ' ')
       return (
         <TagLink to={tagLowerCase} key={index}>
           <Tag key={tag}> {tag} </Tag>
@@ -243,14 +236,11 @@ export default ({ data }) => {
     })
 
   return (
-    <Layout>
+    <>
       <Tagbar />
       <Container>
         <LeftSide>
-          <PhotoModal
-            source={image.childImageSharp.fluid}
-            location={location}
-          >
+          <PhotoModal source={image.childImageSharp.fluid} location={location}>
             <Photo
               title={`Photo by Eghan Thompson`}
               fluid={image.childImageSharp.fluid}
@@ -269,53 +259,72 @@ export default ({ data }) => {
               free shipping
               <br />
               {price} $
+              <Consumer>
+                {({ data, set }) => {
+                  return (
+                    <div>
+                      <button
+                        onClick={() => {
+                          set({
+                            itemList: [...data.itemList, name],
+                          })
+                        }}
+                      >
+                        add item to cart
+                      </button>
+                    </div>
+                  )
+                }}
+              </Consumer>
               <br />
-                <PaypalExpressBtn
-                  client={client}
-                  currency={'USD'}
-                  total={Number(price)}
-                  style={style}
-                />
+              or... just get this one with->
+              <PaypalExpressBtn
+                client={client}
+                currency={'USD'}
+                total={Number(price)}
+                style={style}
+              />
             </Price>
           </PaymentDiv>
           <Previews>
             {imageA == null ? (
               <div />
             ) : (
-            <PhotoModal
-              source={imageA.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageA.childImageSharp.fluid}
-              />
-            </PhotoModal>
+              <PhotoModal
+                source={imageA.childImageSharp.fluid}
+                location={location}
+              >
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={imageA.childImageSharp.fluid}
+                />
+              </PhotoModal>
             )}
             {imageB == null ? (
               <div />
             ) : (
-
-            <PhotoModal
-              source={imageB.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageB.childImageSharp.fluid}
-              />
-            </PhotoModal>
-              )}
+              <PhotoModal
+                source={imageB.childImageSharp.fluid}
+                location={location}
+              >
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={imageB.childImageSharp.fluid}
+                />
+              </PhotoModal>
+            )}
           </Previews>
         </RightSide>
-      </Container><Related>Related pieces:</Related>
+      </Container>
+      <Related>Related pieces:</Related>
       <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
-    </Layout>
+    </>
   )
 }
 export const query = graphql`
   query etsyData($name: String!) {
     etsy: etsyListingsDownloadCsv(TITLE: { eq: $name }) {
+      id
       name: TITLE
       description: DESCRIPTION
       price: PRICE

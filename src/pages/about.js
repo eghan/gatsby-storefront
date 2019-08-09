@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-import Layout from '../components/layout'
 import TagPreview from '../components/tag-preview'
 
 const AboutDiv = styled.div`
@@ -127,7 +126,7 @@ const AboutPage = ({ data }) => {
           return i.node.data // array of objects
         })
     return(
-        <Layout>            
+        <>            
             <AboutDiv>
                 {PreviewDeck.map((preview, i) => {
                     return RenderRow(preview, i)
@@ -135,7 +134,7 @@ const AboutPage = ({ data }) => {
                 }
             </AboutDiv>
             <MobileSpacer/>
-        </Layout>
+        </>
     )
 }
 

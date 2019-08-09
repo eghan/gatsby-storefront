@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
@@ -27,14 +26,13 @@ const Box = styled.div`
 `
 const Photo = styled(Img)`
   /*padding: 1em 1em;*/
-  //border: 10px solid white;
+  border: 1px solid black;
 `
 
 const IndexPage = ({ data }) => (
-  <Layout>
     <Box>
       {data.allAirtable.edges
-        .filter(edge => edge.node.data.name == 'photoset')
+        .filter(edge => edge.node.data.name === 'photoset')
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
               <TextModal
@@ -51,7 +49,6 @@ const IndexPage = ({ data }) => (
           ))
         )}
     </Box>
-  </Layout>
 )
 
 export default IndexPage

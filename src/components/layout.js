@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import 'typeface-tinos'
 
+import { Consumer, ContextProviderComponent } from './context'
 import Header from './header'
 import Footer from './footer'
 
@@ -18,6 +20,23 @@ const Body = styled.div`
   /*background: #FFFDF7;*/
 `
 
+const ComponentThatReadState = () => (
+  <Consumer>
+    {({ data }) => { return('++'+data.menuOpen)}}
+  </Consumer>
+)
+
+
+const ComponentThatChangeState = () => (
+  <Consumer>
+    {({ data, set }) => (
+      <button onClick={() => set({ menuOpen: !data.menuOpen })}>
+        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
+      </button>
+    )}
+  </Consumer>
+)
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -29,22 +48,31 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
-      <>
+    render={node => (
+      <><ContextProviderComponent>
         <Helmet
-          title={data.site.siteMetadata.title}
+          title={node.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sustainable upcycled handmade jewelry from machine parts' },
-            { name: 'keywords', content: 'Sustainable, upcycled, handmade, jewelry, machine, parts, art, circlip, retaining ring, industrial, deco' },
+            {
+              name: 'description',
+              content:
+                'Sustainable upcycled handmade jewelry from machine parts',
+            },
+            {
+              name: 'keywords',
+              content:
+                'Sustainable, upcycled, handmade, jewelry, machine, parts, art, circlip, retaining ring, industrial, deco',
+            },
           ]}
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title}/>
-        <Body>        
+        <Header siteTitle={node.site.siteMetadata.title} />
+        <Body>
           {children}
         </Body>
         <Footer />
+      </ContextProviderComponent>
       </>
     )}
   />

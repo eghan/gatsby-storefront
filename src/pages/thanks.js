@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 
 const Thanks = () => (
   <Layout>
-    <h1>Hi thanks for getting in touch!</h1>
+    <h1>Hi thanks for getti       ng in touch!</h1>
     <p>Cool stuff yall</p>Lorem ipsum dolor amet echo park man braid pug venmo,
     raw denim literally trust fund drinking vinegar pour-over letterpress tilde
     kale chips disrupt wolf sustainable. Helvetica typewriter cornhole vaporware

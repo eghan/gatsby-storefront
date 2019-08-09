@@ -3,7 +3,25 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Burger from './burger.js'
 
-const sections = ['gallery', 'shop', 'about', 'social']
+import { Consumer } from './context'
+
+const ComponentThatChangeState = () => (
+  <Consumer>
+    {({ data, set }) => (
+      <div onClick={() => set({ menuOpen: !data.menuOpen })}>
+        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
+      </div>
+    )}
+  </Consumer>
+)
+
+// migrate to static querry from Airtable
+const sections = ['gallery', 'shop', 'about', 'social', 'cart']
+
+const Cart = styled(ComponentThatChangeState)`
+  padding: 0 0.8rem 0 0;
+  font-size: 0.95em;
+`
 
 const Links = styled(Link)`
   color: black;
@@ -44,9 +62,10 @@ class NavResponsive extends React.Component {
       (typeof window !== `undefined` && window.innerWidth) ||
       (typeof window !== `undefined` && document.documentElement.clientWidth)
 
-    console.log(viewportWidth)
+    // console.log(viewportWidth)
     if (viewportWidth > 640) {
       return (
+        <>
         <Navitems>
           <Nav key="home" to="/">home</Nav>
           {sections.map(section => {
@@ -57,6 +76,7 @@ class NavResponsive extends React.Component {
             )
           })}
         </Navitems>
+        </>
       )
     } else {
       return <Burger sections={sections} />

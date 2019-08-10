@@ -197,7 +197,7 @@ const TagLink = styled(Link)`
 
 const Product = props => {
 
-  console.log(props.item)
+  // console.log(props.item)
 
   const client = {
     sandbox:

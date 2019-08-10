@@ -266,7 +266,7 @@ export default ({ data }) => {
                       <button
                         onClick={() => {
                           set({
-                            itemList: [...data.itemList, name],
+                            itemList: [...data.itemList, { name, price, image: image.childImageSharp.fluid }],
                           })
                         }}
                       >

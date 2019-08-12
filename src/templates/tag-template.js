@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import Layout from '../components/layout'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
 
@@ -101,7 +100,7 @@ function renderTagMatches(data) {
 
 export default ({ data }) => {
   return (
-    <Layout>
+    <>
       <Tagbar />
       <Container>
       <Location>
@@ -113,7 +112,7 @@ export default ({ data }) => {
     </Location>
         {renderTagMatches(data)}
       </Container>
-    </Layout>
+    </>
   )
 }
 export const query = graphql`

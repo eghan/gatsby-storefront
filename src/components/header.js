@@ -1,27 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import Burger from './burger.js'
-
-import { Consumer } from './context'
-
-const ComponentThatChangeState = () => (
-  <Consumer>
-    {({ data, set }) => (
-      <div onClick={() => set({ menuOpen: !data.menuOpen })}>
-        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
-      </div>
-    )}
-  </Consumer>
-)
 
 // migrate to static querry from Airtable
 const sections = ['gallery', 'shop', 'about', 'social', 'cart']
-
-const Cart = styled(ComponentThatChangeState)`
-  padding: 0 0.8rem 0 0;
-  font-size: 0.95em;
-`
 
 const Links = styled(Link)`
   color: black;
@@ -52,57 +34,29 @@ const Navitems = styled.div`
   padding: 0.3rem 0 0 0;
 `
 
-
-// because react-burger-menu does not support JSS visability control,
-// render nav components based on screen size
-class NavResponsive extends React.Component {
-  render() {
-    // verbose typeof check for jsPrettier :|
-    let viewportWidth =
-      (typeof window !== `undefined` && window.innerWidth) ||
-      (typeof window !== `undefined` && document.documentElement.clientWidth)
-
-    // console.log(viewportWidth)
-    if (viewportWidth > 640) {
-      return (
-        <>
-        <Navitems>
-          <Nav key="home" to="/">home</Nav>
-          {sections.map(section => {
-            return (
-              <Nav key={section} to={section}>
-                {section}
-              </Nav>
-            )
-          })}
-        </Navitems>
-        </>
-      )
-    } else {
-      return <Burger sections={sections} />
-    }
-  }
-}
-
-// const Layout = ({ children }) => (
-//   <StaticQuery
-//     query={graphql`
-//       query SiteTitleQuery {
-//         site {
-//           siteMetadata {
-//             title
-//           }
-//         }
-//       }
-//     `}
-// 
-
-
+const TopNav = () => (
+  <>
+    <Navitems>
+      <Nav key="home" to="/">
+        home
+      </Nav>
+      {sections.map(section => {
+        return (
+          <Nav key={section} to={section}>
+            {section}
+          </Nav>
+        )
+      })}
+    </Navitems>
+  </>
+)
 
 const Header = ({ siteTitle }) => (
   <Navbar>
-    <Home key={siteTitle} to={'/'}>{siteTitle}</Home>
-    <NavResponsive />
+    <Home key={siteTitle} to={'/'}>
+      {siteTitle}
+    </Home>
+    <TopNav />
   </Navbar>
 )
 

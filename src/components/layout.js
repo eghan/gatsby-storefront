@@ -4,40 +4,17 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import 'typeface-tinos'
+import Transition from './transitions'
 
-import { Consumer, ContextProviderComponent } from './context'
+
+import { ContextProviderComponent } from './context'
 import Header from './header'
 import Footer from './footer'
 
 const Body = styled.div`
-  /*margin: auto;*/
-  /*max-width: 90%;*/
-  /*padding: 0 1.0875rem 1.24rem;*/
-  /*border: 1px dashed silver;*/
-  /*align-items: center;*/
-  /*display: 'block';*/
-
-  /*background: #FFFDF7;*/
 `
 
-const ComponentThatReadState = () => (
-  <Consumer>
-    {({ data }) => { return('++'+data.menuOpen)}}
-  </Consumer>
-)
-
-
-const ComponentThatChangeState = () => (
-  <Consumer>
-    {({ data, set }) => (
-      <button onClick={() => set({ menuOpen: !data.menuOpen })}>
-        {data.menuOpen ? `Opened Menu` : `Closed Menu`}
-      </button>
-    )}
-  </Consumer>
-)
-
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -69,7 +46,7 @@ const Layout = ({ children }) => (
         </Helmet>
         <Header siteTitle={node.site.siteMetadata.title} />
         <Body>
-          {children}
+               <Transition location={location}>{children}</Transition>
         </Body>
         <Footer />
       </ContextProviderComponent>

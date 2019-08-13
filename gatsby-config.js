@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -22,14 +22,14 @@ module.exports = {
         path: `${__dirname}/data`,
       },
     },
-    `gatsby-transformer-csv`,
-    'gatsby-transformer-sharp',
+    'gatsby-transformer-csv',
     {
-        resolve: `gatsby-plugin-layout`,
-        options: {
-            component: require.resolve(`./src/components/layout.js`)
-        }
-    },
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout.js`),
+      },
+    },    
+    'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-manifest`,

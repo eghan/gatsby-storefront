@@ -1,17 +1,15 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-// import Modal from 'react-modal'
-// import { Location } from '@reach/router'
 
+import { Button } from '../utils/global'
 import { Consumer } from '../components/context'
 import Modal from '../components/modal'
 import Tagbar from '../components/tagbar'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
-// Modal.setAppElement('body')
 
 const tagExclude = [
   'industrial',
@@ -59,17 +57,6 @@ const Info = styled.div`
   padding: 0.5rem 0.7rem;
   font-size: 0.8em;
   /*margin: 1rem auto;*/
-`
-const Tag = styled.button`
-  border: 0.5px solid gainsboro;
-  font-size: 0.6em;
-  text-decoration: none;
-  &:hover {
-    border: 0.5px solid black;
-    background-color: #f5f5f5;
-  }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;
 `
 
 const TextDiv = styled.div`
@@ -127,17 +114,12 @@ const Related = styled.div`
   border: 1px solid black;
 `
 
-const PhotoModal = styled(Modal)`
-  /*display: block;*/
-  /*border: 5px dotted purple;*/
-`
-
 const PaymentDiv = styled.div`
   grid-column: span 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0.3em 1em 0 0;
-  text-align: right;
+  text-align: center;
   @media (max-width: 750px) {
     width: 50vw;
     padding: 0.3em 2em 0 0;
@@ -154,6 +136,7 @@ const Price = styled.div`
   }
 `
 const TagDiv = styled.div`
+  font-size: 0.8em;
   padding: 0.8em;
   text-align: center;
   @media (max-width: 750px) {
@@ -162,24 +145,9 @@ const TagDiv = styled.div`
     /*border: 2px dotted blue;*/
   }
 `
-const TagLink = styled(Link)`
-  padding: 0.3em;
-  @media (max-width: 750px) {
-    padding: 0.1em;
-    font-size: 0.9em;
-  }
+const CartButton = styled(Button)`
+  font-size: 1.1em;
 `
-// const PaypalScreen = styled.button`
-//   border: 0.8px solid black;
-//   font-size: 1em;
-//   text-decoration: none;
-//   &:hover {
-//     border: 0.5px solid black;
-//     background-color: #f5f5f5;
-//   }
-//   -webkit-transition-duration: 0.6s; /* Safari */
-//   transition-duration: 0.6s;
-// `
 
 export default ({ data }) => {
   const client = {
@@ -229,9 +197,13 @@ export default ({ data }) => {
       let tagLowerCase = tag
       tag = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/_/g, ' ')
       return (
-        <TagLink to={tagLowerCase} key={index}>
-          <Tag key={tag}> {tag} </Tag>
-        </TagLink>
+        <Button
+          onClick={() => {
+            navigate(tagLowerCase)
+          }}
+        >
+          <div key={tag}> {tag} </div>
+        </Button>
       )
     })
 
@@ -240,13 +212,13 @@ export default ({ data }) => {
       <Tagbar />
       <Container>
         <LeftSide>
-          <PhotoModal source={image.childImageSharp.fluid} location={location}>
+          <Modal source={image.childImageSharp.fluid} location={location}>
             <Photo
               title={`Photo by Eghan Thompson`}
               fluid={image.childImageSharp.fluid}
               id="mainImage"
             />
-          </PhotoModal>
+          </Modal>
         </LeftSide>
         <RightSide>
           <TextDiv>
@@ -254,30 +226,39 @@ export default ({ data }) => {
             <Info>{description}</Info>
           </TextDiv>
           <PaymentDiv>
-            <TagDiv>{tagList}</TagDiv>
-            <Price>
-              free shipping
+            <TagDiv>
+              Categories:
               <br />
-              {price} $
+              {tagList}
+            </TagDiv>
+            <Price>
+              with free shipping:  {price} $
               <Consumer>
                 {({ data, set }) => {
                   return (
                     <div>
-                      <button
+                      <CartButton
                         onClick={() => {
                           set({
-                            itemList: [...data.itemList, { name, price, image: image.childImageSharp.fluid }],
+                            itemList: [
+                              ...data.itemList,
+                              {
+                                name,
+                                price,
+                                image: image.childImageSharp.fluid,
+                              },
+                            ],
                           })
                         }}
                       >
                         add item to cart
-                      </button>
+                      </CartButton>
                     </div>
                   )
                 }}
               </Consumer>
               <br />
-              or... just get this one with->
+              or... just get this one with ->
               <PaypalExpressBtn
                 client={client}
                 currency={'USD'}
@@ -290,28 +271,22 @@ export default ({ data }) => {
             {imageA == null ? (
               <div />
             ) : (
-              <PhotoModal
-                source={imageA.childImageSharp.fluid}
-                location={location}
-              >
+              <Modal source={imageA.childImageSharp.fluid} location={location}>
                 <PhotoPreview
                   title={`Photo by Eghan Thompson`}
                   fluid={imageA.childImageSharp.fluid}
                 />
-              </PhotoModal>
+              </Modal>
             )}
             {imageB == null ? (
               <div />
             ) : (
-              <PhotoModal
-                source={imageB.childImageSharp.fluid}
-                location={location}
-              >
+              <Modal source={imageB.childImageSharp.fluid} location={location}>
                 <PhotoPreview
                   title={`Photo by Eghan Thompson`}
                   fluid={imageB.childImageSharp.fluid}
                 />
-              </PhotoModal>
+              </Modal>
             )}
           </Previews>
         </RightSide>

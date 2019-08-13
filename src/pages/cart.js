@@ -57,7 +57,7 @@ const CartDisplay = () => (
             <GridCell />
             <GridCell />
             <GridCell>with free shipping</GridCell>
-            <GridCell>Total: {cartTotal}</GridCell>
+            <GridCell>Total: {cartTotal} $</GridCell>
             <GridCell />
             <GridCell />
             <GridCell>Checkout with Paypal => </GridCell>

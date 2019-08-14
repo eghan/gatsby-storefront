@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import TextModalComponent from '../components/textmodal'
+import PhotoModal from '../components/modal'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/shop'
 
@@ -140,25 +140,25 @@ const Text = styled.div`
   width: 100%;
   padding: 1em;
 `
-const TextModal = styled(TextModalComponent)`
+const StyledModal = styled(PhotoModal)`
   border: 2px solid purple;
 `
 
 const RenderPhoto = ( PhotoObject ) => {
   return (
       <PhotoBox>
-        <TextModal
+        <StyledModal
           key={PhotoObject.id}
           source={PhotoObject.childImageSharp.high}
-          // location={location}
           name={PhotoObject.name}
+          text='Inquire here'
         >
           <Photo
             key={PhotoObject.id}
             title={`Photo by Eghan Thompson`}
             fluid={PhotoObject.childImageSharp.low}
           />
-        </TextModal>
+        </StyledModal>
       </PhotoBox>
       )
 }

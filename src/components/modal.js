@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import styled from 'styled-components'
 import Modal from 'react-modal'
 import Img from 'gatsby-image'
+import { Consumer } from '../components/context'
 
+import { Button } from '../utils/global'
 // special note on static generation, Gatsby, and programatic rendering:
 // dynamic image sizes and prerendering are bad at elements that are sized acording to device
 // because they don't know the device when they prerender. the standard solution is to use
@@ -171,7 +173,22 @@ class PhotoModal extends React.Component {
               id="modalImage"
               // imgStyle={{ ...imgStyle }}
             />
-            <OverlayText>{ this.props.text ? this.props.text : '' }</OverlayText>
+            <OverlayText><Consumer>
+      {({ data, set }) => {return (
+        <Button
+                    onClick={() => {
+                      set({
+                        itemInquery: [this.props.object],
+                      })
+                      navigate('contact')
+                    }}
+                  >
+                    { this.props.text ? this.props.text : '' }
+          </Button>
+        )
+}}
+</Consumer>
+        </OverlayText>
           </Box>
         </Modal>
       </Element>

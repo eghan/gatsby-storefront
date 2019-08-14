@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Modal from 'react-modal'
@@ -17,15 +17,32 @@ import Img from 'gatsby-image'
 // caution is best as prerendering will fail if any refrence to window or document is not
 // hidden behind a conditional, al-la :  if (typeof window !== `undefined`) { window.stuff? }
 
-
 // console.log(width)
+const Box = styled.div`
+  position: relative;
+  background: black;
+  /*border: 2px solid pink;*/
+  border-top: 22px solid black;
+  width: 52vw;
+  left: 24vw;
+`
+const OverlayText = styled.div`
+  position: absolute;
+  background: black;
+  bottom: 12px;
+  left: 0;
+  width: 52vw;
+  color: darkgray;  
+  padding-right: 50px;
+  text-align: right;
 
+`
 
 const Element = styled.div`
-/*  border: 5px dotted purple;
+  /*  border: 5px dotted purple;
     vertical-align: bottom;*/
 
-/*  margin: auto;
+  /*  margin: auto;
   text-align: bottom;*/
 `
 
@@ -49,66 +66,62 @@ class PhotoModal extends React.Component {
   }
 
   render(props) {
-
     const location =
-      (typeof window !== `undefined`) ? window.location.pathname : '/shop'
+      typeof window !== `undefined` ? window.location.pathname : '/shop'
 
     const customStyles = {
-
-        overlay: {
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 1000, // hack. for PayPal button visability under modal issue
-          // width: '80%',
-        },
-        content : {
-          color: 'black',
-          // backgroundColor: 'black',
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          border: '0px solid aqua',
-          // objectFit: 'contain',
-          // overflow: 'hidden',
-          // maxWidth: '80%',
-          // height: {height},
-          width: "100%", // set this to image width
-          height: "100%", // set this to image heigth
-          margin: '0 auto',
-          padding: '0px',
-          // top: '0px',
-          left: '0px',
-          borderRadius: "0px",            
-          textAlign: "center",
-
-        }
-  // static defaultStyles = {
-  //   overlay: {
-  //     position: "fixed",
-  //     top: 0,
-  //     left: 0,
-  //     right: 0,
-  //     bottom: 0,
-  //     backgroundColor: "rgba(255, 255, 255, 0.75)"
-  //   },
-  //   content: {
-  //     position: "absolute",
-  //     top: "40px",
-  //     left: "40px",
-  //     right: "40px",
-  //     bottom: "40px",
-  //     border: "1px solid #ccc",
-  //     background: "#fff",
-  //     overflow: "auto",
-  //     WebkitOverflowScrolling: "touch",
-  //     borderRadius: "4px",
-  //     outline: "none",
-  //     padding: "20px"
-  //   }
-  // };
-
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 1000, // hack. for PayPal button visability under modal issue
+        // width: '80%',
+      },
+      content: {
+        color: 'black',
+        // backgroundColor: 'black',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        border: '0px solid aqua',
+        // objectFit: 'contain',
+        // overflow: 'hidden',
+        // maxWidth: '80%',
+        // height: {height},
+        width: '100%', // set this to image width
+        height: '100%', // set this to image heigth
+        margin: '0 auto',
+        padding: '0px',
+        // top: '0px',
+        left: '0px',
+        borderRadius: '0px',
+        textAlign: 'center',
+      },
+      // static defaultStyles = {
+      //   overlay: {
+      //     position: "fixed",
+      //     top: 0,
+      //     left: 0,
+      //     right: 0,
+      //     bottom: 0,
+      //     backgroundColor: "rgba(255, 255, 255, 0.75)"
+      //   },
+      //   content: {
+      //     position: "absolute",
+      //     top: "40px",
+      //     left: "40px",
+      //     right: "40px",
+      //     bottom: "40px",
+      //     border: "1px solid #ccc",
+      //     background: "#fff",
+      //     overflow: "auto",
+      //     WebkitOverflowScrolling: "touch",
+      //     borderRadius: "4px",
+      //     outline: "none",
+      //     padding: "20px"
+      //   }
+      // };
     }
 
-// console.log(customStyles())
+    // console.log(customStyles())
 
-    const NonStretchedImage = (props) => {
+    const NonStretchedImage = props => {
       let normalizedProps = props
 
       if (props.fluid) {
@@ -117,50 +130,51 @@ class PhotoModal extends React.Component {
           style: {
             ...(props.style || {}),
             // border: "10px solid brown",
-            width: "100%",
-            height: "100%",            
+            // width: "auto",
+            height: '92vh',
             // maxWidth: "50%",
             // maxHeight: height,
             // margin: "0 auto !", // Used to center the image
-            textAlign: "center",
+            textAlign: 'center',
           },
-          imgStyle: {          
+          imgStyle: {
             // maxWidth: width,
             // maxHeight: height,
-            height: "auto",
-            width: "auto",            
-            margin: "0 auto", // Used to center the image
-            right: "0px",
-            left: "0px",
+            height: '86vh',
+            width: 'auto',
+            margin: '0 auto', // Used to center the image
+            right: '0px',
+            left: '0px',
             // height: displayHeight,
             // width: displayWidth,
-          }
+          },
         }
       }
 
-    return <Img {...normalizedProps} />
-  }
+      return <Img {...normalizedProps} />
+    }
 
-  return (
-    <Element>
-      <div onClick={this.handleOpenModal}>{this.props.children}</div>
+    return (
+      <Element>
+        <div onClick={this.handleOpenModal}>{this.props.children}</div>
 
-      <Modal
-        isOpen={this.state.showModal}
-        ariaHideApp={false}
-        contentLabel="Inline Styles Modal Example"
-        style={customStyles}
-      >
-        <Link to={this.props.location} onClick={this.handleCloseModal}>
-          <NonStretchedImage
-            title={`Photo by Eghan Thompson`}
-            fluid={this.props.source}
-            id="modalImage"
-            // imgStyle={{ ...imgStyle }}
-          />
-        </Link>
-      </Modal>
-    </Element>
+        <Modal
+          isOpen={this.state.showModal}
+          ariaHideApp={false}
+          contentLabel="Inline Styles Modal Example"
+          style={customStyles}
+        >
+          <Box onClick={this.handleCloseModal}>
+            <NonStretchedImage
+              title={`Photo by Eghan Thompson`}
+              fluid={this.props.source}
+              id="modalImage"
+              // imgStyle={{ ...imgStyle }}
+            />
+            <OverlayText>{ this.props.text ? this.props.text : '' }</OverlayText>
+          </Box>
+        </Modal>
+      </Element>
     )
   }
 }

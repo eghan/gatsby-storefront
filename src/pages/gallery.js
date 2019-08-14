@@ -3,9 +3,10 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import TextModal from '../components/textmodal'
+import Modal from '../components/modal'
+
 const location =
-  typeof window !== `undefined` ? window.location.pathname : '/shop'
+  typeof window !== `undefined` ? window.location.pathname : '/gallery'
 
 const Box = styled.div`
   /*min-width: 350px;*/
@@ -35,17 +36,19 @@ const IndexPage = ({ data }) => (
         .filter(edge => edge.node.data.name === 'photoset')
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
-              <TextModal
+              <Modal
                 source={img.childImageSharp.low}
                 location={location}
                 name={img.name}
+                text='Inqure here'
               >
                 <Photo
+                  fadeIn={true}
                   key={img.id}
                   title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.high}
+                  fluid={img.childImageSharp.low}
                 />
-              </TextModal>
+              </Modal>
           ))
         )}
     </Box>

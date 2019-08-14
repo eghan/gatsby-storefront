@@ -217,6 +217,7 @@ export default ({ data }) => {
               title={`Photo by Eghan Thompson`}
               fluid={image.childImageSharp.fluid}
               id="mainImage"
+              text={name}
             />
           </Modal>
         </LeftSide>

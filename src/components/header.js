@@ -10,8 +10,14 @@ const Links = styled(Link)`
   text-decoration: none;
 `
 const Nav = styled(Links)`
-  padding: 0 0.8rem 0 0;
+  margin: 0 0.8rem 0 0;
   font-size: 0.95em;
+  transition-timing-function: ease-in;
+  transition: 1.5s;
+
+  &:hover {
+    border-bottom: 2px solid rgba(192, 192, 192, 0);
+  }
 `
 const Home = styled(Links)`
   grid-area: 1 / 1;

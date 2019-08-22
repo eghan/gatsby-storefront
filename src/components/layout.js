@@ -4,7 +4,6 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import 'typeface-tinos'
-import Transition from './transitions'
 
 import { ContextProviderComponent } from './context'
 import Header from './header'
@@ -44,15 +43,7 @@ const Layout = ({ children, location }) => (
             <html lang="en" />
           </Helmet>
           <Header siteTitle={node.site.siteMetadata.title} />
-          <Body>
-
-            {/* {children} */}
-            
-            <Transition location={location}>
-              {children}
-            </Transition>
-          
-          </Body>
+          <Body>{children}</Body>
           <Footer />
         </ContextProviderComponent>
       </>

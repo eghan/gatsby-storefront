@@ -29,7 +29,6 @@
     "react-helmet": "^5.2.1",
     "react-modal": "^3.8.1",
     "react-paypal-express-checkout": "github:eghan/react-paypal-express-checkout#eghan-patch-1",
-    "react-transition-group": "^4.2.2",
     "react-typography": "^0.16.13",
     "styled-components": "^4.1.1",
     "typeface-tinos": "0.0.72",

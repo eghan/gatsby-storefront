@@ -250,6 +250,7 @@ export default ({ data }) => {
                               },
                             ],
                           })
+                          navigate('cart')
                         }}
                       >
                         add item to cart

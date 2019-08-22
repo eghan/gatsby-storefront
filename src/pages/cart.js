@@ -45,7 +45,18 @@ const CartDisplay = () => (
     <Consumer>
       {({ data, set }) => {
         if ([...data.itemList].length < 2) {
-          return <div>cart empty</div>
+          return (
+            <div>
+              cart empty, check out things for sale in the
+              <Button
+                onClick={() => {
+                  navigate('shop')
+                }}
+              >
+                Shop
+              </Button>
+            </div>
+          )
         }
         const cartItems = data.itemList.filter(item => item !== 0)
         const cartTotal = cartItems.reduce(

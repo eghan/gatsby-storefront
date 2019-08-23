@@ -37,6 +37,7 @@ const IndexPage = ({ data }) => (
         .map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
               <Modal
+                object={img}
                 source={img.childImageSharp.low}
                 location={location}
                 name={img.name}

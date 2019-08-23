@@ -148,6 +148,7 @@ const RenderPhoto = ( PhotoObject ) => {
   return (
       <PhotoBox>
         <StyledModal
+          object={PhotoObject}
           key={PhotoObject.id}
           source={PhotoObject.childImageSharp.high}
           name={PhotoObject.name}

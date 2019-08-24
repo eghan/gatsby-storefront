@@ -42,6 +42,9 @@ const OverlayText = styled.div`
   color: darkgray;
   padding-right: 50px;
   text-align: right;
+  @media (max-width: 750px) {
+    width: 100vw;
+  }
 `
 
 const Element = styled.div`

@@ -9,8 +9,7 @@ const FooterNavigation = styled.div`
   padding: 2px 8px;
   position: fixed;
   width: 100vw;
-  bottom: 0;  
-/*  border-top: 1px solid black;*/  
+  bottom: 0;
   background: whiteSmoke;
   box-shadow: -5px -5px 20px WhiteSmoke;
   height: 66px;
@@ -30,13 +29,6 @@ const Navigation = ({ data }) => {
     .map(i => {
       return i.node.data // array of objects
     })
-
-
-  //   console.log('HI', Deck[0].details)
-  //
-  //   const Names = Deck.map( card => <div key={card.details}>{card.details}</div>)
-  //
-  //   console.log(Deck[0].photo.raw[0].url)
 
   return (
     <FooterNavigation>

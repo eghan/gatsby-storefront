@@ -26,9 +26,11 @@ const NavLink = styled(Link)`
 const Navigation = ({ data }) => {
   const Deck = data.allAirtable.edges
     .filter(i => i.node.data.name === 'nav')
+    .sort((a,b) => a.node.data.priority - b.node.data.priority)
     .map(i => {
       return i.node.data // array of objects
     })
+
 
   //   console.log('HI', Deck[0].details)
   //

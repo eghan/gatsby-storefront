@@ -37,7 +37,10 @@ const Navbar = styled.div`
 const Navitems = styled.div`
   grid-area: 1 / 2;
   text-align: right;
-  padding: 0.3rem 0 0 0;
+  padding: 0.3rem 0 0 0;    
+  @media (max-width: 750px) {
+    display: none;
+  }
 `
 
 const TopNav = () => (

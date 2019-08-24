@@ -27,6 +27,11 @@ const Box = styled.div`
   border-top: 22px solid black;
   width: 52vw;
   left: 24vw;
+  @media (max-width: 750px) {
+    left: 0;
+    height: auto;
+    width: auto;
+  }
 `
 const OverlayText = styled.div`
   position: absolute;
@@ -34,10 +39,9 @@ const OverlayText = styled.div`
   bottom: 12px;
   left: 0;
   width: 52vw;
-  color: darkgray;  
+  color: darkgray;
   padding-right: 50px;
   text-align: right;
-
 `
 
 const Element = styled.div`
@@ -173,22 +177,26 @@ class PhotoModal extends React.Component {
               id="modalImage"
               // imgStyle={{ ...imgStyle }}
             />
-            <OverlayText><Consumer>
-      {({ data, set }) => { if(this.props.text) {return (
-        <Button
-                    onClick={() => {
-                      set({
-                        itemInquery: [this.props.object],
-                      })
-                      navigate('contact')
-                    }}
-                  >
-                    { this.props.text ? this.props.text : '' }
-          </Button>
-        )}
-}}
-</Consumer>
-        </OverlayText>
+            <OverlayText>
+              <Consumer>
+                {({ data, set }) => {
+                  if (this.props.text) {
+                    return (
+                      <Button
+                        onClick={() => {
+                          set({
+                            itemInquery: [this.props.object],
+                          })
+                          navigate('contact')
+                        }}
+                      >
+                        {this.props.text ? this.props.text : ''}
+                      </Button>
+                    )
+                  }
+                }}
+              </Consumer>
+            </OverlayText>
           </Box>
         </Modal>
       </Element>

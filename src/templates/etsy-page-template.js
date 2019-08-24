@@ -10,7 +10,6 @@ import Tagbar from '../components/tagbar'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
-
 const tagExclude = [
   'industrial',
   'mechanical',
@@ -63,6 +62,7 @@ const TextDiv = styled.div`
   padding: 0 2em 0 0;
   grid-column: span 2;
   @media (max-width: 750px) {
+    display: none;
     padding: 0 0 0 0.5em;
     width: 95vw;
   }
@@ -86,8 +86,8 @@ const Previews = styled.div`
   /*border: 2px dotted magenta;*/
   @media (max-width: 750px) {
     position: relative;
-    display: block;
-    width: 100%;
+    /*display: block;*/
+    /*width: 100%;*/
     /*padding: 0 0 0 10px;*/
     /*border: 2px groove red;*/
   }
@@ -112,6 +112,11 @@ const Related = styled.div`
   padding: 0.2em 0;
   text-align: center;
   border: 1px solid black;
+  @media (max-width: 750px) {
+    position: relative;
+    margin: 15em 0 0 0;
+
+  }
 `
 
 const PaymentDiv = styled.div`
@@ -147,6 +152,9 @@ const TagDiv = styled.div`
 `
 const CartButton = styled(Button)`
   font-size: 1.1em;
+  @media (max-width: 750px) {
+    font-size: 0.9;
+  }
 `
 
 export default ({ data }) => {
@@ -233,7 +241,7 @@ export default ({ data }) => {
               {tagList}
             </TagDiv>
             <Price>
-              with free shipping:  {price} $
+              with free shipping: {price} $
               <Consumer>
                 {({ data, set }) => {
                   return (

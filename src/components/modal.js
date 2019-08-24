@@ -174,7 +174,7 @@ class PhotoModal extends React.Component {
               // imgStyle={{ ...imgStyle }}
             />
             <OverlayText><Consumer>
-      {({ data, set }) => {return (
+      {({ data, set }) => { if(this.props.text) {return (
         <Button
                     onClick={() => {
                       set({
@@ -185,7 +185,7 @@ class PhotoModal extends React.Component {
                   >
                     { this.props.text ? this.props.text : '' }
           </Button>
-        )
+        )}
 }}
 </Consumer>
         </OverlayText>

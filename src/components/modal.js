@@ -29,7 +29,7 @@ const Box = styled.div`
   left: 24vw;
   @media (max-width: 750px) {
     left: 0;
-    height: auto;
+    height: 85vh;
     width: auto;
   }
 `

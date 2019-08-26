@@ -8,6 +8,18 @@ import PaypalExpressBtn from 'react-paypal-express-checkout'
 import { Consumer } from '../components/context'
 import { GridBox, GridCell, GridRow, Button } from '../utils/global'
 
+const CartCell = styled(GridCell)`
+  padding: 0.5em 0 0 0;
+  @media (max-width: 750px) {
+    font-size: 0.6em;
+  }
+`
+const CartBox = styled(GridBox)`
+  @media (max-width: 750) {
+    margin: 0 0 10em 0;
+  }
+`
+
 const Photo = styled(Img)`
   height: 150px;
 
@@ -35,13 +47,13 @@ const client = {
 
 const style = {
   label: 'paypal',
-  size: 'medium', // small | medium | large | responsive
+  size: 'responsive', // small | medium | large | responsive
   shape: 'rect', // pill | rect
   color: 'blue', // gold | blue | silver | black
 }
 
 const CartDisplay = () => (
-  <GridBox>
+  <CartBox>
     <Consumer>
       {({ data, set }) => {
         if ([...data.itemList].length < 2) {
@@ -64,23 +76,29 @@ const CartDisplay = () => (
           0
         )
         const cartDisplayTotal = (
-          <GridRow>
-            <GridCell />
-            <GridCell />
-            <GridCell>with free shipping</GridCell>
-            <GridCell>Total: {cartTotal} $</GridCell>
-            <GridCell />
-            <GridCell />
-            <GridCell>Checkout with Paypal => </GridCell>
-            <GridCell>
-              <PaypalExpressBtn
-                client={client}
-                currency={'USD'}
-                total={Number(cartTotal)}
-                style={style}
-              />
-            </GridCell>
-          </GridRow>
+          <>
+            <GridRow>
+              <CartCell />
+              <CartCell />
+              <CartCell>with free shipping</CartCell>
+              <CartCell>Total: {cartTotal} $</CartCell>
+              <CartCell />
+              <CartCell />
+              <CartCell>Checkout with {'\u2192'} </CartCell>
+              <CartCell>
+                <PaypalExpressBtn
+                  client={client}
+                  currency={'USD'}
+                  total={Number(cartTotal)}
+                  style={style}
+                />
+              </CartCell>
+            </GridRow>
+            <GridRow>
+              <br />
+              <br />
+            </GridRow>
+          </>
         )
 
         const cartDisplay = cartItems.map((item, index) => {
@@ -96,7 +114,7 @@ const CartDisplay = () => (
                     />
                   </Modal>
                 </GridCell>
-                <GridCell>
+                <CartCell>
                   <div>{item.name}</div>
                   <Button
                     onClick={() => {
@@ -105,8 +123,8 @@ const CartDisplay = () => (
                   >
                     go to item listing
                   </Button>
-                </GridCell>
-                <GridCell>
+                </CartCell>
+                <CartCell>
                   <Button
                     onClick={() => {
                       set({
@@ -116,6 +134,7 @@ const CartDisplay = () => (
                   >
                     add another of this
                   </Button>
+                  <br />
                   or
                   <Button
                     onClick={() => {
@@ -127,8 +146,8 @@ const CartDisplay = () => (
                   >
                     remove item
                   </Button>
-                </GridCell>
-                <GridCell>{item.price}</GridCell>
+                </CartCell>
+                <CartCell>{item.price}$</CartCell>
               </GridRow>
             )
           }
@@ -137,7 +156,7 @@ const CartDisplay = () => (
         return [cartDisplay, cartDisplayTotal]
       }}
     </Consumer>
-  </GridBox>
+  </CartBox>
 )
 
 const Cart = () => {

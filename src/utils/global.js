@@ -9,6 +9,9 @@ const GridRow = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
   border-top: 2px solid black;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 const GridCell = styled.div`
   display: inline-block;

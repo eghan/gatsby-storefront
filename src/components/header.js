@@ -20,22 +20,33 @@ const Nav = styled(Links)`
   }
 `
 const Home = styled(Links)`
-  grid-area: 1 / 1;
+  grid-area: 1 / 1; 
   padding: 0 0.8rem;
   font-size: 1.4em;
+`
+const Tagline = styled(Links)`
+  grid-area: 1 / 2;
+  padding: .8em 0;
+  font-size: .8em;
+
+  @media(max-width: 750px){
+    padding: .6em 0;
+    font-size: .6em;
+    grid-area: 1 / 2 / span 1 / span 2;
+  }
 `
 const Navbar = styled.div`
   /*background: #FFFDF7;  //why do I need this here, it should match body but it doesent'*/
   height: 2em;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   border-bottom: 0.5px solid black;
   @media (max-width: 750px) {
     height: 8vh;
   }
 `
 const Navitems = styled.div`
-  grid-area: 1 / 2;
+  grid-area: 1 / 3;
   text-align: right;
   padding: 0.3rem 0 0 0;    
   @media (max-width: 750px) {
@@ -65,6 +76,7 @@ const Header = ({ siteTitle }) => (
     <Home key={siteTitle} to={'/'}>
       {siteTitle}
     </Home>
+    <Tagline key='about teaser' to={'about'}>wearable sculptures built to inspire innovation</Tagline>
     <TopNav />
   </Navbar>
 )

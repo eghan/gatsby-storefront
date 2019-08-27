@@ -5,9 +5,16 @@ import { Consumer } from '../components/context'
 import Img from 'gatsby-image'
 
 const Container = styled.div`
-  text-align: left;
-  margin: 2rem auto;
+  text-align: center;
+  margin: 1em auto 5em auto;
   max-width: 90%;
+`
+const Title = styled.div`
+  padding: 0 1em 0 1em;
+`
+const ImageAlert = styled.div`
+  font-size: .8em;
+  padding: 1em;
 `
 const TextArea = styled.textarea`
   height: 200px;
@@ -15,6 +22,9 @@ const TextArea = styled.textarea`
 `
 const Photo = styled(Img)`
   width: 200px;
+  margin: auto;
+  padding: 5.2em;
+  border: 1px solid black;
 `
 
 const Inquery = () => (
@@ -25,16 +35,19 @@ const Inquery = () => (
           return (
             // JSON.stringify(data.itemInquery[0].id)
             <Photo
-            fadeIn={true}
-            key={data.itemInquery[0].id}
-            title={`Photo by Eghan Thompson`}
-            fluid={data.itemInquery[0].childImageSharp.low}
-          />
+              fadeIn={true}
+              key={data.itemInquery[0].id}
+              title={`Photo by Eghan Thompson`}
+              fluid={data.itemInquery[0].childImageSharp.low}
+            />
           )
         }
         return (
           <div>
-            <h1>Test</h1>
+            <ImageAlert>
+            You can also contact me about a specific photo by using the inquery
+            button under the image
+            </ImageAlert>
           </div>
         )
       }}
@@ -77,8 +90,10 @@ export default class Contact extends React.Component {
     return (
       <>
         <Container>
+          <Title>
+          Contact form:
+          </Title>
           <Inquery />
-          <h1>Contact</h1>
           <form
             name="contact"
             method="post"

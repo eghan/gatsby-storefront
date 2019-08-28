@@ -3,14 +3,29 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-import Tagbar from '../components/tagbar'
+import Categories from '../components/categories'
 
 const Container = styled.div`
-  display: block;
-  text-align: center;
+  /*display: block;*/
+  display: grid;
+  /*text-align: center;*/
   width: 100%;
+  grid-template-columns: 1fr 1fr;
+
   /*margin: 0.5rem auto;*/
 `
+const CategoryDisplay = styled(Categories)`
+  display: block;
+  grid-area: 1 / 1 / 1 / 1;
+  width: 15vw;
+  height: 100vh;
+`
+const Products = styled.div`
+  grid-area: 1 / 2 / 1 / 2;
+  width: 85vw;
+  padding: 2em;
+`
+
 const Details = styled.div`
   margin: 0.3em 0.5em;
   display: block;
@@ -80,16 +95,25 @@ function renderTagMatches(data) {
   //     }
   //   })
   // }
+  let structuredProducts = []
 
-  if (data.etsy !== null) {
-    data.etsy.edges.forEach(
-      item =>
-        (matchList = [
-          ...matchList,
-          [item.node.name, item.node.image, item.node.price],
-        ])
-    )
+  if (typeof data.etsy.edges !== 'undefined') {
+    data.etsy.edges.forEach(item => {
+      structuredProducts = [
+        ...structuredProducts,
+        {
+          price: item.node.price,
+          name: item.node.name,
+          tags: item.node.tags,
+        },
+      ]
+      matchList = [
+        ...matchList,
+        [item.node.name, item.node.image, item.node.price],
+      ]
+    })
   }
+  // console.log(structuredProducts)
 
   let output = matchList.map((match, index) => {
     // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
@@ -120,8 +144,12 @@ function renderTagMatches(data) {
 export default ({ data }) => {
   return (
     <>
-      <Tagbar />
-      <Container>{renderTagMatches(data)}</Container>
+      {/* <Tagbar /> */}
+
+      <Container>
+        <CategoryDisplay />
+        <Products>{renderTagMatches(data)}</Products>
+      </Container>
     </>
   )
 }
@@ -151,9 +179,10 @@ export const query = graphql`
     etsy: allEtsyListingsDownloadCsv {
       edges {
         node {
+          id
           name: TITLE
           price: PRICE
-          fields {
+          tags: fields {
             tags
           }
           image {

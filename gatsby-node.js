@@ -48,7 +48,12 @@ exports.onCreateNode = async ({
         }
 
         if (node.TAGS !== null) {
+
+          let tagExclude = ['mad_max', 'steampunk']  
+// any tags that are on etsy but not wanted on site
           let tags = node.TAGS.split(',')
+          .map(tag=>tag.toLowerCase())
+          .filter(tag=>!tagExclude.includes(tag))
 
           createNodeField({
             node,

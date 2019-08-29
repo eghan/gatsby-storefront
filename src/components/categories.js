@@ -1,17 +1,17 @@
 import React from 'react'
-import { useStaticQuery, Link, graphql } from 'gatsby'
+import { useStaticQuery, Link, graphql, navigate } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import { Button } from '../utils/global'
 
+import { Button } from '../utils/global'
 
 const SideBar = styled.div`
   padding: 1em;
 `
 const TagDisplay = styled(Button)`
-  padding: .15em .4em;
-  font-size: .9em;
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
 `
 const Title = styled.div`
   font-size: 1.1em;
@@ -73,35 +73,38 @@ const Categories = props => {
         product.node.fields.tags.includes(tag)
       )
     })
-  }else {
+  } else {
     renderData = etsy.edges
   }
-  const tagList = renderData.map( product => [...product.node.fields.tags])
+  const tagList = renderData.map(product => [...product.node.fields.tags])
 
-  const mergedTags = [].concat(...tagList);
+  const mergedTags = [].concat(...tagList)
 
-  const tagCount = mergedTags.map(value => [mergedTags.filter( x => x === value).length, value])
-  
+  const tagCount = mergedTags.map(value => [
+    mergedTags.filter(x => x === value).length,
+    value,
+  ])
 
-  const tagsUnique = tagCount.filter( tag => tag[0] < renderData.length, [])
+  const tagsUnique = tagCount.filter(tag => tag[0] < renderData.length, [])
 
   const tagsUniqueCounted = tagsUnique.filter(
-        (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))
-        (new Set)
-    )
+    (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))(new Set())
+  )
 
   return (
     <SideBar>
-      <Title>
-      Categories:
-      </Title>
-{tagsUniqueCounted.map( tag => (
-  <TagDisplay>
-    {/* {tag[1]} has {tag[0]} */}
-    { DeSlug(tag[1])} 
-    {/* {tag[0]} */}
-    </TagDisplay>
-  ))}
+      <Title>Categories:</Title>
+      {tagsUniqueCounted.map(tag => (
+        <TagDisplay
+          onClick={() => {
+            navigate(tag[1])
+          }}
+        >
+          {/* {tag[1]} has {tag[0]} */}
+          {DeSlug(tag[1])}
+          {/* {tag[0]} */}
+        </TagDisplay>
+      ))}
     </SideBar>
   )
 }

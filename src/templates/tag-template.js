@@ -4,14 +4,27 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
 
-
-import Tagbar from '../components/tagbar'
+import Categories from '../components/categories'
 
 const Container = styled.div`
-  display: inline-block;
-  text-align: center;
+  /*display: block;*/
+  display: grid;
+  /*text-align: center;*/
   width: 100%;
-  margin: 0.5rem auto;
+  grid-template-columns: 1fr 1fr;
+
+  /*margin: 0.5rem auto;*/
+`
+const CategoryDisplay = styled(Categories)`
+  display: block;
+  grid-area: 1 / 1 / 1 / 1;
+  width: 15vw;
+  height: 100vh;
+`
+const Products = styled.div`
+  grid-area: 1 / 2 / 1 / 2;
+  width: 85vw;
+  padding: 2em;
 `
 
 const Details = styled.div`
@@ -26,8 +39,8 @@ const Details = styled.div`
   }
 `
 const Title = styled.p`
-  margin: .5em;
-  text-transform:capitalize;
+  margin: 0.5em;
+  text-transform: capitalize;
 `
 const Price = styled.div`
   float: right;
@@ -45,7 +58,7 @@ const Photo = styled(Img)`
 const PhotoLink = styled(Link)`
   margin: 0.5em 0.5em;
   display: inline-block;
-  font-size: .8em;
+  font-size: 0.8em;
   text-decoration: none;
   color: black;
 `
@@ -101,16 +114,25 @@ function renderTagMatches(data) {
 export default ({ data }) => {
   return (
     <>
-      <Tagbar />
       <Container>
-      <Location>
-      {({ location }) => {
-        // console.log(location)
-        //  deslug pathname
-        return <Title>{location.pathname.replace(/\//g, "").replace(/_/g, " ").replace(/%20/g, " ")} :</Title>
-      }}
-    </Location>
-        {renderTagMatches(data)}
+        <CategoryDisplay />
+        <Products>
+          {' '}
+          <Location>
+            {({ location }) => {
+              return (
+                <Title>
+                  {location.pathname
+                    .replace(/\//g, '')
+                    .replace(/_/g, ' ')
+                    .replace(/%20/g, ' ')}{' '}
+                  :
+                </Title>
+              )
+            }}
+          </Location>
+          {renderTagMatches(data)}
+        </Products>
       </Container>
     </>
   )

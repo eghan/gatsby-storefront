@@ -90,14 +90,16 @@ const Categories = props => {
   const tagsUniqueCounted = tagsUnique.filter(
     (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))(new Set())
   )
+  let section = ''
 
   return (
     <SideBar>
-      <Title>Categories:</Title>
+      <Title>Categories: {section}</Title>
       {tagsUniqueCounted.map(tag => (
         <TagDisplay
           onClick={() => {
             navigate(tag[1])
+            section = tag[1]
           }}
         >
           {/* {tag[1]} has {tag[0]} */}

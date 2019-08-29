@@ -21,7 +21,7 @@ const GridCell = styled.div`
 `
 const Button = styled.button`
   font-size: 0.8em;
-  border: 1.4px solid lightgray;
+  border: 1px solid lightgray;
   background-color: white;
   margin: 5px;
   padding: 2px 20px;
@@ -30,7 +30,6 @@ const Button = styled.button`
   transition: all 0.3s;
   &:hover {
     box-shadow: inset 0px 0px 3px 3px lightgray;
-    border: 1.4px solid white;
   }
 `
 

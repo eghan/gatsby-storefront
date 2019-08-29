@@ -24,7 +24,7 @@ const CategoryDisplay = styled(Categories)`
 const Products = styled.div`
   grid-area: 1 / 2 / 1 / 2;
   width: 85vw;
-  padding: 2em;
+  /*padding: 2em;*/
 `
 
 const Details = styled.div`
@@ -39,7 +39,7 @@ const Details = styled.div`
   }
 `
 const Title = styled.p`
-  margin: 0.5em;
+  padding: 1.15em 0 0 0;  
   text-transform: capitalize;
 `
 const Price = styled.div`
@@ -56,7 +56,7 @@ const Photo = styled(Img)`
   }
 `
 const PhotoLink = styled(Link)`
-  margin: 0.5em 0.5em;
+  padding: 0 .5em 0.5em 0.5em;
   display: inline-block;
   font-size: 0.8em;
   text-decoration: none;
@@ -117,7 +117,6 @@ export default ({ data }) => {
       <Container>
         <CategoryDisplay />
         <Products>
-          {' '}
           <Location>
             {({ location }) => {
               return (
@@ -125,7 +124,7 @@ export default ({ data }) => {
                   {location.pathname
                     .replace(/\//g, '')
                     .replace(/_/g, ' ')
-                    .replace(/%20/g, ' ')}{' '}
+                    .replace(/%20/g, ' ')}
                   :
                 </Title>
               )

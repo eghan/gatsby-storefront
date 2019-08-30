@@ -6,6 +6,6 @@
 
 // You can delete this file if you're not using it
 
-exports.shouldUpdateScroll = () => {
-  return false;
-};
+// exports.shouldUpdateScroll = () => {
+//   return false;
+// };

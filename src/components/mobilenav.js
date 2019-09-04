@@ -2,7 +2,10 @@ import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-
+const FootPlacement = styled.div`
+  position: absolute;
+  bottom: 0;
+`
 const FooterNavigation = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -25,19 +28,19 @@ const NavLink = styled(Link)`
 const Navigation = ({ data }) => {
   const Deck = data.allAirtable.edges
     .filter(i => i.node.data.name === 'nav')
-    .sort((a,b) => a.node.data.priority - b.node.data.priority)
-    .map(i => {
-      return i.node.data // array of objects
-    })
+    .sort((a, b) => a.node.data.priority - b.node.data.priority)
+    .map(i => i.node.data)
 
   return (
-    <FooterNavigation>
-      {Deck.map(card => (
-        <NavLink to={card.details}>
-          <NavItem key={card.details} src={card.photo.raw[0].url} />
-        </NavLink>
-      ))}
-    </FooterNavigation>
+    <FootPlacement>
+      <FooterNavigation>
+        {Deck.map(card => (
+          <NavLink to={card.details}>
+            <NavItem key={card.details} src={card.photo.raw[0].url} />
+          </NavLink>
+        ))}
+      </FooterNavigation>
+    </FootPlacement>
   )
 }
 

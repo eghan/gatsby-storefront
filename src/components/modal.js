@@ -165,7 +165,12 @@ class PhotoModal extends React.Component {
 
     return (
       <Element>
-        <div onClick={this.handleOpenModal}>{this.props.children}</div>
+        <div
+          onClick={this.props.doubleclick ? '' : this.handleOpenModal}
+          onDoubleClick={this.props.doubleclick ? this.handleOpenModal : ''}
+        >
+          {this.props.children}
+        </div>
 
         <Modal
           isOpen={this.state.showModal}

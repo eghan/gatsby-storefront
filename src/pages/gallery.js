@@ -5,12 +5,12 @@ import Img from 'gatsby-image'
 import EmblaCarouselReact from 'embla-carousel-react'
 import Modal from '../components/modal'
 
+import { Button } from '../utils/global'
+
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
 
 // import React, { useState, useCallback, useEffect } from 'react'
-
-
 
 const Box = styled.div`
   /*min-width: 350px;*/
@@ -32,29 +32,46 @@ const Box = styled.div`
 const Photo = styled(Img)`
   /*padding: 1em 1em;*/
   border: 1px solid black;
-  width: 300px;
-  height: 300px;
+  width: 18vw;
+  height: 18vw;
+  @media (max-width: 750px) {
+    width: 47vw;
+    height: 47vw;
+  }
 `
 
-
-
-
 const Carousel = styled.div`
-  grid-gap: 1vw;
+  border-bottom: 1px solid gray;
   padding: 1vw;
   display: grid;
   grid-template-columns: 1fr 7fr 1fr;
   margin: auto;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+  }
 `
-const CarouselNavigation = styled.button`
+const CarouselNavigation = styled(Button)`
+  font-size: 3em;
+  color: grey;
   width: 10vw;
+  outline: none;
+  @media (max-width: 750px) {
+    display: none;
+  }
 `
 const CarouselCenter = styled.div`
   grid-area: 1/2;
+  width: 100vw;
 `
 const CarouselPhoto = styled(Photo)`
-  height: 500px;
-  width: 500px;
+  height: 30vw;
+  width: 30vw;
+  margin: 0.5em;
+  @media (max-width: 750px) {
+    margin: 0.1em;
+    height: 70vw;
+    width: 70vw;
+  }
 `
 
 const EmblaCarouselComponent = photos => {
@@ -73,13 +90,13 @@ const EmblaCarouselComponent = photos => {
   return (
     <Carousel>
       {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
-      <CarouselNavigation onClick={scrollPrev}>Previous</CarouselNavigation>
+      <CarouselNavigation onClick={scrollPrev}>{'\u219C'}<br/>{'\u219C'}<br/>{'\u219C'}</CarouselNavigation>
       <EmblaCarouselReact
         htmlTagName="div"
         emblaRef={setEmbla}
-        options={{ loop: true, startIndex: 2 }}
+        options={{ loop: true, startIndex: 2, speed: 5 }}
       >
-        <CarouselCenter style={{ display: 'flex' }}>
+        <CarouselCenter style={{ display: 'flex'}}>
           {photos.photos[0].node.data.photo.localFiles.map(img => (
             <Modal
               object={img}
@@ -101,7 +118,7 @@ const EmblaCarouselComponent = photos => {
         </CarouselCenter>
       </EmblaCarouselReact>
 
-      <CarouselNavigation onClick={scrollNext}>Next</CarouselNavigation>
+      <CarouselNavigation onClick={scrollNext}>{'\u219D'}<br/>{'\u219D'}<br/>{'\u219D'}</CarouselNavigation>
     </Carousel>
   )
 }

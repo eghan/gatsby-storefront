@@ -31,7 +31,7 @@ const Tagline = styled(Links)`
 
   @media(max-width: 750px){
     padding: .6em 0;
-    font-size: .6em;
+    font-size: .5em;
     grid-area: 1 / 2 / span 1 / span 2;
   }
 `

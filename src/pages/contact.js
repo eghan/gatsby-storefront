@@ -13,7 +13,7 @@ const Title = styled.div`
   padding: 0 1em 0 1em;
 `
 const ImageAlert = styled.div`
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 1em;
 `
 const TextArea = styled.textarea`
@@ -27,26 +27,31 @@ const Photo = styled(Img)`
   border: 1px solid black;
 `
 
+let imageTargetURL = typeof window !== `undefined` ? window.location.origin : ''
+
 const Inquery = () => (
   <>
     <Consumer>
       {({ data }) => {
         if (data.itemInquery !== false) {
+          imageTargetURL += data.itemInquery[0].childImageSharp.low.src
           return (
             // JSON.stringify(data.itemInquery[0].id)
-            <Photo
-              fadeIn={true}
-              key={data.itemInquery[0].id}
-              title={`Photo by Eghan Thompson`}
-              fluid={data.itemInquery[0].childImageSharp.low}
-            />
+            <div>
+              <Photo
+                fadeIn={true}
+                key={data.itemInquery[0].id}
+                title={`Photo by Eghan Thompson`}
+                fluid={data.itemInquery[0].childImageSharp.low}
+              />
+              </div>
           )
         }
         return (
           <div>
             <ImageAlert>
-            You can also contact me about a specific photo by using the inquery
-            button under the image
+              You can also contact me about a specific photo by using the
+              inquery button under the image
             </ImageAlert>
           </div>
         )
@@ -90,10 +95,8 @@ export default class Contact extends React.Component {
     return (
       <>
         <Container>
-          <Title>
-          Contact form:
-          </Title>
-          <Inquery />
+          <Title>Contact form:</Title>
+
           <form
             name="contact"
             method="post"
@@ -102,6 +105,7 @@ export default class Contact extends React.Component {
             data-netlify-honeypot="bot-field"
             onSubmit={this.handleSubmit}
           >
+            <Inquery />
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact" />
             <p hidden>
@@ -132,6 +136,7 @@ export default class Contact extends React.Component {
               </label>
             </p>
             <p>
+              <input type="hidden" name="image_input" value={imageTargetURL} />
               <button type="submit">Send</button>
             </p>
           </form>

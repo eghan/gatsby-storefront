@@ -34,7 +34,7 @@ const Inquery = () => (
     <Consumer>
       {({ data }) => {
         if (data.itemInquery !== false) {
-          imageTargetURL += data.itemInquery[0].childImageSharp.low.src
+          imageTargetURL = data.itemInquery[0].childImageSharp.low.src
           return (
               <Photo
                 fadeIn={true}
@@ -76,8 +76,7 @@ export default class Contact extends React.Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
     if (e.target.name==='message'){
-      this.setState({ REFimage: (' REF is ' + imageTargetURL) })
-    }
+      this.setState({ [e.target.name]: (e.target.value + ' REF is ' + imageTargetURL)  })    }
   }
 
   handleSubmit = e => {

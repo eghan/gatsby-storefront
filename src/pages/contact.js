@@ -43,7 +43,6 @@ const Inquery = () => (
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
-              <input type="text" name="image_input" value={imageTargetURL} hidden/>
             </>
           )
         }
@@ -136,6 +135,13 @@ export default class Contact extends React.Component {
               </label>
             </p>
             <p>
+              <input
+                type="text"
+                name="image_input"
+                value={imageTargetURL}
+                onChange={this.handleChange} 
+                hidden
+              />
               <button type="submit">Send</button>
             </p>
           </form>

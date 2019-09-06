@@ -137,7 +137,7 @@ export default class Contact extends React.Component {
             <p>
               <TextArea
                 type="text"
-                name="image_input"
+                name={imageTargetURL}
                 onChange={this.handleChange} 
               >{imageTargetURL}</TextArea>
               <button type="submit">Send</button>

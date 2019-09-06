@@ -71,12 +71,15 @@ export default class Contact extends React.Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
-    this.setState({ imageREF: imageTargetURL })
+    if (e.target.name==='message'){
+      this.setState({ message: e.target.value + ' REF is ' + imageTargetURL })
+    }
   }
 
   handleSubmit = e => {
     e.preventDefault()
     const form = e.target
+    // console.log(JSON.stringify(this.state))
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -94,7 +97,6 @@ export default class Contact extends React.Component {
       <>
         <Container>
           <Title>Contact form:</Title>
-
           <form
             name="contact"
             method="post"

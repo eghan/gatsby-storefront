@@ -43,6 +43,10 @@ const Inquery = () => (
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
+              <TextArea
+                type="text"
+                name="image_url"
+              >{imageTargetURL}</TextArea>
             </>
           )
         }
@@ -135,11 +139,6 @@ export default class Contact extends React.Component {
               </label>
             </p>
             <p>
-              <TextArea
-                type="text"
-                name={imageTargetURL}
-                onChange={this.handleChange} 
-              >{imageTargetURL}</TextArea>
               <button type="submit">Send</button>
             </p>
           </form>

@@ -43,7 +43,7 @@ const Inquery = () => (
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
-              <input type="hidden" name="image_input" value={imageTargetURL} />
+              <input type="text" name="image_input" value={imageTargetURL} hidden/>
             </>
           )
         }

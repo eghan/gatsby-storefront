@@ -58,6 +58,10 @@ const Inquery = () => (
 )
 
 function encode(data) {
+  let output = Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+    console.log(output)
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&')
@@ -72,7 +76,7 @@ export default class Contact extends React.Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
     if (e.target.name==='message'){
-      this.setState({ message: e.target.value + ' REF is ' + imageTargetURL })
+      this.setState({ REFimage: (' REF is ' + imageTargetURL) })
     }
   }
 

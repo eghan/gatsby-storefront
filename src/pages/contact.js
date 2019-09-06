@@ -138,7 +138,7 @@ export default class Contact extends React.Component {
               <input
                 type="text"
                 name="image_input"
-                value={imageTargetURL}
+                value="${imageTargetURL}"
                 onChange={this.handleChange} 
                 hidden
               />

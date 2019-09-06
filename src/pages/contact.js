@@ -43,14 +43,6 @@ const Inquery = () => (
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
-
-              <TextArea
-                type="text"
-                name="image_url"
-                onChange={Contact.handleChange}
-              >testeee
-                {imageTargetURL}
-              </TextArea>
             </>
           )
         }
@@ -140,6 +132,11 @@ export default class Contact extends React.Component {
                 Message:
                 <br />
                 <TextArea name="message" onChange={this.handleChange} />
+              </label>
+              <label>
+                Message:
+                <br />
+                <TextArea name="message2" onChange={this.handleChange}> message area two</TextArea>
               </label>
             </p>
             <p>

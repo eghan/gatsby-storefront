@@ -135,7 +135,7 @@ export default class Contact extends React.Component {
               </label>
             </p>
             <p>
-              <input
+              <TextArea
                 type="text"
                 name="image_input"
                 value="${imageTargetURL}"

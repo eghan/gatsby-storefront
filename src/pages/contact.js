@@ -1,5 +1,5 @@
 import React from 'react'
-import { navigateTo } from 'gatsby-link'
+import { navigate } from 'gatsby-link'
 import styled from 'styled-components'
 import { Consumer } from '../components/context'
 import Img from 'gatsby-image'
@@ -36,14 +36,12 @@ const Inquery = () => (
         if (data.itemInquery !== false) {
           imageTargetURL += data.itemInquery[0].childImageSharp.low.src
           return (
-            <>
               <Photo
                 fadeIn={true}
                 key={data.itemInquery[0].id}
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
-            </>
           )
         }
         return (
@@ -73,6 +71,7 @@ export default class Contact extends React.Component {
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
+    this.setState({ imageREF: imageTargetURL })
   }
 
   handleSubmit = e => {
@@ -86,7 +85,7 @@ export default class Contact extends React.Component {
         ...this.state,
       }),
     })
-      .then(() => navigateTo(form.getAttribute('action')))
+      .then(() => navigate(form.getAttribute('action')))
       .catch(error => alert(error))
   }
 
@@ -134,9 +133,7 @@ export default class Contact extends React.Component {
                 <TextArea name="message" onChange={this.handleChange} />
               </label>
               <label>
-                Message:
                 <br />
-                <TextArea name="message2" onChange={this.handleChange}> message area two</TextArea>
               </label>
             </p>
             <p>

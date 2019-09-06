@@ -36,15 +36,15 @@ const Inquery = () => (
         if (data.itemInquery !== false) {
           imageTargetURL += data.itemInquery[0].childImageSharp.low.src
           return (
-            // JSON.stringify(data.itemInquery[0].id)
-            <div>
+            <>
               <Photo
                 fadeIn={true}
                 key={data.itemInquery[0].id}
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
-              </div>
+              <input type="hidden" name="image_input" value={imageTargetURL} />
+            </>
           )
         }
         return (
@@ -136,7 +136,6 @@ export default class Contact extends React.Component {
               </label>
             </p>
             <p>
-              <input type="hidden" name="image_input" value={imageTargetURL} />
               <button type="submit">Send</button>
             </p>
           </form>

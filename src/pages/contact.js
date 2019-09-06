@@ -43,10 +43,14 @@ const Inquery = () => (
                 title={`Photo by Eghan Thompson`}
                 fluid={data.itemInquery[0].childImageSharp.low}
               />
+
               <TextArea
                 type="text"
                 name="image_url"
-              >{imageTargetURL}</TextArea>
+                onChange={Contact.handleChange}
+              >testeee
+                {imageTargetURL}
+              </TextArea>
             </>
           )
         }

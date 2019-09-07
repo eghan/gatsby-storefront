@@ -58,13 +58,11 @@ const Inquery = () => (
 )
 
 function encode(data) {
-  let output = Object.keys(data)
+  let encoded = Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&')
-    console.log(output)
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
+    console.log(encoded)
+  return encoded
 }
 
 export default class Contact extends React.Component {
@@ -76,7 +74,9 @@ export default class Contact extends React.Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
     if (e.target.name==='message'){
-      this.setState({ [e.target.name]: (e.target.value + ' REF is ' + imageTargetURL)  })    }
+      this.setState({ [e.target.name]: (e.target.value + ' REF is ' + imageTargetURL)  })    
+      this.setState( { 'bullshit': 'newlies'} )
+    }
   }
 
   handleSubmit = e => {
@@ -121,7 +121,7 @@ export default class Contact extends React.Component {
               <label>
                 Your name:
                 <br />
-                <input type="text" name="name" onChange={this.handleChange} />
+                <input type="text" name="contact_name" onChange={this.handleChange} />
               </label>
             </p>
             <p>
@@ -129,6 +129,7 @@ export default class Contact extends React.Component {
                 Your email:
                 <br />
                 <input type="email" name="email" onChange={this.handleChange} />
+                <input type="lies" name="bullshit" value="fuckthisshit" onChange={this.handleChange} />
               </label>
             </p>
             <p>

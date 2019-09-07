@@ -7,7 +7,7 @@ import Img from 'gatsby-image'
 import { Button } from '../utils/global'
 
 const Container = styled.div`
-border: 1px solid dimgray;
+  border: 1px solid dimgray;
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
@@ -16,7 +16,7 @@ border: 1px solid dimgray;
 `
 const GridLeft = styled.div`
   display: grid;
-  padding: .7em;
+  padding: 0.7em;
   grid-area: 1/1;
 `
 const GridRight = styled.div`
@@ -72,7 +72,7 @@ const Inquery = () => (
               You can contact me about a specific photo by using the
               <Button>inquiry</Button> button under the image(click to zoom), in
               the <Button onClick={() => navigate('gallery')}>Gallery</Button>{' '}
-              or <Button>Home</Button> pages
+              or <Button onClick={() => navigate('/')}>Home</Button> pages
             </ImageAlert>
           </div>
         )
@@ -123,19 +123,20 @@ export default class Contact extends React.Component {
     return (
       <>
         <Title>Contact form:</Title>
-        <form
-          name="contact"
-          method="post"
-          action="/thanks/"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={this.handleSubmit}
-        >
-          <Container>
-            <GridLeft>
-              <Inquery />
-            </GridLeft>
-            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+
+        <Container>
+          <GridLeft>
+            <Inquery />
+          </GridLeft>
+          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+          <form
+            name="contact"
+            method="post"
+            action="/thanks/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={this.handleSubmit}
+          >
             <GridRight>
               <input type="hidden" name="form-name" value="contact" />
               <p hidden>
@@ -180,8 +181,8 @@ export default class Contact extends React.Component {
                 <SubmitButton type="submit">Send</SubmitButton>
               </p>
             </GridRight>
-          </Container>
-        </form>
+          </form>
+        </Container>
       </>
     )
   }

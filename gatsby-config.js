@@ -30,6 +30,7 @@ module.exports = {
       },
     },    
     'gatsby-transformer-sharp',
+    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-manifest`,

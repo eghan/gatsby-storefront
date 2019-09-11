@@ -9,21 +9,39 @@ const Container = styled.div`
   /*display: block;*/
   display: grid;
   /*text-align: center;*/
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-
-  /*margin: 0.5rem auto;*/
+  /*width: 100%;*/
+  /*background: plum;*/
+  /*grid-template-columns: 1fr;*/
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
-const CategoryDisplay = styled(Categories)`
-  display: block;
-  grid-area: 1 / 1 / 1 / 1;
+
+const CategoryDisplay = styled(Categories)``
+
+const TagNav = styled.div`
   width: 15vw;
-  height: 100vh;
+  border-right: 1px solid dimgray;
+  /*background: hotpink;*/
+  /*display: grid;*/
+  /*grid-area: 1/1/1/2;*/
+  @media (max-width: 750px) {
+    grid-area: 1/1/1/2;
+    grid-column: span 2;
+  }
 `
 const Products = styled.div`
   grid-area: 1 / 2 / 1 / 2;
-  width: 85vw;
-  padding: 2em;
+  /*width: 85vw;*/
+  padding: 1em;
+  /*background: peru;*/
+  text-align: center;
+  @media (max-width: 750px) {
+    /*background: peru;*/
+    /*padding: .5em;*/
+    grid-area: 2/1/2/2;
+    grid-column: span 2;
+  }
 `
 
 const Details = styled.div`
@@ -41,28 +59,36 @@ const Price = styled.div`
 const Photo = styled(Img)`
   width: 300px;
   height: 300px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   padding: 0.5em 0.5em;
 
+  @media (max-width: 750px) {
+    width: 250px;
+    height: 250px;
+  }
   // method to access picture properties directly
-  picture {
+  /*  picture {
     overflow: hidden;
     width: 100px;
-  }
+  }*/
 
   @media (max-width: 1040px) {
-    padding: 0em 0em;
+    /*padding: .5em;*/
     width: 150px;
     height: 150px;
   }
 `
 const ProductLink = styled(Link)`
   display: inline-block;
-  border: 10px solid white;
-  border-radius: 10px;
+  /*border: 10px solid white;*/
+  /*border-radius: 10px;*/
+  padding: 0.5em;
   font-size: 0.8em;
   text-decoration: none;
   color: black;
+  @media (max-width: 750px) {
+    padding: 0 0.2em;
+  }
 `
 const Preview = styled.div`
   font-size: 0.8em;
@@ -147,7 +173,9 @@ export default ({ data }) => {
       {/* <Tagbar /> */}
 
       <Container>
-        <CategoryDisplay />
+        <TagNav>
+          <CategoryDisplay />
+        </TagNav>
         <Products>{renderTagMatches(data)}</Products>
       </Container>
     </>

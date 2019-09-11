@@ -3,23 +3,42 @@ import { useStaticQuery, Link, graphql, navigate } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+// import Tagbar from './tagbar'
+import { Button, TagButton } from '../utils/global'
+import MenuModal from './menu-modal'
 
-import { Button } from '../utils/global'
-
-const SideBar = styled.div`
-  padding: 1em;
-/*  @media(750px){
-    display: none;
-  }*/
+const Box = styled.div`
+  /*background: pink;*/
+  text-align: center;
+  margin: auto;
+  padding: 0.5em;
+  @media (max-width: 750px) {
+    text-align: left;
+    padding: 0em;
+  }
 `
-const TagDisplay = styled(Button)`
-  padding: 0.15em 0.4em;
+const InquiryButton = styled(Button)`
+  margin: 2em;
   font-size: 0.9em;
 `
-const Title = styled.div`
-  font-size: 1.1em;
-  border-bottom: 2px solid black;
-  margin: 0 0 1em 0;
+const Tags = styled.div`
+  margin: .5em;
+  border-bottom: 1px solid lightgray;
+`
+const SideBar = styled.div`
+  display: inline;
+  /*padding: 1em;*/
+  @media (max-width: 750px) {
+    display: none;
+    width: 0em;
+  }
+`
+const TagMenu = styled(MenuModal)`
+  display: none;
+  background: gray;
+  @media (max-width: 750px) {
+    display: inline;
+  }
 `
 
 const Categories = props => {
@@ -94,23 +113,32 @@ const Categories = props => {
     (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))(new Set())
   )
 
-  const tagsFiltered = tagsUniqueCounted.filter( (tag,i) => tagsUniqueCounted.indexOf(tag) === i )
+  const tagsFiltered = tagsUniqueCounted.filter(
+    (tag, i) => tagsUniqueCounted.indexOf(tag) === i
+  )
 
   return (
-    <SideBar>
-      <Title>Categories: </Title>
-      {tagsFiltered.map(tag => (
-        <TagDisplay
-          onClick={() => {
-            navigate(tag[1])
-          }}
-        >
-          {/* {tag[1]} has {tag[0]} */}
-          {DeSlug(tag[1])}
-          {/* {tag[0]} */}
-        </TagDisplay>
-      ))}
-    </SideBar>
+    <Box>
+      <TagMenu categories={tagsFiltered}>search by tag</TagMenu>
+      <SideBar>
+        <Tags>Tags:</Tags>
+
+        {tagsFiltered.map(tag => (
+          <TagButton
+            onClick={() => {
+              navigate(tag[1])
+            }}
+          >
+            {/* {tag[1]} has {tag[0]} */}
+            {DeSlug(tag[1])}
+            {/* {tag[0]} */}
+          </TagButton>
+        ))}
+        <InquiryButton onClick={() => navigate('/contact')}>
+          custom orders
+        </InquiryButton>
+      </SideBar>
+    </Box>
   )
 }
 

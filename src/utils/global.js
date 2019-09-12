@@ -32,5 +32,9 @@ const Button = styled.button`
     box-shadow: inset 0px 0px 3px 3px lightgray;
   }
 `
+const TagButton = styled(Button)`
+  /*padding: 0.15em 0.4em;*/
+  font-size: 0.9em;
+`
 
-export { GridBox, GridRow, GridCell, Button  }
+export { GridBox, GridRow, GridCell, Button, TagButton }

@@ -47,6 +47,7 @@ const Element = styled.div`
     width: 0em;
     height: 0em;
     font-size: .7em;
+    padding: 0 .3em;
     /*background: hotpink;*/
   }
 `
@@ -170,7 +171,7 @@ class MenuModal extends React.Component {
         <Modal
           isOpen={this.state.showModal}
           ariaHideApp={false}
-          contentLabel="Inline Styles Modal Example"
+          contentLabel="Inline Styles Modal"
           style={customStyles}
         >
           <Box onClick={this.handleCloseModal}>

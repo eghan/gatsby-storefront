@@ -8,13 +8,19 @@ import { Button, TagButton } from '../utils/global'
 import MenuModal from './menu-modal'
 
 const Box = styled.div`
-  /*background: pink;*/
   text-align: center;
   margin: auto;
   padding: 0.5em;
   @media (max-width: 750px) {
-    text-align: left;
+    text-align: center;
     padding: 0em;
+  }
+`
+const InquiryButtonMobile = styled(Button)`
+  display: none;
+  @media (max-width: 750px) {
+    display: inline;
+    font-size: 0.7em;
   }
 `
 const InquiryButton = styled(Button)`
@@ -22,7 +28,7 @@ const InquiryButton = styled(Button)`
   font-size: 0.9em;
 `
 const Tags = styled.div`
-  margin: .5em;
+  margin: 0.5em;
   border-bottom: 1px solid lightgray;
 `
 const SideBar = styled.div`
@@ -120,6 +126,9 @@ const Categories = props => {
   return (
     <Box>
       <TagMenu categories={tagsFiltered}>search by tag</TagMenu>
+      <InquiryButtonMobile onClick={() => navigate('/contact')}>
+        custom orders
+      </InquiryButtonMobile>
       <SideBar>
         <Tags>Tags:</Tags>
 

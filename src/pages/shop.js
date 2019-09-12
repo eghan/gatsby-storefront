@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 import Categories from '../components/categories'
+import ProductList from '../components/product-list'
 
 const Container = styled.div`
   /*display: block;*/
@@ -78,7 +79,7 @@ const Photo = styled(Img)`
     height: 150px;
   }
 `
-const ProductLink = styled(Link)`
+const ProductLink = styled.div`
   display: inline-block;
   /*border: 10px solid white;*/
   /*border-radius: 10px;*/
@@ -100,10 +101,47 @@ const Preview = styled.div`
     /* in progress */
   }
 `
+const etsyBuild = data => {
+  // data.etsy.edges.node is dirty in the node
+  // so filtration by assignment is happening here as well
+  let structuredEtsy = data.etsy.edges.map(item => {
+    return {
+      price: item.node.price,
+      name: item.node.name,
+      tags: item.node.tags,
+      imageID: item.node.image.childImageSharp.id,
+      imageFluid: item.node.image.childImageSharp.fluid,
+    }
+  })
 
+  return structuredEtsy
+}
+
+const airtableBuild = data => {
+  // Airtable plugin returns bad nodes, clean them out
+  let structuredAirtable = data.airtable.edges
+    .filter(item => item.node !== undefined)
+    .map(item => item.node.data)
+    .filter(item => item.image !== null)
+    .filter(item => item.image.localFiles !== undefined)
+    .filter(item => item.image.localFiles[0].childImageSharp !== null)
+    // dirty dirty data
+    .map(item => {
+      return {
+        price: item.price || 'inqure for pricing',
+        name: item.name,
+        tags: item.tags || [],
+        imageID: item.image.localFiles[0].childImageSharp.id,
+        imageFluid: item.image.localFiles[0].childImageSharp.fluid
+      }
+    })
+
+  return structuredAirtable
+}
 function renderTagMatches(data) {
   let matchList = []
-
+  let filterer = null
+  // console.log(JSON.stringify(Object.keys(data)))
   // AIRTABLE MATCH LIST, INCLUED ONCE AIRTABLE PRODUCT DATA IS SYNCRONIZED ***!!!
   // if (data.airtable !== null) {
   //   data.airtable.edges.forEach(item => {
@@ -125,6 +163,9 @@ function renderTagMatches(data) {
 
   if (typeof data.etsy.edges !== 'undefined') {
     data.etsy.edges.forEach(item => {
+      // if (filterer !== null){
+      //   console.log('filter happened')
+      // }
       structuredProducts = [
         ...structuredProducts,
         {
@@ -145,7 +186,7 @@ function renderTagMatches(data) {
     // conditional here to fix wierd Netlify SSR build fail triggered by childImageSharp.id being Null
     if (match[1] !== null) {
       return (
-        <ProductLink to={match[0]} key={match[0]}>
+        <ProductLink onClick={() => navigate(match[0])} key={match[0]}>
           <Preview>
             <Photo
               style={{ backgroundSize: 'cover' }}
@@ -176,7 +217,19 @@ export default ({ data }) => {
         <TagNav>
           <CategoryDisplay />
         </TagNav>
-        <Products>{renderTagMatches(data)}</Products>
+        <Products>
+          {/* {JSON.stringify( */}
+          {/*   Object.keys( */}
+          {/*     data.airtable.edges[0].node.data.image.localFiles[0] */}
+          {/*       .childImageSharp */}
+          {/*   ) */}
+          {/* )} */}
+          {/* {JSON.stringify(airtableBuild(data))} */}
+          {/*  */}
+          <ProductList products={airtableBuild(data)} />
+          <ProductList products={etsyBuild(data)} />
+          {/* {renderTagMatches(data)} */}
+        </Products>
       </Container>
     </>
   )

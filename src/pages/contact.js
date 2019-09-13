@@ -13,17 +13,30 @@ const Container = styled.div`
   text-align: center;
   margin: 1em auto 5em auto;
   max-width: 80vw;
+  @media (max-width: 750px) {
+    border: none;
+  }
 `
 const GridLeft = styled.div`
   display: grid;
   padding: 0.7em;
   grid-area: 1/1;
+  @media (max-width: 750px) {
+    grid-column: span 2;
+    font-size: .8em;
+    padding: 0;
+  }
 `
 const GridRight = styled.div`
   display: grid;
   text-align: left;
   padding: 1em;
   grid-area: 1/2;
+  @media (max-width: 750px) {
+    grid-column: span 2;
+    font-size: .8em;
+    padding: 0.8em 0 0 0;
+  }
 `
 const SubmitButton = styled(Button)`
   font-size: 1em;
@@ -33,20 +46,34 @@ const Title = styled.div`
   margin: auto;
   text-align: center;
   padding: 1.5em 0 0 0;
+  @media (max-width: 750px) {
+    padding: .5em 0 0 0;
+  }
 `
 const ImageAlert = styled.div`
   margin: 3em;
   text-align: center;
   padding: 1em;
+  @media (max-width: 750px) {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
 `
 const TextArea = styled.textarea`
   height: 200px;
   width: 100%;
+  @media (max-width: 750px) {
+    width: 80vw;
+  }
 `
 const Photo = styled(Img)`
   width: 30vw;
   margin: auto;
   border: 1px solid black;
+  @media (max-width: 750px) {
+    width: 55vw;
+  }
 `
 
 let imageTargetURL = typeof window !== `undefined` ? window.location.origin : ''

@@ -26,7 +26,7 @@ const MenuButton = styled(Button)`
 `
 const Box = styled.div`
   position: relative;
-  background: white;
+  background: transparent;
   /*border: 2px solid pink;*/
   /*border-top: 22px solid black;*/
   left: 10vw;
@@ -37,16 +37,17 @@ const Box = styled.div`
     margin: auto;
     height: 90vh;
     width: 80vw;
+    padding: 1em;
   }
 `
 
 const Element = styled.div`
   display: none;
   @media (max-width: 750px) {
-    display: inline;
-    width: 0em;
-    height: 0em;
-    font-size: .7em;
+    display: inline-block;
+/*    width: 0em;
+    height: 0em;*/
+    /*font-size: .7em;*/
     padding: 0 .3em;
     /*background: hotpink;*/
   }
@@ -162,11 +163,11 @@ class MenuModal extends React.Component {
 
     return (
       <Element>
-        <MenuButton
+        <div
           onClick={this.props.doubleclick ? '' : this.handleOpenModal}
           onDoubleClick={this.props.doubleclick ? this.handleOpenModal : ''}
         >{this.props.children}
-        </MenuButton>
+        </div>
 
         <Modal
           isOpen={this.state.showModal}

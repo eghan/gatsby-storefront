@@ -12,15 +12,23 @@ const Box = styled.div`
   margin: auto;
   padding: 0.5em;
   @media (max-width: 750px) {
-    text-align: center;
-    padding: 0em;
+    padding: .3em;
+    width: 90vw;
   }
 `
-const InquiryButtonMobile = styled(Button)`
+const ButtonMobileLeft = styled(Button)`
   display: none;
   @media (max-width: 750px) {
     display: inline;
     font-size: 0.7em;
+  }
+`
+const ButtonMobileRight = styled(Button)`
+  display: none;
+  @media (max-width: 750px) {
+    display: inline;
+    font-size: 0.7em;
+    float: right;
   }
 `
 const InquiryButton = styled(Button)`
@@ -125,10 +133,12 @@ const Categories = props => {
 
   return (
     <Box>
-      <TagMenu categories={tagsFiltered}>search by tag</TagMenu>
-      <InquiryButtonMobile onClick={() => navigate('/contact')}>
+      <TagMenu categories={tagsFiltered}>
+        <ButtonMobileLeft>search by tag</ButtonMobileLeft>
+      </TagMenu>
+      <ButtonMobileRight onClick={() => navigate('/contact')}>
         custom orders
-      </InquiryButtonMobile>
+      </ButtonMobileRight>
       <SideBar>
         <Tags>Tags:</Tags>
 

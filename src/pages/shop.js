@@ -16,12 +16,11 @@ const TagNav = styled.div`
   width: 15vw;
   border-right: 1px solid dimgray;
   @media (max-width: 750px) {
-    grid-area: 1/1/1/2;
-    grid-column: span 2;
+    /*grid-area: 1/1/1/2;*/
     width: 90vw;
     border-right: none;
     margin: auto;
-    padding: .3em 0;
+    /*padding: .3em;*/
   }
 `
 const Products = styled.div`
@@ -31,7 +30,7 @@ const Products = styled.div`
   @media (max-width: 750px) {
     grid-area: 2/1/2/2;
     grid-column: span 2;
-    padding: .3em;
+    padding: 0;
   }
 `
 

@@ -28,17 +28,17 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.5em;
   height: 88vh;
-  object-fit: contain;
+  /*object-fit: contain;*/
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    padding: 0.3em 0 0 0;
-    grid-gap: 0;
+    padding: 0;
+    height: auto;
   }
   /*border: 3px dashed aqua;*/
 `
 const LeftSide = styled.div`
-  /*grid-row: span 5;*/
+  grid-row: span 5;
   @media (max-width: 750px) {
     overflow: hidden;
     height: 50vh;
@@ -47,13 +47,10 @@ const LeftSide = styled.div`
 `
 const RightSide = styled.div`
   /*display: grid;*/
-  /*position: relative;*/
-  /*grid-row: span 5;*/
+  position: relative;
+  grid-row: span 5;
   /*border: 5px dashed blue;*/
   /*height: 80vh;*/
-`
-const PreviewSection = styled.div`
-  /*grid-column: span 2;*/
 `
 const Info = styled.div`
   padding: 0.5rem 0.7rem;
@@ -63,7 +60,7 @@ const Info = styled.div`
 
 const TextDiv = styled.div`
   padding: 0 2em 0 0;
-  /*grid-column: span 2;*/
+  grid-column: span 2;
   @media (max-width: 750px) {
     display: none;
     padding: 0 0 0 0.5em;
@@ -75,9 +72,8 @@ const TextDiv = styled.div`
 const Photo = styled(Img)`
   height: 83vh;
   @media (max-width: 750px) {
-    width: 90vw;
+    width: 100vw;
     height: 50vh;
-    margin: auto;
     /*float: left;*/
   }
 `
@@ -89,7 +85,7 @@ const Previews = styled.div`
   grid-template-columns: 1fr 1fr;
   /*border: 2px dotted magenta;*/
   @media (max-width: 750px) {
-    /*position: relative;*/
+    position: relative;
     /*display: block;*/
     /*width: 100%;*/
     /*padding: 0 0 0 10px;*/
@@ -106,8 +102,8 @@ const PhotoPreview = styled(Img)`
   height: 10em;
   /*vertical-align: bottom;*/
   @media (max-width: 750px) {
-    /*border: 8px solid white;*/
-    width: 90vw;
+    border: 8px solid white;
+    width: 100%;
     height: auto;
   }
 `
@@ -117,42 +113,34 @@ const Related = styled.div`
   text-align: center;
   border: 1px solid black;
   @media (max-width: 750px) {
-    /*position: relative;*/
-    margin: 13em 0 0 0;
-    width: 
+    margin: 1em 0 0 0;
   }
 `
 
 const PaymentDiv = styled.div`
-  /*  grid-column: span 2;
+  grid-column: span 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;*/
-  padding: 1em;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.3em 1em 0 0;
   text-align: center;
-  border: 1px solid black;
   @media (max-width: 750px) {
-    width: 90vw;
-    padding: 0.3em 0 0.6em 0;
-    margin: auto;
+    width: 50vw;
+    padding: 0.3em 2em 0 0;
   }
   /*border: 10px dashed indigo;*/
 `
 const Price = styled.div`
-  font-size: 1em;
-  padding: 1em;
-  margin: auto;
-  width: 40vw;
+  font-size: 0.8em;
+  padding: 0 0.5em 0 0.5em;
   @media (max-width: 750px) {
     /*width: 50vw;  */
     /*padding: 3em 1em 1em 0;*/
-    /*line-height: 1.8em;*/
-    padding: 0.2em 0 0 0;
-    width: 90vw;
+    line-height: 1.8em;
   }
 `
 const TagDiv = styled.div`
-  /*font-size: 0.8em;*/
-  padding: 1em;
+  font-size: 0.8em;
+  padding: 0.8em;
   text-align: center;
   @media (max-width: 750px) {
     padding: 0.8em;
@@ -161,15 +149,12 @@ const TagDiv = styled.div`
   }
 `
 const CartButton = styled(Button)`
-  font-size: 1em;
-  margin: 1em;
+  font-size: 1.1em;
   @media (max-width: 750px) {
     font-size: 0.9;
   }
 `
-const PaddedText = styled.div`
-  padding: 1em;
-`
+const PaddedText = styled.div``
 
 export default ({ data }) => {
   const client = {
@@ -250,12 +235,12 @@ export default ({ data }) => {
             <div>{name}</div>
             <Info>{description}</Info>
           </TextDiv>
-          <TagDiv>
-            Categories:
-            <br />
-            {tagList}
-          </TagDiv>
           <PaymentDiv>
+            <TagDiv>
+              Categories:
+              <br />
+              {tagList}
+            </TagDiv>
             <Price>
               with free shipping: {price} $
               <Consumer>
@@ -284,8 +269,6 @@ export default ({ data }) => {
                   )
                 }}
               </Consumer>
-            </Price>
-            <Price>
               <PaddedText>or, just get this one with: </PaddedText>
               <PaypalExpressBtn
                 client={client}
@@ -297,10 +280,8 @@ export default ({ data }) => {
           </PaymentDiv>
         </RightSide>
       </Container>
-      <PreviewSection>
-        <Related>Related pieces:</Related>
-        <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
-      </PreviewSection>
+      <Related>Related pieces:</Related>
+      <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
     </>
   )
 }

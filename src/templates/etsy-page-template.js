@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Button } from '../utils/global'
 import { Consumer } from '../components/context'
 import Modal from '../components/modal'
-import Tagbar from '../components/tagbar'
+// import Tagbar from '../components/tagbar'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
@@ -29,11 +29,12 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.5em;
   height: 88vh;
-  object-fit: contain;
+  /*object-fit: contain;*/
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    padding: 0em 0em;
+    padding: 0;
+    height: auto;
   }
   /*border: 3px dashed aqua;*/
 `
@@ -113,9 +114,7 @@ const Related = styled.div`
   text-align: center;
   border: 1px solid black;
   @media (max-width: 750px) {
-    position: relative;
-    margin: 15em 0 0 0;
-
+    margin: 1em 0 0 0;
   }
 `
 
@@ -217,7 +216,7 @@ export default ({ data }) => {
 
   return (
     <>
-      <Tagbar />
+      {/* <Tagbar /> */}
       <Container>
         <LeftSide>
           <Modal source={image.childImageSharp.fluid} location={location}>

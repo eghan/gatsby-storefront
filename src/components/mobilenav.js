@@ -17,9 +17,13 @@ const FooterNavigation = styled.div`
   box-shadow: -5px -5px 20px WhiteSmoke;
   height: 66px;
   text-align: center;
+  z-index: 1000;
 `
 const NavItem = styled.img`
-  width: 38px;
+  width: 40px;
+  @media (max-width: 750) {
+    width: 10vw;
+  }
 `
 const NavLink = styled(Link)`
   padding-top: 10px;

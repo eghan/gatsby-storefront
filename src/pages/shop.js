@@ -3,7 +3,7 @@ import { Link, graphql, navigate } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-import Categories from '../components/categories'
+import { Categories } from '../components/categories'
 import ProductList from '../components/product-list'
 
 const Container = styled.div`

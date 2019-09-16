@@ -5,14 +5,14 @@ import Img from 'gatsby-image'
 
 // import Tagbar from './tagbar'
 import { Button, TagButton } from '../utils/global'
-import MenuModal from './menu-modal'
+// import MenuModal from './menu-modal'
 
 const Box = styled.div`
-  text-align: center;
-  margin: auto;
-  padding: 0.5em;
+  padding: 0.7em;
+  display: grid;
+
   @media (max-width: 750px) {
-    padding: .3em;
+    padding: 0.3em;
     width: 90vw;
   }
 `
@@ -36,25 +36,26 @@ const InquiryButton = styled(Button)`
   font-size: 0.9em;
 `
 const Tags = styled.div`
-  margin: 0.5em;
+  margin: 0 0 .5em 0;
   border-bottom: 1px solid lightgray;
 `
 const SideBar = styled.div`
-  display: inline;
+  /*display: inline;*/
+  /*background: gold;*/
   /*padding: 1em;*/
   @media (max-width: 750px) {
     display: none;
     width: 0em;
   }
 `
-const TagMenu = styled(MenuModal)`
-  display: none;
-  background: gray;
-  @media (max-width: 750px) {
-    display: inline;
-  }
-`
-
+// const TagMenu = styled(MenuModal)`
+//   display: none;
+//   background: gray;
+//   @media (max-width: 750px) {
+//     display: inline;
+//   }
+// `
+const CategoriesMobile = () => <div>hihi</div>
 const Categories = props => {
   const { etsy } = useStaticQuery(
     graphql`
@@ -133,12 +134,12 @@ const Categories = props => {
 
   return (
     <Box>
-      <TagMenu categories={tagsFiltered}>
-        <ButtonMobileLeft>search by tag</ButtonMobileLeft>
-      </TagMenu>
-      <ButtonMobileRight onClick={() => navigate('/contact')}>
-        custom orders
-      </ButtonMobileRight>
+      {/* <TagMenu categories={tagsFiltered}> */}
+      {/*   <ButtonMobileLeft>search by tag</ButtonMobileLeft> */}
+      {/* </TagMenu> */}
+      {/* <ButtonMobileRight onClick={() => navigate('/contact')}> */}
+      {/*   custom orders */}
+      {/* </ButtonMobileRight> */}
       <SideBar>
         <Tags>Tags:</Tags>
 
@@ -161,4 +162,4 @@ const Categories = props => {
   )
 }
 
-export default Categories
+export { Categories, CategoriesMobile }

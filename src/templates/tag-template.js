@@ -4,27 +4,27 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
 
-import Categories from '../components/categories'
+import { Categories, CategoriesMobile } from '../components/categories'
 
 const Container = styled.div`
   /*display: block;*/
   display: grid;
   /*text-align: center;*/
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-
-  /*margin: 0.5rem auto;*/
-`
-const CategoryDisplay = styled(Categories)`
-  display: block;
-  grid-area: 1 / 1 / 1 / 1;
-  width: 15vw;
-  height: 100vh;
+  /*grid-template-columns: 1fr 1fr;*/
+  @media (max-width: 750px) {
+    background: peru;
+    display: block;
+    /*border: 2px solid plum;*/
+    text-align: center;
+  }
 `
 const Products = styled.div`
   grid-area: 1 / 2 / 1 / 2;
   width: 85vw;
-  /*padding: 2em;*/
+  position: grid;
+  @media (max-width: 750px) {
+    width: 95vw;
+  }
 `
 
 const Details = styled.div`
@@ -39,8 +39,14 @@ const Details = styled.div`
   }
 `
 const Title = styled.p`
-  padding: 1.15em 0 0 0;  
-  text-transform: capitalize;
+  padding: .6em 0 0 0;
+  text-transform: capitalize;  
+  border-bottom: 1px solid lightgray;
+
+  @media (max-width: 750px) {
+    padding: 0;
+    text-align: center;
+  }
 `
 const Price = styled.div`
   float: right;
@@ -49,18 +55,21 @@ const Photo = styled(Img)`
   width: 300px;
   height: 300px;
   padding: 0.5em 0.5em;
-  @media (max-width: 1040px) {
-    padding: 0em 0em;
-    width: 125px;
-    height: 125px;
+  @media (max-width: 750px) {
+    padding: 0em;
+    width: 40vw;
+    height: 40vw;
   }
 `
 const PhotoLink = styled(Link)`
-  padding: 0 .5em 0.5em 0.5em;
+  padding: 0 1em;
   display: inline-block;
   font-size: 0.8em;
   text-decoration: none;
   color: black;
+  @media (max-width: 750px) {
+    padding: 0 0.2em;
+  }
 `
 
 function renderTagMatches(data) {
@@ -115,7 +124,7 @@ export default ({ data }) => {
   return (
     <>
       <Container>
-        <CategoryDisplay />
+        <Categories />
         <Products>
           <Location>
             {({ location }) => {

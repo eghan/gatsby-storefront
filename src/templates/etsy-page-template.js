@@ -6,9 +6,10 @@ import styled from 'styled-components'
 import { Button } from '../utils/global'
 import { Consumer } from '../components/context'
 import Modal from '../components/modal'
-// import Tagbar from '../components/tagbar'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
+
+import { Categories, CategoriesMobile } from '../components/categories'
 
 const tagExclude = [
   'industrial',
@@ -24,11 +25,11 @@ const tagExclude = [
 ]
 
 const Container = styled.div`
-  padding: 1em;
+  /*padding: 1em;*/
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.5em;
-  height: 88vh;
+  /*grid-gap: 0.5em;*/
+  /*height: 88vh;*/
   /*object-fit: contain;*/
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -38,18 +39,30 @@ const Container = styled.div`
   }
   /*border: 3px dashed aqua;*/
 `
+const Product = styled.div`
+  grid-area: 1 / 2 / 1 / 2;
+  width: 85vw;
+  /*position: grid;*/
+  display: grid;
+  @media (max-width: 750px) {
+    width: 95vw;
+  }
+`
 const LeftSide = styled.div`
-  grid-row: span 5;
+  padding: 2em 1em;
+  grid-area: 1 / 1 / 1 / 1;
+
   @media (max-width: 750px) {
     overflow: hidden;
-    height: 50vh;
+    /*height: 50vh;*/
   }
   /*border: 5px dashed blue;*/
 `
 const RightSide = styled.div`
   /*display: grid;*/
-  position: relative;
-  grid-row: span 5;
+  padding: 1em;
+  grid-area: 1 / 2 / 1 / 2;
+  /*grid-row: span 5;*/
   /*border: 5px dashed blue;*/
   /*height: 80vh;*/
 `
@@ -71,17 +84,20 @@ const TextDiv = styled.div`
 `
 
 const Photo = styled(Img)`
-  height: 83vh;
+  width: 35vw;
+  padding: 2em 0;
+  /*height: 83vh;*/
   @media (max-width: 750px) {
     width: 100vw;
-    height: 50vh;
+    /*height: 50vh;*/
     /*float: left;*/
   }
 `
 const Previews = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*width: 100%;*/
+  padding: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   /*border: 2px dotted magenta;*/
@@ -132,7 +148,9 @@ const PaymentDiv = styled.div`
 `
 const Price = styled.div`
   font-size: 0.8em;
-  padding: 0 0.5em 0 0.5em;
+  padding: 0.5em;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   @media (max-width: 750px) {
     /*width: 50vw;  */
     /*padding: 3em 1em 1em 0;*/
@@ -155,6 +173,15 @@ const CartButton = styled(Button)`
     font-size: 0.9;
   }
 `
+const PayLabel = styled.div`
+  padding: 0.8em;
+`
+// const CategoriesMobile = styled(Categories)`
+//   display: none;
+//   @media(max-width: 750px){
+//     display: inline-block;
+//   }
+// `
 
 export default ({ data }) => {
   const client = {
@@ -216,89 +243,97 @@ export default ({ data }) => {
 
   return (
     <>
-      {/* <Tagbar /> */}
       <Container>
-        <LeftSide>
-          <Modal source={image.childImageSharp.fluid} location={location}>
-            <Photo
-              title={`Photo by Eghan Thompson`}
-              fluid={image.childImageSharp.fluid}
-              id="mainImage"
-              text={name}
-            />
-          </Modal>
-        </LeftSide>
-        <RightSide>
-          <TextDiv>
-            <div>{name}</div>
-            <Info>{description}</Info>
-          </TextDiv>
-          <PaymentDiv>
-            <TagDiv>
-              Categories:
-              <br />
-              {tagList}
-            </TagDiv>
-            <Price>
-              with free shipping: {price} $
-              <Consumer>
-                {({ data, set }) => {
-                  return (
-                    <div>
-                      <CartButton
-                        onClick={() => {
-                          set({
-                            itemList: [
-                              ...data.itemList,
-                              {
-                                name,
-                                price,
-                                image: image.childImageSharp.fluid,
-                              },
-                            ],
-                          })
-                          navigate('cart')
-                        }}
-                      >
-                        add item to cart
-                      </CartButton>
-                    </div>
-                  )
-                }}
-              </Consumer>
-              <br />
-              or... just get this one with ->
-              <PaypalExpressBtn
-                client={client}
-                currency={'USD'}
-                total={Number(price)}
-                style={style}
+        {/* <CategoriesMobile /> */}
+        <Categories />
+        <Product>
+          <LeftSide>
+            <Modal source={image.childImageSharp.fluid} location={location}>
+              <Photo
+                title={`Photo by Eghan Thompson`}
+                fluid={image.childImageSharp.fluid}
+                id="mainImage"
+                text={name}
               />
-            </Price>
-          </PaymentDiv>
-          <Previews>
-            {imageA == null ? (
-              <div />
-            ) : (
-              <Modal source={imageA.childImageSharp.fluid} location={location}>
-                <PhotoPreview
-                  title={`Photo by Eghan Thompson`}
-                  fluid={imageA.childImageSharp.fluid}
+            </Modal>
+          </LeftSide>
+          <RightSide>
+            <TextDiv>
+              <div>{name}</div>
+              <Info>{description}</Info>
+            </TextDiv>
+            <PaymentDiv>
+              <TagDiv>
+                Categories:
+                <br />
+                {tagList}
+              </TagDiv>
+              <Price>
+                <PayLabel>with free shipping: {price} $</PayLabel>
+                <Consumer>
+                  {({ data, set }) => {
+                    return (
+                      <div>
+                        <CartButton
+                          onClick={() => {
+                            set({
+                              itemList: [
+                                ...data.itemList,
+                                {
+                                  name,
+                                  price,
+                                  image: image.childImageSharp.fluid,
+                                },
+                              ],
+                            })
+                            navigate('cart')
+                          }}
+                        >
+                          add item to cart
+                        </CartButton>
+                      </div>
+                    )
+                  }}
+                </Consumer>
+                <PayLabel>or... just get this one with -></PayLabel>
+                <PaypalExpressBtn
+                  client={client}
+                  currency={'USD'}
+                  total={Number(price)}
+                  style={style}
                 />
-              </Modal>
-            )}
-            {imageB == null ? (
-              <div />
-            ) : (
-              <Modal source={imageB.childImageSharp.fluid} location={location}>
-                <PhotoPreview
-                  title={`Photo by Eghan Thompson`}
-                  fluid={imageB.childImageSharp.fluid}
-                />
-              </Modal>
-            )}
-          </Previews>
-        </RightSide>
+              </Price>
+            </PaymentDiv>
+            <Previews>
+              {imageA == null ? (
+                <div />
+              ) : (
+                <Modal
+                  source={imageA.childImageSharp.fluid}
+                  location={location}
+                >
+                  <PhotoPreview
+                    title={`Photo by Eghan Thompson`}
+                    fluid={imageA.childImageSharp.fluid}
+                  />
+                </Modal>
+              )}
+              {imageB == null ? (
+                <div />
+              ) : (
+                <Modal
+                  source={imageB.childImageSharp.fluid}
+                  location={location}
+                >
+                  <PhotoPreview
+                    title={`Photo by Eghan Thompson`}
+                    fluid={imageB.childImageSharp.fluid}
+                  />
+                </Modal>
+              )}
+            </Previews>
+          </RightSide>
+        </Product>
       </Container>
       <Related>Related pieces:</Related>
       <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />

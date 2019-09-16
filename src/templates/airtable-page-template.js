@@ -9,6 +9,8 @@ import Modal from '../components/modal'
 import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
+import { Categories, CategoriesMobile } from '../components/categories'
+
 const tagExclude = [
   'industrial',
   'mechanical',
@@ -155,7 +157,13 @@ const CartButton = styled(Button)`
   }
 `
 const PaddedText = styled.div``
-
+// const CategoriesMobile = styled.div`
+//   display: none;
+//   background: peru;
+//   @media(max-width: 750px){
+//     display: inline-block;
+//   }
+// `
 export default ({ data }) => {
   const client = {
     sandbox:
@@ -215,9 +223,11 @@ export default ({ data }) => {
     })
 
   return (
-    <>
+    <> 
+        <CategoriesMobile />
+        {/*   */}
       <Container>
-        <LeftSide>
+        <LeftSide><Categories/>
           <Modal
             source={image.localFiles[0].childImageSharp.fluid}
             location={location}

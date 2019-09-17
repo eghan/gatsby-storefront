@@ -1,4 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
+import { navigate } from 'gatsby'
+
 
 
 const GridBox = styled.div`
@@ -36,5 +39,28 @@ const TagButton = styled(Button)`
   /*padding: 0.15em 0.4em;*/
   font-size: 0.9em;
 `
+const CustomsButton = styled(Button)`
+  margin: 1em;
+  border: 1px solid black;
+  font-size: 0.9em;
+`
 
-export { GridBox, GridRow, GridCell, Button, TagButton }
+const CustomOrders = () => <CustomsButton onClick={() => navigate('/contact')}> custom orders </CustomsButton>
+
+const TagFilter = [
+  'industrial',
+  'mechanical',
+  'Bladerunner',
+  'Mad_Max',
+  'Firefly',
+  'steampunk',
+  'hypoallergenic',
+  'niobium',
+  'Jewelry',
+  'firefly',
+  'bladerunner',
+  'jewelry',
+  // 'Earrings',
+]
+
+export { GridBox, GridRow, GridCell, Button, TagButton, CustomOrders, TagFilter }

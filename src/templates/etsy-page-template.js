@@ -10,19 +10,9 @@ import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 import { Categories, CategoriesMobile } from '../components/categories'
+import { TagFilter } from '../utils/global'
 
-const tagExclude = [
-  'industrial',
-  'mechanical',
-  'Bladerunner',
-  'Mad_Max',
-  'Firefly',
-  'steampunk',
-  // 'hypoallergenic',
-  // 'niobium',
-  'Jewelry',
-  'Earrings',
-]
+const tagExclude = TagFilter
 
 const Container = styled.div`
   /*padding: 1em;*/

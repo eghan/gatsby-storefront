@@ -26,9 +26,7 @@ class Footer extends React.Component {
     console.log(viewportWidth)
     if (viewportWidth > 640) {
       return (
-        <FootBox>
-          footer
-        </FootBox>
+        <MobileNavigation />
       )
     } else {
       return <MobileNavigation />

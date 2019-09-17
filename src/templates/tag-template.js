@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Location } from '@reach/router'
 
 import { Categories, CategoriesMobile } from '../components/categories'
+import { Tags } from '../utils/global'
 
 const Container = styled.div`
   /*display: block;*/

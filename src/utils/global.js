@@ -54,6 +54,25 @@ const CustomsButton = styled(Button)`
   }
 `
 
+const Container = styled.div`
+  display: grid;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`
+
+const Products = styled.div`
+  grid-area: 1 / 2 / 1 / 2;
+  padding: .7em;
+  width: 84vw;
+  @media (max-width: 750px) {
+    width: 96vw;
+    grid-area: 2/1/2/2;
+    grid-column: span 2;
+    padding: 0;
+  }
+`
+
 const CustomOrders = () => (
   <CustomsButton onClick={() => navigate('/contact')}>
     custom orders
@@ -72,10 +91,12 @@ const TagFilter = [
   'steampunk',
   'hypoallergenic',
   'niobium',
+  'Niobium',
   'Jewelry',
   'firefly',
   'bladerunner',
   'jewelry',
+  'venus',
   // 'Earrings',
 ]
 
@@ -90,4 +111,6 @@ export {
   TagFilter,
   Cart,
   Mobile,
+  Container,
+  Products
 }

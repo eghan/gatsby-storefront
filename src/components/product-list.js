@@ -33,7 +33,7 @@ const ProductLink = styled.div`
   padding: 0.5em;
   font-size: 0.8em;
   text-decoration: none;
-  color: black;
+  /*color: black;*/
   @media (max-width: 750px) {
     padding: .1em .4em;
   }
@@ -51,7 +51,7 @@ const Preview = styled.div`
 
 const ProductList = props => 
     <>
-      {props.products.map((match, index) => 
+      { props.products !== undefined &&  props.products.map((match, index) => 
             <ProductLink onClick={() => navigate(match.name)} key={match.imageID}>
               <Preview>
                 <Photo

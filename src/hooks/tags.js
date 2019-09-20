@@ -1,23 +1,34 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
+import { TagFilter } from '../utils/global'
+
 export const useSiteTags = () => {
   const { etsy } = useStaticQuery(
     graphql`
-        query Tags {
-          etsy: allEtsyListingsDownloadCsv {
-            edges {
-              node {
-                id
-                name: TITLE
-                fields {
-                  tags
-                }
+      query Tags {
+        etsy: allEtsyListingsDownloadCsv {
+          edges {
+            node {
+              id
+              name: TITLE
+              fields {
+                tags
               }
             }
           }
-        }`
+        }
+        airtable: allAirtable {
+          edges {
+            node {
+              data {
+                tags
+              }
+            }
+          }
+        }
+      }
+    `
   )
-
 
   const { edges } = etsy
   // console.log('test 1', edges)
@@ -51,9 +62,11 @@ export const useSiteTags = () => {
     (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))(new Set())
   )
 
-  const tagsFiltered = tagsUniqueCounted.filter(
-    (tag, i) => tagsUniqueCounted.indexOf(tag) === i
-  )
+  const tagsFiltered = tagsUniqueCounted
+    // .filter((tag, i) => tagsUniqueCounted.indexOf(tag) === i)
+    .filter(tag => !TagFilter.includes(tag[1]))
+
+  console.log(etsy)
 
   return tagsFiltered
 }

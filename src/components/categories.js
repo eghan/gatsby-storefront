@@ -4,39 +4,31 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 // import Tagbar from './tagbar'
-import { Button, TagButton, CustomOrders } from '../utils/global'
+import { Button, TagButton, CustomOrders, Cart, Mobile } from '../utils/global'
 import { useSiteTags } from '../hooks/tags'
-// import MenuModal from './menu-modal'
+import MenuModal from './menu-modal'
 
-const Box = styled.div`
+const Nav = styled.div`
   padding: 0.7em;
-  display: grid;
+  display: inline;
+  width: 15vw;
+  border-right: 1px solid dimgray;
+  @media (max-width: 750px) {
+    text-align: center;
+    width: auto;
+    border-right: none;
+    border-bottom: 1px solid dimgray;
+    padding: 0.2em 0 0.4em 0;
+    width: 95vw;
+    margin: 0 0 0.3em 0;
+  }
+`
 
-  @media (max-width: 750px) {
-    padding: 0.3em;
-    width: 90vw;
-  }
-`
-const ButtonMobileLeft = styled(Button)`
-  display: none;
-  @media (max-width: 750px) {
-    display: inline;
-    font-size: 0.7em;
-  }
-`
-const ButtonMobileRight = styled(Button)`
-  display: none;
-  @media (max-width: 750px) {
-    display: inline;
-    font-size: 0.7em;
-    float: right;
-  }
-`
 const Tags = styled.div`
   margin: 0 0 0.5em 0;
   border-bottom: 1px solid lightgray;
 `
-const SideBar = styled.div`
+const Section = styled.div`
   /*display: inline;*/
   /*background: gold;*/
   padding: 0 0 1em 0;
@@ -54,30 +46,35 @@ const Categories = props => {
     text.charAt(0).toUpperCase() + text.slice(1).replace(/_/g, ' ')
 
   return (
-    <Box>
+    <Nav>
       {/* <TagMenu categories={tagsFiltered}> */}
       {/*   <ButtonMobileLeft>search by tag</ButtonMobileLeft> */}
       {/* </TagMenu> */}
       {/* <ButtonMobileRight onClick={() => navigate('/contact')}> */}
       {/*   custom orders */}
       {/* </ButtonMobileRight> */}
-      <SideBar>
+      <Section>
         <Tags>Tags:</Tags>
-        {/* {JSON.stringify(useSiteTags())} */}
         {useSiteTags().map(tag => (
           <TagButton
             onClick={() => {
               navigate(tag[1])
             }}
           >
-            {/* {tag[1]} has {tag[0]} */}
             {DeSlug(tag[1])}
-            {/* {tag[0]} */}
           </TagButton>
         ))}
-      </SideBar>
-      <CustomOrders />
-    </Box>
+      </Section>
+      <Section>
+        <CustomOrders />
+        <Cart />
+      </Section>
+      <Mobile>
+        <MenuModal categories={useSiteTags()}>tags</MenuModal>
+        <CustomOrders />
+        <Cart />
+      </Mobile>
+    </Nav>
   )
 }
 

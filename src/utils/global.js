@@ -2,13 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { navigate } from 'gatsby'
 
-
-
+const Mobile = styled.div`
+  display: none;
+  @media (max-width: 750px) {
+    display: contents;
+  }
+`
 const GridBox = styled.div`
   margin: 2% 10%;
 `
 const GridRow = styled.div`
-  display: grid;  
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
   border-top: 2px solid black;
@@ -43,9 +47,21 @@ const CustomsButton = styled(Button)`
   margin: 1em;
   border: 1px solid black;
   font-size: 0.9em;
+  @media (max-width: 750px) {
+    font-size: 0.6em;
+    margin: 0 0.3em;
+    display: inline;
+  }
 `
 
-const CustomOrders = () => <CustomsButton onClick={() => navigate('/contact')}> custom orders </CustomsButton>
+const CustomOrders = () => (
+  <CustomsButton onClick={() => navigate('/contact')}>
+    custom orders
+  </CustomsButton>
+)
+const Cart = () => (
+  <CustomsButton onClick={() => navigate('/cart')}>cart</CustomsButton>
+)
 
 const TagFilter = [
   'industrial',
@@ -63,4 +79,15 @@ const TagFilter = [
   // 'Earrings',
 ]
 
-export { GridBox, GridRow, GridCell, Button, TagButton, CustomOrders, TagFilter }
+export {
+  GridBox,
+  GridRow,
+  GridCell,
+  Button,
+  TagButton,
+  CustomsButton,
+  CustomOrders,
+  TagFilter,
+  Cart,
+  Mobile,
+}

@@ -21,8 +21,6 @@ const Photo = styled(Img)`
   padding: 0.5em 0.5em;
 
   @media (max-width: 750px) {
-    width: 250px;
-    height: 250px;
   }
 
   @media (max-width: 1040px) {
@@ -37,7 +35,7 @@ const ProductLink = styled.div`
   text-decoration: none;
   color: black;
   @media (max-width: 750px) {
-    padding: .25em .5em;
+    padding: .1em .4em;
   }
 `
 const Preview = styled.div`

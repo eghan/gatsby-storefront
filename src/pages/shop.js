@@ -12,17 +12,7 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 `
-const TagNav = styled.div`
-  width: 15vw;
-  border-right: 1px solid dimgray;
-  @media (max-width: 750px) {
-    /*grid-area: 1/1/1/2;*/
-    width: 90vw;
-    border-right: none;
-    margin: auto;
-    /*padding: .3em;*/
-  }
-`
+
 const Products = styled.div`
   grid-area: 1 / 2 / 1 / 2;
   padding: 1em;
@@ -36,7 +26,7 @@ const Products = styled.div`
 
 const etsyBuild = data => {
   // data.etsy.edges.node is dirty in the node
-  // so filtration by assignment is happening here as well
+  // so filtration by assignment is happening
   let structuredEtsy = data.etsy.edges.map(item => {
     return {
       price: item.node.price,
@@ -78,9 +68,7 @@ export default ({ data }) => {
     <>
       {/* <Tagbar /> */}
       <Container>
-        <TagNav>
-          <Categories />
-        </TagNav>
+        <Categories />
         <Products>
           <ProductList products={airtableBuild(data)} />
           <ProductList products={etsyBuild(data)} />

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Modal from 'react-modal'
 import Img from 'gatsby-image'
 
-import { Button } from '../utils/global'
+import { Button, CustomsButton } from '../utils/global'
 
 // special note on static generation, Gatsby, and programatic rendering:
 // dynamic image sizes and prerendering are bad at elements that are sized acording to device
@@ -27,8 +27,6 @@ const MenuButton = styled(Button)`
 const Box = styled.div`
   position: relative;
   background: transparent;
-  /*border: 2px solid pink;*/
-  /*border-top: 22px solid black;*/
   left: 10vw;
   width: 80vw;
   height: 80vh;
@@ -42,14 +40,9 @@ const Box = styled.div`
 `
 
 const Element = styled.div`
-  display: none;
+  /*display: none;*/
   @media (max-width: 750px) {
     display: inline-block;
-/*    width: 0em;
-    height: 0em;*/
-    /*font-size: .7em;*/
-    padding: 0 .3em;
-    /*background: hotpink;*/
   }
 `
 
@@ -163,11 +156,12 @@ class MenuModal extends React.Component {
 
     return (
       <Element>
-        <div
+        <CustomsButton
           onClick={this.props.doubleclick ? '' : this.handleOpenModal}
           onDoubleClick={this.props.doubleclick ? this.handleOpenModal : ''}
-        >{this.props.children}
-        </div>
+        >
+          {this.props.children}
+        </CustomsButton>
 
         <Modal
           isOpen={this.state.showModal}

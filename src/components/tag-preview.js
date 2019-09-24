@@ -20,11 +20,12 @@ const LinkBox = styled(Link)`
 `
 const Photo = styled(Img)`
   display: inline-block;
-  border: .5em solid white;
-  float: center;
+  /*border: .5em solid white;*/
+  /*float: center;*/
   width: 15vw;
   height: 15vw;
-  overflow: hidden;
+  margin: .3em;
+  /*overflow: hidden;*/
 
 // method to access picture properties directly
     picture {
@@ -33,29 +34,30 @@ const Photo = styled(Img)`
     }
 
   @media (max-width: 1040px) {
-    padding: 0em 0em;
-    width: 150px;
-    height: 150px;
+    margin: .3em;
+    width: 40vw;
+    height: 40vw;
+    /*border: 0px solid plum;*/
   }
 `
 const TagBlock = styled(Link)`
   display: inline-block;
   text-decoration: none;
   color: black;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin: .5em;
   text-align: center;
-  padding: .5vw .5vw;
+  /*padding: .5vw .5vw;*/
 `
 const Title = styled.div`
-  border: 1px solid black;
+  border-bottom: 1px solid gray;
   margin: auto;
-  padding: 0 .5em;
+  /*padding: 0 .5em;*/
 `
 const FullBlock = styled.div`
-  width: 100vw;
+  /*width: 100vw;*/
   text-align: center;
-  padding: .5em;
+  /*padding: .5em;*/
 `
 
 const TagPreview = props => {

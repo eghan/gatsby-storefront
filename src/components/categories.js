@@ -13,7 +13,9 @@ const Nav = styled.div`
   display: inline;
   width: 15vw;
   border-right: 1px solid dimgray;
+  grid-row: span 2;
   @media (max-width: 750px) {
+    grid-area: 1/1/1/1;
     text-align: center;
     width: auto;
     border-right: none;
@@ -39,7 +41,7 @@ const Section = styled.div`
   }
 `
 
-const CategoriesMobile = () => <div>hihi</div>
+const CategoriesMobile = () => <></>
 
 const Categories = props => {
   const DeSlug = text =>

@@ -57,7 +57,7 @@ const CustomsButton = styled(Button)`
 const Container = styled.div`
   display: grid;
   @media (max-width: 750px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 `
 
@@ -67,8 +67,8 @@ const Products = styled.div`
   width: 84vw;
   @media (max-width: 750px) {
     width: 96vw;
-    grid-area: 2/1/2/2;
-    grid-column: span 2;
+    grid-area: 2/1/2/1;
+    /*grid-column: span 2;*/
     padding: 0;
   }
 `

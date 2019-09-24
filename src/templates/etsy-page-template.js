@@ -36,6 +36,8 @@ const Product = styled.div`
   display: grid;
   @media (max-width: 750px) {
     width: 95vw;
+    /*width: auto;*/
+    grid-area: 2/1/2/1;
   }
 `
 const LeftSide = styled.div`
@@ -44,6 +46,8 @@ const LeftSide = styled.div`
 
   @media (max-width: 750px) {
     overflow: hidden;
+    padding: 0 0 0.5em 0;
+    border-bottom: 1px solid lightgray;
     /*height: 50vh;*/
   }
   /*border: 5px dashed blue;*/
@@ -55,11 +59,19 @@ const RightSide = styled.div`
   /*grid-row: span 5;*/
   /*border: 5px dashed blue;*/
   /*height: 80vh;*/
+  @media (max-width: 750px) {
+    grid-area: 2/1/2/1;
+    padding: 0;
+    /*margin: auto;*/
+  }
 `
 const Info = styled.div`
   padding: 0.5rem 0.7rem;
   font-size: 0.8em;
   /*margin: 1rem auto;*/
+  @media (max-width: 750px) {
+    padding: 0;
+  }
 `
 
 const TextDiv = styled.div`
@@ -67,8 +79,9 @@ const TextDiv = styled.div`
   grid-column: span 2;
   @media (max-width: 750px) {
     display: none;
-    padding: 0 0 0 0.5em;
-    width: 95vw;
+/*    padding: 0;
+    margin: auto;*/
+    /*width: 95vw;*/
   }
   /*border: 5px dashed green;*/
 `
@@ -78,7 +91,9 @@ const Photo = styled(Img)`
   padding: 2em 0;
   /*height: 83vh;*/
   @media (max-width: 750px) {
-    width: 100vw;
+    width: 90vw;
+    padding: 0px;
+    margin: auto;
     /*height: 50vh;*/
     /*float: left;*/
   }
@@ -93,6 +108,7 @@ const Previews = styled.div`
   /*border: 2px dotted magenta;*/
   @media (max-width: 750px) {
     position: relative;
+    padding: 0;
     /*display: block;*/
     /*width: 100%;*/
     /*padding: 0 0 0 10px;*/
@@ -105,22 +121,27 @@ const PhotoPreview = styled(Img)`
   margin: auto;
   /*max-width: 80%;*/
   /*max-height: 30%;*/
-  width: 10em;
-  height: 10em;
+  width: 90%;
+  /*height: 10em;*/
   /*vertical-align: bottom;*/
   @media (max-width: 750px) {
-    border: 8px solid white;
-    width: 100%;
-    height: auto;
+    /*border: 8px solid white;*/
+    /*margin: 1em;*/
+    /*margin: auto;*/
+    /*width: 90%;*/
+    /*height: auto;*/
   }
 `
 const Related = styled.div`
   margin: 0 0.5em;
   padding: 0.2em 0;
   text-align: center;
-  border: 1px solid black;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
   @media (max-width: 750px) {
-    margin: 1em 0 0 0;
+    /*margin: 1em 0 0 0;*/
+    margin: auto;
+    padding: .5em 0 0 0;
   }
 `
 
@@ -131,8 +152,9 @@ const PaymentDiv = styled.div`
   padding: 0.3em 1em 0 0;
   text-align: center;
   @media (max-width: 750px) {
-    width: 50vw;
+    width: 30vw;
     padding: 0.3em 2em 0 0;
+    /*margin: auto;*/
   }
   /*border: 10px dashed indigo;*/
 `
@@ -143,8 +165,10 @@ const Price = styled.div`
   border-top: 1px solid lightgray;
   @media (max-width: 750px) {
     /*width: 50vw;  */
-    /*padding: 3em 1em 1em 0;*/
-    line-height: 1.8em;
+    /*padding: .4em;*/
+    border: 0;
+    padding: 0 .5em 1em .5em;
+    /*line-height: 1.8em;*/
   }
 `
 const TagDiv = styled.div`
@@ -152,7 +176,7 @@ const TagDiv = styled.div`
   padding: 0.8em;
   text-align: center;
   @media (max-width: 750px) {
-    padding: 0.8em;
+    padding: .3em;
     /*width: 50vw;    */
     /*border: 2px dotted blue;*/
   }
@@ -164,7 +188,7 @@ const CartButton = styled(Button)`
   }
 `
 const PayLabel = styled.div`
-  padding: 0.8em;
+  padding: 0.5em;
 `
 // const CategoriesMobile = styled(Categories)`
 //   display: none;
@@ -194,7 +218,7 @@ export default ({ data }) => {
     description,
     price,
     image,
-    imageA,
+    imageA = null,
     imageB = null,
     fields: { tags = [] },
   } = data.etsy
@@ -285,7 +309,7 @@ export default ({ data }) => {
                     )
                   }}
                 </Consumer>
-                <PayLabel>or... just get this one with -></PayLabel>
+                <PayLabel>or, just get this one with Paypal</PayLabel>
                 <PaypalExpressBtn
                   client={client}
                   currency={'USD'}

@@ -1,147 +1,105 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { navigate } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-
-import Layout from '../components/layout'
-import Modal from '../components/modal'
-import Tagbar from '../components/tagbar'
-import TagPreview from '../components/tag-preview'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
+import { Consumer } from './context'
+import Modal from './modal'
+import TagPreview from './tag-preview'
+import { Categories, CategoriesMobile } from './categories'
+import { TagFilter, Button } from '../utils/global'
 
-const tagExclude = [
-  'industrial',
-  'mechanical',
-  'Bladerunner',
-  'Mad_Max',
-  'Firefly',
-  'steampunk',
-  // 'hypoallergenic',
-  // 'niobium',
-  'Jewelry',
-  'Earrings',
-]
+const tagExclude = TagFilter
 
 const Container = styled.div`
-  padding: 1em;
   display: grid;
-  /*grid-template-columns: 1fr .5fr;*/
-  grid-gap: 0.5em;
-  height: 88vh;
-  object-fit: contain;
+  grid-template-columns: 1fr 1fr;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    padding: 0em 0em;
+    padding: 0;
+    height: auto;
   }
-  /*border: 3px dashed aqua;*/
+`
+const Product = styled.div`
+  grid-area: 1 / 2 / 1 / 2;
+  width: 85vw;
+  display: grid;
+  @media (max-width: 750px) {
+    width: 95vw;
+    grid-area: 2/1/2/1;
+  }
 `
 const LeftSide = styled.div`
-  grid-row: span 5;
+  padding: 2em 1em;
+  grid-area: 1 / 1 / 1 / 1;
+
   @media (max-width: 750px) {
     overflow: hidden;
-    height: 50vh;  
+    padding: 0 0 0.5em 0;
+    border-bottom: 1px solid lightgray;
   }
-  /*border: 5px dashed blue;*/
 `
 const RightSide = styled.div`
-  /*display: grid;*/
-  position: relative;
-  grid-row: span 5;
-  /*border: 5px dashed blue;*/
-  /*height: 80vh;*/
+  padding: 1em;
+  grid-area: 1 / 2 / 1 / 2;
+  @media (max-width: 750px) {
+    grid-area: 2/1/2/1;
+    padding: 0;
+  }
 `
 const Info = styled.div`
   padding: 0.5rem 0.7rem;
   font-size: 0.8em;
-  /*margin: 1rem auto;*/
-`
-const Tag = styled.button`
-  border: 0.5px solid gainsboro;
-  font-size: 0.6em;
-  text-decoration: none;
-  &:hover {
-    border: 0.5px solid black;
-    background-color: #f5f5f5;
+  @media (max-width: 750px) {
+    padding: 0;
   }
-  -webkit-transition-duration: 0.6s; /* Safari */
-  transition-duration: 0.6s;
 `
+
 const TextDiv = styled.div`
   padding: 0 2em 0 0;
   grid-column: span 2;
   @media (max-width: 750px) {
-    padding: 0 0 0 0.5em;
-    width: 95vw;
+    display: none;
   }
-  /*border: 5px dashed green;*/
 `
 
 const Photo = styled(Img)`
-  border: 5px solid orange;
-  width: 70vw;
-  /*height: 80px;*/
-  /*max-height: 850px;*/
-  object-fit: contain;
-  img, picture {
-        object-fit: contain !important;
-        max-height: 850px;
-        border: 5px solid rebeccapurple;
-  }
-/*  img {
-    object-fit: contain !important;
-    max-height: 850px  !important;
-  }
-  picture {
-    object-fit: contain !important;
-  }*/
+  width: 35vw;
+  padding: 2em 0;
   @media (max-width: 750px) {
-    width: 100vw;
-    height: 50vh;
-    /*float: left;*/
+    width: 90vw;
+    padding: 0px;
+    margin: auto;
   }
 `
-const Previews = styled.div`    
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+const Previews = styled.div`
+  padding: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /*border: 2px dotted magenta;*/
   @media (max-width: 750px) {
     position: relative;
-    display: block;
-    width: 100%;
-    /*padding: 0 0 0 10px;*/
-    /*border: 2px groove red;*/
+    padding: 0;
   }
 `
 const PhotoPreview = styled(Img)`
-  /*border: 30px groove pink;*/
-  /*display: inline-block;*/
   margin: auto;
-  /*max-width: 80%;*/
-  max-height: 30%;
-  width: 10em;
-  height: 10em;
-  /*vertical-align: bottom;*/
+  width: 90%;
   @media (max-width: 750px) {
-    border: 8px solid white;
-    width: 100%;
-    height: auto;
   }
 `
 const Related = styled.div`
-  margin:  0 .5em;
-  padding:  .2em 0;
+  margin: 0 0.5em;
+  padding: 0.2em 0;
   text-align: center;
-  border: 1px solid black;
-`
-
-const PhotoModal = styled(Modal)`
-  /*display: block;*/
-  /*border: 5px dotted purple;*/
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  @media (max-width: 750px) {
+    /*margin: 1em 0 0 0;*/
+    margin: auto;
+    padding: 0.5em 0 0 0;
+  }
 `
 
 const PaymentDiv = styled.div`
@@ -149,55 +107,43 @@ const PaymentDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0.3em 1em 0 0;
-  text-align: right;
+  text-align: center;
   @media (max-width: 750px) {
-    width: 50vw;  
+    width: 30vw;
     padding: 0.3em 2em 0 0;
   }
-  /*border: 10px dashed indigo;*/
 `
 const Price = styled.div`
   font-size: 0.8em;
-  padding: 0 0.5em 0 0.5em;
-    @media (max-width: 750px) {
-    /*width: 50vw;  */
-    /*padding: 3em 1em 1em 0;*/
-    line-height: 1.8em;
+  padding: 0.5em;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  @media (max-width: 750px) {
+    border: 0;
+    padding: 0 0.5em 1em 0.5em;
   }
 `
 const TagDiv = styled.div`
+  font-size: 0.8em;
   padding: 0.8em;
   text-align: center;
   @media (max-width: 750px) {
-    padding: 0.8em;
-    /*width: 50vw;    */
-    /*border: 2px dotted blue;*/
-
+    padding: 0.3em;
   }
 `
-const TagLink = styled(Link)`
-  padding: 0.3em;
+const CartButton = styled(Button)`
+  font-size: 1.1em;
   @media (max-width: 750px) {
-    padding: 0.1em;
-    font-size: 0.9em;
+    font-size: 0.9;
   }
 `
-// const PaypalScreen = styled.button`
-//   border: 0.8px solid black;
-//   font-size: 1em;
-//   text-decoration: none;
-//   &:hover {
-//     border: 0.5px solid black;
-//     background-color: #f5f5f5;
-//   }
-//   -webkit-transition-duration: 0.6s; /* Safari */
-//   transition-duration: 0.6s; 
-// `
+const PayLabel = styled.div`
+  padding: 0.5em;
+`
 
-
-const Product = props => {
-
-  // console.log(props.item)
+const ProductDisplay = props => {
+  const location =
+    typeof window !== `undefined` ? window.location.pathname : '/shop'
 
   const client = {
     sandbox:
@@ -212,52 +158,50 @@ const Product = props => {
     shape: 'pill', // pill | rect
     color: 'black', // gold | blue | silver | black
   }
-
   const {
+    id,
     name,
     description,
     price,
     image,
-    imageA = null,
-    imageB = null,
-    tags = [],
-  } = props.item
-
-    const location =
-    typeof window !== `undefined` ? window.location.pathname : '/shop'
+    fluid,
+    imageA,
+    fluidA,
+    imageB,
+    fluidB,
+    tags,
+  } = props.product
 
   const tagList = tags
     .filter(t => !tagExclude.includes(t))
     .map((tag, index) => {
       let tagLowerCase = tag
-      tag =
-        tag
-          .charAt(0)
-          .toUpperCase() + tag.slice(1)
-          .replace(/_/g, ' ')
+      tag = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/_/g, ' ')
       return (
-        <TagLink to={tagLowerCase} key={index}>
-          <Tag key={tag}> {tag} </Tag>
-        </TagLink>
+        <Button
+          onClick={() => {
+            navigate(tagLowerCase)
+          }}
+        >
+          <div key={tag}> {tag} </div>
+        </Button>
       )
     })
 
   return (
-        <Layout>
-      <Tagbar />
-      <Container>
+    <>
+    <Container>
+      <Categories />
+      <Product>
         <LeftSide>
-          <PhotoModal
-            source={image.fluid} // TODO: refactor PhotoModal to use 'sizes'
-            location={location}
-          >
+          <Modal source={fluid} location={location}>
             <Photo
               title={`Photo by Eghan Thompson`}
-              // fluid={image.fluid}
-              sizes={image.sizes}
+              fluid={fluid}
               id="mainImage"
+              text={name}
             />
-          </PhotoModal>
+          </Modal>
         </LeftSide>
         <RightSide>
           <TextDiv>
@@ -265,55 +209,76 @@ const Product = props => {
             <Info>{description}</Info>
           </TextDiv>
           <PaymentDiv>
-            <TagDiv>{tagList}</TagDiv>
+            <TagDiv>
+              Categories:
+              <br />
+              {tagList}
+            </TagDiv>
             <Price>
-              free shipping
-              <br />
-              {price} $
-              <br />
-                <PaypalExpressBtn
-                  client={client}
-                  currency={'USD'}
-                  total={Number(price)}
-                  style={style}
-                />
+              <PayLabel>with free shipping: {price} $</PayLabel>
+              <Consumer>
+                {({ data, set }) => {
+                  return (
+                    <div>
+                      <CartButton
+                        onClick={() => {
+                          set({
+                            itemList: [
+                              ...data.itemList,
+                              {
+                                name,
+                                price,
+                                image: fluid,
+                              },
+                            ],
+                          })
+                          navigate('cart')
+                        }}
+                      >
+                        add item to cart
+                      </CartButton>
+                    </div>
+                  )
+                }}
+              </Consumer>
+              <PayLabel>or, just get this one with Paypal</PayLabel>
+              <PaypalExpressBtn
+                client={client}
+                currency={'USD'}
+                total={Number(price)}
+                style={style}
+              />
             </Price>
           </PaymentDiv>
           <Previews>
             {imageA == null ? (
               <div />
             ) : (
-            <PhotoModal
-              source={imageA.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageA.childImageSharp.fluid}
-              />
-            </PhotoModal>
+              <Modal source={fluidA} location={location}>
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={fluidA}
+                />
+              </Modal>
             )}
             {imageB == null ? (
               <div />
             ) : (
-
-            <PhotoModal
-              source={imageB.childImageSharp.fluid}
-              location={location}
-            >
-              <PhotoPreview
-                title={`Photo by Eghan Thompson`}
-                fluid={imageB.childImageSharp.fluid}
-              />
-            </PhotoModal>
-              )}
+              <Modal source={fluidB} location={location}>
+                <PhotoPreview
+                  title={`Photo by Eghan Thompson`}
+                  fluid={fluidB}
+                />
+              </Modal>
+            )}
           </Previews>
         </RightSide>
-      </Container><Related>Related pieces:</Related>
+      </Product>
+    </Container>
+      <Related>Related pieces:</Related>
       <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
-    </Layout>
-    )
+  </>
+  )
 }
 
-
-export default Product
+export default ProductDisplay

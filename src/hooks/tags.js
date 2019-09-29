@@ -54,7 +54,10 @@ export const useSiteTags = () => {
 
   const mergedTags = [...airtableTagList, ...etsyTagList]
 
-  const filteredFlatTags = mergedTags.filter(tag => tag).flat()// null truthy filter
+  const flatTags = [].concat(...mergedTags)// null truthy filter
+
+  var filteredFlatTags = flatTags.filter(tag => tag)
+
 
   const tagCount = filteredFlatTags.map(value => [
     filteredFlatTags.filter(x => x === value).length,

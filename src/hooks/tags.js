@@ -52,11 +52,12 @@ export const useSiteTags = () => {
 
   const airtableTagList = renderDataAirtable.map(product => product.node.data.tags)
 
-  const mergedTags = [...airtableTagList, ...etsyTagList].filter(tag => tag).flat()// null truthy filter
+  const mergedTags = [...airtableTagList, ...etsyTagList]
 
+  const filteredFlatTags = mergedTags.filter(tag => tag).flat()// null truthy filter
 
-  const tagCount = mergedTags.map(value => [
-    mergedTags.filter(x => x === value).length,
+  const tagCount = filteredFlatTags.map(value => [
+    filteredFlatTags.filter(x => x === value).length,
     value,
   ])
 

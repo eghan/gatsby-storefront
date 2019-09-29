@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { TagFilter } from '../utils/global'
 
 export const useSiteTags = () => {
-  const { etsy } = useStaticQuery(
+  const data = useStaticQuery(
     graphql`
       query Tags {
         etsy: allEtsyListingsDownloadCsv {
@@ -30,7 +30,7 @@ export const useSiteTags = () => {
     `
   )
 
-  const { edges } = etsy
+  // const { edges } = data.etsy
   // console.log('test 1', edges)
 
   let orderedSet = {},
@@ -40,23 +40,27 @@ export const useSiteTags = () => {
     orderedDisplay = new Map()
 
   let tagsData = {},
-    renderData = etsy.edges,
+    renderDataEtsy = data.etsy.edges,
+    renderDataAirtable = data.airtable.edges,
     tagWeight = {},
     orderedTags = new Map()
 
   const DeSlug = text =>
     text.charAt(0).toUpperCase() + text.slice(1).replace(/_/g, ' ')
 
-  const tagList = renderData.map(product => [...product.node.fields.tags])
+  const etsyTagList = renderDataEtsy.map(product => product.node.fields.tags)
 
-  const mergedTags = [].concat(...tagList)
+  const airtableTagList = renderDataAirtable.map(product => product.node.data.tags)
+
+  const mergedTags = [...airtableTagList, ...etsyTagList].filter(tag => tag).flat()// null truthy filter
+
 
   const tagCount = mergedTags.map(value => [
     mergedTags.filter(x => x === value).length,
     value,
   ])
 
-  const tagsUnique = tagCount.filter(tag => tag[0] < renderData.length, [])
+  const tagsUnique = tagCount.filter(tag => tag[0] < renderDataEtsy.length, [])
 
   const tagsUniqueCounted = tagsUnique.filter(
     (s => a => (j => !s.has(j) && s.add(j))(JSON.stringify(a)))(new Set())
@@ -66,7 +70,8 @@ export const useSiteTags = () => {
     // .filter((tag, i) => tagsUniqueCounted.indexOf(tag) === i)
     .filter(tag => !TagFilter.includes(tag[1]))
 
-  console.log(etsy)
+// console.log('tagsUniqueCounted',tagsUniqueCounted)
+
 
   return tagsFiltered
 }

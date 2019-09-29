@@ -40,12 +40,22 @@ const Section = styled.div`
     width: 0em;
   }
 `
+const TagCounts = styled.span`
+  font-size: 0.6em;
+  padding: 0 0 0 0.8em;
+  letter-spacing: 0.1em;
+`
 
 const CategoriesMobile = () => <></>
 
 const Categories = props => {
   const DeSlug = text =>
     text.charAt(0).toUpperCase() + text.slice(1).replace(/_/g, ' ')
+  const FilteredSortedTags = useSiteTags()
+    .filter(tag => tag[0] > 1)
+    .sort((a, b) => {
+      return b[0] - a[0]
+    })
 
   return (
     <Nav>
@@ -57,22 +67,24 @@ const Categories = props => {
       {/* </ButtonMobileRight> */}
       <Section>
         <Tags>Tags:</Tags>
-        {useSiteTags().map(tag => (
-          <TagButton
-            onClick={() => {
-              navigate(tag[1])
-            }}
-          >
-            {DeSlug(tag[1])}
-          </TagButton>
-        ))}
+        {FilteredSortedTags
+          .map(tag => (
+            <TagButton
+              onClick={() => {
+                navigate(tag[1])
+              }}
+            >
+              {DeSlug(tag[1])}
+              <TagCounts>({tag[0]})</TagCounts>
+            </TagButton>
+          ))}
       </Section>
       <Section>
         <CustomOrders />
         <Cart />
       </Section>
       <Mobile>
-        <MenuModal categories={useSiteTags()}>tags</MenuModal>
+        <MenuModal categories={FilteredSortedTags}>tags</MenuModal>
         <CustomOrders />
         <Cart />
       </Mobile>

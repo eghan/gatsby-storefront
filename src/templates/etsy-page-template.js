@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import ProductDisplay from '../components/product'
 
 export default ({ data }) => {
-
   const {
     // destructure and defaults isolated for possible future changes
     id,
@@ -36,6 +35,7 @@ export default ({ data }) => {
 
   return <ProductDisplay product={product} />
 }
+
 export const query = graphql`
   query etsyData($name: String!) {
     etsy: etsyListingsDownloadCsv(TITLE: { eq: $name }) {

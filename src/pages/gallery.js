@@ -89,7 +89,7 @@ const PhotoButton = styled(Button)`
   width: 40%;
   color: gray;
   margin: auto;
-  font-size: .7em;
+  font-size: 0.7em;
 `
 
 const EmblaCarouselComponent = photos => {
@@ -98,11 +98,18 @@ const EmblaCarouselComponent = photos => {
   const scrollNext = useCallback(() => embla.scrollNext(), [embla])
 
   if (typeof window !== `undefined`) {
+    let clickWait = false
     setInterval(() => {
-      if (embla !== null) {
+      if (embla !== null && !clickWait) {
         embla.scrollNext()
       }
     }, 3000)
+    document.addEventListener('click', () => {
+      clickWait = true
+      setTimeout(() => {
+        clickWait = false
+      }, 6000)
+    })
   }
 
   useEffect(() => {

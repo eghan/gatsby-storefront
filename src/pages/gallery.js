@@ -83,11 +83,11 @@ const EmblaCarouselComponent = photos => {
   const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
   const scrollNext = useCallback(() => embla.scrollNext(), [embla])
 
-  setInterval(() => {
-    if (embla !== null) {
-      embla.scrollNext()
-    }
-  }, 5000)
+  // setInterval(() => {
+  //   if (embla !== null) {
+  //     embla.scrollNext()
+  //   }
+  // }, 5000)
 
   useEffect(() => {
     if (embla) {

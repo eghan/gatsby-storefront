@@ -47,7 +47,7 @@ const Carousel = styled.div`
   /*border: 1px solid gray;*/
   /*padding: 1vw;*/
   width: 90vw;
-/*  display: grid;
+  /*  display: grid;
   grid-template-columns: 1fr 7fr 1fr;*/
   margin: auto;
   @media (max-width: 750px) {
@@ -64,18 +64,32 @@ const CarouselNavigation = styled(Button)`
   }
 `
 const CarouselCenter = styled.div`
-/*  grid-area: 1/2;
+  /*  grid-area: 1/2;
   width: 100vw;*/
+  margin: 0.5em;
 `
 const CarouselPhoto = styled(Photo)`
   height: 33vw;
   width: 33vw;
-  margin: 1em;
+  margin: 1em 1em 0.5em 1em;
   @media (max-width: 750px) {
     margin: 0.1em;
     height: 70vw;
     width: 70vw;
   }
+`
+const PhotoGrid = styled.div`
+  display: grid;
+`
+const PhotoModal = styled(Modal)`
+  grid-area: 1 1 1 1;
+`
+const PhotoButton = styled(Button)`
+  grid-area: 2 1 2 1;
+  width: 40%;
+  color: gray;
+  margin: auto;
+  font-size: .7em;
 `
 
 const EmblaCarouselComponent = photos => {
@@ -83,11 +97,13 @@ const EmblaCarouselComponent = photos => {
   const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
   const scrollNext = useCallback(() => embla.scrollNext(), [embla])
 
-  // setInterval(() => {
-  //   if (embla !== null) {
-  //     embla.scrollNext()
-  //   }
-  // }, 5000)
+  if (typeof window !== `undefined`) {
+    setInterval(() => {
+      if (embla !== null) {
+        embla.scrollNext()
+      }
+    }, 3000)
+  }
 
   useEffect(() => {
     if (embla) {
@@ -110,37 +126,40 @@ const EmblaCarouselComponent = photos => {
       <EmblaCarouselReact
         htmlTagName="div"
         emblaRef={setEmbla}
-        options={{ loop: true, startIndex: 1, speed: 2 }}
+        options={{ loop: true, startIndex: 1, speed: 8 }}
       >
         <CarouselCenter style={{ display: 'flex' }}>
           {photos.photos[0].node.data.photo.localFiles.map(img => (
-            <Modal
-              object={img}
-              doubleclick="true"
-              source={img.childImageSharp.low}
-              location={location}
-              name={img.name}
-              text="Inqure here"
-            >
-              <CarouselPhoto
-                fadeIn={true}
-                key={img.id}
-                title={`Photo by Eghan Thompson`}
-                fluid={img.childImageSharp.low}
-                style={{ flex: '0 0 100%' }}
-              />
-            </Modal>
+            <PhotoGrid>
+              <PhotoModal
+                object={img}
+                doubleclick="true"
+                source={img.childImageSharp.low}
+                location={location}
+                name={img.name}
+                text="Inqure here"
+              >
+                <CarouselPhoto
+                  fadeIn={true}
+                  key={img.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={img.childImageSharp.low}
+                  style={{ flex: '0 0 100%' }}
+                />
+              </PhotoModal>
+              <PhotoButton>inquiries</PhotoButton>
+            </PhotoGrid>
           ))}
         </CarouselCenter>
       </EmblaCarouselReact>
-{/*  */}
-{/*       <CarouselNavigation onClick={scrollNext}> */}
-{/*         {'\u219D'} */}
-{/*         <br /> */}
-{/*         {'\u219D'} */}
-{/*         <br /> */}
-{/*         {'\u219D'} */}
-{/*       </CarouselNavigation> */}
+      {/*  */}
+      {/*       <CarouselNavigation onClick={scrollNext}> */}
+      {/*         {'\u219D'} */}
+      {/*         <br /> */}
+      {/*         {'\u219D'} */}
+      {/*         <br /> */}
+      {/*         {'\u219D'} */}
+      {/*       </CarouselNavigation> */}
     </Carousel>
   )
 }

@@ -3,8 +3,9 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import EmblaCarouselReact from 'embla-carousel-react'
-import Modal from '../components/modal'
 
+import Modal from '../components/modal'
+import Gallery from '../components/gallery-display'
 import { Button } from '../utils/global'
 
 const location =
@@ -92,96 +93,100 @@ const PhotoButton = styled(Button)`
   font-size: 0.7em;
 `
 
-const EmblaCarouselComponent = photos => {
-  const [embla, setEmbla] = useState(null)
-  const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
-  const scrollNext = useCallback(() => embla.scrollNext(), [embla])
+// const EmblaCarouselComponent = photos => {
+//   const [embla, setEmbla] = useState(null)
+//   const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
+//   const scrollNext = useCallback(() => embla.scrollNext(), [embla])
+//
+//   if (typeof window !== `undefined`) {
+//     let clickWait = false
+//     setInterval(() => {
+//       if (embla !== null && !clickWait) {
+//         embla.scrollNext()
+//       }
+//     }, 3000)
+//     document.addEventListener('click', () => {
+//       clickWait = true
+//       setTimeout(() => {
+//         clickWait = false
+//       }, 6000)
+//     })
+//   }
+//
+//   useEffect(() => {
+//     if (embla) {
+//       embla.on('select', () => {
+//         console.log(`Current index is ${embla.selectedScrollSnap()}`)
+//       })
+//     }
+//   }, [embla])
+//
+//   // console.log(photos.photos[0].node.data.photo.localFiles)
+//
+//   return (
+//     <>
+//     {/* <Gallery images={photos.photos[0].node.data.photo.localFiles} /> */}
+//     <Carousel>
+//       {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
+//       {/* <CarouselNavigation onClick={scrollPrev}> */}
+//       {/*   {'\u219C'} */}
+//       {/*   <br /> */}
+//       {/*   {'\u219C'} */}
+//       {/*   <br /> */}
+//       {/*   {'\u219C'} */}
+//       {/* </CarouselNavigation> */}
+//       <EmblaCarouselReact
+//         htmlTagName="div"
+//         emblaRef={setEmbla}
+//         options={{ loop: true, startIndex: 1, speed: 8 }}
+//       >
+//         <CarouselCenter style={{ display: 'flex' }}>
+//           {photos.photos[0].node.data.photo.localFiles.map(img => (
+//             <PhotoGrid>
+//               <PhotoModal
+//                 object={img}
+//                 doubleclick="true"
+//                 source={img.childImageSharp.low}
+//                 location={location}
+//                 name={img.name}
+//                 text="Inqure here"
+//               >
+//                 <CarouselPhoto
+//                   fadeIn={true}
+//                   key={img.id}
+//                   title={`Photo by Eghan Thompson`}
+//                   fluid={img.childImageSharp.low}
+//                   style={{ flex: '0 0 100%' }}
+//                 />
+//               </PhotoModal>
+//               <PhotoButton>inquiries</PhotoButton>
+//             </PhotoGrid>
+//           ))}
+//         </CarouselCenter>
+//       </EmblaCarouselReact>
+//       {/*  */}
+//       {/*       <CarouselNavigation onClick={scrollNext}> */}
+//       {/*         {'\u219D'} */}
+//       {/*         <br /> */}
+//       {/*         {'\u219D'} */}
+//       {/*         <br /> */}
+//       {/*         {'\u219D'} */}
+//       {/*       </CarouselNavigation> */}
+//     </Carousel>
+//     </>
+//   )
+// }
 
-  if (typeof window !== `undefined`) {
-    let clickWait = false
-    setInterval(() => {
-      if (embla !== null && !clickWait) {
-        embla.scrollNext()
-      }
-    }, 3000)
-    document.addEventListener('click', () => {
-      clickWait = true
-      setTimeout(() => {
-        clickWait = false
-      }, 6000)
-    })
-  }
-
-  useEffect(() => {
-    if (embla) {
-      embla.on('select', () => {
-        console.log(`Current index is ${embla.selectedScrollSnap()}`)
-      })
-    }
-  }, [embla])
-
-  return (
-    <Carousel>
-      {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
-      {/* <CarouselNavigation onClick={scrollPrev}> */}
-      {/*   {'\u219C'} */}
-      {/*   <br /> */}
-      {/*   {'\u219C'} */}
-      {/*   <br /> */}
-      {/*   {'\u219C'} */}
-      {/* </CarouselNavigation> */}
-      <EmblaCarouselReact
-        htmlTagName="div"
-        emblaRef={setEmbla}
-        options={{ loop: true, startIndex: 1, speed: 8 }}
-      >
-        <CarouselCenter style={{ display: 'flex' }}>
-          {photos.photos[0].node.data.photo.localFiles.map(img => (
-            <PhotoGrid>
-              <PhotoModal
-                object={img}
-                doubleclick="true"
-                source={img.childImageSharp.low}
-                location={location}
-                name={img.name}
-                text="Inqure here"
-              >
-                <CarouselPhoto
-                  fadeIn={true}
-                  key={img.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.low}
-                  style={{ flex: '0 0 100%' }}
-                />
-              </PhotoModal>
-              <PhotoButton>inquiries</PhotoButton>
-            </PhotoGrid>
-          ))}
-        </CarouselCenter>
-      </EmblaCarouselReact>
-      {/*  */}
-      {/*       <CarouselNavigation onClick={scrollNext}> */}
-      {/*         {'\u219D'} */}
-      {/*         <br /> */}
-      {/*         {'\u219D'} */}
-      {/*         <br /> */}
-      {/*         {'\u219D'} */}
-      {/*       </CarouselNavigation> */}
-    </Carousel>
+const IndexPage = ({ data }) => {
+  let photoFilter = data.allAirtable.edges.filter(
+    edge => edge.node.data.name === 'photoset'
   )
-}
-
-const IndexPage = ({ data }) => (
-  <>
-    <EmblaCarouselComponent
-      photos={data.allAirtable.edges.filter(
-        edge => edge.node.data.name === 'photoset'
-      )}
-    />
-    <Box>
-      {data.allAirtable.edges
-        .filter(edge => edge.node.data.name === 'photoset')
-        .map((edge, i) =>
+  let photos = photoFilter[0].node.data.photo.localFiles
+  return (
+    <>
+      <Gallery images={photos} />
+      <Box>
+        {photoFilter.map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
             <Modal
               object={img}
@@ -199,9 +204,10 @@ const IndexPage = ({ data }) => (
             </Modal>
           ))
         )}
-    </Box>
-  </>
-)
+      </Box>
+    </>
+  )
+}
 
 export default IndexPage
 

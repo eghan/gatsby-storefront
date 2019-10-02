@@ -1,34 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import EmblaCarouselReact from 'embla-carousel-react'
 import Modal from '../components/modal'
+import { Consumer } from '../components/context'
 
 import { Button } from '../utils/global'
 
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
 
-// import React, { useState, useCallback, useEffect } from 'react'
-
-const Box = styled.div`
-  /*min-width: 350px;*/
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 1vw;
-  padding: 1vw;
-  @media (max-width: 1150px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  @media (max-width: 750px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  text-align: center;
-`
 const Photo = styled(Img)`
   /*padding: 1em 1em;*/
   border: 1px solid black;
@@ -41,6 +23,7 @@ const Photo = styled(Img)`
 `
 
 const Carousel = styled.div`
+  display: grid;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
@@ -55,14 +38,26 @@ const Carousel = styled.div`
   }
 `
 const CarouselNavigation = styled(Button)`
-  font-size: 3em;
+  display: grid;
+  font-size: 2em;
+  padding: 0;
+  margin: 0.3em 0.3em;
   color: grey;
-  width: 10vw;
-  outline: none;
+  width: 3vw;
+  height: 36vw;
   @media (max-width: 750px) {
     display: none;
   }
 `
+const CarouselNavLeft = styled(CarouselNavigation)`
+  position: absolute;
+  left: 0;
+`
+const CarouselNavRight = styled(CarouselNavigation)`
+  position: absolute;
+  right: 0;
+`
+
 const CarouselCenter = styled.div`
   /*  grid-area: 1/2;
   width: 100vw;*/
@@ -92,8 +87,7 @@ const PhotoButton = styled(Button)`
   font-size: 0.7em;
 `
 
-const EmblaCarouselComponent = ({props}) => {
-
+const Gallery = props => {
   const photos = props.images
   // return JSON.stringify(photos)
 
@@ -107,7 +101,7 @@ const EmblaCarouselComponent = ({props}) => {
       if (embla !== null && !clickWait) {
         embla.scrollNext()
       }
-    }, 3000)
+    }, 9000)
     document.addEventListener('click', () => {
       clickWait = true
       setTimeout(() => {
@@ -127,89 +121,69 @@ const EmblaCarouselComponent = ({props}) => {
   // console.log(photos.photos[0].node.data.photo.localFiles)
 
   return (
-    <Carousel>
-      {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
-      {/* <CarouselNavigation onClick={scrollPrev}> */}
-      {/*   {'\u219C'} */}
-      {/*   <br /> */}
-      {/*   {'\u219C'} */}
-      {/*   <br /> */}
-      {/*   {'\u219C'} */}
-      {/* </CarouselNavigation> */}
-      <EmblaCarouselReact
-        htmlTagName="div"
-        emblaRef={setEmbla}
-        options={{ loop: true, startIndex: 1, speed: 8 }}
-      >
-        <CarouselCenter style={{ display: 'flex' }}>
-          {photos.map(img => (
-            <PhotoGrid>
-              <PhotoModal
-                object={img}
-                doubleclick="true"
-                source={img.childImageSharp.low}
-                location={location}
-                name={img.name}
-                text="Inqure here"
-              >
-                <CarouselPhoto
-                  fadeIn={true}
-                  key={img.id}
-                  title={`Photo by Eghan Thompson`}
-                  fluid={img.childImageSharp.low}
-                  style={{ flex: '0 0 100%' }}
-                />
-              </PhotoModal>
-              <PhotoButton>inquiries</PhotoButton>
-            </PhotoGrid>
-          ))}
-        </CarouselCenter>
-      </EmblaCarouselReact>
-      {/*  */}
-      {/*       <CarouselNavigation onClick={scrollNext}> */}
-      {/*         {'\u219D'} */}
-      {/*         <br /> */}
-      {/*         {'\u219D'} */}
-      {/*         <br /> */}
-      {/*         {'\u219D'} */}
-      {/*       </CarouselNavigation> */}
-    </Carousel>
+    <>
+      <Carousel>
+        {' '}
+        <CarouselNavLeft onClick={scrollPrev}>
+          {'\u219C'}
+          <br />
+          {'\u219C'}
+          <br />
+          {'\u219C'}
+        </CarouselNavLeft>
+        {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
+        <EmblaCarouselReact
+          htmlTagName="div"
+          emblaRef={setEmbla}
+          options={{ loop: true, startIndex: 1, speed: 18 }}
+        >
+          <CarouselCenter style={{ display: 'flex' }}>
+            {photos.map(img => (
+              <PhotoGrid>
+                <PhotoModal
+                  object={img}
+                  doubleclick="true"
+                  source={img.childImageSharp.low}
+                  location={location}
+                  name={img.name}
+                  text="Inqure here"
+                >
+                  <CarouselPhoto
+                    fadeIn={true}
+                    key={img.id}
+                    title={`Photo by Eghan Thompson`}
+                    fluid={img.childImageSharp.low}
+                    style={{ flex: '0 0 100%' }}
+                  />
+                </PhotoModal>
+                <Consumer>
+                  {({ data, set }) => (
+                    <PhotoButton
+                      onClick={() => {
+                        set({
+                          itemInquery: [img],
+                        })
+                        navigate('contact')
+                      }}
+                    >
+                      inquiry
+                    </PhotoButton>
+                  )}
+                </Consumer>
+              </PhotoGrid>
+            ))}
+          </CarouselCenter>
+        </EmblaCarouselReact>{' '}
+        <CarouselNavRight onClick={scrollNext}>
+          {'\u219D'}
+          <br />
+          {'\u219D'}
+          <br />
+          {'\u219D'}
+        </CarouselNavRight>
+      </Carousel>
+    </>
   )
 }
-
-const Gallery = props => (
-  <>
-<EmblaCarouselComponent props={props}/>
-{/* {JSON.stringify(props)} */}
-
-    {/* <EmblaCarouselComponent */}
-    {/*   photos={data.allAirtable.edges.filter( */}
-    {/*     edge => edge.node.data.name === 'photoset' */}
-    {/*   )} */}
-    {/* /> */}
-    {/* <Box> */}
-    {/*   {data.allAirtable.edges */}
-    {/*     .filter(edge => edge.node.data.name === 'photoset') */}
-    {/*     .map((edge, i) => */}
-    {/*       edge.node.data.photo.localFiles.map(img => ( */}
-    {/*         <Modal */}
-    {/*           object={img} */}
-    {/*           source={img.childImageSharp.low} */}
-    {/*           location={location} */}
-    {/*           name={img.name} */}
-    {/*           text="Inqure here" */}
-    {/*         > */}
-    {/*           <Photo */}
-    {/*             fadeIn={true} */}
-    {/*             key={img.id} */}
-    {/*             title={`Photo by Eghan Thompson`} */}
-    {/*             fluid={img.childImageSharp.low} */}
-    {/*           /> */}
-    {/*         </Modal> */}
-    {/*       )) */}
-    {/*     )} */}
-    {/* </Box> */}
-  </>
-)
 
 export default Gallery

@@ -6,6 +6,8 @@ import Img from 'gatsby-image'
 
 import { Button } from '../utils/global'
 import PhotoModal from '../components/modal'
+import Gallery from '../components/gallery-display'
+
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/shop'
 
@@ -116,7 +118,7 @@ const TextBox = styled(Link)`
   display: flex;
   text-decoration: none;
   color: black;
-  background-color: rgba(255, 255, 255, 0.90);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   height: 50%;
   margin: 5%;
@@ -139,17 +141,16 @@ const More = styled.div`
   grid-column: span 3;
   align-self: flex-end;
   text-align: right;
-  
 `
 
 const Text = styled.div`
   width: 100%;
   padding: 1em;
-    @media (max-width: 750px) {
-      padding: 0;
-      margin: .5em 0 0 .5em;
-      /*padding: .3em .8em 0 .3em;*/
-    }
+  @media (max-width: 750px) {
+    padding: 0;
+    margin: 0.5em 0 0 0.5em;
+    /*padding: .3em .8em 0 .3em;*/
+  }
 `
 const StyledModal = styled(PhotoModal)`
   border: 2px solid purple;
@@ -312,6 +313,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
+      <Gallery images={ShuffleDeck} />
       {PreviewDeck.map((preview, i) => {
         if (ShuffleDeck.length >= 3 * i + 2) {
           let photoOne = ShuffleDeck[3 * i]

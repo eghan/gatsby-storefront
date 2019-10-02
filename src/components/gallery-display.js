@@ -11,27 +11,13 @@ import { Button } from '../utils/global'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
 
-const Photo = styled(Img)`
-  /*padding: 1em 1em;*/
-  border: 1px solid black;
-  width: 18vw;
-  height: 18vw;
-  @media (max-width: 750px) {
-    width: 47vw;
-    height: 47vw;
-  }
-`
 
 const Carousel = styled.div`
   display: grid;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
-  /*border: 1px solid gray;*/
-  /*padding: 1vw;*/
   width: 90vw;
-  /*  display: grid;
-  grid-template-columns: 1fr 7fr 1fr;*/
   margin: auto;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -63,7 +49,8 @@ const CarouselCenter = styled.div`
   width: 100vw;*/
   margin: 0.5em;
 `
-const CarouselPhoto = styled(Photo)`
+const CarouselPhoto = styled(Img)`
+  border: 1px solid black;
   height: 33vw;
   width: 33vw;
   margin: 1em 1em 0.5em 1em;
@@ -101,12 +88,12 @@ const Gallery = props => {
       if (embla !== null && !clickWait) {
         embla.scrollNext()
       }
-    }, 9000)
+    }, 3500)
     document.addEventListener('click', () => {
       clickWait = true
       setTimeout(() => {
         clickWait = false
-      }, 6000)
+      }, 3500)
     })
   }
 
@@ -118,6 +105,7 @@ const Gallery = props => {
     }
   }, [embla])
 
+  const StartPoint = Math.floor(Math.random() * photos.length)
   // console.log(photos.photos[0].node.data.photo.localFiles)
 
   return (
@@ -131,11 +119,10 @@ const Gallery = props => {
           <br />
           {'\u219C'}
         </CarouselNavLeft>
-        {/* {JSON.stringify(photos.photos[0].node.data.photo.localFiles[0])} */}
         <EmblaCarouselReact
           htmlTagName="div"
           emblaRef={setEmbla}
-          options={{ loop: true, startIndex: 1, speed: 18 }}
+          options={{ loop: true, startIndex: StartPoint, speed: 18 }}
         >
           <CarouselCenter style={{ display: 'flex' }}>
             {photos.map(img => (

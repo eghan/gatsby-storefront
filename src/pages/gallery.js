@@ -52,7 +52,7 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <Gallery images={photos} />
-      <Gallery images={photos2} />
+      {/* <Gallery images={photos2} /> */}
       <Box>
         {photoFilter.map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (

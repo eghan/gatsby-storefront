@@ -4,6 +4,8 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
 
+import Gallery from '../components/gallery-display'
+
 // import { Categories, CategoriesMobile } from '../components/categories'
 // import ProductList from '../components/product-list'
 //

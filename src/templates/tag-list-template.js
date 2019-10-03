@@ -68,9 +68,12 @@ export default props => (
 // console.log('TEST3', filteredData)
       // console.log('test2', target[0].node.context.Tags)
 
+      // const bullshit = useSiteTags() || 'bullshit'
+
       return (
         <Layout>
           <Title>Elements:</Title>
+          {/* {JSON.stringify(bullshit)} */}
           {/* <div>{data.sitePage.context.discription}</div> */}
 
 

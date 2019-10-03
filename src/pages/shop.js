@@ -6,24 +6,6 @@ import styled from 'styled-components'
 import { Container, Products } from '../utils/global'
 import { Categories } from '../components/categories'
 import ProductList from '../components/product-list'
-// 
-// const Container = styled.div`
-//   display: grid;
-//   @media (max-width: 750px) {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// `
-// 
-// const Products = styled.div`
-//   grid-area: 1 / 2 / 1 / 2;
-//   padding: 1em;
-//   text-align: center;
-//   @media (max-width: 750px) {
-//     grid-area: 2/1/2/2;
-//     grid-column: span 2;
-//     padding: 0;
-//   }
-// `
 
 const etsyBuild = data => {
   // data.etsy.edges.node is dirty in the node
@@ -67,7 +49,6 @@ const airtableBuild = data => {
 export default ({ data }) => {
   return (
     <>
-      {/* <Tagbar /> */}
       <Container>
         <Categories />
         <Products>

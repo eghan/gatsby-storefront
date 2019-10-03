@@ -16,16 +16,16 @@ const Price = styled.div`
   float: right;
 `
 const Photo = styled(Img)`
-  width: 300px;
-  height: 300px;
+  width: 19vw;
+  height: 19vw;
   padding: 0.5em 0.5em;
 
   @media (max-width: 750px) {
   }
 
   @media (max-width: 1040px) {
-    width: 150px;
-    height: 150px;
+/*    width: 150px;
+    height: 150px;*/
   }
 `
 const ProductLink = styled.div`
@@ -45,7 +45,6 @@ const Preview = styled.div`
   @media (max-width: 750px) {
   }
   @media (max-width: 1040px) {
-    /* in progress */
   }
 `
 

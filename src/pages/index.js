@@ -120,10 +120,12 @@ const TextBox = styled(Link)`
   color: black;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
-  height: 50%;
-  margin: 5%;
+  max-height: 80%;
+  margin: 1em;
   grid-column: span 2;
   font-size: 0.75em;
+  overflow: hidden;
+
   @media (max-width: 750px) {
     font-size: 0.6em;
     overflow: hidden;
@@ -144,8 +146,13 @@ const More = styled.div`
 `
 
 const Text = styled.div`
-  width: 100%;
-  padding: 1em;
+  /*width: 100%;*/
+  text-indent: 1em;
+  padding: 1em 1em 0 1em;
+  height: 30%;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 750px) {
     padding: 0;
     margin: 0.5em 0 0 0.5em;
@@ -155,6 +162,13 @@ const Text = styled.div`
 const StyledModal = styled(PhotoModal)`
   border: 2px solid purple;
 `
+const SectionButton = styled(Button)`
+  margin: 1em;
+  border: 1px solid black;
+`
+//  AHAHAHHAHAHAHA nested terinary (manical laughter), but you can read it right?
+const ResponsiveText =
+  typeof window !== `undefined` ? (window.innerWidth > 750 ? 350 : 250) : 0
 
 const RenderPhoto = PhotoObject => {
   return (
@@ -186,16 +200,16 @@ const RenderPreview = PreviewObject => {
       />
       <TextBox to={PreviewObject.section}>
         <Text>
-          {PreviewObject.details}
+          {PreviewObject.details.substring(0, ResponsiveText)}...
           <More>
-            more...
-            <Button
+            {/* more... */}
+            <SectionButton
               onClick={() => {
                 navigate(PreviewObject.section)
               }}
             >
               {PreviewObject.section}
-            </Button>
+            </SectionButton>
           </More>
         </Text>
       </TextBox>

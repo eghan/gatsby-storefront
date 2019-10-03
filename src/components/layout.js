@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import 'typeface-tinos'
 
 import { ContextProviderComponent } from './context'
+
 import Header from './header'
 import Footer from './footer'
 

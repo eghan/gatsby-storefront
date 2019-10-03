@@ -78,6 +78,11 @@ const CustomOrders = () => (
     custom orders
   </CustomsButton>
 )
+const Inquiry = () => (
+  <CustomsButton onClick={() => navigate('/contact')}>
+    Inquiry
+  </CustomsButton>
+)
 const Cart = () => (
   <CustomsButton onClick={() => navigate('/cart')}>cart</CustomsButton>
 )
@@ -112,5 +117,6 @@ export {
   Cart,
   Mobile,
   Container,
-  Products
+  Products,
+  Inquiry
 }

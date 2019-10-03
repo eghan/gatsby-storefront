@@ -3,49 +3,59 @@ import Img from 'gatsby-image'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-// import Layout from '../components/layout'
+import { Inquiry } from '../utils/global'
 
 const SocialDiv = styled.div`
-  margin: 1vw;
+  place-items: center;
+  margin: 2em 10vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 1vw;
-  width: 100%;
+  width: 80vw;
   @media (max-width: 750px) {
-    grid-template-columns: 1fr 1fr;
-    position: absolute;
-    left: 5vw;
-    margin: 0;
-  }
-`
-const Section = styled.div`
-  @media (max-width: 750px) {
-    display: none;
-  }
-`
+  margin: 1em 10vw;
+  /*grid-gap: 0;*/
 
-const SocialData = styled.div`
+  }
+`
+// const Section = styled.div`
+//   text-align: center;
+//   padding: 1em;
+//   background: peru;
+//   @media (max-width: 750px) {
+//     display: none;
+//   }
+// `
+
+const SocialItem = styled.div`
   display: grid;
   @media (max-width: 750px) {
     grid-column: span 2;
-    height: 50vw;
+    padding: .6em;
   }
 `
 const Photo = styled(Img)`
-  width: 300px;
-  height: 300px;
-
+  width: 10vw;
+  height: 10vw;
+  @media (max-width: 750px) {
+  width: 30vw;
+  height: 30vw;
+  }
   // method to access picture properties directly
   picture {
-    overflow: hidden;
+/*    overflow: hidden;
     width: 100px;
-  }
+*/  }
 
   @media (max-width: 1040px) {
-    padding: 0em 0em;
+/*    padding: 0em 0em;
     width: 150px;
-    height: 150px;
+    height: 150px;*/
   }
+`
+const Content = styled.div`
+  text-align: center;
+  padding: 0 1em;
 `
 
 const About = () => {
@@ -58,6 +68,7 @@ const About = () => {
               name
               section
               details
+              priority
               photo {
                 localFiles {
                   name
@@ -84,34 +95,38 @@ const About = () => {
     }
   `)
 
-  const Socials = data.allAirtable.edges.filter(
-    edge => edge.node.data.name === 'social'
-  )
+  const Socials = data.allAirtable.edges
+    .filter(edge => edge.node.data.name === 'social')
+    .map(element => element.node.data)
+    .sort((a, b) => a.priority - b.priority)
+
   return (
-    <SocialDiv>
-      {Socials.map(element => {
-        return (
-          <div>
-            <SocialData key={element.section}>
+    <>
+      <SocialDiv>
+        {Socials.map(element => {
+          return (
+            // <div>
+            <SocialItem key={element.section}>
               <a
-                href={element.node.data.details}
+                href={element.details}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Photo
-                  key={element.node.data.section}
-                  title={element.node.data.section}
-                  fluid={
-                    element.node.data.photo.localFiles[0].childImageSharp.high
-                  }
+                  key={element.section}
+                  title={element.section}
+                  fluid={element.photo.localFiles[0].childImageSharp.high}
                 />
               </a>
-            </SocialData>
-            <Section>{element.node.data.section}</Section>
-          </div>
-        )
-      })}
-    </SocialDiv>
+            </SocialItem>
+            // {/* <Section>{element.node.data.section}</Section> */}
+          )
+        })}
+      </SocialDiv>
+      <Content>
+        Or you can get in touch with me directly over here: <Inquiry />
+      </Content>
+    </>
   )
 }
 

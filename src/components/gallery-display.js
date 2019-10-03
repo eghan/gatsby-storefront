@@ -11,13 +11,12 @@ import { Button } from '../utils/global'
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
 
-
 const Carousel = styled.div`
   display: grid;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
-  width: 90vw;
+  width: 90%;
   margin: auto;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -74,10 +73,9 @@ const PhotoButton = styled(Button)`
   font-size: 0.7em;
 `
 
+// props shape {props.id, props.name, props.childImageSharp.low}
 const Gallery = props => {
   const photos = props.images
-  // return JSON.stringify(photos)
-
   const [embla, setEmbla] = useState(null)
   const scrollPrev = useCallback(() => embla.scrollPrev(), [embla])
   const scrollNext = useCallback(() => embla.scrollNext(), [embla])
@@ -106,12 +104,9 @@ const Gallery = props => {
   }, [embla])
 
   const StartPoint = Math.floor(Math.random() * photos.length)
-  // console.log(photos.photos[0].node.data.photo.localFiles)
 
   return (
-    <>
       <Carousel>
-        {' '}
         <CarouselNavLeft onClick={scrollPrev}>
           {'\u219C'}
           <br />
@@ -169,7 +164,6 @@ const Gallery = props => {
           {'\u219D'}
         </CarouselNavRight>
       </Carousel>
-    </>
   )
 }
 

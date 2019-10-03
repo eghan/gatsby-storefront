@@ -5,12 +5,6 @@ import styled from 'styled-components'
 import { Location } from '@reach/router'
 
 import Gallery from '../components/gallery-display'
-
-// import { Categories, CategoriesMobile } from '../components/categories'
-// import ProductList from '../components/product-list'
-//
-// import useSiteTags from '../hooks/tags'
-
 import { Container, Products } from '../utils/global'
 import { Categories } from '../components/categories'
 import ProductList from '../components/product-list'

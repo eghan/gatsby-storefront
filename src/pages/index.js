@@ -168,7 +168,7 @@ const SectionButton = styled(Button)`
 `
 //  AHAHAHHAHAHAHA nested terinary (manical laughter), but you can read it right?
 const ResponsiveText =
-  typeof window !== `undefined` ? (window.innerWidth > 750 ? 350 : 250) : 0
+  typeof window !== `undefined` && (window.innerWidth > 750 ? 350 : 250)
 
 const RenderPhoto = PhotoObject => {
   return (

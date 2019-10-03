@@ -6,7 +6,7 @@ import EmblaCarouselReact from 'embla-carousel-react'
 import Modal from '../components/modal'
 import { Consumer } from '../components/context'
 
-import { Button } from '../utils/global'
+import { Button, Photo } from '../utils/global'
 
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
@@ -49,6 +49,7 @@ const CarouselCenter = styled.div`
   margin: 0.5em;
 `
 const CarouselPhoto = styled(Img)`
+  border-radius: 15px;
   border: 1px solid black;
   height: 33vw;
   width: 33vw;

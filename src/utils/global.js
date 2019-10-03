@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { navigate } from 'gatsby'
+import Img from 'gatsby-image'
+
 
 const Mobile = styled.div`
   display: none;
@@ -73,6 +75,26 @@ const Products = styled.div`
   }
 `
 
+const PhotoBox = styled.div`
+  border-radius: 15px;
+  /*border: 1px solid black;*/
+  width: 15vw;
+  height: 15vw;
+  overflow: hidden;
+  @media (max-width: 750px) {
+    height: 45vw;
+    width: 45vw;
+  }
+`
+const Photo = styled(Img)`
+  border-radius: 15px;
+  /*height: 15vw;*/
+  border: 1px solid black;
+  @media (max-width: 750px) {
+    height: 45vw;
+  }
+`
+
 const CustomOrders = () => (
   <CustomsButton onClick={() => navigate('/contact')}>
     custom orders
@@ -118,5 +140,7 @@ export {
   Mobile,
   Container,
   Products,
-  Inquiry
+  Inquiry,
+  Photo,
+  PhotoBox,
 }

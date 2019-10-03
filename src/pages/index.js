@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import { Button } from '../utils/global'
+import { Button, Photo, PhotoBox } from '../utils/global'
 import PhotoModal from '../components/modal'
 import Gallery from '../components/gallery-display'
 
@@ -57,26 +57,25 @@ const MobileBox = styled.div`
     display: none;
   }
 `
-
-const PhotoBox = styled.div`
-  border-radius: 15px;
-  border: 1px solid black;
-  width: 15vw;
-  height: 15vw;
-  overflow: hidden;
-  @media (max-width: 750px) {
-    height: 45vw;
-    width: 45vw;
-  }
-`
-const Photo = styled(Img)`
-  border-radius: 15px;
-  height: 15vw;
-  @media (max-width: 750px) {
-    height: 45vw;
-    /*width: 45vw;*/
-  }
-`
+// 
+// const PhotoBox = styled.div`
+//   border-radius: 15px;
+//   border: 1px solid black;
+//   width: 15vw;
+//   height: 15vw;
+//   overflow: hidden;
+//   @media (max-width: 750px) {
+//     height: 45vw;
+//     width: 45vw;
+//   }
+// `
+// const Photo = styled(Img)`
+//   border-radius: 15px;
+//   height: 15vw;
+//   @media (max-width: 750px) {
+//     height: 45vw;
+//   }
+// `
 // const PreviewBox = styled.div`
 //   display: grid;
 //   grid-area: 'preview';

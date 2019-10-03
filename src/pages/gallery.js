@@ -6,7 +6,7 @@ import EmblaCarouselReact from 'embla-carousel-react'
 
 import Modal from '../components/modal'
 import Gallery from '../components/gallery-display'
-import { Button } from '../utils/global'
+import { Button, Photo, PhotoBox } from '../utils/global'
 
 const location =
   typeof window !== `undefined` ? window.location.pathname : '/gallery'
@@ -14,7 +14,7 @@ const location =
 const Box = styled.div`
   /*min-width: 350px;*/
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1vw;
   padding: 1vw;
   @media (max-width: 1150px) {
@@ -28,16 +28,16 @@ const Box = styled.div`
   }
   text-align: center;
 `
-const Photo = styled(Img)`
-  /*padding: 1em 1em;*/
-  border: 1px solid black;
-  width: 18vw;
-  height: 18vw;
-  @media (max-width: 750px) {
-    width: 47vw;
-    height: 47vw;
-  }
-`
+// const Photo = styled(Img)`
+//   /*padding: 1em 1em;*/
+//   border: 1px solid black;
+//   width: 18vw;
+//   height: 18vw;
+//   @media (max-width: 750px) {
+//     width: 47vw;
+//     height: 47vw;
+//   }
+// `
 
 const IndexPage = ({ data }) => {
   let photoFilter = data.allAirtable.edges.filter(
@@ -45,7 +45,7 @@ const IndexPage = ({ data }) => {
   )
   let photoFilter2 = data.allAirtable.edges.filter(
     edge => edge.node.data.name === 'photoset2'
-    )
+  )
   let photos = photoFilter[0].node.data.photo.localFiles
   let photos2 = photoFilter2[0].node.data.photo.localFiles
 
@@ -56,20 +56,22 @@ const IndexPage = ({ data }) => {
       <Box>
         {photoFilter.map((edge, i) =>
           edge.node.data.photo.localFiles.map(img => (
-            <Modal
-              object={img}
-              source={img.childImageSharp.low}
-              location={location}
-              name={img.name}
-              text="Inqure here"
-            >
-              <Photo
-                fadeIn={true}
-                key={img.id}
-                title={`Photo by Eghan Thompson`}
-                fluid={img.childImageSharp.low}
-              />
-            </Modal>
+            <PhotoBox>
+              <Modal
+                object={img}
+                source={img.childImageSharp.low}
+                location={location}
+                name={img.name}
+                text="Inqure here"
+              >
+                <Photo
+                  fadeIn={true}
+                  key={img.id}
+                  title={`Photo by Eghan Thompson`}
+                  fluid={img.childImageSharp.low}
+                />
+              </Modal>
+            </PhotoBox>
           ))
         )}
       </Box>

@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  <a href="https://artofactory.netlify.com">
+    Medium scale ecommerce application meshing data from Airtable and CSVs, built with Gatsby and GraphQL.
   </a>
 </p>
 <h1 align="center">

@@ -6,7 +6,7 @@ import PaypalExpressBtn from 'react-paypal-express-checkout'
 
 import { Consumer } from './context'
 import Modal from './modal'
-import TagPreview from './tag-preview'
+import Related from './related'
 import { Categories, CategoriesMobile } from './categories'
 import { TagFilter, Button } from '../utils/global'
 
@@ -23,6 +23,7 @@ const Container = styled.div`
   }
 `
 const Product = styled.div`
+  border: 1px dimgray;
   grid-area: 1 / 2 / 1 / 2;
   width: 85vw;
   display: grid;
@@ -66,6 +67,7 @@ const TextDiv = styled.div`
 `
 
 const Photo = styled(Img)`
+  border: 1px solid dimgray;
   width: 35vw;
   padding: 2em 0;
   @media (max-width: 750px) {
@@ -84,12 +86,13 @@ const Previews = styled.div`
   }
 `
 const PhotoPreview = styled(Img)`
+  border: 1px solid dimgray;
   margin: auto;
   width: 90%;
   @media (max-width: 750px) {
   }
 `
-const Related = styled.div`
+const RelatedTitle = styled.div`
   margin: 0 0.5em;
   padding: 0.2em 0;
   text-align: center;
@@ -275,8 +278,8 @@ const ProductDisplay = props => {
         </RightSide>
       </Product>
     </Container>
-      <Related>Related pieces:</Related>
-      <TagPreview tags={tags.filter(t => !tagExclude.includes(t))} />
+      <RelatedTitle>Related pieces:</RelatedTitle>
+      <Related tags={tags.filter(t => !tagExclude.includes(t))} />
   </>
   )
 }

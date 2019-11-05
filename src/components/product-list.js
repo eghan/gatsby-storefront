@@ -16,6 +16,7 @@ const Price = styled.div`
   float: right;
 `
 const Photo = styled(Img)`
+  border: 1px solid dimgray;
   width: 19vw;
   height: 19vw;
   padding: 0.5em 0.5em;

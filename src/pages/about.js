@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
-import TagPreview from '../components/tag-preview'
+// import TagPreview from '../components/tag-preview'
 
 const AboutDiv = styled.div`
     display: grid;

@@ -18,15 +18,6 @@ const SocialDiv = styled.div`
 
   }
 `
-// const Section = styled.div`
-//   text-align: center;
-//   padding: 1em;
-//   background: peru;
-//   @media (max-width: 750px) {
-//     display: none;
-//   }
-// `
-
 const SocialItem = styled.div`
   display: grid;
   @media (max-width: 750px) {

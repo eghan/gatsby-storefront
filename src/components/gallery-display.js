@@ -18,6 +18,10 @@ const Carousel = styled.div`
   border-right: 1px solid gray;
   width: 90%;
   margin: auto;
+  z-index: 1;
+    && {
+    z-index: 1;
+  }
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
   }
@@ -126,7 +130,7 @@ const Gallery = props => {
                 <PhotoModal
                   object={img}
                   doubleclick="true"
-                  source={img.childImageSharp.low}
+                  source={img.childImageSharp.high}
                   location={location}
                   name={img.name}
                   text="Inqure here"

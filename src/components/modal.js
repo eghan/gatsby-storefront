@@ -175,7 +175,7 @@ class PhotoModal extends React.Component {
         <Modal
           isOpen={this.state.showModal}
           ariaHideApp={false}
-          contentLabel="Inline Styles Modal Example"
+          contentLabel="Inline Styles Modal"
           style={customStyles}
         >
           <Box onClick={this.handleCloseModal}>

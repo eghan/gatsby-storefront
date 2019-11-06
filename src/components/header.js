@@ -1,12 +1,11 @@
 import React from 'react'
-import Link from 'gatsby-plugin-transition-link'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
-import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 // migrate to static querry from Airtable
 const sections = ['gallery', 'shop', 'about', 'social', 'cart']
 
-const Links = styled(AniLink)`
+const Links = styled(Link)`
   color: black;
   text-decoration: none;
 `
@@ -63,7 +62,7 @@ const TopNav = () => (
       </Nav>
       {sections.map(section => {
         return (
-          <Nav fade key={section} to={section}>
+          <Nav key={section} to={section}>
             {section}
           </Nav>
         )

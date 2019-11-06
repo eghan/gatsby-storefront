@@ -14,12 +14,12 @@ module.exports = {
         pathToConfigModule: `src/utils/typography.js`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-transition-link',
-      options: {
-        layout: require.resolve(`./src/components/layout.js`),
-      },
-    },
+    // {  // causes tons and tons of problems, with z-indexing and with page scroll dissapearing??
+    //   resolve: 'gatsby-plugin-transition-link',
+    //   options: {
+    //     layout: require.resolve(`./src/components/layout.js`),
+    //   },
+    // },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
@@ -29,16 +29,16 @@ module.exports = {
       },
     },
     'gatsby-transformer-csv',
-    // {
-    //   resolve: `gatsby-plugin-layout`,
-    //   options: {
-    //     component: require.resolve(`./src/components/layout.js`),
-    //   },
-    // },
+    {  
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout.js`),
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-sharp',
-    // {
+    // {  //  this should be re-integrated post v2
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
     //     name: 'gatsby-starter-default',

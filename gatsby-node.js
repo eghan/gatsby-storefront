@@ -16,15 +16,15 @@ exports.onCreateNode = async ({
     createParentChildLink,
     createPage,
   } = actions
+  const tagExclude = ['mad_max', 'steampunk']
 
   if (node.internal.type === `EtsyListingsDownloadCsv`) {
-    let fileNode
+    let fileNode = {}
     let imageList = await [node.IMAGE1, node.IMAGE2, node.IMAGE3]
 
     await Promise.all(
       imageList.map(async (image, i) => {
-        // try {
-        fileNode = await createRemoteFileNode({
+        const fileNode = await createRemoteFileNode({
           url: image,
           parent: node,
           store,
@@ -33,7 +33,7 @@ exports.onCreateNode = async ({
           createNodeId: id => `etsy-image${id}`,
         })
 
-        if (fileNode) {
+        if (!!fileNode) {
           // let imageId = ('image' + i + '___NODE') doesn't work, Gatsby uses ___NODE as a hook
           // gotta be a better way to do this -->  ...but it works
           if (i === 0) {
@@ -48,35 +48,56 @@ exports.onCreateNode = async ({
         }
 
         if (node.TAGS !== null) {
-
-          let tagExclude = ['mad_max', 'steampunk']  
-// any tags that are on etsy but not wanted on site
+          // any tags that are on etsy but not wanted on site
           let tags = node.TAGS.split(',')
-          .map(tag=>tag.toLowerCase())
-          .filter(tag=>!tagExclude.includes(tag))
+            .map(tag => tag.toLowerCase())
+            .filter(tag => !tagExclude.includes(tag))
 
           createNodeField({
             node,
             name: 'tags',
-            value: tags,
+            value: tags || [],
           })
 
-          tags.forEach(tag => {
-            if (!tagList.includes(tag)) {
-              createPage({
-                path: tag,
-                component: path.resolve(`./src/templates/tag-template.js`),
-                context: {
-                  tag: tag,
-                  name: tag,
-                },
-              })
-              tagList = [...tagList, tag]
-            }
-          })
+          if (!!tags) {
+            tags.forEach(tag => {
+              if (!tagList.includes(tag)) {
+                createPage({
+                  path: tag,
+                  component: path.resolve(`./src/templates/tag-template.js`),
+                  context: {
+                    tag: tag,
+                    name: tag,
+                  },
+                })
+                tagList = [...tagList, tag]
+              }
+            })
+          }
         }
       })
     )
+  }
+  if (node.internal.type === `Airtable`) {
+    if (node.data.tags !== null) {
+      let tagArray = Object.values(node.data.tags)
+        .map(tag => tag.toLowerCase())
+        .filter(tag => !tagList.includes(tag))
+        .filter(tag => !tagExclude.includes(tag))
+      tagArray.forEach(tag => {
+        if (!tagList.includes(tag)) {
+          createPage({
+            path: tag,
+            component: path.resolve(`./src/templates/tag-template.js`),
+            context: {
+              tag: tag,
+              name: tag,
+            },
+          })
+          tagList = [...tagList, tag]
+        }
+      })
+    }
   }
 }
 
@@ -102,7 +123,7 @@ exports.createPages = async ({
               name
               tags
               discription
-              photo {
+              image: photo {
                 localFiles {
                   name
                   id
@@ -140,13 +161,14 @@ exports.createPages = async ({
   airtableData.forEach(edge => {
     airtable = [...airtable, edge.node]
   })
+
   let etsy = []
   etsyData.forEach(edge => {
     etsy = [...etsy, edge.node]
   })
 
   airtable.forEach(node => {
-    if (node.data.discription !== null) {
+    if (!!node.data.tags) {
       createPage({
         path: node.data.name,
         component: path.resolve(`./src/templates/airtable-page-template.js`),
@@ -158,17 +180,18 @@ exports.createPages = async ({
         },
       })
     }
-    if (node.data.name == 'photoset') {
-      node.data.photo.localFiles.forEach(img => {
-        createPage({
-          path: img.name,
-          component: path.resolve(`./src/templates/airtable-photo-template.js`),
-          context: {
-            name: img.name,
-          },
-        })
-      })
-    }
+
+    // if (node.data.name == 'photoset') {
+    //   node.data.photo.localFiles.forEach(img => {
+    //     createPage({
+    //       path: img.name,
+    //       component: path.resolve(`./src/templates/airtable-photo-template.js`),
+    //       context: {
+    //         name: img.name,
+    //       },
+    //     })
+    //   })
+    // }
 
     if (node.data.tags != null) {
       node.data.tags.forEach(tag => {
@@ -181,6 +204,9 @@ exports.createPages = async ({
               tag: tag,
             },
           })
+          // if (!tagList.includes(tag)) {
+          //   tagList = [...tagList, tag]
+          // }
         }
       })
     }

@@ -23,7 +23,7 @@ export default ({ data }) => {
     price,
     image,
     fluid,
-    tags,
+    tags: [],
   }
 
   return <ProductDisplay product={product} />

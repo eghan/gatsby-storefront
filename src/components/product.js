@@ -172,7 +172,7 @@ const ProductDisplay = props => {
     fluidA,
     imageB,
     fluidB,
-    tags,
+    tags: tags = [],
   } = props.product
 
   const tagList = tags

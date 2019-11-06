@@ -30,7 +30,7 @@ export default ({ data }) => {
     fluidA,
     imageB,
     fluidB,
-    tags,
+    tags: [],
   }
 
   return <ProductDisplay product={product} />

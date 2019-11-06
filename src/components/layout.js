@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import { TransitionPortal } from "gatsby-plugin-transition-link"
 import 'typeface-tinos'
 
 import { ContextProviderComponent } from './context'
@@ -24,7 +25,7 @@ const Layout = ({ children, location }) => (
       }
     `}
     render={node => (
-      <>
+      <TransitionPortal>
         <ContextProviderComponent>
           <Helmet
             title={node.site.siteMetadata.title}
@@ -47,7 +48,7 @@ const Layout = ({ children, location }) => (
           <Body>{children}</Body>
           <Footer />
         </ContextProviderComponent>
-      </>
+      </TransitionPortal>
     )}
   />
 )

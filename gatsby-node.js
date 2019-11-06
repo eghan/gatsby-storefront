@@ -79,7 +79,7 @@ exports.onCreateNode = async ({
     )
   }
   if (node.internal.type === `Airtable`) {
-    if (node.data.tags !== null) {
+    if (!!node.data.tags) {
       let tagArray = Object.values(node.data.tags)
         .map(tag => tag.toLowerCase())
         .filter(tag => !tagList.includes(tag))

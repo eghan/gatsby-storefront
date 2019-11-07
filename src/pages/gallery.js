@@ -59,10 +59,10 @@ const IndexPage = ({ data }) => {
             <PhotoBox>
               <Modal
                 object={img}
-                source={img.childImageSharp.low}
+                source={img.childImageSharp.high}
                 location={location}
                 name={img.name}
-                text="Inqure here"
+                text="Inquire here"
               >
                 <Photo
                   fadeIn={true}

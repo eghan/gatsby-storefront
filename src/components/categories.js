@@ -29,6 +29,7 @@ const Nav = styled.div`
 const Tags = styled.div`
   margin: 0 0 0.5em 0;
   border-bottom: 1px solid lightgray;
+  text-align: center;
 `
 const Section = styled.div`
   /*display: inline;*/
@@ -66,7 +67,7 @@ const Categories = props => {
       {/*   custom orders */}
       {/* </ButtonMobileRight> */}
       <Section>
-        <Tags>Tags:</Tags>
+        <Tags>{'\u291F'} Tags {'\u2920'}</Tags>
         {FilteredSortedTags
           .map(tag => (
             <TagButton

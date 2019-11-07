@@ -4,6 +4,41 @@ import styled from 'styled-components'
 
 // import TagPreview from '../components/tag-preview'
 
+const Grid = styled.div`
+  display: grid;
+  background: palevioletred;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(15vw);
+  grid-auto-flow: row dense;
+  grid-gap: 1vw;
+  border: 1px solid black;
+  padding: 1em;
+`
+
+const GridItemOne = styled.div`
+  display: grid;
+  /*height: 15vw;*/
+  grid-column: span 3;
+  border: 5px solid black;
+  background: pink;
+`
+const GridItemTwo = styled.div`
+  grid-column: span 2;
+  grid-row: span 2;
+  border: 2px dashed black;
+`
+const GridItemThree = styled.div`
+  grid-column: span 2;
+  border: 3px dotted black;
+`
+const GridItemFour = styled.div`
+  grid-row: span 2;
+  border: 3px dotted plum;
+`
+const Blank = styled.div`
+  border: 2px dashed plum;
+`
+
 const AboutDiv = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -74,6 +109,25 @@ const MobileSpacer = styled.div`
   }
 `
 
+const AboutGrid = () => {
+  return (
+    <>
+    <Grid>
+      <GridItemOne>item one</GridItemOne>
+      <GridItemThree>item three</GridItemThree>
+      <GridItemFour>item four</GridItemFour>
+      <GridItemOne>item one</GridItemOne>
+      <GridItemFour>item four</GridItemFour>
+      <GridItemThree>item fuck</GridItemThree>
+      <Blank>item fill two</Blank>
+      <Blank>item fill one</Blank>
+      <GridItemTwo>item fuck</GridItemTwo>
+    </Grid>
+  </>
+  )
+}
+
+
 const RenderRow = (PreviewObject, i) => {
     // styled components has an issue with named grid template areas, so...
     // reuse of style objects seems nice with this aproach
@@ -127,6 +181,7 @@ const AboutPage = ({ data }) => {
         })
     return(
         <>            
+          <AboutGrid />
             <AboutDiv>
                 {PreviewDeck.map((preview, i) => {
                     return RenderRow(preview, i)

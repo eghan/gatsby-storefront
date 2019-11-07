@@ -113,11 +113,7 @@ const Gallery = props => {
   return (
       <Carousel>
         <CarouselNavLeft onClick={scrollPrev}>
-          {'\u219C'}
-          <br />
-          {'\u219C'}
-          <br />
-          {'\u219C'}
+          {'\u291F'}
         </CarouselNavLeft>
         <EmblaCarouselReact
           htmlTagName="div"
@@ -162,11 +158,7 @@ const Gallery = props => {
           </CarouselCenter>
         </EmblaCarouselReact>{' '}
         <CarouselNavRight onClick={scrollNext}>
-          {'\u219D'}
-          <br />
-          {'\u219D'}
-          <br />
-          {'\u219D'}
+          {'\u2920'}
         </CarouselNavRight>
       </Carousel>
   )

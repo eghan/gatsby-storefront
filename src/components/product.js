@@ -218,7 +218,7 @@ const ProductDisplay = props => {
               {tagList}
             </TagDiv>
             <Price>
-              <PayLabel>with free shipping: {price} $</PayLabel>
+              <PayLabel>free shipping {'\u2920'} {price} $</PayLabel>
               <Consumer>
                 {({ data, set }) => {
                   return (

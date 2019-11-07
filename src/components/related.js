@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import Menu from 'react-burger-menu/lib/menus/slide'
-import tagIcon from '../images/more-horizontal.svg'
+// import tagIcon from '../images/more-horizontal.svg'
 import { useSiteTags } from '../hooks/tags'
 import { useSiteProducts } from '../hooks/products'
 

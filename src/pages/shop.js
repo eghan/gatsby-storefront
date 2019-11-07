@@ -9,41 +9,6 @@ import { Categories } from '../components/categories'
 import ProductList from '../components/product-list'
 import Related from '../components/related'
 
-const Grid = styled.div`
-  display: grid;
-  background: palevioletred;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: repeat(15vw);
-  grid-auto-flow: row dense;
-  grid-gap: 1vw;
-  border: 1px solid black;
-  padding: 1em;
-`
-
-const GridItemOne = styled.div`
-  display: grid;
-  /*height: 15vw;*/
-  grid-column: span 3;
-  border: 5px solid black;
-  background: pink;
-`
-const GridItemTwo = styled.div`
-  grid-column: span 2;
-  grid-row: span 2;
-  border: 2px dashed black;
-`
-const GridItemThree = styled.div`
-  grid-column: span 2;
-  border: 3px dotted black;
-`
-const GridItemFour = styled.div`
-  grid-row: span 2;
-  border: 3px dotted plum;
-`
-const Blank = styled.div`
-  border: 2px dashed plum;
-`
-
 const etsyBuild = data => {
   // data.etsy.edges.node is dirty in the node
   // so filtration by assignment is happening
@@ -83,24 +48,6 @@ const airtableBuild = data => {
   return structuredAirtable
 }
 
-const ProductGrid = () => {
-  return (
-    <>
-    <Grid>
-      <GridItemOne>item one</GridItemOne>
-      <GridItemThree>item three</GridItemThree>
-      <GridItemFour>item four</GridItemFour>
-      <GridItemOne>item one</GridItemOne>
-      <GridItemFour>item four</GridItemFour>
-      <GridItemThree>item fuck</GridItemThree>
-      <Blank>item fill two</Blank>
-      <Blank>item fill one</Blank>
-      <GridItemTwo>item fuck</GridItemTwo>
-    </Grid>
-  </>
-  )
-}
-
 export default ({ data }) => {
   return (
     <>
@@ -109,7 +56,6 @@ export default ({ data }) => {
         <Products>
         {/* {useSiteProducts().map(x => <div>{x.name}</div>)} */}
           <Related />
-          <ProductGrid />
           <ProductList products={airtableBuild(data)} />
           <ProductList products={etsyBuild(data)} />
         </Products>

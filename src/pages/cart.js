@@ -80,11 +80,11 @@ const CartDisplay = () => (
             <GridRow>
               <CartCell />
               <CartCell />
-              <CartCell>with free shipping</CartCell>
+              <CartCell>free shipping</CartCell>
               <CartCell>Total: {cartTotal} $</CartCell>
               <CartCell />
               <CartCell />
-              <CartCell>Checkout with {'\u2192'} </CartCell>
+              <CartCell>Checkout with {'\u2920'} </CartCell>
               <CartCell>
                 <PaypalExpressBtn
                   client={client}

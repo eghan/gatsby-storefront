@@ -1,0 +1,1514 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tags",
+				"tagsFiltered"
+			],
+			[
+				"M",
+				"MenuModal"
+			],
+			[
+				"use",
+				"useSiteTags"
+			],
+			[
+				"Ca",
+				"CategoriesMOBILE"
+			],
+			[
+				"Cat",
+				"Categories"
+			],
+			[
+				"grid",
+				"inline-grid\tdisplay"
+			],
+			[
+				"inl",
+				"inline-flex\tdisplay"
+			],
+			[
+				"air",
+				"airtableBuild"
+			],
+			[
+				"etsy",
+				"etsyBuild"
+			],
+			[
+				"str",
+				"structuredAirtable"
+			],
+			[
+				"ai",
+				"airtableBuild"
+			],
+			[
+				"na",
+				"navigate"
+			],
+			[
+				"Ta",
+				"TagNav"
+			],
+			[
+				"ima",
+				"imageTargetURL"
+			],
+			[
+				"iam",
+				"imageURL"
+			],
+			[
+				"P",
+				"Products"
+			],
+			[
+				"C",
+				"Categories"
+			],
+			[
+				"s",
+				"structuredProducts"
+			],
+			[
+				"Photo",
+				"PhotoObject"
+			],
+			[
+				"lo",
+				"localStorage"
+			],
+			[
+				"stat",
+				"stateStorage"
+			],
+			[
+				"D",
+				"cartDisplayTotal"
+			],
+			[
+				"it",
+				"itemList"
+			],
+			[
+				"me",
+				"menuOpen"
+			],
+			[
+				"all",
+				"allEtsyListingsDownloadCsv"
+			],
+			[
+				"order",
+				"orderedDisplay"
+			],
+			[
+				"or",
+				"orderedItems"
+			],
+			[
+				"ta",
+				"tagsData"
+			],
+			[
+				"ord",
+				"orderedDisplay"
+			],
+			[
+				"count",
+				"count"
+			],
+			[
+				"r",
+				"renderData"
+			],
+			[
+				"Pre",
+				"PreviewBox"
+			],
+			[
+				"box",
+				"boxAlignment"
+			],
+			[
+				"col",
+				"ColSpan"
+			],
+			[
+				"grid-te",
+				"grid-template-areas"
+			],
+			[
+				"Ab",
+				"AboutPage"
+			],
+			[
+				"dis",
+				"displayHeight"
+			],
+			[
+				"photoT",
+				"photoThree"
+			],
+			[
+				"T",
+				"TextModal"
+			],
+			[
+				"mat",
+				"matchList"
+			],
+			[
+				"inline",
+				"inline-block\tdisplay"
+			],
+			[
+				"ch",
+				"childImageSharp"
+			],
+			[
+				"I",
+				"ImageBank"
+			],
+			[
+				"c",
+				"center\talign-content"
+			],
+			[
+				"al",
+				"align-content\tproperty"
+			],
+			[
+				"S",
+				"StyledModal"
+			],
+			[
+				"si",
+				"siteTitle"
+			],
+			[
+				"inlin",
+				"inline-block\tdisplay"
+			],
+			[
+				"prod",
+				"productImage"
+			],
+			[
+				"se",
+				"sections"
+			],
+			[
+				"di",
+				"discription"
+			],
+			[
+				"N",
+				"NavResponsive"
+			],
+			[
+				"space-",
+				"space-between\talign-content"
+			],
+			[
+				"tex",
+				"textarea"
+			],
+			[
+				"i",
+				"inline-flex\tdisplay"
+			],
+			[
+				"in",
+				"inline-block\tdisplay"
+			],
+			[
+				"img",
+				"img"
+			],
+			[
+				"local",
+				"localFiles"
+			],
+			[
+				"a",
+				"airtable"
+			],
+			[
+				"d",
+				"description"
+			],
+			[
+				"airtable",
+				"airtable"
+			],
+			[
+				"n",
+				"name"
+			],
+			[
+				"e",
+				"edges"
+			],
+			[
+				"p",
+				"photo"
+			],
+			[
+				"pro",
+				"product"
+			],
+			[
+				"fr",
+				"frontmatter"
+			],
+			[
+				"site",
+				"siteMetadata"
+			],
+			[
+				"Layout",
+				"Layout"
+			],
+			[
+				"new",
+				"networkInterface"
+			],
+			[
+				"A",
+				"ApolloProvider"
+			],
+			[
+				"Gr",
+				"GraphQLID"
+			],
+			[
+				"Graph",
+				"GraphQLObjectType"
+			],
+			[
+				"G",
+				"GraphQLString"
+			],
+			[
+				"lik",
+				"likeLyric"
+			],
+			[
+				"re",
+				"renderLyrics"
+			],
+			[
+				"L",
+				"LyricList"
+			],
+			[
+				"space",
+				"space-between\tjustify-content"
+			],
+			[
+				"Gra",
+				"GraphQLNonNull"
+			],
+			[
+				"co",
+				"companyId"
+			],
+			[
+				"com",
+				"companies"
+			],
+			[
+				"type",
+				"type"
+			],
+			[
+				"U",
+				"UserType"
+			],
+			[
+				"content",
+				"content"
+			],
+			[
+				"render",
+				"renderTitleField"
+			],
+			[
+				"Po",
+				"PostsNew"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"city",
+				"cityData"
+			],
+			[
+				"table",
+				"table"
+			],
+			[
+				"on",
+				"onFormSubmit"
+			],
+			[
+				"bind",
+				"bindActionCreators"
+			],
+			[
+				"Re",
+				"ReduxPromise"
+			],
+			[
+				"input",
+				"input-group"
+			],
+			[
+				"b",
+				"BookDetail"
+			],
+			[
+				"map",
+				"mapStateToProps"
+			],
+			[
+				"cla",
+				"className"
+			],
+			[
+				"vid",
+				"videoSearch"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			],
+			[
+				"bor",
+				"border-radius\tproperty"
+			],
+			[
+				"marg",
+				"margin-top\tproperty"
+			],
+			[
+				"max",
+				"max-width\tproperty"
+			],
+			[
+				"Vide",
+				"VideoList"
+			],
+			[
+				"V",
+				"VideoDetail"
+			],
+			[
+				"vi",
+				"videoId"
+			],
+			[
+				"v",
+				"videoItems"
+			],
+			[
+				"video",
+				"video_list"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "log",
+			"settings":
+			{
+				"buffer_size": 182412,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git add src/components/product-list.js                                                                     \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git add src/components/categories.js                                                                       \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git add src/components/menu-modal.js                                                                       \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git add src/utils/global.js                                                                                \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git commit -m \"conditional global mobile tag styling\"                                                      \n[master 963a5f1] conditional global mobile tag styling                                                          \n 5 files changed, 70 insertions(+), 66 deletions(-)                                                             \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => git push origin                                                                                            \nCounting objects: 11, done.                                                                                     \nDelta compression using up to 8 threads.                                                                        \nCompressing objects: 100% (11/11), done.                                                                        \nWriting objects: 100% (11/11), 1.49 KiB | 0 bytes/s, done.                                                      \nTotal 11 (delta 9), reused 0 (delta 0)                                                                          \nremote: Resolving deltas: 100% (9/9), completed with 9 local objects.                                           \nremote:                                                                                                         \nremote: GitHub found 8 vulnerabilities on eghan/gatsby-storefront's default branch (4 critical, 3 high, 1 modera\nte). To find out more, visit:                                                                                   \nremote:      https://github.com/eghan/gatsby-storefront/network/alerts                                          \nremote:                                                                                                         \nTo https://github.com/eghan/gatsby-storefront.git                                                               \n   59a46fe..963a5f1  master -> master                                                                           \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| =>                                                                                                            \n",
+			"settings":
+			{
+				"buffer_size": 3955,
+				"line_ending": "Unix",
+				"name": "Terminal (bash)",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "src/pages/shop.js",
+			"settings":
+			{
+				"buffer_size": 3037,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/components/product-list.js",
+			"settings":
+			{
+				"buffer_size": 1692,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/components/categories.js",
+			"settings":
+			{
+				"buffer_size": 1983,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/components/menu-modal.js",
+			"settings":
+			{
+				"buffer_size": 5292,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/utils/global.js",
+			"settings":
+			{
+				"buffer_size": 2013,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/airtable-page-template.js",
+			"settings":
+			{
+				"buffer_size": 7863,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/tag-list-template.js",
+			"settings":
+			{
+				"buffer_size": 2018,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/tag-template.js",
+			"settings":
+			{
+				"buffer_size": 6169,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/hooks/tags.js",
+			"settings":
+			{
+				"buffer_size": 1338,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| => gatsby develop >log                                                                                        \n^C                                                                                                              \n________________________________________________________________________________                                \n| ~/Documents/GitHub/gatsby_work/airtable-gatsby @ mes-MacBook-Pro (me)                                         \n| =>                                                                                                            \n",
+			"settings":
+			{
+				"buffer_size": 678,
+				"line_ending": "Unix",
+				"name": "Terminal (bash)",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"t",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"term",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"ter",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"transp",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"eslin",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"theme ",
+				"UI: Select Theme"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pref",
+				"Preferences: Settings"
+			],
+			[
+				"new",
+				"ANF: New File"
+			],
+			[
+				"syn sy",
+				"Set Syntax: Emmet"
+			],
+			[
+				"insp",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 88.0,
+		"history":
+		[
+			"sublime.find_resources('*.sublime-menu')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/public",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/hooks",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/utils"
+	],
+	"file_history":
+	[
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.cache/app.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/gatsby-config.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/shop.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/airtable-page-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/log",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/utils/global.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-page-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/menu-modal.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/package.json",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/categories.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/hooks/tags.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/images/more-horizontal.svg",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tag-data.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/mobilenav.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/contact.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/gallery.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/product-list.js",
+		"/Users/me/Documents/projects/users/node_modules/express/lib/router/layer.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/social.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/footer.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/gatsby-node.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/header.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tagbar.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/burger.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/context.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/modal.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/gatsby-browser.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/thanks.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/categories.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/cart.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/layout.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/transition.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/node_modules/@reach/router/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/about.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/package-lock.json",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/transitions.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/product.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/layouts/context.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/layouts/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/gatsby/createPages.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/gitlog",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/tag-list-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/tag-preview.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/airtable-photo-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/404.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/textmodal.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.gitignore",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/teaser.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/e",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/form.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/hexgrid.css",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/hexgrid.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/contact.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/images/connections.jpg",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/images/burger_icon.svg",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/netlify.toml",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/3",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/node_modules/react-paypal-express-checkout/dist/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/node_modules/react-paypal-express-checkout/src/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/paypalbutton.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/PaypalButton.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/Terminal (bash)",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/egatsby",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-tag-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/backup_layout.css",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.env.production",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/.env.development",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/data/EtsyListingsDownload.csv",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/page-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/etsy-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/README.md",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/e.txt",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/yarn.lock",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/page-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/errorlog.txt",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/alogger.txt",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/utils/typography.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/earrings.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/necklaces.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/page-2.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/pages/uniques.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/components/layout.css",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src/templates/section-template.js",
+		"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/log.txt",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/gatsby-config.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/gatsby-config.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/src/utils/typography.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/src/pages/about.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/src/pages/index.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/src/components/image.js",
+		"/Users/me/Documents/GitHub/base-gatsby-build/src/components/layout.js",
+		"/Users/me/Documents/GitHub/gatsby_work/serverless-backend/gatsby-stripe-serverless-backend/secrets.json",
+		"/Users/me/Documents/GitHub/art-gatsby/src/pages/index.js",
+		"/Users/me/Documents/GitHub/art-gatsby/src/pages/page-2.js",
+		"/Users/me/Documents/GitHub/art-gatsby/gatsby-node.js",
+		"/Users/me/Documents/GitHub/art-gatsby/gatsby-config.js",
+		"/Users/me/Documents/GitHub/art-gatsby/src/data/products.json",
+		"/Users/me/Documents/GitHub/art-gatsby/src/template.js",
+		"/Users/me/Documents/GitHub/gatsby-netlify-cms/src/data/products.json",
+		"/Users/me/Documents/GitHub/gatsby-netlify-cms/gatsby-config.js",
+		"/Users/me/Documents/GitHub/gatsby-graphcms-art/gatsby/configQuery.js",
+		"/Users/me/Documents/GitHub/gatsby-graphcms-art/gatsby-config.js",
+		"/Users/me/Documents/GitHub/gatsby-graphcms-art/src/pages/index.js",
+		"/Users/me/Documents/GitHub/gatsby-graphcms-art/src/pages/records.js",
+		"/Users/me/Documents/GitHub/gatsby-graphcms-art/src/pages/reviews.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/templates/blog-post.js",
+		"/Users/me/Documents/GitHub/gatsby-netlify-cms/static/admin/index.html",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/components/layout.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/pages/about.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/pages/sweet-pandas-eating-sweets.md",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/pages/my-files.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/pages/pandas-and-bananas.md",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/gatsby-node.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/pages/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/gatsby-config.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-four/src/utils/typography.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/src/utils/typography.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/src/components/layout.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/src/pages/contact.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/src/pages/about.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/src/pages/index.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-three/gatsby-config.js",
+		"/Users/me/Documents/GitHub/gatsby_work/material-gatsby/src/components/SocialLinks/index.jsx",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-two/src/pages/about-css-modules.module.css",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-two/src/pages/about-css-modules.js",
+		"/Users/me/Documents/GitHub/gatsby_work/tutorial-part-two/src/components/container.module.css"
+	],
+	"find":
+	{
+		"height": 46.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"<selection>,<current file>,/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby/src",
+			"<selection>,<current file>",
+			"<selection>",
+			"<current file>",
+			"",
+			"/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby",
+			"<current file>,/Users/me/Documents/GitHub/gatsby_work/material-gatsby/src",
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tagsFiltered",
+			"useSiteTags",
+			"tag",
+			"gats",
+			"CustomOrders",
+			"Tags",
+			"price",
+			"vh",
+			"border",
+			"CategoriesMobile",
+			"TagPreview",
+			"}\n",
+			"CategoriesMOBILE",
+			">\n",
+			"menu",
+			"MenuModal",
+			"border",
+			"height",
+			";\n",
+			"tagp",
+			"Tagbar",
+			"border",
+			"renderTagMatches",
+			"tagMatches",
+			"doubleclick",
+			"structuredProductsstructuredProducts\n",
+			"structuredProducts",
+			"doubleclick",
+			"<",
+			"console",
+			"Link",
+			"modal",
+			"  padding: .5em;\n",
+			"pink",
+			"green",
+			"pink",
+			"CategoryDisplay",
+			"TagPreview",
+			"Tagbar",
+			"createNode",
+			"tagList",
+			"burgerTags",
+			"CartButton",
+			";\n",
+			"location",
+			"EmblaCarouselComponent",
+			"SocialIcon",
+			"RenderPreview",
+			"RenderRow",
+			"RenderPhoto",
+			"previewdeck",
+			"button",
+			"botton",
+			"sections",
+			"fields",
+			"title",
+			"click",
+			"link",
+			"set",
+			"data.itemList",
+			"cartItems",
+			"plum",
+			"CategoryDisplay",
+			"renderData",
+			"Tagbar",
+			"tagbar",
+			"tagList",
+			"tag-l",
+			"OverlayText",
+			"abs",
+			"Button",
+			"RenderPreview",
+			"MobileBox",
+			"more",
+			"fir",
+			"border",
+			"Img",
+			"const Body = styled.div`\n//   /*background: black;*/\n// `",
+			"white",
+			"RenderPhoto",
+			"Photo",
+			"PhotoBox",
+			"modal",
+			"trans",
+			"stateStorage",
+			"transi",
+			"trans",
+			"transi",
+			"data",
+			"transi",
+			"Consumer",
+			"manifest",
+			"react",
+			"Consumer",
+			"gatsby-plugin-transitions",
+			"trans",
+			"location",
+			"trans",
+			"pathname",
+			"location",
+			"t",
+			"TextModal",
+			"Photo",
+			"Modal",
+			"modal",
+			"location",
+			"transitions",
+			"layout",
+			"Burger",
+			"Consumer",
+			"ComponentThatReadState",
+			"ComponentThatChangeState",
+			"PhotoModal",
+			"Related",
+			"TagDiv",
+			"TagLink",
+			"tag",
+			"CartData",
+			"cartBox",
+			"CartDiv",
+			"console",
+			"console.log",
+			"console",
+			"con",
+			"consol",
+			"console.log",
+			"layout",
+			"3"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"CategoriesMobile",
+			"Modal",
+			"Div",
+			"RightBox",
+			"_",
+			"etsyListingsDownloadCsv",
+			"font-family: Tinos, Times, Times New Roman, serif;",
+			"tag",
+			"tags"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "log",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 182412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 45626.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3847,
+								3847
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_complete_commit_on_tab": false,
+							"caret_style": "blink",
+							"color_scheme": "Packages/TerminalView/TerminalView.hidden-tmTheme",
+							"draw_centered": false,
+							"draw_indent_guides": false,
+							"draw_white_space": "none",
+							"git_gutter_is_enabled": false,
+							"gutter": false,
+							"highlight_line": false,
+							"scroll_past_end": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"terminal_view": true,
+							"terminal_view_activate_args":
+							{
+								"cmd": "/bin/bash -l",
+								"cwd": "/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby",
+								"keep_open": false,
+								"syntax": null,
+								"title": "Terminal (bash)"
+							},
+							"terminal_view_last_cursor_pos":
+							[
+								34,
+								5
+							],
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/pages/shop.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3037,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								306,
+								146
+							]
+						],
+						"settings":
+						{
+							"SL.30.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1833.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/components/product-list.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1692,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"SL.33.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 962.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/components/categories.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								195,
+								275
+							]
+						],
+						"settings":
+						{
+							"SL.17.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/components/menu-modal.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1579,
+								1579
+							]
+						],
+						"settings":
+						{
+							"SL.34.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 493.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/utils/global.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1441,
+								1441
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1463.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/templates/airtable-page-template.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7863,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								389,
+								389
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/templates/tag-list-template.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2018,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								242
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/templates/tag-template.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								968,
+								968
+							]
+						],
+						"settings":
+						{
+							"SL.31.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/hooks/tags.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1338,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1324,
+								1336
+							]
+						],
+						"settings":
+						{
+							"SL.32.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Naomi/syntaxes/naomi.fjsx15.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 554.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 11,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 678,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								570,
+								570
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_complete_commit_on_tab": false,
+							"caret_style": "blink",
+							"color_scheme": "Packages/TerminalView/TerminalView.hidden-tmTheme",
+							"draw_centered": false,
+							"draw_indent_guides": false,
+							"draw_white_space": "none",
+							"git_gutter_is_enabled": false,
+							"gutter": false,
+							"highlight_line": false,
+							"scroll_past_end": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"terminal_view": true,
+							"terminal_view_activate_args":
+							{
+								"cmd": "/bin/bash -l",
+								"cwd": "/Users/me/Documents/GitHub/gatsby_work/airtable-gatsby",
+								"keep_open": false,
+								"syntax": null,
+								"title": "Terminal (bash)"
+							},
+							"terminal_view_last_cursor_pos":
+							[
+								5,
+								5
+							],
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 59.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.830030378224,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"term",
+				"Terminal (bash)"
+			],
+			[
+				"ter",
+				"Terminal (bash)"
+			],
+			[
+				"",
+				"Terminal (bash)"
+			],
+			[
+				"t",
+				"Terminal (bash)"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/artofactoryWORK.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 416.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

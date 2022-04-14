@@ -72,20 +72,20 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Tinos`,
-            subsets: [`latin`],
-          },
-          {
-            family: `Open Sans`,
-            variants: [`400`, `700`],
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Tinos`,
+    //         subsets: [`latin`],
+    //       },
+    //       {
+    //         family: `Open Sans`,
+    //         variants: [`400`, `700`],
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 }

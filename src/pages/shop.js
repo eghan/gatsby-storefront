@@ -9,21 +9,21 @@ import { Categories } from '../components/categories'
 import ProductList from '../components/product-list'
 import Related from '../components/related'
 
-const etsyBuild = data => {
-  // data.etsy.edges.node is dirty in the node
-  // so filtration by assignment is happening
-  let structuredEtsy = data.etsy.edges.map(item => {
-    return {
-      price: item.node.price,
-      name: item.node.name,
-      tags: item.node.tags,
-      imageID: item.node.image.childImageSharp.id,
-      imageFluid: item.node.image.childImageSharp.fluid,
-    }
-  })
+// const etsyBuild = data => {
+//   // data.etsy.edges.node is dirty in the node
+//   // so filtration by assignment is happening
+//   let structuredEtsy = data.etsy.edges.map(item => {
+//     return {
+//       price: item.node.price,
+//       name: item.node.name,
+//       tags: item.node.tags,
+//       imageID: item.node.image.childImageSharp.id,
+//       imageFluid: item.node.image.childImageSharp.fluid,
+//     }
+//   })
 
-  return structuredEtsy
-}
+//   return structuredEtsy
+// }
 
 const airtableBuild = data => {
   // Airtable returns bad object values, clean them out
@@ -57,7 +57,7 @@ export default ({ data }) => {
         {/* {useSiteProducts().map(x => <div>{x.name}</div>)} */}
           <Related />
           <ProductList products={airtableBuild(data)} />
-          <ProductList products={etsyBuild(data)} />
+          {/* <ProductList products={etsyBuild(data)} /> */}
         </Products>
       </Container>
     </>
@@ -65,47 +65,27 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query shopItems {
-    airtable: allAirtable {
-      edges {
-        node {
-          data {
-            name
-            price
-            tags
-            image: photo {
-              localFiles {
-                childImageSharp {
-                  id
-                  fluid(maxWidth: 400) {
-                    ...GatsbyImageSharpFluid
+query shopItems {
+  airtable: allAirtable {
+    edges {
+      node {
+        data {
+          name
+          price
+          tags
+          image: photo {
+            localFiles {
+              childImageSharp {
+                id
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid
+                              }
+                          }
+                      }
                   }
-                }
               }
-            }
           }
-        }
       }
-    }
-    etsy: allEtsyListingsDownloadCsv {
-      edges {
-        node {
-          id
-          name: TITLE
-          price: PRICE
-          tags: fields {
-            tags
-          }
-          image {
-            childImageSharp {
-              id
-              fluid(maxWidth: 400) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
   }
+}
 `

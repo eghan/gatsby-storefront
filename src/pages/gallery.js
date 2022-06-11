@@ -38,6 +38,7 @@ const Box = styled.div`
 //     height: 47vw;
 //   }
 // `
+//
 
 const IndexPage = ({ data }) => {
   let photoFilter = data.allAirtable.edges.filter(
